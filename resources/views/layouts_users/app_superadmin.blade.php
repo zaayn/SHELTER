@@ -278,7 +278,6 @@
 
                 <p>
                     Super Admin<br>
-                    {{ Auth::user()->nama_depan }}
                   <small></small>
                 </p>
               </li>
@@ -339,7 +338,7 @@
         </div>
         <div class="pull-left info">
           <p>Super Admin</p>
-          {{ Auth::user()->nama_depan }}
+
         </div>
       </div>
       <!-- search form -->

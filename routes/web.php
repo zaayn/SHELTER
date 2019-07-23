@@ -53,8 +53,10 @@ Route::group(['prefix' => 'officer_crm',  'middleware' => 'is_officer_crm'], fun
 
 });
 
+// email superadmin :superadmin@gmail.com
+// pass             :12345678
 Route::group(['prefix' => 'superadmin',  'middleware' => 'is_superadmin'], function(){
-    Route::get('/home', 'AdminController@superadmin')->name('home'); //Dashboard 
+    Route::get('/home', 'AdminController@superadmin')->name('home'); //Dashboard super admin
 
     //--------- bisnis unit
     Route::get('/insert_bisnis_unit', 'BisnisController@insert')->name('insert.bisnis_unit'); //show form insert
@@ -88,6 +90,8 @@ Route::group(['prefix' => 'superadmin',  'middleware' => 'is_superadmin'], funct
     Route::get('/delete/user{id}','UserController@delete')->name('delete.user');
     Route::get('/edit/user{id}','UserController@edit')->name('edit.user');
     Route::put('/update/user{id}','UserController@update')->name('update.user');
+    Route::post('/filter/user', 'UserController@filter')->name('filter.user');
+
 });
 
 Route::group(['prefix' => 'admin',  'middleware' => 'is_admin'], function(){

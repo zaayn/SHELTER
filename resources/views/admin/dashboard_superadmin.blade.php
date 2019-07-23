@@ -5,7 +5,7 @@
     <div class="col-md-12">
         <div class="panel block">
             <div class="panel-body">
-                <h1> Dashboard Super admin</h1>
+                <h1> Dashboard Super aaa admin</h1>
                 <ol class="breadcrumb">
                     <li><i class="fa fa-dashboard"></i> Home</li>
                     
@@ -46,7 +46,7 @@
             <div class="info-box">
             <span class="info-box-icon bg-red"><i class="fa fa-envelope-o"></i></span>
             <div class="info-box-content">
-                <span class="info-box-text">Apa enak nya ini</span>
+                <span class="info-box-text">Apa enak nya iniaaaaaaa</span>
                 <span class="info-box-number">9999999?</span>
             </div>
             </div>

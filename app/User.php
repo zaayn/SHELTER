@@ -22,7 +22,6 @@ class User extends Authenticatable
         ,'nama_belakang'
         ,'email'
         ,'password'
-        ,'email'
         ,'wilayah_id'
         ,'no_hp'
         ,'rule'

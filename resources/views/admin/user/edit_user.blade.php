@@ -61,7 +61,7 @@
                       <div class="form-group">
                         <label>Password :</label>
                         <div>
-                          <input type="text" class="form-control" name="password" value="{{ $user->password}}"disabled>
+                          <input type="text" class="form-control" name="password" value="{{ $user->password}}"required>
                         </div>
                       </div>
                       <div class="form-group">
@@ -73,15 +73,20 @@
                       <div class="form-group">
                         <label>Wilayah Supervisi :</label>
                         <div>
-                          <input type="text" class="form-control" name="nama_wilayah" value="{{ $user->wilayah->nama_wilayah}}" disabled>
-                        </div>
+                          <select class="form-control" name="wilayah_id">
+                              <option value="">pilih wilayah</option>
+                          @foreach($wilayahs as $wilayah)
+                              <option value="{{ $wilayah->wilayah_id }}">{{ $wilayah->nama_wilayah }}</option>
+                          @endforeach
+                          </select>
+                      </div>
                       </div>
                     <div class="form-group">
                         <label>Rule :</label>
                         <div>
                             <select class="form-control" name="rule">
                                 <option>Pilih Role</option>
-                                <option value="superadmin">Admin</option>
+                                <option value="superadmin">Super Admin</option>
                                 <option value="admin">Admin</option>
                                 <option value="Officer_crm">Officer CRM</option>
                                 <option value="manager_crm">Manager Officer</option>

@@ -19,66 +19,39 @@ class UserController extends Controller
         $data['wilayahs'] = wilayah::all();
         return view('admin/user/insert_user',$data);
     }
-    public function index(Request $request)
+    public function filter(Request $request)
     {   
-
-        $data['areas'] = area::all();
-        $data['wilayahs'] = wilayah::all();
-        $data['no'] = 1;
-        // $data['users'] = user::all();
-        if ($request->rule == 'admin')
+        if($request->rule)
         {
-            $data['users'] = DB::table('users')->where('rule', 'admin')->get();
-            $data['areas'] = area::all();
             $data['wilayahs'] = wilayah::all();
-            $data['no'] = 1;
-            return view('admin/user/user', $data);
-            
-        }
-        elseif ($request->rule == 'officer')
-        {
-            $data['users'] = DB::table('users')->where('rule', 'officer')->get();
             $data['areas'] = area::all();
-            $data['wilayahs'] = wilayah::all();
             $data['no'] = 1;
-            return view('admin/user/user', $data);
+            $data['users'] = DB::table('users')
+            ->join('wilayah', 'users.wilayah_id', '=', 'wilayah.wilayah_id')
+            ->select('users.*','wilayah.wilayah_id')
+            ->where('users.rule', '=', $request->rule)
+            ->get();
+                return view('admin/user/user', $data);
         }
-        elseif ($request->rule == 'manager_crm')
-        {
-            $data['users'] = DB::table('users')->where('rule', 'manager_crm')->get();
-            $data['areas'] = area::all();
-            $data['wilayahs'] = wilayah::all();
-            $data['no'] = 1;
-            return view('admin/user/user', $data);
-        }
-        elseif ($request->rule == 'manager_non_crm')
-        {
-            $data['users'] = DB::table('users')->where('rule', 'manager_non_crm')->get();
-            $data['areas'] = area::all();
-            $data['wilayahs'] = wilayah::all();
-            $data['no'] = 1;
-            return view('admin/user/user', $data);
-        }
-        elseif ($request->rule == 'direktur')
-        {
-            $data['users'] = DB::table('users')->where('rule', 'direktur')->get();
-            $data['areas'] = area::all();
-            $data['wilayahs'] = wilayah::all();
-            $data['no'] = 1;
-            return view('admin/user/user', $data);
-        }
-        else
-        {
+        else {
             $data['users'] = user::all();
             $data['areas'] = area::all();
             $data['wilayahs'] = wilayah::all();
             $data['no'] = 1;
             return view('admin/user/user', $data);
         }
-        // return view('admin/user/user', $data);
+
+    }
+    public function index(Request $request)
+    {   
+        $data['users'] = user::all();
+        $data['areas'] = area::all();
+        $data['wilayahs'] = wilayah::all();
+        $data['no'] = 1;
+        return view('admin/user/user', $data);
+
     }
 
-   
     public function store(Request $request)
     {
       $this->validate($request,[
