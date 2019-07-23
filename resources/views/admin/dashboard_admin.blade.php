@@ -18,7 +18,7 @@
 
 @section('content')
 <div class="row">
-    <a href="customer">
+    <a href="{{asset('customer')}}">
         <div class="col-md-3 col-sm-6 col-xs-12">
             <div class="info-box">
             <span class="info-box-icon bg-aqua"><i class="fa fa-users"></i></span>
@@ -29,10 +29,43 @@
             </div>
         </div>
     </a>
+    <a href="{{asset('customer')}}">
+        <div class="col-md-3 col-sm-6 col-xs-12">
+            <div class="info-box">
+            <span class="info-box-icon bg-green"><i class="fa fa-bookmark"></i></span>
+            <div class="info-box-content">
+                <span class="info-box-text">Closing Kontrak</span>
+                <span class="info-box-number">{{$kontrak}}</span>
+            </div>
+            </div>
+        </div>
+    </a>
+    <a href="{{asset('customer')}}">
+        <div class="col-md-3 col-sm-6 col-xs-12">
+            <div class="info-box">
+            <span class="info-box-icon bg-red"><i class="fa fa-book"></i></span>
+            <div class="info-box-content">
+                <span class="info-box-text">Data MoU</span>
+                <span class="info-box-number">{{$kontrak}}</span>
+            </div>
+            </div>
+        </div>
+    </a>
+    <a href="{{asset('customer')}}">
+        <div class="col-md-3 col-sm-6 col-xs-12">
+            <div class="info-box">
+            <span class="info-box-icon bg-yellow"><i class="fa fa-flag"></i></span>
+            <div class="info-box-content">
+                <span class="info-box-text">???</span>
+                <span class="info-box-number">{{$kontrak}}</span>
+            </div>
+            </div>
+        </div>
+    </a>
 
 </div>
 <div class="row">
-    <div class="col-md-9">
+    <div class="col-md-12">
         <div class="nav-tabs-custom">
             <!-- Tabs within a box -->
                 <ul class="nav nav-tabs pull-right">

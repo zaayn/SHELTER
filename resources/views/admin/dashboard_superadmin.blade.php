@@ -5,7 +5,7 @@
     <div class="col-md-12">
         <div class="panel block">
             <div class="panel-body">
-                <h1> Dashboard Super aaa admin</h1>
+                <h1> Dashboard Super admin</h1>
                 <ol class="breadcrumb">
                     <li><i class="fa fa-dashboard"></i> Home</li>
                     
@@ -19,7 +19,7 @@
 @section('content')
 <div class="row">
     
-    <a href="user">
+    <a href="{{asset('/superadmin/user')}}">
         <div class="col-md-3 col-sm-6 col-xs-12">
             <div class="info-box">
             <span class="info-box-icon bg-yellow"><i class="fa fa-user"></i></span>
@@ -30,7 +30,18 @@
             </div>
         </div>
     </a>
-    <a href="wilayah">
+    <a href="{{asset('/superadmin/bisnis_unit')}}">
+        <div class="col-md-3 col-sm-6 col-xs-12">
+            <div class="info-box">
+            <span class="info-box-icon bg-blue"><i class="fa fa-envelope-o"></i></span>
+            <div class="info-box-content">
+                <span class="info-box-text">Bisnis Unit</span>
+                <span class="info-box-number">{{$bisnis_unit}}</span>
+            </div>
+            </div>
+        </div>
+    </a>
+    <a href="{{asset('/superadmin/wilayah')}}">
         <div class="col-md-3 col-sm-6 col-xs-12">
             <div class="info-box">
             <span class="info-box-icon bg-green"><i class="fa fa-map-o"></i></span>
@@ -41,20 +52,20 @@
             </div>
         </div>
     </a>
-    <a href="customer">
+    <a href="{{asset('/superadmin/area')}}">
         <div class="col-md-3 col-sm-6 col-xs-12">
             <div class="info-box">
             <span class="info-box-icon bg-red"><i class="fa fa-envelope-o"></i></span>
             <div class="info-box-content">
-                <span class="info-box-text">Apa enak nya iniaaaaaaa</span>
-                <span class="info-box-number">9999999?</span>
+                <span class="info-box-text">Area</span>
+                <span class="info-box-number">{{$area}}</span>
             </div>
             </div>
         </div>
     </a>
 </div>
 <div class="row">
-    <div class="col-md-9">
+    <div class="col-md-12">
         <div class="nav-tabs-custom">
             <!-- Tabs within a box -->
                 <ul class="nav nav-tabs pull-right">

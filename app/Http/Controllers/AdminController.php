@@ -10,11 +10,8 @@ class AdminController extends Controller
 {
     public function index()
     {
-        $data['bisnis_unit'] = DB::table('bisnis_unit')->count();
-        $data['wilayah'] = DB::table('wilayah')->count();
-        $data['area'] = DB::table('area')->count();
-        $data['users'] = DB::table('users')->count();
         $data['customer'] = DB::table('customer')->count();
+        $data['kontrak'] = DB::table('kontrak')->count();        
 
         return view('/admin/dashboard_admin',$data);
     }

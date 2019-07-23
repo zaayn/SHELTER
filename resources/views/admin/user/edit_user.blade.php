@@ -7,8 +7,8 @@
             <div class="panel-body">
                 <h1>Form Edit User</h1>
                 <ol class="breadcrumb">
-                    <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                    <li><a href="{{asset('user')}}"></i> User</a></li>
+                    <li><a href="{{asset('/superadmin/home')}}"><i class="fa fa-dashboard"></i> Home</a></li>
+                    <li><a href="{{asset('/superadmin/user')}}"></i> User</a></li>
                     <li class="active">Edit User</li>
                 </ol>
             </div>
@@ -61,7 +61,7 @@
                       <div class="form-group">
                         <label>Password :</label>
                         <div>
-                          <input type="text" class="form-control" name="password" value="{{ $user->password}}"required>
+                          <input type="text" class="form-control" name="password" value="{{ $user->password}}"disabled>
                         </div>
                       </div>
                       <div class="form-group">
@@ -73,18 +73,20 @@
                       <div class="form-group">
                         <label>Wilayah Supervisi :</label>
                         <div>
+                          <input type="text" class="form-control" name="wilayah_id" value="{{ $user->wilayah_id}}"disabled>
+                        </div>
+                        {{-- <div>
                           <select class="form-control" name="wilayah_id">
-                              <option value="">pilih wilayah</option>
                           @foreach($wilayahs as $wilayah)
                               <option value="{{ $wilayah->wilayah_id }}">{{ $wilayah->nama_wilayah }}</option>
                           @endforeach
                           </select>
-                      </div>
+                      </div> --}}
                       </div>
                     <div class="form-group">
                         <label>Rule :</label>
                         <div>
-                            <select class="form-control" name="rule">
+                            {{-- <select class="form-control" name="rule">
                                 <option>Pilih Role</option>
                                 <option value="superadmin">Super Admin</option>
                                 <option value="admin">Admin</option>
@@ -92,12 +94,13 @@
                                 <option value="manager_crm">Manager Officer</option>
                                 <option value="manager_non_crm">Manager Non CRM</option>
                                 <option value="direktur">Direktur</option>
-                            </select>
+                            </select> --}}
+                            <input type="text" class="form-control" name="rule" value="{{ $user->rule}}"disabled>
                         </div>
                     </div>
 
                       <button type="submit" class="btn btn-primary ">Update</button>
-                      <a href="/user" class="btn btn-secondary"> Cancel</a>
+                      <a href="{{asset('/superadmin/user')}}" class="btn btn-secondary"> Cancel</a>
                   </form>
                 </div>
               </div>
