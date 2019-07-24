@@ -10,7 +10,7 @@ class KontrakController extends Controller
 {
     public function index()
     {
-        $data['datamous'] = Kontrak::orderBy('no_mou','desc');
+        $data['datamous'] = datamou::orderBy('no_mou','desc');
         return view('officer/mou', $data);
     }
 

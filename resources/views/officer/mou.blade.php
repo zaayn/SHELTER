@@ -29,45 +29,53 @@
                             <table id="mydatatables" class="table table-responsive table-hover table-light table-striped">
                                 <thead>
                                     <th style="width:10%">No. MoU</th>
-                                    <th style="width:75%">Jumlah HC</th>
-                                    <th style="width:75%">Nilai Invoice</th>
+                                    <th style="width:75%">ID Kontrak</th>
+                                    <th style="width:75%">HC</th>
                                     <th style="width:15%">Invoice</th>
-                                    <th style="width:10%">Rekontrak</th>
-                                    <th style="width:75%">Putus Kontrak</th>
-                                    <th style="width:10%">No. MoU</th>
-                                    <th style="width:75%">Kode Customer</th>
-                                    <th style="width:75%">Jumlah HC</th>
-                                    <th style="width:15%">Invoice</th>
-                                    <th style="width:10%">Rekontrak</th>
-                                    <th style="width:75%">Putus Kontrak</th>
-                                    <th style="width:10%">No. MoU</th>
-                                    <th style="width:75%">Kode Customer</th>
-                                    <th style="width:75%">Jumlah HC</th>
-                                    <th style="width:15%">Invoice</th>
-                                    <th style="width:10%">Rekontrak</th>
-                                    <th style="width:75%">Putus Kontrak</th>
+                                    <th style="width:10%">MF</th>
+                                    <th style="width:75%">MF (%)</th>
+                                    <th style="width:10%">BPJS Ketenagakerjaan</th>
+                                    <th style="width:75%">BPJS Kesehatan</th>
+                                    <th style="width:75%">Jiwasraya</th>
+                                    <th style="width:15%">Ramamusa</th>
+                                    <th style="width:10%">Ditagihkan</th>
+                                    <th style="width:75%">Diprovisasikan</th>
+                                    <th style="width:10%">Overheadcost</th>
+                                    <th style="width:75%">Tanggal Invoice</th>
+                                    <th style="width:75%">Time of Payment</th>
+                                    <th style="width:15%">Cut of Date</th>
+                                    <th style="width:10%">Kaporlap</th>
+                                    <th style="width:75%">Devices</th>
+                                    <th style="width:75%">Pendaftaran MoU</th>
                                     <th style="width:15%">Aksi</th>
                                 </thead>
                                 <tbody>
-                                @foreach ($kontraks as $kontrak)
+                                @foreach ($datamous as $datamou)
                                 <tr>
-                                    <td>{{ $kontrak->id_kontrak }}</td>
-                                    <td>{{ $kontrak->kode_customer }}</td>
-                                    <td>{{ $kontrak->nama_perusahaan }}</td>
-                                    <td>{{ $kontrak->periode_kontrak }}</td>
-                                    <td>{{ $kontrak->akhir_periode }}</td>
-                                    <td>{{ $kontrak->srt_pemberitahuan }}</td>
-                                    <td>{{ $kontrak->tgl_srt_pemberitahuan }}</td>
-                                    <td>{{ $kontrak->srt_penawaran }}</td>
-                                    <td>{{ $kontrak->tgl_srt_penawaran }}</td>
-                                    <td>{{ $kontrak->dealing }}</td>
-                                    <td>{{ $kontrak->tgl_dealing }}</td>
-                                    <td>{{ $kontrak->posisi_pks }}</td>
-                                    <td>{{ $kontrak->closing }}</td>
-                                    <td>{{ $kontrak->via }}</td>
+                                    <td>{{ @datamou->no_mou }}</td>
+                                    <td>{{ @datamou->id_kontrak }}</td>
+                                    <td>{{ @datamou->hc }}</td>
+                                    <td>{{ @datamou->invoice }}</td>
+                                    <td>{{ @datamou->mf }}</td>
+                                    <td>{{ @datamou->mf_persen }}</td>
+                                    <td>{{ @datamou->bpjs_tenagakerja }}</td>
+                                    <td>{{ @datamou->bpjs_kesehatan }}</td>
+                                    <td>{{ @datamou->jiwasraya }}</td>
+                                    <td>{{ @datamou->ramamusa }}</td>
+                                    <td>{{ @datamou->ditagihkan }}</td>
+                                    <td>{{ @datamou->diprovisasikan }}</td>
+                                    <td>{{ @datamou->overheadcost }}</td>
+                                    <td>{{ @datamou->training }}</td>
+                                    <td>{{ @datamou->tanggal_invoice }}</td>
+                                    <td>{{ @datamou->time_of_payment }}</td>
+                                    <td>{{ @datamou->cut_of_date }}</td>
+                                    <td>{{ @datamou->kaporlap }}</td>
+                                    <td>{{ @datamou->devices }}</td>
+                                    <td>{{ @datamou->chemical }}</td>
+                                    <td>{{ @datamou->pendaftaran_mou }}</td>
                                     <td>
-                                    <a href="{{route('edit.kontrak',$kontrak->id_kontrak)}}" class="btn btn-info btn-sm">Ubah</a>
-                                    <a href="{{route('destroy.kontrak',$kontrak->id_kontrak)}}" class="btn btn-danger btn-sm">Hapus</a></td>
+                                    <a href="{{route('edit.datamou',$datamou->no_mou)}}" class="btn btn-info btn-sm">Ubah</a>
+                                    <a href="{{route('destroy.datamou',$datamou->no_mou)}}" class="btn btn-danger btn-sm">Hapus</a></td>
                                 </tr> 
                                 @endforeach
                                 </tbody>

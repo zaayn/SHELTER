@@ -35,7 +35,7 @@
 
                   <br>
 
-                <form action="{{route('store.mou')}}" method="post">
+                <form action="{{route('store.datamou')}}" method="post">
                     {{ csrf_field() }}
                     
 
