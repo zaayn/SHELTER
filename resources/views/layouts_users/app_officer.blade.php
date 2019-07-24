@@ -368,7 +368,7 @@
             <li class="active"><a href="{{asset('/officer_crm/home')}}"><i class="fa fa-circle-o"></i> Home</a></li>
           </ul>
         </li>
-        
+
         <li class="treeview">
           <a href="">
             <i class="fa fa-plus"></i> <span>Insert Laporan</span>
@@ -386,7 +386,7 @@
 
             </ul>
         </li>
-
+        
         <li class="treeview">
           <a href="">
             <i class="fa fa-database"></i> <span>Daftar Laporan</span>
@@ -395,11 +395,11 @@
             </span>
           </a>
             <ul class="treeview-menu">
-              <li class="active"><a href="{{asset('/officer_crm/call')}}"><i class="fa fa-circle-o"></i> Laporan Call</a></li>
-              <li class="active"><a href="{{asset('/officer_crm/visit')}}"><i class="fa fa-circle-o"></i> Laporan visit</a></li>
-              <li class="active"><a href="{{asset('/officer_crm/keluhan')}}"><i class="fa fa-circle-o"></i> Laporan Keluhan</a></li>
-              <li class="active"><a href="{{asset('/officer_crm/kontrak')}}"><i class="fa fa-circle-o"></i> Laporan Kontrak</a></li>
-              <li class="active"><a href="{{asset('/officer_crm/MoU')}}"><i class="fa fa-circle-o"></i> Laporan Data MOU</a></li>
+              <li class="active"><a href="/call"><i class="fa fa-circle-o"></i> Laporan Call</a></li>
+              <li class="active"><a href="/visit"><i class="fa fa-circle-o"></i> Laporan visit</a></li>
+              <li class="active"><a href="/keluhan"><i class="fa fa-circle-o"></i> Laporan Keluhan</a></li>
+              <li class="active"><a href="/kontrak"><i class="fa fa-circle-o"></i> Laporan Kontrak</a></li>
+              <li class="active"><a href="/MoU"><i class="fa fa-circle-o"></i> Laporan Data MOU</a></li>
             </ul>
         </li>
         
