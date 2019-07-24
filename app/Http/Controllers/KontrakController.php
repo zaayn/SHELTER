@@ -65,10 +65,10 @@ class KontrakController extends Controller
         $kontrak->closing = $request->closing;
 
         if ($kontrak->save()){
-            return redirect('/insertkontrak')->with('success', 'item berhasil ditambahkan');
+            return redirect('/officer_crm/insertkontrak')->with('success', 'item berhasil ditambahkan');
         }
         else{
-            return redirect('/insertkontrak')->with('error', 'item gagal ditambahkan');
+            return redirect('/officer_crm/insertkontrak')->with('error', 'item gagal ditambahkan');
         }
     }
 
