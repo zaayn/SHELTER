@@ -20,7 +20,7 @@ Route::group(['prefix' => 'officer_crm',  'middleware' => 'is_officer_crm'], fun
     Route::get('/home', 'OfficerController@index')->name('dashboard_officer'); //Dashboard Officer
 
     //------- laporan call
-    Route::get('/insert_call', 'callController@insert')->name('insert.call'); //show form insert
+    Route::get('/insertcall', 'callController@insert')->name('insert.call'); //show form insert
     Route::get('/call', 'callController@index')->name('index.call');
     Route::post('/store/call', 'callController@store')->name('store.call');
     Route::get('/delete/call{call_id}','callController@delete')->name('delete.call');
@@ -28,7 +28,7 @@ Route::group(['prefix' => 'officer_crm',  'middleware' => 'is_officer_crm'], fun
     Route::put('/update/call{call_id}','callController@update')->name('update.call');
 
     //------- laporan visit
-    Route::get('/insert_visit', 'VisitController@insert')->name('insert.visit'); //show form insert
+    Route::get('/insertvisit', 'VisitController@insert')->name('insert.visit'); //show form insert
     Route::get('/visit', 'VisitController@index')->name('index.visit');
     Route::post('/store/visit', 'VisitController@store')->name('store.visit');
     Route::get('/delete/visit{visit_id}','VisitController@delete')->name('delete.visit');
@@ -36,7 +36,7 @@ Route::group(['prefix' => 'officer_crm',  'middleware' => 'is_officer_crm'], fun
     Route::put('/update/visit{visit_id}','VisitController@update')->name('update.visit');
 
     //------- laporan keluhan
-    Route::get('/insert_keluhan', 'KeluhanController@insert')->name('insert.keluhan'); //show form insert
+    Route::get('/insertkeluhan', 'KeluhanController@insert')->name('insert.keluhan'); //show form insert
     Route::get('/keluhan', 'KeluhanController@index')->name('index.keluhan');
     Route::post('/store/keluhan', 'KeluhanController@store')->name('store.keluhan');
     Route::get('/delete/keluhan{id_keluhan}','KeluhanController@delete')->name('delete.keluhan');
@@ -44,12 +44,20 @@ Route::group(['prefix' => 'officer_crm',  'middleware' => 'is_officer_crm'], fun
     Route::put('/update/keluhan{id_keluhan}','KeluhanController@update')->name('update.keluhan');
 
     //------- laporan kontrak
-    Route::get('/insert_kontrak', 'KontrakController@insert')->name('insert.kontrak'); //show form insert
+    Route::get('/insertkontrak', 'KontrakController@insert')->name('insert.kontrak'); //show form insert
     Route::get('/kontrak', 'KontrakController@index')->name('index.kontrak');
     Route::post('/store/kontrak', 'KontrakController@store')->name('store.kontrak');
     Route::get('/delete/kontrak{id_kontrak}','KontrakController@delete')->name('delete.kontrak');
     Route::get('/edit/editkontrak{id_kontrak}','KontrakController@edit')->name('edit.kontrak');
     Route::put('/update/kontrak{id_kontrak}','KontrakController@update')->name('update.kontrak');
+
+    //------- laporan mou
+    Route::get('/insertmou', 'MouController@insert')->name('insert.datamou'); //show form insert
+    Route::get('/mou', 'MouController@index')->name('index.datamou');
+    Route::post('/store/mou', 'MouController@store')->name('store.datamou');
+    Route::get('/delete/mou{no_mou}','MouController@destroy')->name('destroy.datamou');
+    Route::get('/edit/editmou{no_mou}','MouController@edit')->name('edit.datamou');
+    Route::put('/update/mou{no_mou}','MouController@update')->name('update.datamou');
 
 });
 
@@ -109,7 +117,7 @@ Route::group(['prefix' => 'admin',  'middleware' => 'is_admin'], function(){
  
 Route::group(['prefix' => 'manager_crm',  'middleware' => 'is_manager_crm'], function(){
     //manager crm
-    Route::get('/home', 'ManagerController@index')->name('dashboard_manager'); //Dashboard Admin
+    Route::get('/home', 'ManagerController@index')->name('dashboard_officer'); //Dashboard Admin
     Route::get('/manager_call', 'ManagerController@call')->name('manager_call');
     Route::get('/manager_keluhan', 'ManagerController@keluhan')->name('manager_keluhan');
     Route::get('/manager_visit', 'ManagerController@visit')->name('manager_visit');
@@ -121,7 +129,7 @@ Route::group(['prefix' => 'manager_crm',  'middleware' => 'is_manager_crm'], fun
 
 Route::group(['prefix' => 'direktur',  'middleware' => 'is_direktur'], function(){
     //manager crm
-    Route::get('/home', 'DirekturController@index')->name('dashboard_direktur'); //Dashboard Admin
+    Route::get('/home', 'DirekturController@index')->name('dashboard_officer'); //Dashboard Admin
     Route::get('/direktur_call', 'DirekturController@call')->name('direktur_call');
     Route::get('/direktur_keluhan', 'DirekturController@keluhan')->name('direktur_keluhan');
     Route::get('/direktur_visit', 'DirekturController@visit')->name('direktur_visit');
@@ -132,7 +140,7 @@ Route::group(['prefix' => 'direktur',  'middleware' => 'is_direktur'], function(
 
 Route::group(['prefix' => 'manager_non_crm',  'middleware' => 'is_manager_non_crm'], function(){
     //manager crm
-    Route::get('/home', 'ManagerNonCrmController@index')->name('dashboard_manager_non_crm'); //Dashboard Admin
+    Route::get('/home', 'ManagerNonCrmController@index')->name('dashboard_officer'); //Dashboard Admin
     Route::get('/manager_non_crm_kontrak', 'ManagerNonCrmController@kontrak')->name('manager_non_crm_kontrak');
     Route::get('/manager_non_crm_mou', 'ManagerNonCrmController@mou')->name('manager_non_crm_mou');
     Route::get('/manager_non_crm_customer', 'ManagerNonCrmController@customer')->name('manager_non_crm_customer');
