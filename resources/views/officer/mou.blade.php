@@ -52,27 +52,27 @@
                                 <tbody>
                                 @foreach ($datamous as $datamou)
                                 <tr>
-                                    <td>{{ @datamou->no_mou }}</td>
-                                    <td>{{ @datamou->id_kontrak }}</td>
-                                    <td>{{ @datamou->hc }}</td>
-                                    <td>{{ @datamou->invoice }}</td>
-                                    <td>{{ @datamou->mf }}</td>
-                                    <td>{{ @datamou->mf_persen }}</td>
-                                    <td>{{ @datamou->bpjs_tenagakerja }}</td>
-                                    <td>{{ @datamou->bpjs_kesehatan }}</td>
-                                    <td>{{ @datamou->jiwasraya }}</td>
-                                    <td>{{ @datamou->ramamusa }}</td>
-                                    <td>{{ @datamou->ditagihkan }}</td>
-                                    <td>{{ @datamou->diprovisasikan }}</td>
-                                    <td>{{ @datamou->overheadcost }}</td>
-                                    <td>{{ @datamou->training }}</td>
-                                    <td>{{ @datamou->tanggal_invoice }}</td>
-                                    <td>{{ @datamou->time_of_payment }}</td>
-                                    <td>{{ @datamou->cut_of_date }}</td>
-                                    <td>{{ @datamou->kaporlap }}</td>
-                                    <td>{{ @datamou->devices }}</td>
-                                    <td>{{ @datamou->chemical }}</td>
-                                    <td>{{ @datamou->pendaftaran_mou }}</td>
+                                    <td>{{ $datamou->no_mou }}</td>
+                                    <td>{{ $datamou->id_kontrak }}</td>
+                                    <td>{{ $datamou->hc }}</td>
+                                    <td>{{ $datamou->invoice }}</td>
+                                    <td>{{ $datamou->mf }}</td>
+                                    <td>{{ $datamou->mf_persen }}</td>
+                                    <td>{{ $datamou->bpjs_tenagakerja }}</td>
+                                    <td>{{ $datamou->bpjs_kesehatan }}</td>
+                                    <td>{{ $datamou->jiwasraya }}</td>
+                                    <td>{{ $datamou->ramamusa }}</td>
+                                    <td>{{ $datamou->ditagihkan }}</td>
+                                    <td>{{ $datamou->diprovisasikan }}</td>
+                                    <td>{{ $datamou->overheadcost }}</td>
+                                    <td>{{ $datamou->training }}</td>
+                                    <td>{{ $datamou->tanggal_invoice }}</td>
+                                    <td>{{ $datamou->time_of_payment }}</td>
+                                    <td>{{ $datamou->cut_of_date }}</td>
+                                    <td>{{ $datamou->kaporlap }}</td>
+                                    <td>{{ $datamou->devices }}</td>
+                                    <td>{{ $datamou->chemical }}</td>
+                                    <td>{{ $datamou->pendaftaran_mou }}</td>
                                     <td>
                                     <a href="{{route('edit.datamou',$datamou->no_mou)}}" class="btn btn-info btn-sm">Ubah</a>
                                     <a href="{{route('destroy.datamou',$datamou->no_mou)}}" class="btn btn-danger btn-sm">Hapus</a></td>
