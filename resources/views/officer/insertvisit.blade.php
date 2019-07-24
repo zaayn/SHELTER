@@ -40,31 +40,31 @@
                     
 
                     <div class="form-group">
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-12">
                 	        <label class="font-weight-bold">Nama Customer</label>
                 	        <input type="text" class="form-control" name="nama_customer" required>
                         </div>
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-12">
                 	        <label class="font-weight-bold">SPV_PIC</label>
                 	        <input type="text" class="form-control" name="spv_pic" required>
                         </div>
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-12">
                 	        <label class="font-weight-bold">Tanggal</label>
                 	        <input type="date" class="form-control" name="tanggal_visit" required>
                         </div>
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-12">
                 	        <label class="font-weight-bold">Waktu In</label>
                 	        <input type="time" class="form-control" name="waktu_in" required>
                         </div>
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-12">
                 	        <label class="font-weight-bold">Waktu Out</label>
                 	        <input type="time" class="form-control" name="waktu_out" required>
                         </div>
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-12">
                 	        <label class="font-weight-bold">PIC Visit</label>
                 	        <input type="text" class="form-control" name="pic_meeted" required>
                         </div>
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-12">
                 	        <label class="font-weight-bold">Kegiatan</label>
                 	        <input type="text" class="form-control" name="kegiatan" required>
                         </div>

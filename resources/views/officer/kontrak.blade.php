@@ -42,21 +42,21 @@
                                     <th style="width:15%">Aksi</th>
                                 </thead>
                                 <tbody>
-                                @foreach($kontrak as $ko)
+                                @foreach($kontraks as $kontrak)
                                 <tr>
-                                    <td>{{ $ko->id_kontrak }}</td>
-                                    <td>{{ $ko->kode_customer }}</td>
-                                    <td>{{ $ko->nama_perusahaan }}</td>
-                                    <td>{{ $ko->periode_kontrak }}</td>
-                                    <td>{{ $ko->akhir_periode }}</td>
-                                    <td>{{ $ko->srt_pemberitahuan }}</td>
-                                    <td>{{ $ko->tgl_srt_pemberitahuan }}</td>
-                                    <td>{{ $ko->srt_penawaran }}</td>
-                                    <td>{{ $ko->tgl_srt_penawaran }}</td>
-                                    <td>{{ $ko->dealing }}</td>
-                                    <td>{{ $ko->tgl_dealing }}</td>
-                                    <td>{{ $ko->posisi_pks }}</td>
-                                    <td>{{ $ko->closing }}</td>
+                                    <td>{{ $kontrak->id_kontrak }}</td>
+                                    <td>{{ $kontrak->kode_customer }}</td>
+                                    <td>{{ $kontrak->nama_perusahaan }}</td>
+                                    <td>{{ $kontrak->periode_kontrak }}</td>
+                                    <td>{{ $kontrak->akhir_periode }}</td>
+                                    <td>{{ $kontrak->srt_pemberitahuan }}</td>
+                                    <td>{{ $kontrak->tgl_srt_pemberitahuan }}</td>
+                                    <td>{{ $kontrak->srt_penawaran }}</td>
+                                    <td>{{ $kontrak->tgl_srt_penawaran }}</td>
+                                    <td>{{ $kontrak->dealing }}</td>
+                                    <td>{{ $kontrak->tgl_dealing }}</td>
+                                    <td>{{ $kontrak->posisi_pks }}</td>
+                                    <td>{{ $kontrak->closing }}</td>
                                     <td><a href="{{route('edit.kontrak',$kontrak->id_kontrak)}}" class="btn btn-info btn-sm">Ubah</a></td>
                                     <td>
                                     <a href="{{route('delete.kontrak',$kontrak->id_kontrak)}}" class="btn btn-danger btn-sm">Hapus</a></td>

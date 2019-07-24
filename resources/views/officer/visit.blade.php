@@ -49,7 +49,7 @@
                                     <td>{{ $visit->kegiatan }}</td>
                                     <td>
                                         <a href="{{route('edit.visit',$visit->visit_id)}}" class="btn btn-info btn-sm">Ubah</a>
-                                        <a href="{{route('delete.visit',$visit->visit_id)}}" class="btn btn-danger btn-sm">Hapus</a>
+                                        <a href="{{route('destroy.visit',$visit->visit_id)}}" class="btn btn-danger btn-sm">Hapus</a>
                                     </td>
                                 </tr>
                                 @endforeach 

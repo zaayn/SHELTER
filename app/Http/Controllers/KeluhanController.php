@@ -10,7 +10,7 @@ class KeluhanController extends Controller
 {
     public function index()
     {
-        $data['keluhan'] = Keluhan::orderBy('id_keluhan','desc');
+        $data['keluhans'] = Keluhan::all();
         return view('officer/keluhan', $data);
     }
 
@@ -63,10 +63,10 @@ class KeluhanController extends Controller
         $keluhan->status = $request->status;
 
         if ($keluhan->save()){
-            return redirect('/insertkeluhan')->with('success', 'item berhasil ditambahkan');
+            return redirect('/officer_crm/insertkeluhan')->with('success', 'item berhasil ditambahkan');
         }
         else{
-            return redirect('/insertkeluhan')->with('error', 'item gagal ditambahkan');
+            return redirect('/officer_crm/insertkeluhan')->with('error', 'item gagal ditambahkan');
         }
     }
 
@@ -88,7 +88,7 @@ class KeluhanController extends Controller
         $where = array('id_keluhan' => $id_keluhan);
         $keluhan  = Keluhan::where($where)->first();
  
-        return view('officer/editkeluhan');
+        return view('officer/editkeluhan')->with('keluhan', $keluhan);
     }
 
     /**
@@ -98,9 +98,9 @@ class KeluhanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $visit_id)
+    public function update(Request $request, $id_keluhan)
     {
-        $visit = visit::findorFail($visit_id);
+        $keluhan = keluhan::findorFail($id_keluhan);
         $request->validate([
             'nama_customer' => 'required',
             'spv_pic' => 'required',
@@ -127,7 +127,7 @@ class KeluhanController extends Controller
         $keluhan->status = $request->status;
         
         if ($keluhan->save())
-          return redirect()->route('keluhan.index')->with(['success'=>'edit sukses']);
+          return redirect()->route('index.keluhan')->with(['success'=>'edit sukses']);
     }
 
     /**
@@ -139,6 +139,6 @@ class KeluhanController extends Controller
     public function destroy($id_keluhan)
     {
         $keluhan = Keluhan::where('id_keluhan',$id_keluhan)->delete();
-        return redirect()->route('keluhan.index')->with('success', 'delete sukses');
+        return redirect()->route('index.keluhan')->with('success', 'delete sukses');
     }
 }

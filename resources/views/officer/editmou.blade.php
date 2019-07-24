@@ -46,79 +46,79 @@
                         </div>
                         <div class="form-group col-md-12">
                 	        <label class="font-weight-bold">HC</label>
-                	        <input type="text" class="form-control" name="hc" required>
+                	        <input type="text" class="form-control" name="hc" value="{{$datamou->hc}}" required>
                         </div>
                         <div class="form-group col-md-12">
                 	        <label class="font-weight-bold">Invoice</label>
-                	        <input type="text" class="form-control" name="invoice" required>
+                	        <input type="text" class="form-control" name="invoice" value="{{$datamou->invoice}}" required>
                         </div>
                         <div class="form-group col-md-12">
                 	        <label class="font-weight-bold">MF</label>
-                	        <input type="text" class="form-control" name="mf" required>
+                	        <input type="text" class="form-control" name="mf" value="{{$datamou->mf}}" required>
                         </div>
                         <div class="form-group col-md-12">
                 	        <label class="font-weight-bold">MF (%)</label>
-                	        <input type="text" class="form-control" name="mf_persen" required>
+                	        <input type="text" class="form-control" name="mf_persen" value="{{$datamou->mf_persen}}" required>
                         </div>
                         <div class="form-group col-md-12">
                 	        <label class="font-weight-bold">BPJS Ketenagakerjaan</label>
-                	        <input type="text" class="form-control" name="bpjs_tenagakerja" placeholder="Opsional">
+                	        <input type="text" class="form-control" name="bpjs_tenagakerja" value="{{$datamou->bpjs_tenagakerja}}" placeholder="Opsional">
                         </div>
                         <div class="form-group col-md-12">
                 	        <label class="font-weight-bold">BPJS Kesehatan</label>
-                	        <input type="text" class="form-control" name="bpjs_kesehatan" placeholder="Opsional">
+                	        <input type="text" class="form-control" name="bpjs_kesehatan" value="{{$datamou->bpjs_kesehatan}}" placeholder="Opsional">
                         </div>
                         <div class="form-group col-md-12">
                 	        <label class="font-weight-bold">Jiwasraya</label>
-                	        <input type="text" class="form-control" name="jiwasraya" placeholder="Opsional">
+                	        <input type="text" class="form-control" name="jiwasraya" value="{{$datamou->jiwasraya}}" placeholder="Opsional">
                         </div>
                         <div class="form-group col-md-12">
                 	        <label class="font-weight-bold">Ramamusa</label>
-                	        <input type="text" class="form-control" name="ramamusa" placeholder="Opsional">
+                	        <input type="text" class="form-control" name="ramamusa" value="{{$datamou->ramamusa}}" placeholder="Opsional">
                         </div>
                         <div class="form-group col-md-12">
                 	        <label class="font-weight-bold">Ditagihkan</label>
-                	        <input type="text" class="form-control" name="ditagihkan" placeholder="Opsional">
+                	        <input type="text" class="form-control" name="ditagihkan" value="{{$datamou->ditagihkan}}" laceholder="Opsional">
                         </div>
                         <div class="form-group col-md-12">
                 	        <label class="font-weight-bold">Diprovisasikan</label>
-                	        <input type="text" class="form-control" name="diprovisasikan" placeholder="Opsional">
+                	        <input type="text" class="form-control" name="diprovisasikan" value="{{$datamou->diprovisasikan}}" placeholder="Opsional">
                         </div>
                         <div class="form-group col-md-12">
                 	        <label class="font-weight-bold">Overheadcost</label>
-                	        <input type="text" class="form-control" name="overheadcost" required>
+                	        <input type="text" class="form-control" name="overheadcost" value="{{$datamou->overheadcost}}" required>
                         </div>
                         <div class="form-group col-md-12">
                 	        <label class="font-weight-bold">Training</label>
-                	        <input type="text" class="form-control" name="training" required>
+                	        <input type="text" class="form-control" name="training" value="{{$datamou->training}}" required>
                         </div>
                         <div class="form-group col-md-12">
                 	        <label class="font-weight-bold">Tanggal Invoice</label>
-                	        <input type="date" class="form-control" name="tanggal_invoice" required>
+                	        <input type="date" class="form-control" name="tanggal_invoice" value="{{$datamou->tanggal_invoice}}" required>
                         </div>
                         <div class="form-group col-md-12">
                 	        <label class="font-weight-bold">Time of Payment</label>
-                	        <input type="date" class="form-control" name="time_of_payment" required>
+                	        <input type="date" class="form-control" name="time_of_payment" value="{{$datamou->time_of_payment}}" required>
                         </div>
                         <div class="form-group col-md-12">
                 	        <label class="font-weight-bold">Cut of Date</label>
-                	        <input type="text" class="form-control" name="cut_of_date" required>
+                	        <input type="text" class="form-control" name="cut_of_date" value="{{$datamou->cut_of_date}}" required>
                         </div>
                         <div class="form-group col-md-12">
                 	        <label class="font-weight-bold">Kaporlap</label>
-                	        <input type="text" class="form-control" name="kaporlap" required>
+                	        <input type="text" class="form-control" name="kaporlap" value="{{$datamou->kaporlap}}" required>
                         </div>
                         <div class="form-group col-md-12">
                 	        <label class="font-weight-bold">Devices</label>
-                	        <input type="text" class="form-control" name="devices" required>
+                	        <input type="text" class="form-control" name="devices" value="{{$datamou->devices}}" required>
                         </div>
                         <div class="form-group col-md-12">
                 	        <label class="font-weight-bold">Chemical</label>
-                	        <input type="text" class="form-control" name="chemical" required>
+                	        <input type="text" class="form-control" name="chemical" value="{{$datamou->chemical}}" required>
                         </div>
                         <div class="form-group col-md-12">
                 	        <label class="font-weight-bold">Pendaftaran MoU</label>
-                	        <input type="text" class="form-control" name="pendaftaran_mou" required>
+                	        <input type="text" class="form-control" name="pendaftaran_mou" value="{{$datamou->pendaftaran_mou}}" required>
                         </div>
                         <div class="col-md-12">
                             <button type="submit" class="btn btn-lg btn-info btn-block ">

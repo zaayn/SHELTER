@@ -106,7 +106,7 @@ class MouController extends Controller
         $where = array('no_mou' => $no_mou);
         $datamou  = datamou::where($where)->first();
  
-        return view('officer/editmou');
+        return view('officer/editmou')->with('datamou', $datamou);
     }
 
     /**
@@ -116,9 +116,9 @@ class MouController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $no_mou)
+    public function update(Request $request, $id)
     {
-        $datamou = datamou::findorFail($no_mou);
+        $datamou = datamou::findorFail($id);
         $request->validate([
             'id_kontrak' => 'required',
             'hc' => 'required',

@@ -35,38 +35,38 @@
 
                   <br>
 
-                <form action="{{route('store.visit')}}" method="post">
+                <form action="{{route('update.visit', $visit->visit_id)}}" method="post">
                     {{ csrf_field() }}
                     
 
                     <div class="form-group">
-                        <div class="form-group col-md-6">
+                    <div class="form-group col-md-12">
                 	        <label class="font-weight-bold">Nama Customer</label>
-                	        <input type="text" class="form-control" name="nama_customer" required>
+                	        <input type="text" class="form-control" name="nama_customer" value="{{ $visit->nama_customer }}" required>
                         </div>
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-12">
                 	        <label class="font-weight-bold">SPV_PIC</label>
-                	        <input type="text" class="form-control" name="spv_pic" required>
+                	        <input type="text" class="form-control" name="spv_pic" value="{{ $visit->spv_pic }}" required>
                         </div>
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-12">
                 	        <label class="font-weight-bold">Tanggal</label>
-                	        <input type="date" class="form-control" name="tanggal_visit" required>
+                	        <input type="date" class="form-control" name="tanggal_visit" value="{{ $visit->tanggal_visit }}" equired>
                         </div>
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-12">
                 	        <label class="font-weight-bold">Waktu In</label>
-                	        <input type="time" class="form-control" name="waktu_in" required>
+                	        <input type="time" class="form-control" name="waktu_in" value="{{ $visit->waktu_in }}" required>
                         </div>
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-12">
                 	        <label class="font-weight-bold">Waktu Out</label>
-                	        <input type="time" class="form-control" name="waktu_out" required>
+                	        <input type="time" class="form-control" name="waktu_out" value="{{ $visit->waktu_out }}" required>
                         </div>
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-12">
                 	        <label class="font-weight-bold">PIC Visit</label>
-                	        <input type="text" class="form-control" name="pic_meeted" required>
+                	        <input type="text" class="form-control" name="pic_meeted" value="{{ $visit->pic_meeted }}" required>
                         </div>
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-12">
                 	        <label class="font-weight-bold">Kegiatan</label>
-                	        <input type="text" class="form-control" name="kegiatan" required>
+                	        <input type="text" class="form-control" name="kegiatan" value="{{ $visit->kegiatan }}" required>
                         </div>
                         <div class="col-md-12">
                             <button type="submit" class="btn btn-lg btn-info btn-block ">
