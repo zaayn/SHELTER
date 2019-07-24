@@ -54,10 +54,10 @@ Route::group(['prefix' => 'officer_crm',  'middleware' => 'is_officer_crm'], fun
     //------- laporan mou
     Route::get('/insertmou', 'MouController@insert')->name('insert.datamou'); //show form insert
     Route::get('/mou', 'MouController@index')->name('index.datamou');
-    Route::post('/store/mou', 'MouController@store')->name('store.datamou');
-    Route::get('/delete/mou{no_mou}','MouController@destroy')->name('destroy.datamou');
-    Route::get('/edit/editmou{no_mou}','MouController@edit')->name('edit.datamou');
-    Route::put('/update/mou{no_mou}','MouController@update')->name('update.datamou');
+    Route::post('/store/datamou', 'MouController@store')->name('store.datamou');
+    Route::get('/delete/datamou{no_mou}','MouController@destroy')->name('destroy.datamou');
+    Route::get('/edit/datamou{no_mou}','MouController@edit')->name('edit.datamou');
+    Route::put('/update/datamou{no_mou}','MouController@update')->name('update.datamou');
 
 });
 

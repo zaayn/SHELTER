@@ -10,7 +10,7 @@ class MouController extends Controller
 {
     public function index()
     {
-        $data['datamous'] = datamou::orderBy('no_mou','desc');
+        $data['datamous'] = datamou::all();
         return view('officer/mou', $data);
     }
 
@@ -35,9 +35,8 @@ class MouController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'no_mou' => 'required',
             'id_kontrak' => 'required',
-            'hc' => 'required|date',
+            'hc' => 'required',
             'invoice' => 'required',
             'mf' => 'required',
             'mf_persen' => 'required',
@@ -81,11 +80,11 @@ class MouController extends Controller
         $datamou->chemical = $request->chemical;
         $datamou->pendaftaran_mou = $request->pendaftaran_mou;
 
-        if ($kontrak->save()){
-            return redirect('/insertmou')->with('success', 'item berhasil ditambahkan');
+        if ($datamou->save()){
+            return redirect('/officer_mou/insertmou')->with('success', 'item berhasil ditambahkan');
         }
         else{
-            return redirect('/insertmou')->with('error', 'item gagal ditambahkan');
+            return redirect('/officer_mou/insertmou')->with('error', 'item gagal ditambahkan');
         }
     }
 
@@ -121,9 +120,8 @@ class MouController extends Controller
     {
         $datamou = datamou::findorFail($no_mou);
         $request->validate([
-            'no_mou' => 'required',
             'id_kontrak' => 'required',
-            'hc' => 'required|date',
+            'hc' => 'required',
             'invoice' => 'required',
             'mf' => 'required',
             'mf_persen' => 'required',
@@ -165,7 +163,7 @@ class MouController extends Controller
         $datamou->pendaftaran_mou = $request->pendaftaran_mou;
         
         if ($datamou->save())
-          return redirect()->route('datamou.index')->with(['success'=>'edit sukses']);
+          return redirect()->route('index.datamou')->with(['success'=>'edit sukses']);
     }
 
     /**
@@ -177,6 +175,6 @@ class MouController extends Controller
     public function destroy($no_mou)
     {
         $datamou = datamou::where('no_mou',$no_mou)->delete();
-        return redirect()->route('mou.index')->with('success', 'delete sukses');
+        return redirect()->route('index.datamou')->with('success', 'delete sukses');
     }
 }

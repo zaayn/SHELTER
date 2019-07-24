@@ -41,11 +41,13 @@
                                     <th style="width:10%">Ditagihkan</th>
                                     <th style="width:75%">Diprovisasikan</th>
                                     <th style="width:10%">Overheadcost</th>
+                                    <th style="width:10%">Training</th>
                                     <th style="width:75%">Tanggal Invoice</th>
                                     <th style="width:75%">Time of Payment</th>
                                     <th style="width:15%">Cut of Date</th>
                                     <th style="width:10%">Kaporlap</th>
                                     <th style="width:75%">Devices</th>
+                                    <th style="width:10%">Chemical</th>
                                     <th style="width:75%">Pendaftaran MoU</th>
                                     <th style="width:15%">Aksi</th>
                                 </thead>

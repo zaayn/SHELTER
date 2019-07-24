@@ -5,11 +5,11 @@
     <div class="col-md-12">
         <div class="panel block">
             <div class="panel-body">
-                <h1>Form Insert Data MoU</h1>
+                <h1>Form Ubah Data MoU</h1>
                 <ol class="breadcrumb">
                     <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
                     <li><a href="area"></i>MoU</a></li>
-                    <li class="active">Insert MoU</li>
+                    <li class="active">Edit MoU</li>
                 </ol>
             </div>
         </div>
@@ -35,14 +35,14 @@
 
                   <br>
 
-                <form action="{{route('store.datamou')}}" method="post">
+                <form action="{{route('update.datamou', $datamou->no_mou)}}" method="post">
                     {{ csrf_field() }}
                     
 
                     <div class="form-group">
                         <div class="form-group col-md-12">
                 	        <label class="font-weight-bold">id Kontrak</label>
-                	        <input type="text" class="form-control" name="id_kontrak" required>
+                	        <input type="text" class="form-control" name="id_kontrak" value="{{$datamou->id_kontrak}}" required>
                         </div>
                         <div class="form-group col-md-12">
                 	        <label class="font-weight-bold">HC</label>
