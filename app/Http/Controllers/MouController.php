@@ -6,11 +6,11 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use App\datamou;
 
-class KontrakController extends Controller
+class MouController extends Controller
 {
     public function index()
     {
-        $data['datamous'] = Kontrak::orderBy('no_mou','desc');
+        $data['datamous'] = datamou::orderBy('no_mou','desc');
         return view('officer/mou', $data);
     }
 
@@ -55,7 +55,7 @@ class KontrakController extends Controller
             'kaporlap' =>'required',
             'devices' => 'required',
             'chemical' =>'required',
-            'pendaftaran_mou' => 'required'
+            'pendaftaran_mou' => 'required',
         ]);
 
         $datamou = new datamou;
@@ -141,7 +141,7 @@ class KontrakController extends Controller
             'kaporlap' =>'required',
             'devices' => 'required',
             'chemical' =>'required',
-            'pendaftaran_mou' => 'required'
+            'pendaftaran_mou' => 'required',
         ]);
 
         $datamou->hc = $request->hc;
@@ -164,8 +164,8 @@ class KontrakController extends Controller
         $datamou->chemical = $request->chemical;
         $datamou->pendaftaran_mou = $request->pendaftaran_mou;
         
-        if ($kontrak->save())
-          return redirect()->route('mou.index')->with(['success'=>'edit sukses']);
+        if ($datamou->save())
+          return redirect()->route('datamou.index')->with(['success'=>'edit sukses']);
     }
 
     /**
@@ -176,7 +176,7 @@ class KontrakController extends Controller
      */
     public function destroy($no_mou)
     {
-        $kontrak = Kontrak::where('id_kontrak',$id_kontrak)->delete();
+        $datamou = datamou::where('no_mou',$no_mou)->delete();
         return redirect()->route('mou.index')->with('success', 'delete sukses');
     }
 }
