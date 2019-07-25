@@ -59,7 +59,7 @@
                                     <td>{{ $kontrak->closing }}</td>
                                     <td><a href="{{route('edit.kontrak',$kontrak->id_kontrak)}}" class="btn btn-info btn-sm">Ubah</a></td>
                                     <td>
-                                    <a href="{{route('delete.kontrak',$kontrak->id_kontrak)}}" class="btn btn-danger btn-sm">Hapus</a></td>
+                                    <a href="{{route('destroy.kontrak',$kontrak->id_kontrak)}}" class="btn btn-danger btn-sm">Hapus</a></td>
                                 </tr>
                                 @endforeach  
                                 </tbody>
