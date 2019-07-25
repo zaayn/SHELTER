@@ -56,6 +56,8 @@
                                         <td>{{ $customer->kabupaten }}</td>
                                         <td>{{ $customer->telpon }}</td>
                                         <td>{{ $customer->cp }}</td>
+                                        {{-- <td>{{ $customer->nama_area}}</td> --}}
+                                        {{-- <td>{{ $customer->wilayah->nama_wilayah}}</td> --}}
                                         <td>{{ $customer->nama_area}}</td>
                                         <td>{{ $customer->wilayah->nama_wilayah}}</td>
                                         <td>{{ $customer->nama_depan}}</td>
