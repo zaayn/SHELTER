@@ -44,20 +44,12 @@ Route::group(['prefix' => 'officer_crm',  'middleware' => 'is_officer_crm'], fun
     Route::post('/update/keluhan{id_keluhan}','KeluhanController@update')->name('update.keluhan');
 
     //------- laporan kontrak
-    Route::get('/insertkontrak', 'KontrakController@insert')->name('insert.kontrak'); //show form insert
+    Route::get('/insert', 'KontrakController@insert')->name('insert.kontrak'); //show form insert
     Route::get('/kontrak', 'KontrakController@index')->name('index.kontrak');
     Route::post('/store/kontrak', 'KontrakController@store')->name('store.kontrak');
     Route::get('/delete/kontrak{id_kontrak}','KontrakController@destroy')->name('destroy.kontrak');
     Route::get('/edit/editkontrak{id_kontrak}','KontrakController@edit')->name('edit.kontrak');
     Route::post('/update/kontrak{id_kontrak}','KontrakController@update')->name('update.kontrak');
-
-    //------- laporan mou
-    Route::get('/insertmou', 'MouController@insert')->name('insert.datamou'); //show form insert
-    Route::get('/mou', 'MouController@index')->name('index.datamou');
-    Route::post('/store/datamou', 'MouController@store')->name('store.datamou');
-    Route::get('/delete/datamou{no_mou}','MouController@destroy')->name('destroy.datamou');
-    Route::get('/edit/datamou{no_mou}','MouController@edit')->name('edit.datamou');
-    Route::post('/update/datamou{no_mou}','MouController@update')->name('update.datamou');
 
 });
 
@@ -113,6 +105,46 @@ Route::group(['prefix' => 'admin',  'middleware' => 'is_admin'], function(){
     Route::get('/delete/customer{id}','CustomerController@delete')->name('delete.customer');
     Route::get('/edit/customer{id}','CustomerController@edit')->name('edit.customer');
     Route::put('/update/customer{id}','CustomerController@update')->name('update.customer');
+
+        //------- laporan call
+        Route::get('/insertcall', 'callController@insert')->name('insert.call'); //show form insert
+        Route::get('/call', 'callController@index')->name('index.call');
+        Route::post('/store/call', 'callController@store')->name('store.call');
+        Route::get('/delete/call{call_id}','callController@destroy')->name('destroy.call');
+        Route::get('/edit/editcall{call_id}','callController@edit')->name('edit.call');
+        Route::post('/update/call{call_id}','callController@update')->name('update.call');
+    
+        //------- laporan visit
+        Route::get('/insertvisit', 'VisitController@insert')->name('insert.visit'); //show form insert
+        Route::get('/visit', 'VisitController@index')->name('index.visit');
+        Route::post('/store/visit', 'VisitController@store')->name('store.visit');
+        Route::get('/delete/visit{visit_id}','VisitController@destroy')->name('destroy.visit');
+        Route::get('/edit/editvisit{visit_id}','VisitController@edit')->name('edit.visit');
+        Route::post('/update/visit{visit_id}','VisitController@update')->name('update.visit');
+    
+        //------- laporan keluhan
+        Route::get('/insertkeluhan', 'KeluhanController@insert')->name('insert.keluhan'); //show form insert
+        Route::get('/keluhan', 'KeluhanController@index')->name('index.keluhan');
+        Route::post('/store/keluhan', 'KeluhanController@store')->name('store.keluhan');
+        Route::get('/delete/keluhan{id_keluhan}','KeluhanController@destroy')->name('destroy.keluhan');
+        Route::get('/edit/editkeluhan{id_keluhan}','KeluhanController@edit')->name('edit.keluhan');
+        Route::post('/update/keluhan{id_keluhan}','KeluhanController@update')->name('update.keluhan');
+    
+        //------- laporan kontrak
+        Route::get('/insertkontrak', 'AdminController@insertkontrak')->name('insertkontrak.kontrak'); //show form insert
+        Route::get('/kontrak', 'AdminController@index')->name('index.kontrak');
+        Route::post('/store/kontrak', 'KontrakController@store')->name('store.kontrak');
+        Route::get('/delete/kontrak{id_kontrak}','KontrakController@destroy')->name('destroy.kontrak');
+        Route::get('/edit/editkontrak{id_kontrak}','KontrakController@edit')->name('edit.kontrak');
+        Route::post('/update/kontrak{id_kontrak}','KontrakController@update')->name('update.kontrak');
+    
+        //------- laporan mou
+        Route::get('/insertmou', 'MouController@insert')->name('insert.datamou'); //show form insert
+        Route::get('/mou', 'MouController@index')->name('index.datamou');
+        Route::post('/store/datamou', 'MouController@store')->name('store.datamou');
+        Route::get('/delete/datamou{no_mou}','MouController@destroy')->name('destroy.datamou');
+        Route::get('/edit/datamou{no_mou}','MouController@edit')->name('edit.datamou');
+        Route::post('/update/datamou{no_mou}','MouController@update')->name('update.datamou');
 });
  
 Route::group(['prefix' => 'manager_crm',  'middleware' => 'is_manager_crm'], function(){

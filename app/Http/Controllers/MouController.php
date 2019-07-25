@@ -11,12 +11,12 @@ class MouController extends Controller
     public function index()
     {
         $data['datamous'] = datamou::all();
-        return view('officer/mou', $data);
+        return view('admin/mou', $data);
     }
 
     public function insert()
     {
-      return view('officer/insertmou');
+      return view('admin/insertmou');
     }
 
     /**
@@ -81,10 +81,10 @@ class MouController extends Controller
         $datamou->pendaftaran_mou = $request->pendaftaran_mou;
 
         if ($datamou->save()){
-            return redirect('/officer_mou/insertmou')->with('success', 'item berhasil ditambahkan');
+            return redirect('/admin/insertmou')->with('success', 'item berhasil ditambahkan');
         }
         else{
-            return redirect('/officer_mou/insertmou')->with('error', 'item gagal ditambahkan');
+            return redirect('/admin/insertmou')->with('error', 'item gagal ditambahkan');
         }
     }
 
@@ -106,7 +106,7 @@ class MouController extends Controller
         $where = array('no_mou' => $no_mou);
         $datamou  = datamou::where($where)->first();
  
-        return view('officer/editmou')->with('datamou', $datamou);
+        return view('admin/editmou')->with('datamou', $datamou);
     }
 
     /**
