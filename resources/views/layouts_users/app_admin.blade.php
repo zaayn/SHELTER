@@ -394,7 +394,7 @@
               <li class="active"><a href="#"><i class="fa fa-circle-o"></i>Insert Laporan visit</a></li>
               <li class="active"><a href="#"><i class="fa fa-circle-o"></i>Insert Laporan Call</a></li>
               <li class="active"><a href="#"><i class="fa fa-circle-o"></i>Insert Laporan Keluhan</a></li>
-              <li class="active"><a href="#"><i class="fa fa-circle-o"></i>Insert Laporan Data MOU</a></li>
+              <li class="active"><a href="/admin/insertmou"><i class="fa fa-circle-o"></i>Insert Laporan Data MOU</a></li>
             </ul>
         </li>
 
@@ -425,7 +425,7 @@
               <li class="active"><a href="{{asset('/admin/visit')}}"><i class="fa fa-circle-o"></i> Laporan visit</a></li>
               <li class="active"><a href="{{asset('/admin/call')}}"><i class="fa fa-circle-o"></i> Laporan Call</a></li>
               <li class="active"><a href="{{asset('/admin/keluhan')}}"><i class="fa fa-circle-o"></i> Laporan Keluhan</a></li>
-              <li class="active"><a href="#"><i class="fa fa-circle-o"></i> Laporan Data MOU</a></li>
+              <li class="active"><a href="{{asset('/admin/mou')}}"><i class="fa fa-circle-o"></i> Laporan Data MOU</a></li>
             </ul>
         </li>
 
