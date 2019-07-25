@@ -28,6 +28,7 @@ class UserController extends Controller
             $data['no'] = 1;
             $data['users'] = DB::table('users')
             ->join('wilayah', 'users.wilayah_id', '=', 'wilayah.wilayah_id')
+            ->join('area', 'wilayah.area_id', '=', 'area.area_id')
             ->select('users.*','wilayah.wilayah_id')
             ->where('users.rule', '=', $request->rule)
             ->get();
@@ -44,10 +45,14 @@ class UserController extends Controller
     }
     public function index(Request $request)
     {   
-        $data['users'] = user::all();
+        // $data['users'] = user::all();
         $data['areas'] = area::all();
         $data['wilayahs'] = wilayah::all();
         $data['no'] = 1;
+        $data['users'] = DB::table('users')
+        ->join('wilayah', 'users.wilayah_id', '=', 'wilayah.wilayah_id')
+        ->join('area', 'wilayah.area_id', '=', 'area.area_id')
+        ->get();
         return view('admin/user/user', $data);
 
     }
