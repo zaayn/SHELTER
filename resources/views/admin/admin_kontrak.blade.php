@@ -1,4 +1,4 @@
-@extends('layouts_users.app_officer')
+@extends('layouts_users.app_admin')
 
 @section('content_header')
 <div class="row">

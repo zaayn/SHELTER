@@ -35,38 +35,38 @@
 
                   <br>
 
-                <form action="{{route('store.call')}}" method="post">
+                <form action="{{route('update.call', $call->call_id)}}" method="post">
                     {{ csrf_field() }}
                     
 
                     <div class="form-group">
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-12">
                 	        <label class="font-weight-bold">Nama Customer</label>
-                	        <input type="text" class="form-control" name="nama_customer" required>
+                	        <input type="text" class="form-control" name="nama_customer" value="{{ $call->nama_customer }}" required>
                         </div>
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-12">
                 	        <label class="font-weight-bold">SPV_PIC</label>
-                	        <input type="text" class="form-control" name="spv_pic" required>
+                	        <input type="text" class="form-control" name="spv_pic" value="{{ $call->spv_pic }}" required>
                         </div>
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-12">
                 	        <label class="font-weight-bold">Tanggal</label>
-                	        <input type="date" class="form-control" name="tanggal_call" required>
+                	        <input type="date" class="form-control" name="tanggal_call" value="{{ $call->tanggal_call }}" required>
                         </div>
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-12">
                 	        <label class="font-weight-bold">Waktu Call</label>
-                	        <input type="time" class="form-control" name="jam_call" required>
+                	        <input type="time" class="form-control" name="jam_call" value="{{ $call->jam_call }}" required>
                         </div>
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-12">
                 	        <label class="font-weight-bold">Pembicaraan</label>
-                	        <input type="text" class="form-control" name="pembicaraan" required>
+                	        <input type="text" class="form-control" name="pembicaraan" value="{{ $call->pembicaraan }}" equired>
                         </div>
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-12">
                 	        <label class="font-weight-bold">PIC Call</label>
-                	        <input type="text" class="form-control" name="pic_called" required>
+                	        <input type="text" class="form-control" name="pic_called" value="{{ $call->pic_called }}" required>
                         </div>
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-12">
                 	        <label class="font-weight-bold">Hal Menonjol</label>
-                	        <input type="text" class="form-control" name="hal_menonjol" required>
+                	        <input type="text" class="form-control" name="hal_menonjol" value="{{ $call->hal_menonjol }}" required>
                         </div>
                         <div class="col-md-12">
                             <button type="submit" class="btn btn-lg btn-info btn-block ">

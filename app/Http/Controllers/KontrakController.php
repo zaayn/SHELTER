@@ -10,7 +10,7 @@ class KontrakController extends Controller
 {
     public function index()
     {
-        $data['kontrak'] = Kontrak::orderBy('id_kontrak','desc');
+        $data['kontraks'] = Kontrak::all();
         return view('officer/kontrak', $data);
     }
 
@@ -90,7 +90,7 @@ class KontrakController extends Controller
         $where = array('id_kontrak' => $id_kontrak);
         $kontrak  = Kontrak::where($where)->first();
  
-        return view('officer/editkontrak');
+        return view('officer/editkontrak')->with('kontrak', $kontrak);
     }
 
     /**
@@ -132,7 +132,7 @@ class KontrakController extends Controller
         $kontrak->closing = $request->closing;
         
         if ($kontrak->save())
-          return redirect()->route('kontrak.index')->with(['success'=>'edit sukses']);
+          return redirect()->route('index.kontrak')->with(['success'=>'edit sukses']);
     }
 
     /**
@@ -144,6 +144,6 @@ class KontrakController extends Controller
     public function destroy($id_kontrak)
     {
         $kontrak = Kontrak::where('id_kontrak',$id_kontrak)->delete();
-        return redirect()->route('kontrak.index')->with('success', 'delete sukses');
+        return redirect()->route('index.kontrak')->with('success', 'delete sukses');
     }
 }

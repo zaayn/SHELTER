@@ -63,10 +63,10 @@ class VisitController extends Controller
         $visit->kegiatan = $request->kegiatan;
 
         if ($visit->save()){
-            return redirect('/insertvisit')->with('success', 'item berhasil ditambahkan');
+            return redirect('/officer_crm/insertvisit')->with('success', 'item berhasil ditambahkan');
         }
         else{
-            return redirect('/insertvisit')->with('error', 'item gagal ditambahkan');
+            return redirect('/officer_crm/insertvisit')->with('error', 'item gagal ditambahkan');
         }
     }
 
@@ -88,7 +88,7 @@ class VisitController extends Controller
         $where = array('visit_id' => $visit_id);
         $visit  = Visit::where($where)->first();
  
-        return view('officer/editvisit');
+        return view('officer/editvisit')->with('visit', $visit);
     }
 
     /**
@@ -120,7 +120,7 @@ class VisitController extends Controller
         $visit->kegiatan = $request->kegiatan;
         
         if ($visit->save())
-          return redirect()->route('visit.index')->with(['success'=>'edit sukses']);
+          return redirect()->route('index.visit')->with(['success'=>'edit sukses']);
     }
 
     /**
@@ -132,6 +132,6 @@ class VisitController extends Controller
     public function destroy($visit_id)
     {
         $visit = Visit::where('visit_id',$visit_id)->delete();
-        return redirect()->route('visit.index')->with('success', 'delete sukses');
+        return redirect()->route('index.visit')->with('success', 'delete sukses');
     }
 }
