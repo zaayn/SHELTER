@@ -15,10 +15,10 @@ class AdminController extends Controller
 
         return view('/admin/dashboard_admin',$data);
     }
-    public function insertkontrak()
-    {
-      return view('admin/admin_insertkontrak');
-    }
+    // public function insertkontrak()
+    // {
+    //   return view('admin/admin_insertkontrak');
+    // }
     public function superadmin()
     {
         $data['bisnis_unit'] = DB::table('bisnis_unit')->count();
