@@ -1,10 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
-
+namespace App\Http\Controllers\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Validation\ValidatesRequests;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use App\Call;
 use Validator;
 use App\Exports\CallExport;
@@ -21,7 +23,12 @@ class callController extends Controller
     {
         // $data['calls'] = call::orderBy('call_id','desc');
         $data['calls'] = call::all();
-        return view('officer/call', $data);
+        if (Auth::user()->$rule == 'admin') {
+            return view('admin/call/call',$data);
+        }
+        elseif (Auth::user()->rule == 'officer') {
+            return view('officer/call', $data);
+        }
     }
 
     public function insert()
