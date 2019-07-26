@@ -382,8 +382,6 @@
               <li class="active"><a href="/insertvisit"><i class="fa fa-circle-o"></i> Laporan visit</a></li>
               <li class="active"><a href="/insertkeluhan"><i class="fa fa-circle-o"></i> Laporan Keluhan</a></li>
               <li class="active"><a href="/insertkontrak"><i class="fa fa-circle-o"></i> Laporan Kontrak</a></li>
-              <li class="active"><a href="/insertmou"><i class="fa fa-circle-o"></i> Laporan Data MOU</a></li>
-              <li class="active"><a href="#"><i class="fa fa-circle-o"></i> Closing Rekontrak</a></li>
 
             </ul>
         </li>

@@ -50,6 +50,7 @@ Route::group(['prefix' => 'officer_crm',  'middleware' => 'is_officer_crm'], fun
     Route::get('/delete/kontrak{id_kontrak}','KontrakController@destroy')->name('destroy.kontrak');
     Route::get('/edit/editkontrak{id_kontrak}','KontrakController@edit')->name('edit.kontrak');
     Route::post('/update/kontrak{id_kontrak}','KontrakController@update')->name('update.kontrak');
+    Route::get('/mou', 'OfficerController@mou')->name('mou.officer');
 
 });
 

@@ -1,9 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-namespace App\Http\Controllers\Auth;
-use Auth;
-//use Illuminate\Support\Facades\Auth;
+//use Auth;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -16,7 +15,7 @@ class KontrakController extends Controller
     {
         //use AuthenticatesUsers;
         $data['kontraks'] = Kontrak::all();
-        return view('officer/kontrak');
+        return view('officer/kontrak', $data);
 
     }
     // public function __construct(){
@@ -159,4 +158,8 @@ class KontrakController extends Controller
         $kontrak = Kontrak::where('id_kontrak',$id_kontrak)->delete();
         return redirect()->route('index.kontrak')->with('success', 'delete sukses');
     }
+    // public function indexmou(){
+    //     $data['datamous'] = datamou::all();
+    //     return view('officer/mou', $data);
+    // }
 }
