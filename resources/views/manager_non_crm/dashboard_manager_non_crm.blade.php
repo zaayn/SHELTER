@@ -52,13 +52,13 @@
                         </div>
                     </div>
                 </a>
-                <a href="#">
+                <a href="{{asset('/manager_non_crm/manager_non_crm_mou')}}">
                         <div class="col-md-4">
                             <div class="info-box bg-orange col-md-4">
                             <span class="info-box-icon"><i class="fa fa-envelope-o"></i></span>
                                 <div class="info-box-content">
                                     <span class="info-box-text">Laporan data MOU</span>
-                                    <span class="info-box-number">40000</span>
+                                    <span class="info-box-number">{{$datamous}}</span>
                                 </div>     
                             </div>
                         </div>

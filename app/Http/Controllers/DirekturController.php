@@ -9,7 +9,7 @@ use App\Call;
 use App\Keluhan;
 use App\Visit;
 use App\Kontrak;
-use App\mou;
+use App\datamou;
 use App\Customer;
 
 class DirekturController extends Controller
@@ -21,7 +21,7 @@ class DirekturController extends Controller
         $data['visits'] = DB::table('visit')->count();
         $data['kontrak'] = DB::table('kontrak')->count();
         $data['customers'] = DB::table('customer')->count();
-        // $data['mou'] = DB::table('mou')->count();
+        $data['datamous'] = DB::table('datamou')->count();
         return view('/direktur/dashboard_direktur',$data);
     }
     public function call()
@@ -50,7 +50,7 @@ class DirekturController extends Controller
     }
     public function mou()
     {  
-        $data['mou'] = mou::all();
+        $data['datamous'] = datamou::all();
         $data['no'] = 1;
         return view('direktur/direktur_mou', $data);
     }
