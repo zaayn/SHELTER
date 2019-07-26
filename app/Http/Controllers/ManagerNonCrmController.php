@@ -9,7 +9,7 @@ use App\Call;
 use App\Keluhan;
 use App\Visit;
 use App\Kontrak;
-use App\mou;
+use App\datamou;
 use App\Customer;
 
 class ManagerNonCrmController extends Controller
@@ -21,7 +21,7 @@ class ManagerNonCrmController extends Controller
         $data['visits'] = DB::table('visit')->count();
         $data['kontrak'] = DB::table('kontrak')->count();
         $data['customers'] = DB::table('customer')->count();
-        // $data['mou'] = DB::table('mou')->count();
+        $data['datamous'] = DB::table('datamou')->count();
         return view('/manager_non_crm/dashboard_manager_non_crm',$data);
     }
    
@@ -39,7 +39,7 @@ class ManagerNonCrmController extends Controller
     }
     public function mou()
     {  
-        $data['mou'] = mou::all();
+        $data['datamous'] = datamou::all();
         $data['no'] = 1;
         return view('manager_non_crm/manager_non_crm_mou', $data);
     }

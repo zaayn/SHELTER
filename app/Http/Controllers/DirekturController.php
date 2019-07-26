@@ -21,7 +21,7 @@ class DirekturController extends Controller
         $data['visits'] = DB::table('visit')->count();
         $data['kontrak'] = DB::table('kontrak')->count();
         $data['customers'] = DB::table('customer')->count();
-        // $data['mou'] = DB::table('mou')->count();
+        $data['datamous'] = DB::table('datamou')->count();
         return view('/direktur/dashboard_direktur',$data);
     }
     public function call()
