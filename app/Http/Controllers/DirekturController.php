@@ -9,7 +9,7 @@ use App\Call;
 use App\Keluhan;
 use App\Visit;
 use App\Kontrak;
-use App\mou;
+use App\datamou;
 use App\Customer;
 
 class DirekturController extends Controller
@@ -50,7 +50,7 @@ class DirekturController extends Controller
     }
     public function mou()
     {  
-        $data['mou'] = mou::all();
+        $data['datamous'] = datamou::all();
         $data['no'] = 1;
         return view('direktur/direktur_mou', $data);
     }
