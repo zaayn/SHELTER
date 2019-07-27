@@ -85,17 +85,17 @@
                         </div>
                     </div>
                 </a>
-                <a href="#">
-                        <div class="col-md-4">
-                            <div class="info-box bg-orange col-md-4">
-                            <span class="info-box-icon"><i class="fa fa-envelope-o"></i></span>
-                                <div class="info-box-content">
-                                    <span class="info-box-text">Laporan data MOU</span>
-                                    <span class="info-box-number">40000</span>
-                                </div>     
-                            </div>
+                <a href="{{asset('/manager_crm/manager_mou')}}">
+                    <div class="col-md-4">
+                        <div class="info-box bg-orange col-md-4">
+                        <span class="info-box-icon"><i class="fa fa-table"></i></span>
+                            <div class="info-box-content">
+                                <span class="info-box-text">Laporan data MOU</span>
+                                <span class="info-box-number">{{$datamous}}</span>
+                            </div>     
                         </div>
-                    </a>
+                    </div>
+                </a>
                 {{----------- end box -----------}}
                 </div>
             </div>
