@@ -1,21 +1,22 @@
 <?php
 
 namespace App\Http\Controllers;
-//use Auth;
-use Illuminate\Support\Facades\Auth;
+// namespace App\Http\Controllers\Auth;
+// use Auth;
+//use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use App\Kontrak;
 
-class KontrakController extends Controller
+class KontrakadminController extends Controller
 {
     public function index()
     {
         //use AuthenticatesUsers;
         $data['kontraks'] = Kontrak::all();
-        return view('officer/kontrak', $data);
+        return view('admin/kontrak/kontrak', $data);
 
     }
     // public function __construct(){
@@ -28,7 +29,7 @@ class KontrakController extends Controller
     // }
     public function insert()
     {
-      return view('officer/insertkontrak');
+      return view('admin/kontrak/insertkontrak');
     }
 
     /**
@@ -77,10 +78,10 @@ class KontrakController extends Controller
         $kontrak->closing = $request->closing;
 
         if ($kontrak->save()){
-            return redirect('/officer_crm/insertkontrak')->with('success', 'item berhasil ditambahkan');
+            return redirect('/admin/insertkontrak')->with('success', 'item berhasil ditambahkan');
         }
         else{
-            return redirect('/officer_crm/insertkontrak')->with('error', 'item gagal ditambahkan');
+            return redirect('/admin/insertkontrak')->with('error', 'item gagal ditambahkan');
         }
     }
 
@@ -102,7 +103,7 @@ class KontrakController extends Controller
         $where = array('id_kontrak' => $id_kontrak);
         $kontrak  = Kontrak::where($where)->first();
  
-        return view('officer/editkontrak')->with('kontrak', $kontrak);
+        return view('admin/kontrak/editkontrak')->with('kontrak', $kontrak);
     }
 
     /**
@@ -158,8 +159,4 @@ class KontrakController extends Controller
         $kontrak = Kontrak::where('id_kontrak',$id_kontrak)->delete();
         return redirect()->route('index.kontrak')->with('success', 'delete sukses');
     }
-    // public function indexmou(){
-    //     $data['datamous'] = datamou::all();
-    //     return view('officer/mou', $data);
-    // }
 }

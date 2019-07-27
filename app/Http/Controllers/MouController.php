@@ -11,12 +11,12 @@ class MouController extends Controller
     public function index()
     {
         $data['datamous'] = datamou::all();
-        return view('admin/mou', $data);
+        return view('admin/mou/mou', $data);
     }
 
     public function insert()
     {
-      return view('admin/insertmou');
+      return view('admin/mou/insertmou');
     }
 
     /**
@@ -106,7 +106,7 @@ class MouController extends Controller
         $where = array('no_mou' => $no_mou);
         $datamou  = datamou::where($where)->first();
  
-        return view('admin/editmou')->with('datamou', $datamou);
+        return view('admin/mou/editmou')->with('datamou', $datamou);
     }
 
     /**

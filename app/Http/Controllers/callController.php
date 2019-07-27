@@ -1,11 +1,14 @@
 <?php
 
 namespace App\Http\Controllers;
-
+//namespace App\Http\Controllers\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Validation\ValidatesRequests;
+use Illuminate\Foundation\Auth\User;
 use App\Call;
+//use App\User;
 use Validator;
 use App\Exports\CallExport;
 use Maatwebsite\Excel\Facades\Excel;
@@ -21,7 +24,16 @@ class callController extends Controller
     {
         // $data['calls'] = call::orderBy('call_id','desc');
         $data['calls'] = call::all();
-        return view('officer/call', $data);
+        
+    }
+    public function __construct(){
+        
+        if (Auth::user()->$rule == 'admin') {
+            return view('admin/call/call',$data);
+        }
+        elseif (Auth::user()->$rule == 'officer_crm') {
+            return view('officer/call', $data);
+        }
     }
 
     public function insert()

@@ -390,7 +390,7 @@
           </a>
             <ul class="treeview-menu">
               <li class="active"><a href="{{asset('/admin/insert_customer')}}"><i class="fa fa-circle-o"></i>Insert Laporan Customer</a></li>
-              <li class="active"><a href="/admin/admin_insertkontrak"><i class="fa fa-circle-o"></i>Insert Laporan Kontrak</a></li>
+              <li class="active"><a href="{{asset('/admin/insertkontrak')}}"><i class="fa fa-circle-o"></i>Insert Laporan Kontrak</a></li>
               <li class="active"><a href="#"><i class="fa fa-circle-o"></i>Insert Laporan visit</a></li>
               <li class="active"><a href="#"><i class="fa fa-circle-o"></i>Insert Laporan Call</a></li>
               <li class="active"><a href="#"><i class="fa fa-circle-o"></i>Insert Laporan Keluhan</a></li>
@@ -421,7 +421,7 @@
           </a>
             <ul class="treeview-menu">
               <li class="active"><a href="{{asset('/admin/customer')}}"><i class="fa fa-circle-o"></i> Laporan Customer</a></li>
-              <li class="active"><a href="{{asset('/admin/admin_kontrak')}}"><i class="fa fa-circle-o"></i> Laporan Kontrak</a></li>
+              <li class="active"><a href="{{asset('/admin/kontrak')}}"><i class="fa fa-circle-o"></i> Laporan Kontrak</a></li>
               <li class="active"><a href="{{asset('/admin/visit')}}"><i class="fa fa-circle-o"></i> Laporan visit</a></li>
               <li class="active"><a href="{{asset('/admin/call')}}"><i class="fa fa-circle-o"></i> Laporan Call</a></li>
               <li class="active"><a href="{{asset('/admin/keluhan')}}"><i class="fa fa-circle-o"></i> Laporan Keluhan</a></li>
