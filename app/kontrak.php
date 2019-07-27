@@ -10,7 +10,6 @@ class kontrak extends Model
     protected $primaryKey = 'id_kontrak';
     protected $fillable = [
         'kode_customer'
-       ,'nama_perusahaan'
        ,'periode_kontrak'
        ,'akhir_periode'
        ,'srt_pemberitahuan'

@@ -37,17 +37,20 @@
 
                 <form action="{{route('store.kontrak')}}" method="post">
                     {{ csrf_field() }}
-                    
-
+                  
                     <div class="form-group">
-                    <div class="form-group col-md-12">
-                	        <label class="font-weight-bold">Kode Customer</label>
-                	        <input type="text" class="form-control" name="kode_customer" required>
-                        </div>
                         <div class="form-group col-md-12">
-                	        <label class="font-weight-bold">Nama Perusahaan</label>
-                	        <input type="text" class="form-control" name="nama_perusahaan" required>
+                            <label>Nama Perusahaan :</label>
+                            <div>
+                                <select class="form-control" name="kode_customer">
+                                    <option>Pilih Perusahaan</option>
+                                @foreach($customers as $customer)
+                                    <option value="{{ $customer->kode_customer }}">{{ $customer->kode_customer }} - {{ $customer->nama_perusahaan }}</option>
+                                @endforeach
+                                </select>
+                            </div>
                         </div>
+
                         <div class="form-group col-md-12">
                 	        <label class="font-weight-bold">Periode Kontrak</label>
                 	        <input type="date" class="form-control" name="periode_kontrak" required>

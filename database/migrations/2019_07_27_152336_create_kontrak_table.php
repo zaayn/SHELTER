@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateKontraksTable extends Migration
+class CreateKontrakTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,9 +14,9 @@ class CreateKontraksTable extends Migration
     public function up()
     {
         Schema::create('kontrak', function (Blueprint $table) {
-            $table->increments('id_kontrak');
+            $table->increments('id_kontrak')->unique();
             $table->string('kode_customer');
-            $table->string('nama_perusahaan');
+            // $table->string('nama_perusahaan');
             $table->date('periode_kontrak');
             $table->date('akhir_periode');
             $table->string('srt_pemberitahuan');
@@ -29,13 +29,13 @@ class CreateKontraksTable extends Migration
             $table->string('closing');
             $table->timestamps();
         });
-        // Schema::table('kontraks', function($table)
-        // {
-        //     $table->foreign('kode_customer')
-        //         ->references('kode_customer')
-        //         ->on('customer')
-        //         ->onDelete('cascade');
-        // });
+        Schema::table('kontrak', function($table)
+        {
+            $table->foreign('kode_customer')
+                ->references('kode_customer')
+                ->on('customer')
+                ->onDelete('cascade');
+        });
     }
 
     /**

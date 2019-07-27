@@ -8,48 +8,33 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\DB;
 use App\Kontrak;
+use App\Customer;
 
 class KontrakadminController extends Controller
 {
     public function index()
     {
         //use AuthenticatesUsers;
-        $data['kontraks'] = Kontrak::all();
+        $data['kontraks'] = DB::table('kontrak')
+        ->join('customer', 'customer.kode_customer', '=', 'kontrak.kode_customer')
+        ->select('kontrak.id_kontrak','customer.kode_customer','customer.nama_perusahaan','kontrak.periode_kontrak','kontrak.akhir_periode','kontrak.srt_pemberitahuan','kontrak.tgl_srt_pemberitahuan','kontrak.srt_penawaran','kontrak.tgl_srt_penawaran','kontrak.dealing','kontrak.tgl_dealing','kontrak.posisi_pks','kontrak.closing')
+        ->get();
         return view('admin/kontrak/kontrak', $data);
 
     }
-    // public function __construct(){
-    //     if ($rule == 'admin') {
-    //         return view('admin/kontrak/kontrak',$data);
-    //     }
-    //     elseif ($rule == 'officer_crm') {
-    //         return view('officer/kontrak', $data);
-    //     }
-    // }
+
     public function insert()
     {
-      return view('admin/kontrak/insertkontrak');
+        $data['customers'] = customer::all();
+        return view('admin/kontrak/insertkontrak',$data);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    
     public function store(Request $request)
     {
         $request->validate([
             'kode_customer' => 'required',
-            'nama_perusahaan' => 'required',
             'periode_kontrak' => 'required|date',
             'akhir_periode' => 'required',
             'srt_pemberitahuan' => 'required',
@@ -65,7 +50,6 @@ class KontrakadminController extends Controller
         $kontrak = new kontrak;
         $kontrak->id_kontrak = $request->id_kontrak;
         $kontrak->kode_customer = $request->kode_customer;
-        $kontrak->nama_perusahaan = $request->nama_perusahaan;
         $kontrak->periode_kontrak = $request->periode_kontrak;
         $kontrak->akhir_periode = $request->akhir_periode;
         $kontrak->srt_pemberitahuan = $request->srt_pemberitahuan;
@@ -85,19 +69,6 @@ class KontrakadminController extends Controller
         }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id_kontrak)
     {
         $where = array('id_kontrak' => $id_kontrak);
@@ -106,19 +77,11 @@ class KontrakadminController extends Controller
         return view('admin/kontrak/editkontrak')->with('kontrak', $kontrak);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id_kontrak)
     {
         $kontrak = Kontrak::findorFail($id_kontrak);
         $request->validate([
             'kode_customer' => 'required',
-            'nama_perusahaan' => 'required',
             'periode_kontrak' => 'required|date',
             'akhir_periode' => 'required',
             'srt_pemberitahuan' => 'required',
@@ -132,7 +95,6 @@ class KontrakadminController extends Controller
         ]);
 
         $kontrak->kode_customer = $request->kode_customer;
-        $kontrak->nama_perusahaan = $request->nama_perusahaan;
         $kontrak->periode_kontrak = $request->periode_kontrak;
         $kontrak->akhir_periode = $request->akhir_periode;
         $kontrak->srt_pemberitahuan = $request->srt_pemberitahuan;
