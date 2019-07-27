@@ -20,12 +20,12 @@ class CreateDatamousTable extends Migration
             $table->integer('invoice');
             $table->integer('mf');
             $table->integer('mf_persen');
-            $table->string('bpjs_tenagakerja');
-            $table->string('bpjs_kesehatan');
-            $table->string('jiwasraya');
-            $table->string('ramamusa');
-            $table->string('ditagihkan');
-            $table->string('diprovisasikan');
+            $table->string('bpjs_tenagakerja')->nullable();
+            $table->string('bpjs_kesehatan')->nullable();
+            $table->string('jiwasraya')->nullable();
+            $table->string('ramamusa')->nullable();
+            $table->string('ditagihkan')->nullable();
+            $table->string('diprovisasikan')->nullable();
             $table->string('overheadcost');
             $table->string('training');
             $table->date('tanggal_invoice');

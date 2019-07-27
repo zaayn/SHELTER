@@ -40,7 +40,7 @@ class MouController extends Controller
             'invoice' => 'required',
             'mf' => 'required',
             'mf_persen' => 'required',
-            // 'bpjs_tenagakerja' =>'required',
+             //'bpjs_tenagakerja' =>'nullable',
             // 'bpjs_kesehatan' => 'required',
             // 'jiwasraya' => 'required',
             // 'ramamusa' =>'required',

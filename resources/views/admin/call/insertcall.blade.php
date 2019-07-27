@@ -40,31 +40,31 @@
                     
 
                     <div class="form-group">
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-12">
                 	        <label class="font-weight-bold">Nama Customer</label>
                 	        <input type="text" class="form-control" name="nama_customer" required>
                         </div>
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-12">
                 	        <label class="font-weight-bold">SPV_PIC</label>
                 	        <input type="text" class="form-control" name="spv_pic" required>
                         </div>
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-12">
                 	        <label class="font-weight-bold">Tanggal</label>
                 	        <input type="date" class="form-control" name="tanggal_call" required>
                         </div>
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-12">
                 	        <label class="font-weight-bold">Waktu Call</label>
                 	        <input type="time" class="form-control" name="jam_call" required>
                         </div>
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-12">
                 	        <label class="font-weight-bold">Pembicaraan</label>
                 	        <input type="text" class="form-control" name="pembicaraan" required>
                         </div>
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-12">
                 	        <label class="font-weight-bold">PIC Call</label>
                 	        <input type="text" class="form-control" name="pic_called" required>
                         </div>
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-12">
                 	        <label class="font-weight-bold">Hal Menonjol</label>
                 	        <input type="text" class="form-control" name="hal_menonjol" required>
                         </div>

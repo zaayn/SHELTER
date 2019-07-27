@@ -13,7 +13,7 @@ use Validator;
 use App\Exports\CallExport;
 use Maatwebsite\Excel\Facades\Excel;
 
-class callController extends Controller
+class CalladminController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -24,22 +24,13 @@ class callController extends Controller
     {
         // $data['calls'] = call::orderBy('call_id','desc');
         $data['calls'] = call::all();
-        return view('officer/call', $data);
+        return view('admin/call/call', $data);
         
     }
-    // public function __construct(){
-    //     dd(Auth::user());
-    //     if (Auth::user()->$rule == 'admin') {
-    //         return view('admin/call/call',$data);
-    //     }
-    //     elseif (Auth::user()->$rule == 'officer_crm') {
-    //         return view('officer/call', $data);
-    //     }
-    // }
 
     public function insert()
     {
-      return view('officer/insertcall');
+      return view('admin/call/insertcall');
     }
 
     /**
@@ -78,10 +69,10 @@ class callController extends Controller
         $call->hal_menonjol     = $request->hal_menonjol;
 
         if ($call->save()){
-            return redirect('/officer_crm/insertcall')->with('success', 'item berhasil ditambahkan');
+            return redirect('/admin/insertcall')->with('success', 'item berhasil ditambahkan');
         }
         else{
-            return redirect('/officer_crm/insertcall')->with('error', 'item gagal ditambahkan');
+            return redirect('/admin/insertcall')->with('error', 'item gagal ditambahkan');
         }
     }
 
@@ -104,7 +95,7 @@ class callController extends Controller
         // $call  = Call::where($where)->first();
         $call = Call::findOrFail($call_id);
  
-        return view('officer/editcall')->with('call', $call);
+        return view('admin/call/editcall')->with('call', $call);
     }
 
     /**
@@ -163,7 +154,7 @@ class callController extends Controller
                   ->get();
             
             
-            return view('officer.call', ['call' => $call]);
+            return view('admin.call.call', ['call' => $call]);
 
     }
     public function customerCode($str, $as_space = array('-'))
