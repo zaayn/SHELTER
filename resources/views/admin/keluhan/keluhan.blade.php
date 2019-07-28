@@ -55,8 +55,7 @@
                                     <td>{{ $keluhan->closing_case }}</td>
                                     <td>{{ $keluhan->via }}</td>
                                     <td>{{ $keluhan->status }}</td>
-                                    <td><a href="{{route('edit.keluhan',$keluhan->id_keluhan)}}" class="btn btn-info btn-sm">Ubah</a></td>
-                                    <td>
+                                    <td><a href="{{route('edit.keluhan',$keluhan->id_keluhan)}}" class="btn btn-info btn-sm">Ubah</a>
                                     <a href="{{route('destroy.keluhan',$keluhan->id_keluhan)}}" class="btn btn-danger btn-sm">Hapus</a></td>
                                 </tr>
                                 @endforeach 
