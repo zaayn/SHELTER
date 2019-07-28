@@ -138,6 +138,7 @@ Route::group(['prefix' => 'admin',  'middleware' => 'is_admin'], function(){
         Route::get('/delete/kontrak{id_kontrak}','KontrakadminController@destroy')->name('destroy.kontrak');
         Route::get('/edit/editkontrak{id_kontrak}','KontrakadminController@edit')->name('edit.kontrak');
         Route::post('/update/kontrak{id_kontrak}','KontrakadminController@update')->name('update.kontrak');
+        Route::post('/filter/user', 'KontrakadminController@filter')->name('filter.kontrak');
     
         //------- laporan mou
         Route::get('/insertmou', 'MouController@insert')->name('insert.datamou'); //show form insert

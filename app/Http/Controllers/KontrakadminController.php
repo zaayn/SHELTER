@@ -14,9 +14,25 @@ use App\Customer;
 
 class KontrakadminController extends Controller
 {
+    public function filter(Request $request)
+    {
+        if($request->kode_customer)
+        {
+            $data['customers'] = customer::all();
+            $data['kontraks'] = DB::table('kontrak')
+            ->join('customer', 'customer.kode_customer', '=', 'kontrak.kode_customer')
+            ->select('kontrak.id_kontrak','customer.kode_customer','customer.nama_perusahaan','kontrak.periode_kontrak','kontrak.akhir_periode','kontrak.srt_pemberitahuan','kontrak.tgl_srt_pemberitahuan','kontrak.srt_penawaran','kontrak.tgl_srt_penawaran','kontrak.dealing','kontrak.tgl_dealing','kontrak.posisi_pks','kontrak.closing')
+            ->where('customer.kode_customer', '=', $request->kode_customer)
+            ->get();
+            return view('admin/kontrak/kontrak', $data);
+        }
+        else {
+            return index();
+        }
+    }
     public function index()
     {
-        //use AuthenticatesUsers;
+        $data['customers'] = customer::all();
         $data['kontraks'] = DB::table('kontrak')
         ->join('customer', 'customer.kode_customer', '=', 'kontrak.kode_customer')
         ->select('kontrak.id_kontrak','customer.kode_customer','customer.nama_perusahaan','kontrak.periode_kontrak','kontrak.akhir_periode','kontrak.srt_pemberitahuan','kontrak.tgl_srt_pemberitahuan','kontrak.srt_penawaran','kontrak.tgl_srt_penawaran','kontrak.dealing','kontrak.tgl_dealing','kontrak.posisi_pks','kontrak.closing')
