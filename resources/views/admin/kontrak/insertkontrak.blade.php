@@ -41,6 +41,10 @@
 
                     <div class="form-group">
                         <div class="form-group">
+                	        <label class="font-weight-bold">Nomor Kontrak</label>
+                	        <input type="text" class="form-control" name="id_kontrak" required>
+                        </div>
+                        <div class="form-group">
                             <label>Nama Perusahaan :</label>
                             <div>
                                 <select class="form-control" name="kode_customer">

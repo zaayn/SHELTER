@@ -41,6 +41,10 @@
 
                     <div class="form-group">
                         <div class="form-group col-md-12">
+                	        <label class="font-weight-bold">Nomor Kontrak</label>
+                	        <input type="text" class="form-control" name="id_kontrak" value="{{$kontrak->id_kontrak}}" required>
+                        </div>
+                        <div class="form-group col-md-12">
                 	        <label class="font-weight-bold">Kode Customer</label>
                 	        <input type="text" class="form-control" name="kode_customer" value="{{ $kontrak->kode_customer }}" required>
                         </div>
