@@ -426,6 +426,7 @@
               <li class="active"><a href="{{asset('/admin/call')}}"><i class="fa fa-circle-o"></i> Laporan Call</a></li>
               <li class="active"><a href="{{asset('/admin/keluhan')}}"><i class="fa fa-circle-o"></i> Laporan Keluhan</a></li>
               <li class="active"><a href="{{asset('/admin/mou')}}"><i class="fa fa-circle-o"></i> Laporan Data MOU</a></li>
+              <li class="active"><a href="{{asset('/admin/data_customer')}}"><i class="fa fa-circle-o"></i> Laporan Data Customer ALL</a></li>
             </ul>
         </li>
 

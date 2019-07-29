@@ -98,6 +98,7 @@ Route::group(['prefix' => 'superadmin',  'middleware' => 'is_superadmin'], funct
 Route::group(['prefix' => 'admin',  'middleware' => 'is_admin'], function(){
 
     Route::get('/home', 'AdminController@index')->name('home'); //Dashboard Admin
+    Route::get('/data_customer', 'AdminController@data_customer')->name('index.data_customer');
     
     // customer
     Route::get('/insert_customer', 'CustomerController@insert')->name('insert.user'); //show form insert
