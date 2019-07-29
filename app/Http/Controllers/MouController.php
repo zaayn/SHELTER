@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Foundation\Validation\ValidatesRequests;
+use Illuminate\Support\Facades\DB;
 use App\datamou;
+use App\Kontrak;
+use App\Customer;
 
 class MouController extends Controller
 {
@@ -16,45 +19,37 @@ class MouController extends Controller
 
     public function insert()
     {
-      return view('admin/mou/insertmou');
+        $data['kontraks'] = DB::table('kontrak')
+        ->join('customer', 'customer.kode_customer', '=', 'kontrak.kode_customer')
+        ->select('kontrak.id_kontrak','customer.kode_customer','customer.nama_perusahaan','kontrak.periode_kontrak','kontrak.akhir_periode','kontrak.srt_pemberitahuan','kontrak.tgl_srt_pemberitahuan','kontrak.srt_penawaran','kontrak.tgl_srt_penawaran','kontrak.dealing','kontrak.tgl_dealing','kontrak.posisi_pks','kontrak.closing')
+        ->get();
+        $data['customers'] = customer::all();
+        return view('admin/mou/insertmou',$data);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    
     public function store(Request $request)
     {
         $request->validate([
-            'id_kontrak' => 'required',
-            'hc' => 'required',
-            'invoice' => 'required',
-            'mf' => 'required',
-            'mf_persen' => 'required',
-             //'bpjs_tenagakerja' =>'nullable',
-            // 'bpjs_kesehatan' => 'required',
-            // 'jiwasraya' => 'required',
-            // 'ramamusa' =>'required',
-            // 'ditagihkan' => 'required',
-            // 'diprovisasikan' =>'required',
-            'overheadcost' => 'required',
-            'training' => 'required',
-            'tanggal_invoice' =>'required',
-            'time_of_payment' => 'required',
-            'cut_of_date' => 'required',
-            'kaporlap' =>'required',
-            'devices' => 'required',
-            'chemical' =>'required',
-            'pendaftaran_mou' => 'required',
+            'id_kontrak'            => 'required|unique:datamou',
+            'hc'                    => 'required|integer',
+            'invoice'               => 'required|integer',
+            'mf'                    => 'required|integer',
+            'mf_persen'             => 'required|integer',
+             //'bpjs_tenagakerja'   =>'nullable',
+            // 'bpjs_kesehatan'     => 'required',
+            // 'jiwasraya'          => 'required',
+            // 'ramamusa'           =>'required',
+            // 'ditagihkan'         => 'required',
+            // 'diprovisasikan'     =>'required',
+            'overheadcost'          => 'required',
+            'training'              => 'required',
+            'tanggal_invoice'       =>'required',
+            'time_of_payment'       => 'required',
+            'cut_of_date'           => 'required',
+            'kaporlap'              =>'required',
+            'devices'               => 'required',
+            'chemical'              =>'required',
+            'pendaftaran_mou'       => 'required',
         ]);
 
         $datamou = new datamou;
@@ -88,19 +83,6 @@ class MouController extends Controller
         }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($no_mou)
     {
         $where = array('no_mou' => $no_mou);

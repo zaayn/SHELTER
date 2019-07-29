@@ -7,7 +7,7 @@
             <div class="panel-body">
                 <h1>Laporan Kontrak</h1>
                 <ol class="breadcrumb">
-                    <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                    <li><a href="{{asset('manager_crm/home')}}"><i class="fa fa-dashboard"></i> Home</a></li>
                     <li class="active">Daftar Laporan</li>
                 </ol>
             </div>

@@ -11,7 +11,12 @@ class OfficerController extends Controller
 {
     public function index()
     {
-        return view('/officer/dashboard_officer');
+        $data['calls'] = DB::table('call')->count();
+        $data['kontraks'] = DB::table('kontrak')->count();   
+        $data['visits'] = DB::table('visit')->count();   
+        $data['keluhans'] = DB::table('keluhan')->count();   
+
+        return view('/officer/dashboard_officer',$data);
     }
     public function mou(){
         $data['datamous'] = datamou::all();

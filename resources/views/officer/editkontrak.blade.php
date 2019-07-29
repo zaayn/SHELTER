@@ -44,10 +44,7 @@
                 	        <label class="font-weight-bold">Kode Customer</label>
                 	        <input type="text" class="form-control" name="kode_customer" value="{{ $kontrak->kode_customer }}" required>
                         </div>
-                        <div class="form-group col-md-12">
-                	        <label class="font-weight-bold">Nama Perusahaan</label>
-                	        <input type="text" class="form-control" name="nama_perusahaan" value="{{ $kontrak->nama_perusahaan }}" required>
-                        </div>
+
                         <div class="form-group col-md-12">
                 	        <label class="font-weight-bold">Periode Kontrak</label>
                 	        <input type="date" class="form-control" name="periode_kontrak" value="{{ $kontrak->periode_kontrak }}" required>

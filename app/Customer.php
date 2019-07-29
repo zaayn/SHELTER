@@ -37,4 +37,10 @@ class Customer extends Model
         return $this->belongsTo(\App\bisnis_unit::class,'bu_id','bu_id');
 
     }
+    public function kontrak()
+    {
+
+        return $this->hasMany(kontrak::class);
+
+    }
 }

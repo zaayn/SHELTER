@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use App\Kontrak;
+use App\Customer;
 
 class KontrakController extends Controller
 {
@@ -18,37 +19,17 @@ class KontrakController extends Controller
         return view('officer/kontrak', $data);
 
     }
-    // public function __construct(){
-    //     if ($rule == 'admin') {
-    //         return view('admin/kontrak/kontrak',$data);
-    //     }
-    //     elseif ($rule == 'officer_crm') {
-    //         return view('officer/kontrak', $data);
-    //     }
-    // }
+
     public function insert()
     {
-      return view('officer/insertkontrak');
+        $data['customers'] = customer::all();
+        return view('officer/insertkontrak',$data);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    
     public function store(Request $request)
     {
         $request->validate([
             'kode_customer' => 'required',
-            'nama_perusahaan' => 'required',
             'periode_kontrak' => 'required|date',
             'akhir_periode' => 'required',
             'srt_pemberitahuan' => 'required',
@@ -64,7 +45,6 @@ class KontrakController extends Controller
         $kontrak = new kontrak;
         $kontrak->id_kontrak = $request->id_kontrak;
         $kontrak->kode_customer = $request->kode_customer;
-        $kontrak->nama_perusahaan = $request->nama_perusahaan;
         $kontrak->periode_kontrak = $request->periode_kontrak;
         $kontrak->akhir_periode = $request->akhir_periode;
         $kontrak->srt_pemberitahuan = $request->srt_pemberitahuan;
@@ -84,19 +64,6 @@ class KontrakController extends Controller
         }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id_kontrak)
     {
         $where = array('id_kontrak' => $id_kontrak);
@@ -105,19 +72,11 @@ class KontrakController extends Controller
         return view('officer/editkontrak')->with('kontrak', $kontrak);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id_kontrak)
     {
         $kontrak = Kontrak::findorFail($id_kontrak);
         $request->validate([
             'kode_customer' => 'required',
-            'nama_perusahaan' => 'required',
             'periode_kontrak' => 'required|date',
             'akhir_periode' => 'required',
             'srt_pemberitahuan' => 'required',
@@ -131,7 +90,6 @@ class KontrakController extends Controller
         ]);
 
         $kontrak->kode_customer = $request->kode_customer;
-        $kontrak->nama_perusahaan = $request->nama_perusahaan;
         $kontrak->periode_kontrak = $request->periode_kontrak;
         $kontrak->akhir_periode = $request->akhir_periode;
         $kontrak->srt_pemberitahuan = $request->srt_pemberitahuan;

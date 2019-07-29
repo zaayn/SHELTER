@@ -14,8 +14,8 @@ class CreateDatamousTable extends Migration
     public function up()
     {
         Schema::create('datamou', function (Blueprint $table) {
-            $table->increments('no_mou');
-            $table->integer('id_kontrak');
+            $table->increments('no_mou')->unique();
+            $table->integer('id_kontrak')->unsigned();
             $table->integer('hc');
             $table->integer('invoice');
             $table->integer('mf');
@@ -37,13 +37,15 @@ class CreateDatamousTable extends Migration
             $table->string('pendaftaran_mou');
             $table->timestamps();
         });
+        Schema::table('datamou', function($table)
+        {
+            $table->foreign('id_kontrak')
+                ->references('id_kontrak')
+                ->on('kontrak')
+                ->onDelete('cascade');
+        });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::dropIfExists('datamous');
