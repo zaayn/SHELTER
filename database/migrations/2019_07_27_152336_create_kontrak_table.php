@@ -14,7 +14,7 @@ class CreateKontrakTable extends Migration
     public function up()
     {
         Schema::create('kontrak', function (Blueprint $table) {
-            $table->increments('id_kontrak')->unique();
+            $table->string('id_kontrak')->unique();
             $table->string('kode_customer');
             // $table->string('nama_perusahaan');
             $table->date('periode_kontrak');

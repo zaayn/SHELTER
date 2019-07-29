@@ -50,6 +50,7 @@ class KontrakadminController extends Controller
     public function store(Request $request)
     {
         $request->validate([
+            'id_kontrak' => 'required',
             'kode_customer' => 'required',
             'periode_kontrak' => 'required|date',
             'akhir_periode' => 'required',
@@ -97,6 +98,7 @@ class KontrakadminController extends Controller
     {
         $kontrak = Kontrak::findorFail($id_kontrak);
         $request->validate([
+            'id_kontrak' => 'required',
             'kode_customer' => 'required',
             'periode_kontrak' => 'required|date',
             'akhir_periode' => 'required',
@@ -110,6 +112,7 @@ class KontrakadminController extends Controller
             'closing' =>'required',
         ]);
 
+        $kontrak->id_kontrak = $request->id_kontrak;
         $kontrak->kode_customer = $request->kode_customer;
         $kontrak->periode_kontrak = $request->periode_kontrak;
         $kontrak->akhir_periode = $request->akhir_periode;

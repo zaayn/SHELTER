@@ -26,7 +26,7 @@
                             <div style="overflow-x:auto;">
                             <table id="mydatatables" class="table table-responsive table-hover table-light table-striped">
                                 <thead>
-                                    <th>ID Kontrak</th>
+                                    <th>Nomor Kontrak</th>
                                     <th>Kode Customer</th>
                                     <th>Nama Perusahaan</th>
                                     <th>Periode Kontrak</th>
