@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\User;
 use App\Call;
-//use App\User;
+use PDF;
 use Validator;
 use App\Exports\CallExport;
 use Maatwebsite\Excel\Facades\Excel;
@@ -141,9 +141,12 @@ class CalladminController extends Controller
         $call = Call::where('call_id',$call_id)->delete();
         return redirect()->route('index.call')->with('success', 'delete sukses');
     }
-    public function exportExcel()
+    public function exportPDF()
 	{
-		return Excel::download(new CallExport, 'Laporan-Call-CRM.xlsx');
+		$call = Call::all();
+        $pdf = PDF::loadview('admin/call/pdfcall',['call'=>$call]);
+        $pdf->setPaper('A4','landscape');
+    	return $pdf->download('Laporan-Call-CRM-pdf');
     }
     public function monthFilter(Request $request){
         $month = $request->get('month');

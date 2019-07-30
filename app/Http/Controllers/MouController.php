@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Support\Facades\DB;
+//use Auth;
 use App\datamou;
 use App\Kontrak;
 use App\Customer;
@@ -13,6 +14,7 @@ class MouController extends Controller
 {
     public function index()
     {
+        //dd(Auth::user());
         $data['datamous'] = datamou::all();
         return view('admin/mou/mou', $data);
     }

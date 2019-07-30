@@ -44,7 +44,7 @@ Route::group(['prefix' => 'officer_crm',  'middleware' => 'is_officer_crm'], fun
     Route::get('/delete/keluhan{id_keluhan}','KeluhanController@destroy')->name('destroy.keluhan');
     Route::get('/edit/editkeluhan{id_keluhan}','KeluhanController@edit')->name('edit.keluhan');
     Route::post('/update/keluhan{id_keluhan}','KeluhanController@update')->name('update.keluhan');
-    Route::get('/visit/exportPDF', 'VisitController@exportPDF');
+    Route::get('/keluhan/exportPDF', 'KeluhanController@exportPDF');
 
     //------- laporan kontrak
     Route::get('/insertkontrak', 'KontrakController@insert')->name('insert.kontrak'); //show form insert

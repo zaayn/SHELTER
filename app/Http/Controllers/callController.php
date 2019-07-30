@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\User;
 use App\Call;
-//use App\User;
+use PDF;
 use Validator;
 use App\Exports\CallExport;
 use Maatwebsite\Excel\Facades\Excel;
@@ -150,9 +150,12 @@ class callController extends Controller
         $call = Call::where('call_id',$call_id)->delete();
         return redirect()->route('index.call')->with('success', 'delete sukses');
     }
-    public function exportExcel()
+    public function exportPDF()
 	{
-		return Excel::download(new CallExport, 'Laporan-Call-CRM.xlsx');
+		$call = Call::all();
+        $pdf = PDF::loadview('officer/pdfcall',['call'=>$call]);
+        $pdf->setPaper('A4','landscape');
+    	return $pdf->download('Laporan-Call-CRM-pdf');
     }
     public function monthFilter(Request $request){
         $month = $request->get('month');
@@ -166,16 +169,7 @@ class callController extends Controller
             return view('officer.call', ['call' => $call]);
 
     }
-    public function customerCode($str, $as_space = array('-'))
-    {
-        $str = str_replace($as_space, ' ', trim($str));
-        $ret = '';
-        foreach (explode(' ', $str) as $word) {
-            $ret .= strtoupper($word[0]);
-        }
-        return $ret;
 
-    }
     //$phrase = 'Stack-Overflow Questions IT Tags Users Meta Example';
     // initialism($phrase);
 }

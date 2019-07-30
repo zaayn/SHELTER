@@ -9,6 +9,7 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use App\Kontrak;
 use App\Customer;
+use PDF;
 
 class KontrakController extends Controller
 {
@@ -119,8 +120,10 @@ class KontrakController extends Controller
         $kontrak = Kontrak::where('id_kontrak',$id_kontrak)->delete();
         return redirect()->route('index.kontrak')->with('success', 'delete sukses');
     }
-    // public function indexmou(){
-    //     $data['datamous'] = datamou::all();
-    //     return view('officer/mou', $data);
-    // }
+    public function exportPDF(){
+		$kontrak = Kontrak::all();
+        $pdf = PDF::loadview('officer/pdfkontrak',['kontrak'=>$kontrak]);
+        $pdf->setPaper('A4','landscape');
+    	return $pdf->download('Laporan-Kontrak-CRM-pdf');
+    }
 }

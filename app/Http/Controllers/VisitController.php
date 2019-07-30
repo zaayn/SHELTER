@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use App\Visit;
 use Validator;
+use PDF;
 
 class VisitController extends Controller
 {
@@ -133,5 +134,11 @@ class VisitController extends Controller
     {
         $visit = Visit::where('visit_id',$visit_id)->delete();
         return redirect()->route('index.visit')->with('success', 'delete sukses');
+    }
+    public function exportPDF(){
+		$visit = Visit::all();
+        $pdf = PDF::loadview('officer/pdfvisit',['visit'=>$visit]);
+        $pdf->setPaper('A4','landscape');
+    	return $pdf->download('Laporan-Visit-CRM-pdf');
     }
 }

@@ -2,21 +2,37 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
+use Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use App\Keluhan;
+use PDF;
 
 class KeluhanController extends Controller
 {
     public function index()
     {
+        //dd(Auth::user()->rule);
         $data['keluhans'] = Keluhan::all();
+        // if(Auth::user()->rule == 'admin'){
+        //     return view('admin/keluhan/keluhan', $data);
+        // }
+        // elseif(Auth::user()->rule == 'officer_crm'){
+        //     return view('officer/keluhan', $data);
+        // }
         return view('officer/keluhan', $data);
+        
     }
 
     public function insert()
     {
-      return view('officer/insertkeluhan');
+        // if(Auth::user()->rule == 'admin'){
+        //     return view('admin/keluhan/insertkeluhan');
+        // }
+        // elseif(Auth::user()->rule == 'officer_crm'){
+        //     return view('officer/insertkeluhan');
+        // }
+        return view('officer/insertkeluhan');
     }
 
     /**
@@ -62,12 +78,24 @@ class KeluhanController extends Controller
         $keluhan->via = $request->via;
         $keluhan->status = $request->status;
 
-        if ($keluhan->save()){
-            return redirect('/officer_crm/insertkeluhan')->with('success', 'item berhasil ditambahkan');
-        }
-        else{
-            return redirect('/officer_crm/insertkeluhan')->with('error', 'item gagal ditambahkan');
-        }
+        
+        // if (Auth::user()->rule == 'admin') {
+        //     if ($keluhan->save()){
+        //         return redirect('/admin/insertkeluhan')->with('success', 'item berhasil ditambahkan');
+        //     }
+        //     else{
+        //         return redirect('/admin/insertkeluhan')->with('error', 'item gagal ditambahkan');
+        //     }
+        // }
+        // elseif (Auth::user()->rule == 'officer_crm') {
+            if ($keluhan->save()){
+                return redirect('/officer_crm/insertkeluhan')->with('success', 'item berhasil ditambahkan');
+            }
+            else{
+                return redirect('/officer_crm/insertkeluhan')->with('error', 'item gagal ditambahkan');
+            }
+        //}
+            
     }
 
     /**
@@ -87,8 +115,15 @@ class KeluhanController extends Controller
     {
         $where = array('id_keluhan' => $id_keluhan);
         $keluhan  = Keluhan::where($where)->first();
- 
+        
+        // if(Auth::user()->rule == 'admin'){
+        //     return view('admin/keluhan/editkeluhan')->with('keluhan', $keluhan);
+        // }
+        // if(Auth::user()->rule == 'officer_crm'){
+        //     return view('officer/editkeluhan')->with('keluhan', $keluhan);
+        // }
         return view('officer/editkeluhan')->with('keluhan', $keluhan);
+        
     }
 
     /**
@@ -140,5 +175,11 @@ class KeluhanController extends Controller
     {
         $keluhan = Keluhan::where('id_keluhan',$id_keluhan)->delete();
         return redirect()->route('index.keluhan')->with('success', 'delete sukses');
+    }
+    public function exportPDF(){
+    $keluhan = Keluhan::all();
+      $pdf = PDF::loadview('officer/pdfkeluhan',['keluhan'=>$keluhan]);
+      $pdf->setPaper('A4','landscape');
+      return $pdf->download('Laporan-Keluhan-CRM-pdf');
     }
 }

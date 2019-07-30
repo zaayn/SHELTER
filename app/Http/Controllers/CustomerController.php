@@ -11,6 +11,7 @@ use App\bisnis_unit;
 use App\area;
 use App\wilayah;
 use App\User;
+use PDF;
 //test
 class CustomerController extends Controller
 {
@@ -113,5 +114,21 @@ class CustomerController extends Controller
       else{
         return redirect('admin/customer')->with('error', 'item gagal diupdate');
       }
+    }
+    public function customerCode($str, $as_space = array('-'))
+    {
+        $str = str_replace($as_space, ' ', trim($str));
+        $ret = '';
+        foreach (explode(' ', $str) as $word) {
+            $ret .= strtoupper($word[0]);
+        }
+        return $ret;
+
+    }
+    public function exportPDF(){
+		  $customer = Customer::all();
+      $pdf = PDF::loadview('admin/customer/pdfcustomer',['customer'=>$customer]);
+      $pdf->setPaper('A4','landscape');
+    	return $pdf->download('Laporan-Customer-CRM-pdf');
     }
 }

@@ -11,6 +11,7 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\DB;
 use App\Kontrak;
 use App\Customer;
+use PDF;
 
 class KontrakadminController extends Controller
 {
@@ -139,5 +140,11 @@ class KontrakadminController extends Controller
     {
         $kontrak = Kontrak::where('id_kontrak',$id_kontrak)->delete();
         return redirect()->route('index.kontrak')->with('success', 'delete sukses');
+    }
+    public function exportPDF(){
+		$kontrak = Kontrak::all();
+        $pdf = PDF::loadview('admin/kontrak/pdfkontrak',['kontrak'=>$kontrak]);
+        $pdf->setPaper('A4','landscape');
+    	return $pdf->download('Laporan-Kontrak-CRM-pdf');
     }
 }

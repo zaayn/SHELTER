@@ -24,8 +24,7 @@
                             <hr style="border: solid #ddd; border-width: 1px 0 0; clear: both; margin: 22px 0 21px; height: 0;">
                             @include('admin.shared.components.alert')
                             <div style="overflow-x:auto;">
-                            <a href="/kontrak/exportExcel" class="btn btn-success btn-sm" target="_blank">EXPORT EXCEL</a>
-                            <a href="/insertkontrak" class="btn btn-primary btn-sm">Input Kontrak</a>
+                            
                             <table id="mydatatables" class="table table-responsive table-hover table-light table-striped">
                                 <thead>
                                     <th>No. MoU</th>

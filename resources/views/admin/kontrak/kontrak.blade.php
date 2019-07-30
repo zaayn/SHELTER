@@ -51,6 +51,7 @@
                             @include('admin.shared.components.alert')
                             <div style="overflow-x:auto;">
                             <a href="/admin/kontrak/exportPDF" class="btn btn-default btn-sm" target="_blank">Download PDF</a>
+                            <a href="/admin/insertkontrak" class="btn btn-primary btn-sm">Insert Kontrak</a>
                             <table id="mydatatables" class="table table-responsive table-hover table-light table-striped">
                                 <thead>
                                     <th>Nomor Kontrak</th>
