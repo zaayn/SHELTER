@@ -28,20 +28,20 @@
                             {{-- <a href="/insertkontrak" class="btn btn-primary btn-sm">Input Kontrak</a> --}}
                             <table id="mydatatables" class="table table-responsive table-hover table-light table-striped">
                                 <thead>
-                                    <td>Nomor</td>
-                                    <td>Nama Perusahaan</td>
-                                    <td>Bisnis Unit</td>
-                                    <td>Wilayah</td>
-                                    <td>Alamat Perusahaan</td>
+                                    <th>Nomor</th>
+                                    <th>Nama Perusahaan</th>
+                                    <th>Bisnis Unit</th>
+                                    <th>Wilayah</th>
+                                    <th>Alamat Perusahaan</th>
                                     {{--    
-                                        <td>PIC</td>
-                                        <td>CP</td>
-                                        <td>Email</td> 
+                                        <th>PIC</th>
+                                        <th>CP</th>
+                                        <th>Email</th> 
                                     --}}
-                                    <td>Jenis Usaha</td>
-                                    <td>Periode Kontrak</td>
-                                    {{-- <td>Customer Type</td> --}}
-                                    <td>Nomor Kontrak</td> 
+                                    <th>Jenis Usaha</th>
+                                    <th>Periode Kontrak</th>
+                                    {{-- <th>Customer Type</th> --}}
+                                    <th>Nomor Kontrak</th> 
                                     <th>HC</th>
                                     <th>Invoice</th>
                                     <th>MF</th>
