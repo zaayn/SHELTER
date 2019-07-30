@@ -27,6 +27,7 @@ Route::group(['prefix' => 'officer_crm',  'middleware' => 'is_officer_crm'], fun
     Route::get('/edit/editcall{call_id}','callController@edit')->name('edit.call');
     Route::post('/update/call{call_id}','callController@update')->name('update.call');
 
+
     //------- laporan visit
     Route::get('/insertvisit', 'VisitController@insert')->name('insert.visit'); //show form insert
     Route::get('/visit', 'VisitController@index')->name('index.visit');
@@ -107,6 +108,7 @@ Route::group(['prefix' => 'admin',  'middleware' => 'is_admin'], function(){
     Route::get('/delete/customer{id}','CustomerController@delete')->name('delete.customer');
     Route::get('/edit/customer{id}','CustomerController@edit')->name('edit.customer');
     Route::post('/update/customer{id}','CustomerController@update')->name('update.customer');
+    Route::get('/customer/exportPDF', 'CustomerController@exportPDF');
 
     //------- laporan call
     Route::get('/insertcall', 'CalladminController@insert')->name('insert.call'); //show form insert
@@ -115,7 +117,7 @@ Route::group(['prefix' => 'admin',  'middleware' => 'is_admin'], function(){
     Route::get('/delete/call{call_id}','CalladminController@destroy')->name('destroy.call');
     Route::get('/edit/editcall{call_id}','CalladminController@edit')->name('edit.call');
     Route::post('/update/call{call_id}','CalladminController@update')->name('update.call');
-    
+    Route::get('/call/exportPDF', 'CalladminController@exportPDF');
         //------- laporan visit
         Route::get('/insertvisit', 'Visitadmincontroller@insert')->name('insert.visit'); //show form insert
         Route::get('/visit', 'Visitadmincontroller@index')->name('index.visit');
@@ -123,14 +125,16 @@ Route::group(['prefix' => 'admin',  'middleware' => 'is_admin'], function(){
         Route::get('/delete/visit{visit_id}','Visitadmincontroller@destroy')->name('destroy.visit');
         Route::get('/edit/editvisit{visit_id}','Visitadmincontroller@edit')->name('edit.visit');
         Route::post('/update/visit{visit_id}','Visitadmincontroller@update')->name('update.visit');
+        Route::get('/visit/exportPDF', 'VisitadminController@exportPDF');
     
         //------- laporan keluhan
-        Route::get('/insertkeluhan', 'KeluhanadminController@insert')->name('insert.keluhan'); //show form insert
-        Route::get('/keluhan', 'KeluhanadminController@index')->name('index.keluhan');
-        Route::post('/store/keluhan', 'KeluhanadminController@store')->name('store.keluhan');
-        Route::get('/delete/keluhan{id_keluhan}','KeluhanadminController@destroy')->name('destroy.keluhan');
-        Route::get('/edit/editkeluhan{id_keluhan}','KeluhanadminController@edit')->name('edit.keluhan');
-        Route::post('/update/keluhan{id_keluhan}','KeluhanadminController@update')->name('update.keluhan');
+        Route::get('/insertkeluhan', 'KeluhanController@insert')->name('insert.keluhan'); //show form insert
+        Route::get('/keluhan', 'KeluhanController@index')->name('index.keluhan');
+        Route::post('/store/keluhan', 'KeluhanController@store')->name('store.keluhan');
+        Route::get('/delete/keluhan{id_keluhan}','KeluhanController@destroy')->name('destroy.keluhan');
+        Route::get('/edit/editkeluhan{id_keluhan}','KeluhanController@edit')->name('edit.keluhan');
+        Route::post('/update/keluhan{id_keluhan}','KeluhanController@update')->name('update.keluhan');
+        Route::get('/keluhan/exportPDF', 'KeluhanadminController@exportPDF');
     
         //------- laporan kontrak
         Route::get('/insertkontrak', 'KontrakadminController@insert')->name('insert.kontrak'); //show form insert
@@ -140,6 +144,7 @@ Route::group(['prefix' => 'admin',  'middleware' => 'is_admin'], function(){
         Route::get('/edit/editkontrak{id_kontrak}','KontrakadminController@edit')->name('edit.kontrak');
         Route::post('/update/kontrak{id_kontrak}','KontrakadminController@update')->name('update.kontrak');
         Route::post('/filter/user', 'KontrakadminController@filter')->name('filter.kontrak');
+        Route::get('/kontrak/exportPDF', 'KontrakadminController@exportPDF');
     
         //------- laporan mou
         Route::get('/insertmou', 'MouController@insert')->name('insert.datamou'); //show form insert
