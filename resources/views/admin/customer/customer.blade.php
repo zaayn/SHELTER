@@ -25,9 +25,11 @@
                     
                     {{-- ---- end filter ------ --}}  
                             <hr style="border: solid #ddd; border-width: 1px 0 0; clear: both; margin: 22px 0 21px; height: 0;">
+                            <a href="/admin/customer/exportPDF" class="btn btn-default btn-sm" target="_blank">Download PDF</a>
                             @include('admin.shared.components.alert')
                             <table id="mydatatables" class="table table-collapse table-hover table-light table-striped cell-border table-responsive">
                                 <thead>
+                                
                                     <th>No</th>
                                     <th>Kode Customer</th>
                                     <th>Nama Perusahaan</th>
