@@ -26,4 +26,10 @@ class kontrak extends Model
     {
         return $this->belongsTo(\App\Customer::class,'kode_customer','kode_customer');
     }
+    public function mou()
+    {
+
+        return $this->hasOne(datamou::class);
+
+    }
 }

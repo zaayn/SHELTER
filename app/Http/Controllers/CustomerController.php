@@ -31,7 +31,7 @@ class CustomerController extends Controller
     public function store(Request $request)
     {
       $this->validate($request,[
-         'kode_customer'    =>['required', 'string']
+         'kode_customer'    =>['required', 'string','unique:customer']
         ,'nama_perusahaan'  =>['required', 'string']
         ,'jenis_usaha'      =>['required', 'string']
         ,'alamat'=>['required', 'string']
