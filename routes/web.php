@@ -106,7 +106,7 @@ Route::group(['prefix' => 'admin',  'middleware' => 'is_admin'], function(){
     Route::post('/store/customer', 'CustomerController@store')->name('store.customer');
     Route::get('/delete/customer{id}','CustomerController@delete')->name('delete.customer');
     Route::get('/edit/customer{id}','CustomerController@edit')->name('edit.customer');
-    Route::put('/update/customer{id}','CustomerController@update')->name('update.customer');
+    Route::post('/update/customer{id}','CustomerController@update')->name('update.customer');
 
     //------- laporan call
     Route::get('/insertcall', 'CalladminController@insert')->name('insert.call'); //show form insert
