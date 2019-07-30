@@ -25,6 +25,7 @@
                             @include('admin.shared.components.alert')
                             <div style="overflow-x:auto;">
                             <a href="/admin/keluhan/exportPDF" class="btn btn-default btn-sm" target="_blank">Download PDF</a>
+                            <a href="/admin/insertkeluhan" class="btn btn-primary btn-sm">Insert Keluhan</a>
                             <table id="mydatatables" class="table table-collapse table-hover table-light table-striped">
                                 <thead>
                                     <th style="width:10%">ID Keluhan</th>

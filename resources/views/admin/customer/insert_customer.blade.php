@@ -36,19 +36,20 @@
 
                 <form action="{{route('store.customer')}}" method="post">
                     {{ csrf_field() }} 
-                    <div class="form-group">
+                  <div class="form-group">
+                    <div class="form-group col-md-12">
                       <label>Kode Customer :</label>
                       <div><input type="text" class="form-control"  name="kode_customer" required></div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group col-md-12">
                       <label>Nama Perusahaan :</label>
                       <div><input type="text" class="form-control"  name="nama_perusahaan" required></div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group col-md-12">
                       <label>Jenis Usaha :</label>
                       <div><input type="text" class="form-control"  name="jenis_usaha" required></div>
                     </div>
-                   <div class="form-group">
+                   <div class="form-group col-md-12">
                         <label>Bisnis Unit :</label>
                         <div>
                             <select class="form-control" name="bu_id">
@@ -58,31 +59,31 @@
                             </select>
                         </div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group col-md-12">
                       <label>Alamat :</label>
                       <div><input type="text" class="form-control"  name="alamat" required></div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group col-md-12">
                       <label>Provinsi :</label>
                       <div><input type="text" class="form-control"  name="provinsi" required></div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group col-md-12">
                       <label>Kabupaten :</label>
                       <div><input type="text" class="form-control"  name="kabupaten" required></div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group col-md-12">
                       <label>Telpon :</label>
                       <div><input type="text" class="form-control"  name="telpon" required></div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group col-md-12">
                       <label>Fax :</label>
                       <div><input type="text" class="form-control"  name="fax" required></div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group col-md-12">
                       <label>Kontak Person :</label>
                       <div><input type="text" class="form-control"  name="cp" required></div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group col-md-12">
                         <label>Area :</label>
                         <div>
                             <select class="form-control" name="nama_area">
@@ -92,7 +93,7 @@
                             </select>
                         </div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group col-md-12">
                         <label>Wilayah :</label>
                         <div>
                             <select class="form-control" name="wilayah_id">
@@ -102,7 +103,7 @@
                             </select>
                         </div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group col-md-12">
                         <label>Area Supervisor :</label>
                         <div>
                             <select class="form-control" name="nama_depan">
@@ -112,9 +113,11 @@
                             </select>
                         </div>
                     </div>
-
-                    <button type="submit" class="btn btn-primary ">Submit</button>
-                    <a href="user" class="btn btn-secondary"> Cancel</a>
+                      <div class="form-group col-md-12">
+                        <button type="submit" class="btn btn-primary ">Submit</button>
+                        <a href="user" class="btn btn-secondary"> Cancel</a>
+                      </div>
+                  </div>
                 </form>
               </div>
             </div>

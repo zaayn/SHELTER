@@ -24,6 +24,8 @@
                             <hr style="border: solid #ddd; border-width: 1px 0 0; clear: both; margin: 22px 0 21px; height: 0;">
                             @include('admin.shared.components.alert')
                             <div style="overflow-x:auto;">
+                            <a href="/officer_crm/visit/exportPDF" class="btn btn-default btn-sm" target="_blank">Download PDF</a>
+                            <a href="/officer_crm/insertvisit" class="btn btn-primary btn-sm">Insert Visit</a>
                             <table id="mydatatables" class="table table-collapse table-hover table-light table-striped">
                                 <thead>
                                     <th>ID Visit</th>

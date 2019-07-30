@@ -5,6 +5,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use App\Keluhan;
+use PDF;
+
 
 class KeluhanadminController extends Controller
 {
@@ -140,5 +142,11 @@ class KeluhanadminController extends Controller
     {
         $keluhan = Keluhan::where('id_keluhan',$id_keluhan)->delete();
         return redirect()->route('index.keluhan')->with('success', 'delete sukses');
+    }
+    public function exportPDF(){
+        $keluhan = Keluhan::all();
+      $pdf = PDF::loadview('admin/keluhan/pdfkeluhan',['keluhan'=>$keluhan]);
+      $pdf->setPaper('A4','landscape');
+      return $pdf->download('Laporan-Keluhan-CRM-pdf');
     }
 }

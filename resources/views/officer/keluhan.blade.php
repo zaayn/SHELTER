@@ -24,7 +24,9 @@
                             <hr style="border: solid #ddd; border-width: 1px 0 0; clear: both; margin: 22px 0 21px; height: 0;">
                             @include('admin.shared.components.alert')
                             <div style="overflow-x:auto;">
-                            <table id="mydatatables" class="table table-collapse table-hover table-light table-striped">
+                            <a href="/officer_crm/keluhan/exportPDF" class="btn btn-default btn-sm" target="_blank">Download PDF</a>
+                            <a href="/officer_crm/insertkeluhan" class="btn btn-primary btn-sm">Insert Keluhan</a>
+                            <table id="mydatatables" class="table table-responsive table-hover table-light table-striped">
                                 <thead>
                                     <th style="width:10%">ID Keluhan</th>
                                     <th style="width:75%">Nama Customer</th>
