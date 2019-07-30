@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Laporan Call</title>
+	<title>Laporan Customer</title>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body>
@@ -12,7 +12,7 @@
 		}
 	</style>
 	<center>
-		<h5>Laporan Call</h4>
+		<h5>Laporan Customer</h4>
 	</center>
  
 	<table class='table table-bordered'>
@@ -38,20 +38,20 @@
 			@foreach($customer as $customer)
 			<tr>
 			<td>{{ $i++ }}</td>
-                                        <td>{{ $customer->kode_customer }}</td>
-                                        <td>{{ $customer->nama_perusahaan }}</td>
-                                        <td>{{ $customer->jenis_usaha }}</td>
-                                        <td>{{ $customer->bisnis_unit->nama_bisnis_unit }}</td>
-                                        <td>{{ $customer->alamat }}</td>
-                                        <td>{{ $customer->provinsi }}</td>
-                                        <td>{{ $customer->kabupaten }}</td>
-                                        <td>{{ $customer->telpon }}</td>
-                                        <td>{{ $customer->cp }}</td>
-                                        {{-- <td>{{ $customer->nama_area}}</td> --}}
-                                        {{-- <td>{{ $customer->wilayah->nama_wilayah}}</td> --}}
-                                        <td>{{ $customer->nama_area}}</td>
-                                        <td>{{ $customer->wilayah->nama_wilayah}}</td>
-                                        <td>{{ $customer->nama_depan}}</td>
+            <td>{{ $customer->kode_customer }}</td>
+            <td>{{ $customer->nama_perusahaan }}</td>
+            <td>{{ $customer->jenis_usaha }}</td>
+            <td>{{ $customer->bisnis_unit->nama_bisnis_unit }}</td>
+            <td>{{ $customer->alamat }}</td>
+            <td>{{ $customer->provinsi }}</td>
+            <td>{{ $customer->kabupaten }}</td>
+            <td>{{ $customer->telpon }}</td>
+            <td>{{ $customer->cp }}</td>
+            {{-- <td>{{ $customer->nama_area}}</td> --}}
+            {{-- <td>{{ $customer->wilayah->nama_wilayah}}</td> --}}
+            <td>{{ $customer->nama_area}}</td>
+            <td>{{ $customer->wilayah->nama_wilayah}}</td>
+            <td>{{ $customer->nama_depan}}</td>
 			</tr>
 			@endforeach
 		</tbody>
