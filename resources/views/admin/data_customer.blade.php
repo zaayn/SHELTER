@@ -40,7 +40,8 @@
                                     --}}
                                     <th>Jenis Usaha</th>
                                     <th>Periode Kontrak</th>
-                                    {{-- <th>Customer Type</th> --}}
+                                    <th>Akhir Periode Kontrak</th>
+                                    <th>Customer Type</th>
                                     <th>Nomor Kontrak</th> 
                                     <th>HC</th>
                                     <th>Invoice</th>
@@ -72,7 +73,8 @@
                                     <td>{{ $datamou->alamat }}</td>
                                     <td>{{ $datamou->jenis_usaha }}</td>
                                     <td>{{ $datamou->periode_kontrak }}</td>
-                                    {{-- <td>{{ $customer_type }}</td> --}}
+                                    <td>{{ $datamou->akhir_periode }}</td>
+                                    <td>{{ $different }}</td>
                                     <td>{{ $datamou->id_kontrak }}</td>
                                     <td>{{ $datamou->hc }}</td>
                                     <td>{{ $datamou->invoice }}</td>
