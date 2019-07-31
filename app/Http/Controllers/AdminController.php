@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use App\datamou;
 use App\Kontrak;
 use App\Customer;
+use DateTime;
 
 class AdminController extends Controller
 {
@@ -28,7 +29,7 @@ class AdminController extends Controller
 
         return view('/admin/dashboard_superadmin',$data);
     }
-    public function data_customer()
+    public function data_customer(Request $request)
     {
         $data['datamous'] = DB::table('datamou')
         ->join('kontrak','datamou.id_kontrak','=','kontrak.id_kontrak')
@@ -44,6 +45,26 @@ class AdminController extends Controller
         'chemical','pendaftaran_mou')
         ->get();
         $data['no'] = 1;
+
+        $date1 = new DateTime($request->periode_kontrak);
+        $date2 = new DateTime($request->akhir_periode);
+
+        $diff = $date1->diff($date2);
+        $data['different'] = ($diff->format('%y') * 12) + $diff->format('%m');
+
+        if($data['different'] < 24)
+        {
+            $data['different'] = "Silver";
+        }
+        if($data['different'] >= 24 && $data['different'] < 60)
+        {
+            $data['different'] = "Gold";
+        }
+        if($data['different'] >= 60)
+        {
+            $data['different'] = "Platinum";
+        }
+
         return view('admin/data_customer', $data);
     }
 }
