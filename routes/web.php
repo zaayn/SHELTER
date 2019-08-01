@@ -112,6 +112,7 @@ Route::group(['prefix' => 'admin',  'middleware' => 'is_admin'], function(){
     Route::get('/edit/customer{id}','CustomerController@edit')->name('edit.customer');
     Route::post('/update/customer{id}','CustomerController@update')->name('update.customer');
     Route::get('/customer/exportPDF', 'CustomerController@exportPDF');
+    Route::get('/datacustomer/exportPDF', 'AdminController@exportPDF');
 
     //------- laporan call
     Route::get('/insertcall', 'CalladminController@insert')->name('insert.call'); //show form insert
@@ -156,6 +157,7 @@ Route::group(['prefix' => 'admin',  'middleware' => 'is_admin'], function(){
         Route::get('/delete/datamou{no_mou}','MouController@destroy')->name('destroy.datamou');
         Route::get('/edit/datamou{no_mou}','MouController@edit')->name('edit.datamou');
         Route::post('/update/datamou{no_mou}','MouController@update')->name('update.datamou');
+        Route::get('/mou/exportPDF', 'MouController@exportPDF');
 });
  
 Route::group(['prefix' => 'manager_crm',  'middleware' => 'is_manager_crm'], function(){

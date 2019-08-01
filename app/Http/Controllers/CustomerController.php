@@ -129,6 +129,6 @@ class CustomerController extends Controller
 		  $customer = Customer::all();
       $pdf = PDF::loadview('admin/customer/pdfcustomer',['customer'=>$customer]);
       $pdf->setPaper('A4','landscape');
-    	return $pdf->download('Laporan-Customer-CRM-pdf');
+    	return $pdf->download('Laporan-Customer-CRM.pdf');
     }
 }

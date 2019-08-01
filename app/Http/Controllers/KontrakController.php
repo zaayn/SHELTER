@@ -124,6 +124,6 @@ class KontrakController extends Controller
 		$kontrak = Kontrak::all();
         $pdf = PDF::loadview('officer/pdfkontrak',['kontrak'=>$kontrak]);
         $pdf->setPaper('A4','landscape');
-    	return $pdf->download('Laporan-Kontrak-CRM-pdf');
+    	return $pdf->download('Laporan-Kontrak-CRM.pdf');
     }
 }
