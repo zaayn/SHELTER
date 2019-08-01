@@ -139,6 +139,6 @@ class VisitadminController extends Controller
 		$visit = Visit::all();
         $pdf = PDF::loadview('admin/visit/pdfvisit',['visit'=>$visit]);
         $pdf->setPaper('A4','landscape');
-    	return $pdf->download('Laporan-Visit-CRM-pdf');
+    	return $pdf->download('Laporan-Visit-CRM.pdf');
     }
 }

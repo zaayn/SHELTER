@@ -5,7 +5,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Support\Facades\DB;
-//use Auth;
+use PDF;
 use App\datamou;
 use App\Kontrak;
 use App\Customer;
@@ -160,5 +160,11 @@ class MouController extends Controller
     {
         $datamou = datamou::where('no_mou',$no_mou)->delete();
         return redirect()->route('index.datamou')->with('success', 'delete sukses');
+    }
+    public function exportPDF(){
+        $mou = datamou::all();
+        $pdf = PDF::loadview('admin/mou/pdfmou',['datamou'=>$mou]);
+        $pdf->setPaper('A4','landscape');
+        return $pdf->download('Laporan-Mou-CRM.pdf');
     }
 }

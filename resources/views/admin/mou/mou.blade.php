@@ -25,10 +25,12 @@
                             <hr style="border: solid #ddd; border-width: 1px 0 0; clear: both; margin: 22px 0 21px; height: 0;">
                             @include('admin.shared.components.alert')
                             <div style="overflow-x:auto;">
+                            <a href="/admin/insertmou" class="btn btn-primary btn-sm">Input Kontrak</a>
+                            <a href="/admin/mou/exportPDF" class="btn btn-default btn-sm" target="_blank">Download PDF</a>
                             <table id="mydatatables" class="table table-responsive table-hover table-light table-striped">
                                 <thead>
                                     <th>No. MoU</th>
-                                    <th>ID Kontrak</th>
+                                    <th>Nomor Kontrak</th>
                                     <th>HC</th>
                                     <th>Invoice</th>
                                     <th>MF</th>

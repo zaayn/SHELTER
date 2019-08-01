@@ -147,6 +147,6 @@ class KeluhanadminController extends Controller
         $keluhan = Keluhan::all();
       $pdf = PDF::loadview('admin/keluhan/pdfkeluhan',['keluhan'=>$keluhan]);
       $pdf->setPaper('A4','landscape');
-      return $pdf->download('Laporan-Keluhan-CRM-pdf');
+      return $pdf->download('Laporan-Keluhan-CRM.pdf');
     }
 }
