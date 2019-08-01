@@ -21,11 +21,11 @@
         <div class="col-md-12">
             <div class="panel block">
                 <div class="panel-body">
+                        <a href="{{asset('/admin/call/exportPDF')}}" class="btn btn-default btn-sm" target="_blank">Download PDF</a>
+                        <a href="{{asset('/admin/insertcall')}}" class="btn btn-primary btn-sm">Input Call</a>
                             <hr style="border: solid #ddd; border-width: 1px 0 0; clear: both; margin: 22px 0 21px; height: 0;">
                             @include('admin.shared.components.alert')
-                            <div style="overflow-x:auto;">
-                            <a href="/admin/call/exportPDF" class="btn btn-default btn-sm" target="_blank">Download PDF</a>
-                            <a href="/admin/insertcall" class="btn btn-primary btn-sm">Input Call</a>
+                           
                             <table id="mydatatables" class="table table-collapse table-hover table-light table-striped">
                                 <thead>
                                     <th>ID Call</th>
@@ -61,5 +61,4 @@
                         </div>
                     </div>
                 </div>
-            </div>
 @endsection
