@@ -7,8 +7,8 @@
             <div class="panel-body">
                 <h1>Form Insert Area</h1>
                 <ol class="breadcrumb">
-                    <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                    <li><a href="area"></i>Area</a></li>
+                    <li><a href="{{asset('/superadmin/home')}}"><i class="fa fa-dashboard"></i> Home</a></li>
+                    <li><a href="{{asset('/superadmin/area')}}"></i>Area</a></li>
                     <li class="active">Insert Area</li>
                 </ol>
             </div>
@@ -56,7 +56,7 @@
                     </div>
 
                     <button type="submit" class="btn btn-primary ">Submit</button>
-                    <a href="area" class="btn btn-secondary"> Cancel</a>
+                    <a href="{{asset('/superadmin/area')}}" class="btn btn-secondary"> Cancel</a>
                 </form>
               </div>
             </div>

@@ -7,8 +7,8 @@
             <div class="panel-body">
                 <h1>Form Insert Call</h1>
                 <ol class="breadcrumb">
-                    <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                    <li><a href="area"></i>Call</a></li>
+                    <li><a href="{{asset('/admin/home')}}"><i class="fa fa-dashboard"></i> Home</a></li>
+                    <li><a href="{{asset('/admin/call')}}"></i>Call</a></li>
                     <li class="active">Insert Call</li>
                 </ol>
             </div>

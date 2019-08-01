@@ -7,8 +7,8 @@
             <div class="panel-body">
                 <h1>Form Edit Bisnis Unit</h1>
                 <ol class="breadcrumb">
-                    <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                    <li><a href="{{asset('bisnis_unit')}}"></i> bisnis_unit</a></li>
+                    <li><a href="{{asset('/superadmin/home')}}"><i class="fa fa-dashboard"></i> Home</a></li>
+                    <li><a href="{{asset('superadmin/bisnis_unit')}}"></i> bisnis_unit</a></li>
                     <li class="active">Edit Bisnis Unit</li>
                 </ol>
             </div>

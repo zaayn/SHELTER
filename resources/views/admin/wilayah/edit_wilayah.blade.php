@@ -7,8 +7,8 @@
             <div class="panel-body">
                 <h1>Form Edit Wilayah</h1>
                 <ol class="breadcrumb">
-                    <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                    <li><a href="{{asset('area')}}"></i> wilayah</a></li>
+                    <li><a href="{{asset('/superadmin/home')}}"><i class="fa fa-dashboard"></i> Home</a></li>
+                    <li><a href="{{asset('superadmin/wilayah')}}"></i> wilayah</a></li>
                     <li class="active">Edit wilayah</li>
                 </ol>
             </div>

@@ -7,7 +7,7 @@
             <div class="panel-body">
                 <h1>Laporan Kontrak</h1>
                 <ol class="breadcrumb">
-                    <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                    <li><a href="{{asset('/admin/home')}}"><i class="fa fa-dashboard"></i> Home</a></li>
                     <li class="active">Daftar Laporan</li>
                 </ol>
             </div>
@@ -47,11 +47,11 @@
                             </div>
                         </form>
                                             {{-- ---- end filter ------ --}}   
+                                            <a href="{{asset('/admin/kontrak/exportPDF')}}" class="btn btn-default btn-sm" target="_blank">Download PDF</a>
+                                            <a href="{{asset('/admin/insertkontrak')}}" class="btn btn-primary btn-sm">Insert Kontrak</a>
                             <hr style="border: solid #ddd; border-width: 1px 0 0; clear: both; margin: 22px 0 21px; height: 0;">
                             @include('admin.shared.components.alert')
-                            <div style="overflow-x:auto;">
-                            <a href="/admin/kontrak/exportPDF" class="btn btn-default btn-sm" target="_blank">Download PDF</a>
-                            <a href="/admin/insertkontrak" class="btn btn-primary btn-sm">Insert Kontrak</a>
+                            
                             <table id="mydatatables" class="table table-responsive table-hover table-light table-striped">
                                 <thead>
                                     <th>Nomor Kontrak</th>
@@ -93,7 +93,6 @@
                                 @endforeach  
                                 </tbody>
                             </table>
-                            </div>
                         </div>
                     </div>
                 </div>

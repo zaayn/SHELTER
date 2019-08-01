@@ -51,7 +51,6 @@ class AdminController extends Controller
 
         $diff = $date1->diff($date2);
         $data['different'] = ($diff->format('%y') * 12) + $diff->format('%m');
-
         if($data['different'] < 24)
         {
             $data['different'] = "Silver";

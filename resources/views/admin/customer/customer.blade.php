@@ -7,7 +7,7 @@
             <div class="panel-body">
                 <h1>Daftar Customer</h1>
                 <ol class="breadcrumb">
-                    <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                    <li><a href={{asset('/admin/home')}}"><i class="fa fa-dashboard"></i> Home</a></li>
                     <li class="active">Customer</li>
                 </ol>
             </div>
@@ -21,12 +21,12 @@
         <div class="col-md-12">
             <div class="panel block">
                 <div class="panel-body">
-                    {{-- ----------  -------------- filter ------------------------ --}}
-                    
-                    {{-- ---- end filter ------ --}}  
+                    {{-- ----------  -------------- button download ------------------------ --}}
+                    <a href="{{asset('/admin/customer/exportPDF')}}" class="btn btn-default btn-sm" target="_blank">Download PDF</a>
+                    <a href="{{asset('/admin/insert_customer')}}" class="btn btn-primary btn-sm">Insert Customer</a>
+                    {{-- ---- end  ------ --}}  
                             <hr style="border: solid #ddd; border-width: 1px 0 0; clear: both; margin: 22px 0 21px; height: 0;">
-                            <a href="/admin/customer/exportPDF" class="btn btn-default btn-sm" target="_blank">Download PDF</a>
-                            <a href="/admin/insert_customer" class="btn btn-primary btn-sm">Insert Customer</a>
+                           
                             @include('admin.shared.components.alert')
                             <table id="mydatatables" class="table table-collapse table-hover table-light table-striped cell-border table-responsive">
                                 <thead>

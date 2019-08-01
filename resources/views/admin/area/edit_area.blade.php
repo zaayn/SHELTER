@@ -7,8 +7,8 @@
             <div class="panel-body">
                 <h1>Form Edit Area</h1>
                 <ol class="breadcrumb">
-                    <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                    <li><a href="{{asset('area')}}"></i> area</a></li>
+                    <li><a href{{asset('/superadmin/home')}}"><i class="fa fa-dashboard"></i> Home</a></li>
+                    <li><a href="{{asset('/superadmin/area')}}"></i> area</a></li>
                     <li class="active">Edit Area</li>
                 </ol>
             </div>

@@ -7,7 +7,7 @@
             <div class="panel-body">
                 <h1>Daftar Wilayah</h1>
                 <ol class="breadcrumb">
-                    <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                    <li><a href="{{asset('/superadmin/home')}}"><i class="fa fa-dashboard"></i> Home</a></li>
                     <li class="active">Wilayah</li>
                 </ol>
             </div>

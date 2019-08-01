@@ -7,8 +7,8 @@
             <div class="panel-body">
                 <h1>Form Insert Data MoU</h1>
                 <ol class="breadcrumb">
-                    <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                    <li><a href="area"></i>MoU</a></li>
+                    <li><a href="{{asset('/admin/home')}}"><i class="fa fa-dashboard"></i> Home</a></li>
+                    <li><a href="{{asset('/admin/mou')}}"></i>MoU</a></li>
                     <li class="active">Insert MoU</li>
                 </ol>
             </div>
@@ -46,7 +46,7 @@
                                 <select class="form-control" name="id_kontrak">
                                     <option>Pilih Periode Kontrak perusahaan</option>
                                 @foreach($kontraks as $kontrak)
-                                    <option value="{{ $kontrak->id_kontrak }}">{{ $kontrak->nama_perusahaan}} periode {{ $kontrak->periode_kontrak }}</option>
+                                    <option value="{{ $kontrak->id_kontrak }}">{{ $kontrak->id_kontrak }} - {{ $kontrak->nama_perusahaan}} periode {{ $kontrak->periode_kontrak }}</option>
                                 @endforeach
                                 </select>
                             </div>

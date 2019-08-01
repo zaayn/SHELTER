@@ -7,8 +7,8 @@
             <div class="panel-body">
                 <h1>Edit Visit</h1>
                 <ol class="breadcrumb">
-                    <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                    <li><a href="area"></i>Visit</a></li>
+                    <li><a href="{{asset('/admin/home')}}"><i class="fa fa-dashboard"></i> Home</a></li>
+                    <li><a href="{{asset('/admin/visit')}}"></i>Visit</a></li>
                     <li class="active">Edit Visit</li>
                 </ol>
             </div>
