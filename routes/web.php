@@ -56,6 +56,8 @@ Route::group(['prefix' => 'officer_crm',  'middleware' => 'is_officer_crm'], fun
     Route::get('/mou', 'OfficerController@mou')->name('mou.officer');
     Route::get('/kontrak/exportPDF', 'KontrakController@exportPDF');
 
+    Route::get('/mou/exportPDF', 'OfficerController@exportPDF');
+
 });
 
 // email superadmin :superadmin@gmail.com

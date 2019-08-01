@@ -38,17 +38,20 @@
                             <div class="form-group">
                                 <div class="col-md-1 col-md-offset-2">
                                     <a href="{{asset('/admin/kontrak')}}">
-                                        <button type="button" class="btn btn-primary"><i class="fa fa-refresh"></i> Reset</button>
+                                        <button type="button" class="btn btn-primary btn-sm"><i class="fa fa-refresh"></i> Reset</button>
                                     </a>    
                                 </div>
                                 <div class="col-md-2">
-                                    <button type="submit" class="btn btn-primary" id="btn-filter"><i class="fa fa-filter"></i> Filter</button>
+                                    <button type="submit" class="btn btn-primary btn-sm" id="btn-filter"><i class="fa fa-filter"></i> Filter</button>
                                 </div>
                             </div>
                         </form>
-                                            {{-- ---- end filter ------ --}}   
-                                            <a href="{{asset('/admin/kontrak/exportPDF')}}" class="btn btn-default btn-sm" target="_blank">Download PDF</a>
-                                            <a href="{{asset('/admin/insertkontrak')}}" class="btn btn-primary btn-sm">Insert Kontrak</a>
+                                            {{-- ---- end filter ------ --}} 
+
+                            <div style="float:right; margin-bottom:10px;">
+                                <a href="{{asset('/admin/insertkontrak')}}" class="btn btn-primary btn-sm">Insert Kontrak</a> 
+                                <a href="{{asset('/admin/kontrak/exportPDF')}}" class="btn btn-default btn-sm" target="_blank">Download PDF</a>
+                            </div> 
                             <hr style="border: solid #ddd; border-width: 1px 0 0; clear: both; margin: 22px 0 21px; height: 0;">
                             @include('admin.shared.components.alert')
                             

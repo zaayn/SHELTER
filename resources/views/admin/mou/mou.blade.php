@@ -21,8 +21,11 @@
         <div class="col-md-12">
             <div class="panel block">
                 <div class="panel-body">
-                        <a href="{{asset('/admin/insertmou')}}" class="btn btn-primary btn-sm">Input Kontrak</a>
-                        <a href="{{asset('/admin/mou/exportPDF')}}" class="btn btn-default btn-sm" target="_blank">Download PDF</a>                            <hr style="border: solid #ddd; border-width: 1px 0 0; clear: both; margin: 22px 0 21px; height: 0;">
+                    <div style="float:right; margin-bottom:10px;">
+                        <a href="{{asset('/admin/insertmou')}}" class="btn btn-primary btn-sm">Insert MoU</a>
+                        <a href="{{asset('/admin/mou/exportPDF')}}" class="btn btn-default btn-sm" target="_blank">Download PDF</a>
+                    </div>
+                            <hr style="border: solid #ddd; border-width: 1px 0 0; clear: both; margin: 22px 0 21px; height: 0;">
                             @include('admin.shared.components.alert')
                             <table id="mydatatables" class="table table-responsive table-hover table-light table-striped">
                                 <thead>
