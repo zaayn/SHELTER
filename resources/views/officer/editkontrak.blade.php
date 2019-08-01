@@ -35,7 +35,7 @@
 
                   <br>
 
-                  <form action="{{route('update.kontrak', $kontrak->id_kontrak)}}" method="post">
+                  <form action="{{route('update.kontrak.officer', $kontrak->id_kontrak)}}" method="post">
                     {{ csrf_field() }}
                     
 

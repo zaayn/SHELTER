@@ -24,8 +24,8 @@
                             <hr style="border: solid #ddd; border-width: 1px 0 0; clear: both; margin: 22px 0 21px; height: 0;">
                             @include('admin.shared.components.alert')
                             <div style="overflow-x:auto;">
-                            <a href="/officer_crm/keluhan/exportPDF" class="btn btn-default btn-sm" target="_blank">Download PDF</a>
-                            <a href="/officer_crm/insertkeluhan" class="btn btn-primary btn-sm">Insert Keluhan</a>
+                            <a href="{{asset('/officer_crm/keluhan/exportPDF')}}" class="btn btn-default btn-sm" target="_blank">Download PDF</a>
+                            <a href="{{asset('/officer_crm/insertkeluhan')}}" class="btn btn-primary btn-sm">Insert Keluhan</a>
                             <table id="mydatatables" class="table table-responsive table-hover table-light table-striped">
                                 <thead>
                                     <th style="width:10%">ID Keluhan</th>
@@ -57,9 +57,8 @@
                                     <td>{{ $keluhan->closing_case }}</td>
                                     <td>{{ $keluhan->via }}</td>
                                     <td>{{ $keluhan->status }}</td>
-                                    <td><a href="{{route('edit.keluhan',$keluhan->id_keluhan)}}" class="btn btn-info btn-sm">Ubah</a></td>
-                                    <td>
-                                    <a href="{{route('destroy.keluhan',$keluhan->id_keluhan)}}" class="btn btn-danger btn-sm">Hapus</a></td>
+                                    <td><a href="{{route('edit.keluhan.officer',$keluhan->id_keluhan)}}" class="btn btn-info btn-sm">Ubah</a>
+                                    <a href="{{route('destroy.keluhan.officer',$keluhan->id_keluhan)}}" class="btn btn-danger btn-sm">Hapus</a></td>
                                 </tr>
                                 @endforeach 
                                 </tbody>

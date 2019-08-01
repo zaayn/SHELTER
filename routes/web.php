@@ -38,21 +38,21 @@ Route::group(['prefix' => 'officer_crm',  'middleware' => 'is_officer_crm'], fun
     Route::get('/visit/exportPDF', 'VisitController@exportPDF');
 
     //------- laporan keluhan
-    Route::get('/insertkeluhan', 'KeluhanController@insert')->name('insert.keluhan'); //show form insert
-    Route::get('/keluhan', 'KeluhanController@index')->name('index.keluhan');
-    Route::post('/store/keluhan', 'KeluhanController@store')->name('store.keluhan');
-    Route::get('/delete/keluhan{id_keluhan}','KeluhanController@destroy')->name('destroy.keluhan');
-    Route::get('/edit/editkeluhan{id_keluhan}','KeluhanController@edit')->name('edit.keluhan');
-    Route::post('/update/keluhan{id_keluhan}','KeluhanController@update')->name('update.keluhan');
+    Route::get('/insertkeluhan', 'KeluhanController@insert')->name('insert.keluhan.officer'); //show form insert
+    Route::get('/keluhan', 'KeluhanController@index')->name('index.keluhan.officer');
+    Route::post('/store/keluhan', 'KeluhanController@store')->name('store.keluhan.officer');
+    Route::get('/delete/keluhan{id_keluhan}','KeluhanController@destroy')->name('destroy.keluhan.officer');
+    Route::get('/edit/editkeluhan{id_keluhan}','KeluhanController@edit')->name('edit.keluhan.officer');
+    Route::post('/update/keluhan{id_keluhan}','KeluhanController@update')->name('update.keluhan.officer');
     Route::get('/keluhan/exportPDF', 'KeluhanController@exportPDF');
 
     //------- laporan kontrak
-    Route::get('/insertkontrak', 'KontrakController@insert')->name('insert.kontrak'); //show form insert
-    Route::get('/kontrak', 'KontrakController@index')->name('index.kontrak');
-    Route::post('/store/kontrak', 'KontrakController@store')->name('store.kontrak');
-    Route::get('/delete/kontrak{id_kontrak}','KontrakController@destroy')->name('destroy.kontrak');
-    Route::get('/edit/editkontrak{id_kontrak}','KontrakController@edit')->name('edit.kontrak');
-    Route::post('/update/kontrak{id_kontrak}','KontrakController@update')->name('update.kontrak');
+    Route::get('/insertkontrak', 'KontrakController@insert')->name('insert.kontrak.officer'); //show form insert
+    Route::get('/kontrak', 'KontrakController@index')->name('index.kontrak.officer');
+    Route::post('/store/kontrak', 'KontrakController@store')->name('store.kontrak.officer');
+    Route::get('/delete/kontrak{id_kontrak}','KontrakController@destroy')->name('destroy.kontrak.officer');
+    Route::get('/edit/editkontrak{id_kontrak}','KontrakController@edit')->name('edit.kontrak.officer');
+    Route::post('/update/kontrak{id_kontrak}','KontrakController@update')->name('update.kontrak.officer');
     Route::get('/mou', 'OfficerController@mou')->name('mou.officer');
     Route::get('/kontrak/exportPDF', 'KontrakController@exportPDF');
 
