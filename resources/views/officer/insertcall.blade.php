@@ -7,8 +7,8 @@
             <div class="panel-body">
                 <h1>Form Insert Call</h1>
                 <ol class="breadcrumb">
-                    <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                    <li><a href="area"></i>Call</a></li>
+                    <li><a href="{{asset('/officer_crm/home')}}"><i class="fa fa-dashboard"></i> Home</a></li>
+                    <li><a href="{{asset('/officer_crm/call')}}"></i>Call</a></li>
                     <li class="active">Insert Call</li>
                 </ol>
             </div>
@@ -35,7 +35,7 @@
 
                   <br>
 
-                <form action="{{route('store.call')}}" method="post">
+                <form action="{{route('store.call.officer')}}" method="post">
                     {{ csrf_field() }}
                     
 

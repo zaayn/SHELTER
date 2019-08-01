@@ -20,12 +20,12 @@ Route::group(['prefix' => 'officer_crm',  'middleware' => 'is_officer_crm'], fun
     Route::get('/home', 'OfficerController@index')->name('dashboard_officer'); //Dashboard Officer
 
     //------- laporan call
-    Route::get('/insertcall', 'callController@insert')->name('insert.call'); //show form insert
-    Route::get('/call', 'callController@index')->name('index.call');
-    Route::post('/store/call', 'callController@store')->name('store.call');
-    Route::get('/delete/call{call_id}','callController@destroy')->name('destroy.call');
-    Route::get('/edit/editcall{call_id}','callController@edit')->name('edit.call');
-    Route::post('/update/call{call_id}','callController@update')->name('update.call');
+    Route::get('/insertcall', 'callController@insert')->name('insert.call.officer'); //show form insert
+    Route::get('/call', 'callController@index')->name('index.call.officer');
+    Route::post('/store/call', 'callController@store')->name('store.call.officer');
+    Route::get('/delete/call{call_id}','callController@destroy')->name('destroy.call.officer');
+    Route::get('/edit/editcall{call_id}','callController@edit')->name('edit.call.officer');
+    Route::post('/update/call{call_id}','callController@update')->name('update.call.officer');
     Route::get('/call/exportPDF', 'callController@exportPDF');
 
     //------- laporan visit
