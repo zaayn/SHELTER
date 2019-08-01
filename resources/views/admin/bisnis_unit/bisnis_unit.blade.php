@@ -7,7 +7,7 @@
             <div class="panel-body">
                 <h1>Daftar Bisnis Unit</h1>
                 <ol class="breadcrumb">
-                    <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                    <li><a href="{{asset('/superadmin/home')}}"><i class="fa fa-dashboard"></i> Home</a></li>
                     <li class="active">Bisnis Unit</li>
                 </ol>
             </div>

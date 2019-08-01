@@ -25,7 +25,6 @@
                         <a href="{{asset('/admin/insertkeluhan')}}" class="btn btn-primary btn-sm">Insert Keluhan</a>
                             <hr style="border: solid #ddd; border-width: 1px 0 0; clear: both; margin: 22px 0 21px; height: 0;">
                             @include('admin.shared.components.alert')
-                            <div style="overflow-x:auto;">
                             <table id="mydatatables" class="table table-collapse table-hover table-light table-striped">
                                 <thead>
                                     <th>ID Keluhan</th>
@@ -67,5 +66,4 @@
                         </div>
                     </div>
                 </div>
-            </div>
 @endsection

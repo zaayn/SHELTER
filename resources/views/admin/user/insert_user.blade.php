@@ -7,8 +7,8 @@
             <div class="panel-body">
                 <h1>Form Insert User</h1>
                 <ol class="breadcrumb">
-                    <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                    <li><a href="wilayah"></i>User</a></li>
+                    <li><a href="{{asset('/superadmin/home')}}"><i class="fa fa-dashboard"></i> Home</a></li>
+                    <li><a href="{{asset('/superadmin/user')}}"></i>User</a></li>
                     <li class="active">Insert User</li>
                 </ol>
             </div>

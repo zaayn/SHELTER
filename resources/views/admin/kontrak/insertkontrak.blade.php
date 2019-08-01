@@ -7,9 +7,9 @@
             <div class="panel-body">
                 <h1>Form Insert Kontrak</h1>
                 <ol class="breadcrumb">
-                    <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                    <li><a href="area"></i>Area</a></li>
-                    <li class="active">Insert Area</li>
+                    <li><a href="{{asset('/admin/home')}}"><i class="fa fa-dashboard"></i> Home</a></li>
+                    <li><a href="{{asset('/admin/kontrak')}}"></i>Kontrak</a></li>
+                    <li class="active">Insert Kontrak</li>
                 </ol>
             </div>
         </div>

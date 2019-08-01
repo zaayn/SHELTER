@@ -7,8 +7,8 @@
             <div class="panel-body">
                 <h1>Form Insert Wilayah</h1>
                 <ol class="breadcrumb">
-                    <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                    <li><a href="wilayah"></i>Wilayah</a></li>
+                    <li><a href="{{asset('/superadmin/home')}}"><i class="fa fa-dashboard"></i> Home</a></li>
+                    <li><a href="{{asset('/superadmin/wilayah')}}"></i>Wilayah</a></li>
                     <li class="active">Insert Wilayah</li>
                 </ol>
             </div>
