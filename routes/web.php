@@ -29,12 +29,12 @@ Route::group(['prefix' => 'officer_crm',  'middleware' => 'is_officer_crm'], fun
     Route::get('/call/exportPDF', 'callController@exportPDF');
 
     //------- laporan visit
-    Route::get('/insertvisit', 'VisitController@insert')->name('insert.visit'); //show form insert
-    Route::get('/visit', 'VisitController@index')->name('index.visit');
-    Route::post('/store/visit', 'VisitController@store')->name('store.visit');
-    Route::get('/delete/visit{visit_id}','VisitController@destroy')->name('destroy.visit');
-    Route::get('/edit/editvisit{visit_id}','VisitController@edit')->name('edit.visit');
-    Route::post('/update/visit{visit_id}','VisitController@update')->name('update.visit');
+    Route::get('/insertvisit', 'VisitController@insert')->name('insert.visit.officer'); //show form insert
+    Route::get('/visit', 'VisitController@index')->name('index.visit.officer');
+    Route::post('/store/visit', 'VisitController@store')->name('store.visit.officer');
+    Route::get('/delete/visit{visit_id}','VisitController@destroy')->name('destroy.visit.officer');
+    Route::get('/edit/editvisit{visit_id}','VisitController@edit')->name('edit.visit.officer');
+    Route::post('/update/visit{visit_id}','VisitController@update')->name('update.visit.officer');
     Route::get('/visit/exportPDF', 'VisitController@exportPDF');
 
     //------- laporan keluhan

@@ -7,8 +7,8 @@
             <div class="panel-body">
                 <h1>Edit Visit</h1>
                 <ol class="breadcrumb">
-                    <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                    <li><a href="area"></i>Visit</a></li>
+                    <li><a href="{{asset('/officer_crm/home')}}"><i class="fa fa-dashboard"></i> Home</a></li>
+                    <li><a href="{{asset('/officer_crm/visit')}}"></i>Visit</a></li>
                     <li class="active">Edit Visit</li>
                 </ol>
             </div>
@@ -35,7 +35,7 @@
 
                   <br>
 
-                <form action="{{route('update.visit', $visit->visit_id)}}" method="post">
+                <form action="{{route('update.visit.officer', $visit->visit_id)}}" method="post">
                     {{ csrf_field() }}
                     
 

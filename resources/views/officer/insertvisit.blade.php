@@ -7,9 +7,9 @@
             <div class="panel-body">
                 <h1>Form Insert Visit</h1>
                 <ol class="breadcrumb">
-                    <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                    <li><a href="area"></i>Area</a></li>
-                    <li class="active">Insert Area</li>
+                    <li><a href="{{asset('/officer_crm/home')}}"><i class="fa fa-dashboard"></i> Home</a></li>
+                    <li><a href="{{asset('/officer_crm/visit')}}"></i>Visit</a></li>
+                    <li class="active">Insert Visit</li>
                 </ol>
             </div>
         </div>
@@ -35,7 +35,7 @@
 
                   <br>
 
-                <form action="{{route('store.visit')}}" method="post">
+                <form action="{{route('store.visit.officer')}}" method="post">
                     {{ csrf_field() }}
                     
 
