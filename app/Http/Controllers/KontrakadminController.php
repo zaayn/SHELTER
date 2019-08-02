@@ -11,6 +11,7 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\DB;
 use App\Kontrak;
 use App\Customer;
+use App\Reminder;
 use PDF;
 use Excel;
 Use App\Exports\KontrakExport;
@@ -152,13 +153,35 @@ class KontrakadminController extends Controller
     public function exportExcel(){
         return Excel::download(new KontrakExport, 'Laporan-Kontrak-CRM.xlsx');
     }
-    public function reminder()
+    public function insert_reminder()
     {
-        $now = Carbon::now();
-
+        $now = Carbon\Carbon::now();
         if ($now->diffInDays($this->akhir_periode) > 0)
         {
-            return $now->diffInDays($this->akhir_periode) . str_plural(' day', $now->diffInDays($this->akhir_periode)).     ' left';
+            $reminder = $now->diffInDays($this->akhir_periode) . str_plural(' day', $now->diffInDays($this->akhir_periode)). ' left';
+            if($reminder < 30)
+            {
+                $ewminder = new reminder;
+                $reminder->id_kontrak           = $request->id_kontrak;
+                $reminder->periode_kontrak      = $request->periode_kontrak;
+                $reminder->akhir_periode        = $request->akhir_periode;
+                $reminder->srt_pemberitahuan    = $request->srt_pemberitahuan;
+                $reminder->tgl_srt_pemberitahuan = $request->tgl_srt_pemberitahuan;
+                $reminder->srt_penawaran        = $request->srt_penawaran;
+                $reminder->tgl_srt_penawaran    = $request->tgl_srt_penawaran;
+                $reminder->dealing              = $request->dealing;
+                $reminder->tgl_dealing          = $request->tgl_dealing;
+                $reminder->posisi_pks           = $request->posisi_pks;
+                $reminder->closing              = $request->closing;
+                if ($remenider->save()){
+                    return redirect('/admin/reminder')->with('success', 'item berhasil ditambahkan');
+                }
+            }
         }
+    }
+    public function index_reminder()
+    {
+        $data['reminders'] = reminder::all();
+        return view('admin/kontrak/reminder', $data);
     }
 }
