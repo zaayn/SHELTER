@@ -68,7 +68,7 @@
                                             <a href="{{route('edit.customer',$customer->kode_customer)}}" class="btn btn-info btn-sm">
                                                 <span class="fa fa-pencil"></span>
                                             </a>
-                                            <a href="{{route('delete.customer',$customer->kode_customer)}}" class="btn btn-danger btn-sm">
+                                            <a onclick="return confirm('Are you sure?')" href="{{route('delete.customer',$customer->kode_customer)}}" class="btn btn-danger btn-sm">
                                                 <span class="fa fa-trash"></span>
                                             </a>
                                         </td>
