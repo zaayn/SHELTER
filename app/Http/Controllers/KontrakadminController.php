@@ -54,7 +54,7 @@ class KontrakadminController extends Controller
             'id_kontrak' => 'required',
             'kode_customer' => 'required',
             'periode_kontrak' => 'required|date',
-            'akhir_periode' => 'required',
+            'akhir_periode' => 'required|date',
             'srt_pemberitahuan' => 'required',
             'tgl_srt_pemberitahuan' => 'required',
             'srt_penawaran' =>'required',
@@ -146,5 +146,14 @@ class KontrakadminController extends Controller
         $pdf = PDF::loadview('admin/kontrak/pdfkontrak',['kontrak'=>$kontrak]);
         $pdf->setPaper('A4','landscape');
     	return $pdf->download('Laporan-Kontrak-CRM.pdf');
+    }
+    public function reminder()
+    {
+        $now = Carbon::now();
+
+        if ($now->diffInDays($this->akhir_periode) > 0)
+        {
+            return $now->diffInDays($this->akhir_periode) . str_plural(' day', $now->diffInDays($this->akhir_periode)).     ' left';
+        }
     }
 }
