@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use App\Keluhan;
 use PDF;
+use Excel;
+use App\Exports\KeluhanExport;
 
 
 class KeluhanadminController extends Controller
@@ -148,5 +150,8 @@ class KeluhanadminController extends Controller
       $pdf = PDF::loadview('admin/keluhan/pdfkeluhan',['keluhan'=>$keluhan]);
       $pdf->setPaper('A4','landscape');
       return $pdf->download('Laporan-Keluhan-CRM.pdf');
+    }
+    public function exportExcel(){
+        return Excel::download(new KeluhanExport, 'Laporan-Keluhan-CRM.xlsx');
     }
 }

@@ -12,6 +12,8 @@ use Illuminate\Support\Facades\DB;
 use App\Kontrak;
 use App\Customer;
 use PDF;
+use Excel;
+Use App\Exports\KontrakExport;
 
 class KontrakadminController extends Controller
 {
@@ -146,5 +148,8 @@ class KontrakadminController extends Controller
         $pdf = PDF::loadview('admin/kontrak/pdfkontrak',['kontrak'=>$kontrak]);
         $pdf->setPaper('A4','landscape');
     	return $pdf->download('Laporan-Kontrak-CRM.pdf');
+    }
+    public function exportExcel(){
+        return Excel::download(new KontrakExport, 'Laporan-Kontrak-CRM.xlsx');
     }
 }

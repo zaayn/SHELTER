@@ -9,6 +9,7 @@ use App\datamou;
 use App\Kontrak;
 use App\Customer;
 use DateTime;
+use PDF;
 
 class AdminController extends Controller
 {
@@ -45,7 +46,7 @@ class AdminController extends Controller
         'chemical','pendaftaran_mou')
         ->get();
         $data['no'] = 1;
-
+        //dd($data);
         $date1 = new DateTime($request->periode_kontrak);
         $date2 = new DateTime($request->akhir_periode);
 
@@ -65,5 +66,24 @@ class AdminController extends Controller
         }
 
         return view('admin/data_customer', $data);
+    }
+    public function exportPDF(){
+        $data['datamous'] = DB::table('datamou')
+        ->join('kontrak','datamou.id_kontrak','=','kontrak.id_kontrak')
+        ->join('customer', 'kontrak.kode_customer', '=', 'customer.kode_customer')
+        ->join('bisnis_unit','customer.bu_id','=','bisnis_unit.bu_id')
+        ->select('kontrak.id_kontrak','customer.kode_customer','customer.nama_perusahaan',
+        'kontrak.periode_kontrak','kontrak.akhir_periode','kontrak.srt_pemberitahuan',
+        'kontrak.tgl_srt_pemberitahuan','kontrak.srt_penawaran','kontrak.tgl_srt_penawaran',
+        'kontrak.dealing','kontrak.tgl_dealing','kontrak.posisi_pks','kontrak.closing',
+        'nama_bisnis_unit','provinsi','alamat','jenis_usaha','periode_kontrak','hc','invoice','mf',
+        'mf_persen','bpjs_tenagakerja','bpjs_kesehatan','jiwasraya','ramamusa','ditagihkan','diprovisasikan',
+        'overheadcost','training','tanggal_invoice','time_of_payment','cut_of_date','kaporlap','devices',
+        'chemical','pendaftaran_mou')
+        ->first();
+        
+        $pdf = PDF::loadview('admin/customer/pdfdatacustomer',['datamous'=>$data]);
+        $pdf->setPaper('A4','landscape');
+        return $pdf->download('Laporan-Data-CustomerAll-CRM.pdf');
     }
 }

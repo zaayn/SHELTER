@@ -7,6 +7,8 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use App\Visit;
 use Validator;
 use PDF;
+use Excel;
+use App\Exports\VisitExport;
 
 class VisitadminController extends Controller
 {
@@ -140,5 +142,8 @@ class VisitadminController extends Controller
         $pdf = PDF::loadview('admin/visit/pdfvisit',['visit'=>$visit]);
         $pdf->setPaper('A4','landscape');
     	return $pdf->download('Laporan-Visit-CRM.pdf');
+    }
+    public function exportExcel(){
+        return Excel::download(new VisitExport, 'Laporan-Visit-CRM.xlsx');
     }
 }

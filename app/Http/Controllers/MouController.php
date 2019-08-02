@@ -9,6 +9,8 @@ use PDF;
 use App\datamou;
 use App\Kontrak;
 use App\Customer;
+use Excel;
+use App\Exports\MouExport;
 
 class MouController extends Controller
 {
@@ -166,5 +168,8 @@ class MouController extends Controller
         $pdf = PDF::loadview('admin/mou/pdfmou',['datamou'=>$mou]);
         $pdf->setPaper('A4','landscape');
         return $pdf->download('Laporan-Mou-CRM.pdf');
+    }
+    public function exportExcel(){
+        return Excel::download(new MouExport, 'Laporan-Mou-CRM.xlsx');
     }
 }

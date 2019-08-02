@@ -172,4 +172,8 @@ class callController extends Controller
 
     //$phrase = 'Stack-Overflow Questions IT Tags Users Meta Example';
     // initialism($phrase);
+    public function exportExcel()
+	{
+		return Excel::download(new CallExport, 'Laporan-Call-CRM.xlsx');
+    }
 }
