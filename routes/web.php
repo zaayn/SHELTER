@@ -124,6 +124,8 @@ Route::group(['prefix' => 'admin',  'middleware' => 'is_admin'], function(){
     Route::get('/edit/editcall{call_id}','CalladminController@edit')->name('edit.call');
     Route::post('/update/call{call_id}','CalladminController@update')->name('update.call');
     Route::get('/call/exportPDF', 'CalladminController@exportPDF');
+    Route::get('/call/exportExcel', 'CalladminController@exportExcel');
+
         //------- laporan visit
         Route::get('/insertvisit', 'Visitadmincontroller@insert')->name('insert.visit'); //show form insert
         Route::get('/visit', 'Visitadmincontroller@index')->name('index.visit');
