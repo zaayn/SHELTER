@@ -100,7 +100,7 @@
                     </div>
 
                       <button type="submit" class="btn btn-primary ">Update</button>
-                      <a href="{{asset('/superadmin/user')}}" class="btn btn-secondary"> Cancel</a>
+                      <a onclick="return confirm('Perubahan anda belum disimpan. Tetap tinggalkan halaman ini ?')" href="{{asset('/superadmin/user')}}" class="btn btn-secondary"> Cancel</a>
                   </form>
                 </div>
               </div>
