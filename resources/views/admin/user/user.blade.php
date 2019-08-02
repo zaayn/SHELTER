@@ -52,7 +52,7 @@
                                             <a href="{{route('edit.user',$user->email)}}" class="btn btn-info btn-sm">
                                                 <span class="fa fa-pencil"></span>
                                             </a>
-                                            <a onclick="return confirm('Are you sure?')" href="{{route('delete.user',$user->email)}}" class="btn btn-danger btn-sm">
+                                            <a onclick="return confirm('Apakah anda yakin akan menghapus data ini ?')" href="{{route('delete.user',$user->email)}}" class="btn btn-danger btn-sm">
                                                 <span class="fa fa-trash"></span>
                                             </a>
                                         </td>

@@ -41,7 +41,7 @@
                                             <a  href="{{route('edit.area',$area->area_id)}}" class="btn btn-info btn-sm">
                                                 <span class="fa fa-pencil">Edit</span>
                                             </a>
-                                            <a onclick="return confirm('Are you sure?')" onclick="return confirm('Are you sure?')" href="{{route('delete.area',$area->area_id)}}" class="btn btn-danger btn-sm">
+                                            <a onclick="return confirm('Apakah anda yakin akan menghapus data ini ?')" href="{{route('delete.area',$area->area_id)}}" class="btn btn-danger btn-sm">
                                                 <span class="fa fa-trash">Delete</span>
                                             </a>
                                         </td>

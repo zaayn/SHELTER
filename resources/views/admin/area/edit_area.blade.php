@@ -42,7 +42,7 @@
                       </div>
 
                       <button type="submit" class="btn btn-primary ">Update</button>
-                      <a href="/area" class="btn btn-secondary"> Cancel</a>
+                      <a onclick="return confirm('Perubahan anda belom disimpan. Tetap Lanjutkan ?')" href="{{asset('/superadmin/area')}}" class="btn btn-secondary"> Cancel</a>
                   </form>
                 </div>
               </div>

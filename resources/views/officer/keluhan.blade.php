@@ -62,7 +62,7 @@
                                     <td>{{ $keluhan->status }}</td>
                                     <td>
                                         <a href="{{route('edit.keluhan.officer',$keluhan->id_keluhan)}}" class="btn btn-info btn-sm">Ubah</a>
-                                        <a onclick="return confirm('Are you sure?')" href="{{route('destroy.keluhan.officer',$keluhan->id_keluhan)}}" class="btn btn-danger btn-sm">Hapus</a>
+                                        <a onclick="return confirm('Apakah anda yakin akan menghapus data ini ?')" href="{{route('destroy.keluhan.officer',$keluhan->id_keluhan)}}" class="btn btn-danger btn-sm">Hapus</a>
                                     </td>
                                 </tr>
                                 @endforeach 
