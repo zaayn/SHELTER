@@ -21,11 +21,13 @@
         <div class="col-md-12">
             <div class="panel block">
                 <div class="panel-body">
+                    <div style="float:right; margin-bottom:10px;">
+                        <a href="/manager_crm/mou/exportExcel" class="btn btn-default btn-sm" target="_blank">Download Excel</a>
+                        <a href="/manager_crm/mou/exportPDF" class="btn btn-default btn-sm" target="_blank">Download PDF</a>
+                    </div> 
                             <hr style="border: solid #ddd; border-width: 1px 0 0; clear: both; margin: 22px 0 21px; height: 0;">
                             @include('admin.shared.components.alert')
                             <div style="overflow-x:auto;">
-                            {{-- <a href="/kontrak/exportExcel" class="btn btn-success btn-sm" target="_blank">EXPORT EXCEL</a> --}}
-                            {{-- <a href="/insertkontrak" class="btn btn-primary btn-sm">Input Kontrak</a> --}}
                             <table id="mydatatables" class="table table-responsive table-hover table-light table-striped">
                                 <thead>
                                     <th>No. MoU</th>
