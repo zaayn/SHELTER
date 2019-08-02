@@ -12,6 +12,9 @@ use App\area;
 use App\wilayah;
 use App\User;
 use PDF;
+use Excel;
+use App\Exports\CustomerExport;
+
 //test
 class CustomerController extends Controller
 {
@@ -126,9 +129,12 @@ class CustomerController extends Controller
 
     }
     public function exportPDF(){
-		  $customer = Customer::all();
-      $pdf = PDF::loadview('admin/customer/pdfcustomer',['customer'=>$customer]);
-      $pdf->setPaper('A4','landscape');
-    	return $pdf->download('Laporan-Customer-CRM.pdf');
+        $customer = Customer::all();
+        $pdf = PDF::loadview('admin/customer/pdfcustomer',['customer'=>$customer]);
+        $pdf->setPaper('A4','landscape');
+        return $pdf->download('Laporan-Customer-CRM.pdf');
+    }
+    public function exportExcel(){
+		    return Excel::download(new CustomerExport, 'Laporan-Customer-CRM.xlsx');
     }
 }
