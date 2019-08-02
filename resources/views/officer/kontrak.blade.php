@@ -21,11 +21,14 @@
         <div class="col-md-12">
             <div class="panel block">
                 <div class="panel-body">
+                    <div style="float:right; margin-bottom:10px;">
+                        <a href="/officer_crm/insertkontrak" class="btn btn-primary btn-sm">Insert Kontrak</a>
+                        <a href="/officer_crm/kontrak/exportPDF" class="btn btn-default btn-sm" target="_blank">Download PDF</a>
+                    </div>        
                             <hr style="border: solid #ddd; border-width: 1px 0 0; clear: both; margin: 22px 0 21px; height: 0;">
                             @include('admin.shared.components.alert')
                             <div style="overflow-x:auto;">
-                            <a href="/officer_crm/kontrak/exportPDF" class="btn btn-default btn-sm" target="_blank">Download PDF</a>
-                            <a href="/officer_crm/insertkontrak" class="btn btn-primary btn-sm">Insert Kontrak</a>
+                            
                             <table id="mydatatables" class="table table-responsive table-hover table-light table-striped">
                                 <thead>
                                     <th>Nomor Kontrak</th>
@@ -60,8 +63,8 @@
                                     <td>{{ $kontrak->posisi_pks }}</td>
                                     <td>{{ $kontrak->closing }}</td>
                                     <td>
-                                        <a href="{{route('edit.kontrak',$kontrak->id_kontrak)}}" class="btn btn-info btn-sm">Ubah</a>
-                                        <a onclick="return confirm('Are you sure?')" href="{{route('destroy.kontrak',$kontrak->id_kontrak)}}" class="btn btn-danger btn-sm">Hapus</a>
+                                        <a href="{{route('edit.kontrak.officer',$kontrak->id_kontrak)}}" class="btn btn-info btn-sm">Ubah</a>
+                                        <a href="{{route('destroy.kontrak.officer',$kontrak->id_kontrak)}}" class="btn btn-danger btn-sm">Hapus</a>
                                     </td>
                                 </tr>
                                 @endforeach  

@@ -35,7 +35,7 @@
 
                   <br>
 
-                <form action="{{route('update.keluhan', $keluhan->id_keluhan)}}" method="post">
+                <form action="{{route('update.keluhan.officer', $keluhan->id_keluhan)}}" method="post">
                     {{ csrf_field() }}
                     <div class="form-group">
                         <div class="form-group col-md-12">

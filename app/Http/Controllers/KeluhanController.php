@@ -162,7 +162,7 @@ class KeluhanController extends Controller
         $keluhan->status = $request->status;
         
         if ($keluhan->save())
-          return redirect()->route('index.keluhan')->with(['success'=>'edit sukses']);
+          return redirect()->route('index.keluhan.officer')->with(['success'=>'edit sukses']);
     }
 
     /**
@@ -174,7 +174,7 @@ class KeluhanController extends Controller
     public function destroy($id_keluhan)
     {
         $keluhan = Keluhan::where('id_keluhan',$id_keluhan)->delete();
-        return redirect()->route('index.keluhan')->with('success', 'delete sukses');
+        return redirect()->route('index.keluhan.officer')->with('success', 'delete sukses');
     }
     public function exportPDF(){
     $keluhan = Keluhan::all();

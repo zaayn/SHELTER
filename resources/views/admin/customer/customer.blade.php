@@ -22,8 +22,10 @@
             <div class="panel block">
                 <div class="panel-body">
                     {{-- ----------  -------------- button download ------------------------ --}}
-                    <a href="{{asset('/admin/customer/exportPDF')}}" class="btn btn-default btn-sm" target="_blank">Download PDF</a>
-                    <a href="{{asset('/admin/insert_customer')}}" class="btn btn-primary btn-sm">Insert Customer</a>
+                    <div style="float:right; margin-bottom:10px;">
+                        <a href="{{asset('/admin/insert_customer')}}" class="btn btn-primary btn-sm">Insert Customer</a>
+                        <a href="{{asset('/admin/customer/exportPDF')}}" class="btn btn-default btn-sm" target="_blank">Download PDF</a>
+                    </div>
                     {{-- ---- end  ------ --}}  
                             <hr style="border: solid #ddd; border-width: 1px 0 0; clear: both; margin: 22px 0 21px; height: 0;">
                            

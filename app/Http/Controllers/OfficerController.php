@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\DB;
 use App\datamou;
+use PDF;
 
 class OfficerController extends Controller
 {
@@ -21,5 +22,12 @@ class OfficerController extends Controller
     public function mou(){
         $data['datamous'] = datamou::all();
         return view('officer/mou', $data);
+    }
+    public function exportPDF()
+	{
+		$mou = datamou::all();
+        $pdf = PDF::loadview('officer/pdfmou',['datamou'=>$mou]);
+        $pdf->setPaper('A4','landscape');
+    	return $pdf->download('Laporan-MoU-CRM.pdf');
     }
 }

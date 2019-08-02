@@ -121,7 +121,7 @@ class VisitController extends Controller
         $visit->kegiatan = $request->kegiatan;
         
         if ($visit->save())
-          return redirect()->route('index.visit')->with(['success'=>'edit sukses']);
+          return redirect()->route('index.visit.officer')->with(['success'=>'edit sukses']);
     }
 
     /**
@@ -133,7 +133,7 @@ class VisitController extends Controller
     public function destroy($visit_id)
     {
         $visit = Visit::where('visit_id',$visit_id)->delete();
-        return redirect()->route('index.visit')->with('success', 'delete sukses');
+        return redirect()->route('index.visit.officer')->with('success', 'delete sukses');
     }
     public function exportPDF(){
 		$visit = Visit::all();

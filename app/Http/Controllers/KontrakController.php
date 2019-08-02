@@ -106,7 +106,7 @@ class KontrakController extends Controller
         $kontrak->closing = $request->closing;
         
         if ($kontrak->save())
-          return redirect()->route('index.kontrak')->with(['success'=>'edit sukses']);
+          return redirect()->route('index.kontrak.officer')->with(['success'=>'edit sukses']);
     }
 
     /**
@@ -118,7 +118,7 @@ class KontrakController extends Controller
     public function destroy($id_kontrak)
     {
         $kontrak = Kontrak::where('id_kontrak',$id_kontrak)->delete();
-        return redirect()->route('index.kontrak')->with('success', 'delete sukses');
+        return redirect()->route('index.kontrak.officer')->with('success', 'delete sukses');
     }
     public function exportPDF(){
 		$kontrak = Kontrak::all();

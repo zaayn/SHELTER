@@ -136,7 +136,7 @@ class callController extends Controller
         $call->hal_menonjol     = $request->hal_menonjol;
   
         if ($call->save())
-          return redirect()->route('index.call')->with(['success'=>'edit sukses']);
+          return redirect()->route('index.call.officer')->with(['success'=>'edit sukses']);
     }
 
     /**
@@ -148,7 +148,7 @@ class callController extends Controller
     public function destroy($call_id)
     {
         $call = Call::where('call_id',$call_id)->delete();
-        return redirect()->route('index.call')->with('success', 'delete sukses');
+        return redirect()->route('index.call.officer')->with('success', 'delete sukses');
     }
     public function exportPDF()
 	{

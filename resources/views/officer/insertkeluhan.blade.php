@@ -35,7 +35,7 @@
 
                   <br>
 
-                <form action="{{route('store.keluhan')}}" method="post">
+                <form action="{{route('store.keluhan.officer')}}" method="post">
                     {{ csrf_field() }}
                     <div class="form-group">
                         <div class="form-group col-md-12">

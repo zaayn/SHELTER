@@ -21,8 +21,10 @@
         <div class="col-md-12">
             <div class="panel block">
                 <div class="panel-body">
-                        <a href="{{asset('/officer_crm/call/exportPDF')}}" class="btn btn-default btn-sm" target="_blank">Download PDF</a>
+                    <div style="float:right; margin-bottom:10px;">
                         <a href="{{asset('/officer_crm/insertcall')}}" class="btn btn-primary btn-sm">Insert Call</a>
+                        <a href="{{asset('/officer_crm/call/exportPDF')}}" class="btn btn-default btn-sm" target="_blank">Download PDF</a>
+                    </div>
                             <hr style="border: solid #ddd; border-width: 1px 0 0; clear: both; margin: 22px 0 21px; height: 0;">
                             @include('admin.shared.components.alert')
                             <table id="mydatatables" class="table table-collapse table-hover table-light table-striped">
