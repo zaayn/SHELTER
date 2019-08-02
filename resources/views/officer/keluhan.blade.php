@@ -60,9 +60,10 @@
                                     <td>{{ $keluhan->closing_case }}</td>
                                     <td>{{ $keluhan->via }}</td>
                                     <td>{{ $keluhan->status }}</td>
-                                    <a onclick="return confirm('Are you sure?')" href="{{route('destroy.keluhan',$keluhan->id_keluhan)}}" class="btn btn-danger btn-sm">Hapus</a></td>
-                                    <td><a href="{{route('edit.keluhan.officer',$keluhan->id_keluhan)}}" class="btn btn-info btn-sm">Ubah</a>
-                                    <a href="{{route('destroy.keluhan.officer',$keluhan->id_keluhan)}}" class="btn btn-danger btn-sm">Hapus</a></td>
+                                    <td>
+                                        <a href="{{route('edit.keluhan.officer',$keluhan->id_keluhan)}}" class="btn btn-info btn-sm">Ubah</a>
+                                        <a onclick="return confirm('Are you sure?')" href="{{route('destroy.keluhan.officer',$keluhan->id_keluhan)}}" class="btn btn-danger btn-sm">Hapus</a>
+                                    </td>
                                 </tr>
                                 @endforeach 
                                 </tbody>
