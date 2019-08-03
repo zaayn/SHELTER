@@ -54,7 +54,7 @@
                                     <td>{{ $call->hal_menonjol }}</td>
                                     <td>
                                         <a href="{{route('edit.call',$call->call_id)}}" class="btn btn-info btn-sm">Ubah</a>
-                                        <a href="{{route('destroy.call',$call->call_id)}}" class="btn btn-danger btn-sm">Hapus</a>
+                                        <a onclick="return confirm('Apakah anda yakin akan menghapus data ini ?')" href="{{route('destroy.call',$call->call_id)}}" class="btn btn-danger btn-sm">Hapus</a>
                                     </td>
                                 </tr>
                                 @endforeach    

@@ -89,7 +89,7 @@
                     </div>
 
                     <button type="submit" class="btn btn-primary ">Submit</button>
-                    <a href="user" class="btn btn-secondary"> Cancel</a>
+                    <a onclick="return confirm('Perubahan anda belum disimpan. Tetap tinggalkan halaman ini ?')" href="{{('/superadmin/user')}}" class="btn btn-secondary"> Cancel</a>
                 </form>
               </div>
             </div>

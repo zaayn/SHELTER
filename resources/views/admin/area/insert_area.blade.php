@@ -56,7 +56,7 @@
                     </div>
 
                     <button type="submit" class="btn btn-primary ">Submit</button>
-                    <a href="{{asset('/superadmin/area')}}" class="btn btn-secondary"> Cancel</a>
+                    <a onclick="return confirm('Perubahan anda belum disimpan. Tetap tinggalkan halaman ini ?')" href="{{asset('/superadmin/area')}}" class="btn btn-secondary"> Cancel</a>
                 </form>
               </div>
             </div>

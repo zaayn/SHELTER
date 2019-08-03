@@ -65,7 +65,7 @@
                                             <a href="{{route('edit.wilayah',$wilayah->wilayah_id)}}" class="btn btn-info btn-sm">
                                                 <span class="fa fa-pencil"></span>
                                             </a>
-                                            <a href="{{route('delete.wilayah',$wilayah->wilayah_id)}}" class="btn btn-danger btn-sm">
+                                            <a onclick="return confirm('Apakah anda yakin akan menghapus data ini ?')" href="{{route('delete.wilayah',$wilayah->wilayah_id)}}" class="btn btn-danger btn-sm">
                                                 <span class="fa fa-trash"></span>
                                             </a>
                                         </td>

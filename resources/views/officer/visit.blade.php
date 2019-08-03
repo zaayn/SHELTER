@@ -53,7 +53,7 @@
                                     <td>{{ $visit->kegiatan }}</td>
                                     <td>
                                         <a href="{{route('edit.visit.officer',$visit->visit_id)}}" class="btn btn-info btn-sm">Ubah</a>
-                                        <a href="{{route('destroy.visit.officer',$visit->visit_id)}}" class="btn btn-danger btn-sm">Hapus</a>
+                                        <a onclick="return confirm('Apakah anda yakin akan menghapus data ini ?')" href="{{route('destroy.visit.officer',$visit->visit_id)}}" class="btn btn-danger btn-sm">Hapus</a>
                                     </td>
                                 </tr>
                                 @endforeach 

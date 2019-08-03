@@ -12,7 +12,7 @@
                 <div class="row">
                     <div class="col text-center">
                         <i class="icon-close icons d-block text-danger" style="font-size: 5rem; "></i>
-                        <h4 class="mt-3">Are you sure?</h4>
+                        <h4 class="mt-3">Apakah anda yakin akan menghapus data ini ?</h4>
                     </div>
                 </div>
                 <div class="row my-3">

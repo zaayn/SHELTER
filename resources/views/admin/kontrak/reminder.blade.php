@@ -5,10 +5,10 @@
     <div class="col-md-12">
         <div class="panel block">
             <div class="panel-body">
-                <h1>Laporan Kontrak</h1>
+                <h1>Reminder Closing Rekontrak</h1>
                 <ol class="breadcrumb">
                     <li><a href="{{asset('/admin/home')}}"><i class="fa fa-dashboard"></i> Home</a></li>
-                    <li class="active">Daftar Laporan</li>
+                    <li class="active">Reminder Closing Rekontrak</li>
                 </ol>
             </div>
         </div>
@@ -21,37 +21,10 @@
         <div class="col-md-12">
             <div class="panel block">
                 <div class="panel-body">
-                    {{-- ----------  -------------- filter ------------------------ --}}
-                    <form class="form-horizontal" id="form-filter" method="POST" action="{{route('filter.kontrak')}}">
-                        @csrf
-                        <div class="form-group">
-                            <label class="control-label col-md-2">Nama Perusahaan</label>
-                                <div class="col-md-6">
-                                    <select class="form-control" name="kode_customer">
-                                        <option>ALL</option>
-                                        @foreach($customers as $customer)
-                                            <option value="{{ $customer->kode_customer }}">{{ $customer->kode_customer }} - {{$customer->nama_perusahaan}}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-md-1 col-md-offset-2">
-                                    <a href="{{asset('/admin/kontrak')}}">
-                                        <button type="button" class="btn btn-primary btn-sm"><i class="fa fa-refresh"></i> Reset</button>
-                                    </a>    
-                                </div>
-                                <div class="col-md-2">
-                                    <button type="submit" class="btn btn-primary btn-sm" id="btn-filter"><i class="fa fa-filter"></i> Filter</button>
-                                </div>
-                            </div>
-                        </form>
-                                            {{-- ---- end filter ------ --}} 
 
                             <div style="float:right; margin-bottom:10px;">
-                                <a href="{{asset('/admin/insertkontrak')}}" class="btn btn-primary btn-sm">Insert Kontrak</a> 
-                                <a href="{{asset('/admin/kontrak/exportExcel')}}" class="btn btn-default btn-sm" target="_blank">Download Excel</a>
-                                <a href="{{asset('/admin/kontrak/exportPDF')}}" class="btn btn-default btn-sm" target="_blank">Download PDF</a>
+                                {{-- <a href="{{asset('/admin/insertkontrak')}}" class="btn btn-primary btn-sm">Insert Kontrak</a> 
+                                <a href="{{asset('/admin/kontrak/exportPDF')}}" class="btn btn-default btn-sm" target="_blank">Download PDF</a> --}}
                             </div> 
                             <hr style="border: solid #ddd; border-width: 1px 0 0; clear: both; margin: 22px 0 21px; height: 0;">
                             @include('admin.shared.components.alert')
@@ -59,7 +32,6 @@
                             <table id="mydatatables" class="table table-responsive table-hover table-light table-striped">
                                 <thead>
                                     <th>Nomor Kontrak</th>
-                                    <th>Kode Customer</th>
                                     <th>Nama Perusahaan</th>
                                     <th>Periode Kontrak</th>
                                     <th>Akhir Periode</th>
@@ -74,10 +46,9 @@
                                     <th>Aksi</th>
                                 </thead>
                                 <tbody>
-                                @foreach($kontraks as $kontrak)
+                                @foreach($reminders as $reminder)
                                 <tr>
                                     <td>{{ $kontrak->id_kontrak }}</td>
-                                    <td>{{ $kontrak->kode_customer }}</td>
                                     <td>{{ $kontrak->nama_perusahaan }}</td>
                                     <td>{{ $kontrak->periode_kontrak }}</td>
                                     <td>{{ $kontrak->akhir_periode }}</td>
