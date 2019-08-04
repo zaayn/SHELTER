@@ -11,7 +11,7 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\DB;
 use App\Kontrak;
 use App\Customer;
-use App\Reminder;
+use Carbon;
 use PDF;
 use Excel;
 Use App\Exports\KontrakExport;
@@ -133,12 +133,6 @@ class KontrakadminController extends Controller
           return redirect()->route('index.kontrak')->with(['success'=>'edit sukses']);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id_kontrak)
     {
         $kontrak = Kontrak::where('id_kontrak',$id_kontrak)->delete();
@@ -153,35 +147,53 @@ class KontrakadminController extends Controller
     public function exportExcel(){
         return Excel::download(new KontrakExport, 'Laporan-Kontrak-CRM.xlsx');
     }
-    public function insert_reminder()
+    public function reminder(Request $request) //filter kontrak h-30 hari 
     {
         $now = Carbon\Carbon::now();
-        if ($now->diffInDays($this->akhir_periode) > 0)
+        $reminder = $now->diffInDays($request->akhir_periode) . str_plural(' day', $now->diffInDays($request->akhir_periode)). ' left';
+        if($reminder > 30)
         {
-            $reminder = $now->diffInDays($this->akhir_periode) . str_plural(' day', $now->diffInDays($this->akhir_periode)). ' left';
-            if($reminder < 30)
-            {
-                $ewminder = new reminder;
-                $reminder->id_kontrak           = $request->id_kontrak;
-                $reminder->periode_kontrak      = $request->periode_kontrak;
-                $reminder->akhir_periode        = $request->akhir_periode;
-                $reminder->srt_pemberitahuan    = $request->srt_pemberitahuan;
-                $reminder->tgl_srt_pemberitahuan = $request->tgl_srt_pemberitahuan;
-                $reminder->srt_penawaran        = $request->srt_penawaran;
-                $reminder->tgl_srt_penawaran    = $request->tgl_srt_penawaran;
-                $reminder->dealing              = $request->dealing;
-                $reminder->tgl_dealing          = $request->tgl_dealing;
-                $reminder->posisi_pks           = $request->posisi_pks;
-                $reminder->closing              = $request->closing;
-                if ($remenider->save()){
-                    return redirect('/admin/reminder')->with('success', 'item berhasil ditambahkan');
-                }
-            }
+            $data['customers'] = customer::all();
+            $data['kontraks'] = DB::table('kontrak')
+            ->join('customer', 'customer.kode_customer', '=', 'kontrak.kode_customer')
+            ->select('kontrak.id_kontrak','customer.kode_customer','customer.nama_perusahaan','kontrak.periode_kontrak','kontrak.akhir_periode','kontrak.srt_pemberitahuan','kontrak.tgl_srt_pemberitahuan','kontrak.srt_penawaran','kontrak.tgl_srt_penawaran','kontrak.dealing','kontrak.tgl_dealing','kontrak.posisi_pks','kontrak.closing')
+            // ->where('kontrak.akhir_kontrak', '=', $request->akhir_)
+            ->get();
+            return view('admin/kontrak/reminder', $data);
+        }else {
+            return "hello";
         }
     }
-    public function index_reminder()
-    {
-        $data['reminders'] = reminder::all();
-        return view('admin/kontrak/reminder', $data);
-    }
+
+    // public function insert_reminder()
+    // {
+    //     $now = Carbon\Carbon::now();
+    //     if ($now->diffInDays($this->akhir_periode) > 0)
+    //     {
+    //         $reminder = $now->diffInDays($this->akhir_periode) . str_plural(' day', $now->diffInDays($this->akhir_periode)). ' left';
+    //         if($reminder < 30)
+    //         {
+    //             $ewminder = new reminder;
+    //             $reminder->id_kontrak           = $request->id_kontrak;
+    //             $reminder->periode_kontrak      = $request->periode_kontrak;
+    //             $reminder->akhir_periode        = $request->akhir_periode;
+    //             $reminder->srt_pemberitahuan    = $request->srt_pemberitahuan;
+    //             $reminder->tgl_srt_pemberitahuan = $request->tgl_srt_pemberitahuan;
+    //             $reminder->srt_penawaran        = $request->srt_penawaran;
+    //             $reminder->tgl_srt_penawaran    = $request->tgl_srt_penawaran;
+    //             $reminder->dealing              = $request->dealing;
+    //             $reminder->tgl_dealing          = $request->tgl_dealing;
+    //             $reminder->posisi_pks           = $request->posisi_pks;
+    //             $reminder->closing              = $request->closing;
+    //             if ($remenider->save()){
+    //                 return redirect('/admin/reminder')->with('success', 'item berhasil ditambahkan');
+    //             }
+    //         }
+    //     }
+    // }
+    // public function index_reminder()
+    // {
+    //     $data['reminders'] = reminder::all();
+    //     return view('admin/kontrak/reminder', $data);
+    // }
 }

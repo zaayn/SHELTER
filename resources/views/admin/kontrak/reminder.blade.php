@@ -46,7 +46,7 @@
                                     <th>Aksi</th>
                                 </thead>
                                 <tbody>
-                                @foreach($reminders as $reminder)
+                                @foreach($kontraks as $kontrak)
                                 <tr>
                                     <td>{{ $kontrak->id_kontrak }}</td>
                                     <td>{{ $kontrak->nama_perusahaan }}</td>

@@ -46,18 +46,18 @@
             <span class="info-box-icon bg-red"><i class="fa fa-book"></i></span>
             <div class="info-box-content">
                 <span class="info-box-text">Data MoU</span>
-                <span class="info-box-number">{{$kontrak}}</span>
+                <span class="info-box-number">{{$datamou}}</span>
             </div>
             </div>
         </div>
     </a>
-    <a href="{{asset('customer')}}">
+    <a href="{{asset('/admin/data_customer')}}">
         <div class="col-md-3 col-sm-6 col-xs-12">
             <div class="info-box">
             <span class="info-box-icon bg-yellow"><i class="fa fa-flag"></i></span>
             <div class="info-box-content">
-                <span class="info-box-text">???</span>
-                <span class="info-box-number">1111</span>
+                <span class="info-box-text">Data Customer</span>
+                <span class="info-box-number">{{$datamou}}</span>
             </div>
             </div>
         </div>
