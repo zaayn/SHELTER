@@ -16,7 +16,8 @@ class AdminController extends Controller
     public function index()
     {
         $data['customer'] = DB::table('customer')->count();
-        $data['kontrak'] = DB::table('kontrak')->count();        
+        $data['kontrak'] = DB::table('kontrak')->count();   
+        $data['datamou'] = DB::table('datamou')->count();             
 
         return view('/admin/dashboard_admin',$data);
     }
