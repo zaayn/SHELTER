@@ -245,7 +245,6 @@
             </span>
           </a>
             <ul class="treeview-menu">
-              <li class="active"><a href="{{asset('/admin/customer')}}"><i class="fa fa-circle-o"></i> Laporan Customer</a></li>
               <li class="active"><a href="{{asset('/admin/kontrak')}}"><i class="fa fa-circle-o"></i> Laporan Kontrak</a></li>
               <li class="active"><a href="{{asset('/admin/visit')}}"><i class="fa fa-circle-o"></i> Laporan Visit</a></li>
               <li class="active"><a href="{{asset('/admin/call')}}"><i class="fa fa-circle-o"></i> Laporan Call</a></li>
@@ -264,7 +263,7 @@
           </a>
           <ul class="treeview-menu">
             {{-- <li><a href="{{asset('/admin/user')}}"><i class="fa fa-circle-o"></i> User CRM</a></li> --}}
-            <li><a href="{{asset('/admin/customer')}}"><i class="fa fa-circle-o"></i> Customer</a></li>
+            <li class="active"><a href="{{asset('/admin/customer')}}"><i class="fa fa-circle-o"></i> Customer</a></li>
           </ul>
         </li>
 
