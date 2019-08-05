@@ -214,7 +214,6 @@
             </span>
           </a>
             <ul class="treeview-menu">
-              <li class="active"><a href="{{asset('/admin/insert_customer')}}"><i class="fa fa-circle-o"></i>Insert Laporan Customer</a></li>
               <li class="active"><a href="{{asset('/admin/insertkontrak')}}"><i class="fa fa-circle-o"></i>Insert Laporan Kontrak</a></li>
               <li class="active"><a href="{{asset('/admin/insertvisit')}}"><i class="fa fa-circle-o"></i>Insert Laporan Visit</a></li>
               <li class="active"><a href="{{asset('/admin/insertcall')}}"><i class="fa fa-circle-o"></i>Insert Laporan Call</a></li>

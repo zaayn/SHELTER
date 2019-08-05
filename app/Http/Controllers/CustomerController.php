@@ -29,7 +29,10 @@ class CustomerController extends Controller
         $data['bisnis_units'] = bisnis_unit::all();
         $data['areas'] = area::all();
         $data['wilayahs'] = wilayah::all();
-        $data['users'] = DB::table('users')->where('rule', 'officer_crm')->get();
+        $data['users'] = DB::table('users')
+        ->join('wilayah', 'users.wilayah_id', '=', 'wilayah.wilayah_id')
+        ->select('wilayah.wilayah_id','users.nama_depan','wilayah.nama_wilayah')
+        ->where('rule', 'officer_crm')->get();
         return view('/admin/customer/insert_customer',$data);
     }
     public function customerCode($str, $as_space = array('-'))
