@@ -32,11 +32,21 @@ class CustomerController extends Controller
         $data['users'] = DB::table('users')->where('rule', 'officer_crm')->get();
         return view('/admin/customer/insert_customer',$data);
     }
+    public function customerCode($str, $as_space = array('-'))
+    {
+        $str = str_replace($as_space, ' ', trim($str));
+        $ret = '';
+        foreach (explode(' ', $str) as $word) {
+            $ret .= strtoupper($word[0]);
+        }
+        return $ret;
+
+
+    }
     public function store(Request $request)
     {
       $this->validate($request,[
-         'kode_customer'    =>['required', 'string','unique:customer']
-        ,'nama_perusahaan'  =>['required', 'string']
+        'nama_perusahaan'  =>['required', 'string']
         ,'jenis_usaha'      =>['required', 'string']
         ,'alamat'=>['required', 'string']
         ,'provinsi'=>['required', 'string']
@@ -47,8 +57,9 @@ class CustomerController extends Controller
       ]);
 
       $customer = new customer;
-      $customer->kode_customer      = $request->kode_customer;
+      
       $customer->nama_perusahaan    = $request->nama_perusahaan;
+      $customer->kode_customer      = $this->customerCode($request->nama_perusahaan);
       $customer->jenis_usaha        = $request->jenis_usaha;
       $customer->bu_id              = $request->bu_id;
       $customer->alamat             = $request->alamat;
@@ -85,9 +96,7 @@ class CustomerController extends Controller
     public function update(Request $request, $id){
       $customer = customer::findOrFail($id);
       $this->validate($request,[
-         'kode_customer'    =>['required', 'string']
-        ,'nama_perusahaan'  =>['required', 'string']
-        ,'jenis_usaha'      =>['required', 'string']
+        'jenis_usaha'      =>['required', 'string']
         ,'alamat'=>['required', 'string']
         ,'provinsi'=>['required', 'string']
         ,'kabupaten'=>['required', 'string']
@@ -96,8 +105,8 @@ class CustomerController extends Controller
         ,'cp'=>['required', 'string']
       ]);
 
-      $customer->kode_customer      = $request->kode_customer;
-      $customer->nama_perusahaan    = $request->nama_perusahaan;
+      //$customer->kode_customer      = $request->kode_customer;
+      //$customer->nama_perusahaan    = $request->nama_perusahaan;
       $customer->jenis_usaha        = $request->jenis_usaha;
       $customer->bu_id              = $request->bu_id;
       $customer->alamat             = $request->alamat;
@@ -118,16 +127,7 @@ class CustomerController extends Controller
         return redirect('admin/customer')->with('error', 'item gagal diupdate');
       }
     }
-    public function customerCode($str, $as_space = array('-'))
-    {
-        $str = str_replace($as_space, ' ', trim($str));
-        $ret = '';
-        foreach (explode(' ', $str) as $word) {
-            $ret .= strtoupper($word[0]);
-        }
-        return $ret;
 
-    }
     public function exportPDF(){
         $customer = Customer::all();
         $pdf = PDF::loadview('admin/customer/pdfcustomer',['customer'=>$customer]);

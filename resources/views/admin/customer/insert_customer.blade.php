@@ -37,10 +37,7 @@
                 <form action="{{route('store.customer')}}" method="post">
                     {{ csrf_field() }} 
                   <div class="form-group">
-                    <div class="form-group col-md-12">
-                      <label>Kode Customer :</label>
-                      <div><input type="text" class="form-control"  name="kode_customer" required></div>
-                    </div>
+                    
                     <div class="form-group col-md-12">
                       <label>Nama Perusahaan :</label>
                       <div><input type="text" class="form-control"  name="nama_perusahaan" required></div>
