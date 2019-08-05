@@ -1,36 +1,25 @@
-@extends('layouts_users.app_admin')
-
-@section('content_header')
-<div class="row">
-    <div class="col-md-12">
-        <div class="panel block">
-            <div class="panel-body">
-                <h1>Laporan Data Customer</h1>
-                <ol class="breadcrumb">
-                    <li><a href="{{asset('/admin/home')}}"><i class="fa fa-dashboard"></i> Home</a></li>
-                    <li class="active">Daftar Laporan Data Customer</li>
-                </ol>
-            </div>
-        </div>
-    </div>
-</div>
-@endsection
-
-@section('content')
-<div class="row">
-        <div class="col-md-12">
-            <div class="panel block">
-                <div class="panel-body">
-                <div style="float:right; margin-bottom:10px;">
-                    <a href="/admin/datacustomer/exportPDF" class="btn btn-default btn-sm" target="_blank">Download PDF</a>
-                </div>
-                        <hr style="border: solid #ddd; border-width: 1px 0 0; clear: both; margin: 22px 0 21px; height: 0;">
-                            @include('admin.shared.components.alert')
-                            <div style="overflow-x:auto;">
-                            <table id="mydatatables" class="table table-responsive table-hover table-light table-striped">
-                                <thead>
-                                    <th>Nomor</th>
-                                    <th>Nama Perusahaan</th>
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Laporan MoU</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+	<style type="text/css">
+		table tr td,
+		table tr th{
+			font-size: 4pt;
+		}
+	</style>
+	<center>
+		<h5>Laporan MoU</h4>
+	</center>
+ 
+	<table class='table table-bordered'>
+		<thead>
+			<tr>
+                <th>No</th>
+                <th>Nama Perusahaan</th>
                                     <th>Bisnis Unit</th>
                                     <th>Wilayah</th>
                                     <th>Alamat Perusahaan</th>
@@ -63,12 +52,14 @@
                                     <th>Devices</th>
                                     <th>Chemical</th>
                                     <th>Pendaftaran MoU</th>
-                                </thead>
-                                <tbody>
-                                @foreach ($datamous as $datamou)
-                                <tr>
-                                    <td>{{ $no++ }}</td>
-                                    <td>{{ $datamou->nama_perusahaan }}</td>
+			</tr>
+		</thead>
+		<tbody>
+			@php $i=1 @endphp
+			@foreach($datamous as $datamou)
+			<tr>
+			<td>{{ $i++ }}</td>
+            <td>{{ $datamou->nama_perusahaan }}</td>
                                     <td>{{ $datamou->nama_bisnis_unit }}</td>
                                     <td>{{ $datamou->provinsi }}</td>
                                     <td>{{ $datamou->alamat }}</td>
@@ -96,13 +87,10 @@
                                     <td>{{ $datamou->devices }}</td>
                                     <td>{{ $datamou->chemical }}</td>
                                     <td>{{ $datamou->pendaftaran_mou }}</td>
-                                </tr> 
-                                @endforeach
-                                </tbody>
-                            </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-@endsection
+			</tr>
+			@endforeach
+		</tbody>
+	</table>
+ 
+</body>
+</html>
