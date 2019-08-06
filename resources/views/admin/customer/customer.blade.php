@@ -42,8 +42,8 @@
                                     <th>Alamat</th>
                                     <th>Provinsi</th>
                                     <th>Kabupaten</th>
-                                    <th>telpon</th>
-                                    <th>cp</th>
+                                    <th>Telpon</th>
+                                    <th>CP</th>
                                     <th>Area</th>
                                     <th>Wilayah</th>
                                     <th>Area Supervisor</th>

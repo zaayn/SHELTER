@@ -75,8 +75,14 @@
                 </ul>
                 <div class="tab-content no-padding">
                 <!-- Morris chart - Sales -->
+                
+                <div class="panel">
+                    <div id="clientChart"></div>
+                
+                </div>
                     <div class="chart tab-pane active" id="revenue-chart" style="position: relative; height: 300px;"></div>
                     <div class="chart tab-pane" id="sales-chart" style="position: relative; height: 300px;"></div>
+                    
                 </div>
             </div>
     <!-- /.box -->
@@ -96,4 +102,44 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('js')
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script>
+Highcharts.chart('clientChart', {
+    chart: {
+        plotBackgroundColor: null,
+        plotBorderWidth: null,
+        plotShadow: false,
+        type: 'pie'
+    },
+    title: {
+        text: 'Client Aktif per Area'
+    },
+    tooltip: {
+        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+    },
+    plotOptions: {
+        pie: {
+            allowPointSelect: true,
+            cursor: 'pointer',
+            dataLabels: {
+                enabled: true,
+                format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                style: {
+                    color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                }
+            }
+        }
+    },
+    series: [{
+        name: 'Brands',
+        colorByPoint: true,
+        data: {!!json.encode($categoryArea)!!}
+    }]
+});
+        
+       
+        </script>
 @endsection

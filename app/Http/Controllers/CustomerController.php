@@ -140,4 +140,11 @@ class CustomerController extends Controller
     public function exportExcel(){
 		    return Excel::download(new CustomerExport, 'Laporan-Customer-CRM.xlsx');
     }
+    public function clientChart(){
+        $result = \DB::table('customer')
+                    ->where('stockName','=','Infosys')
+                    ->orderBy('stockYear', 'ASC')
+                    ->get();
+        return response()->json($result);
+    }
 }

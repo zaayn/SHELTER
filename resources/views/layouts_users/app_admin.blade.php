@@ -340,6 +340,7 @@
 <script src="{{asset('https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js')}}"></script>
 <script src="{{asset('https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js')}}"></script>
 
+
 {{-- js ku --}}
 <script src="{{asset('admin_lte/dist/js/admin.js')}}"></script>
 
