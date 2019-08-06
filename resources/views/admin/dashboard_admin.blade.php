@@ -65,7 +65,7 @@
 
 </div>
 <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-9">
         <div class="nav-tabs-custom">
             <!-- Tabs within a box -->
                 <ul class="nav nav-tabs pull-right">
@@ -86,6 +86,14 @@
                 </div>
             </div>
     <!-- /.box -->
+    </div>
+    <div class="col-md-3">
+        <div class="panel block">
+            <div class="panel-body">
+                <h4>Last Seen User</h4>
+                {{-- Code Here --}}
+            </div>
+        </div>
     </div>
 </div>
 <div class="row">
