@@ -19,15 +19,15 @@ class AdminController extends Controller
         $data['kontrak'] = DB::table('kontrak')->count();   
         $data['datamou'] = DB::table('datamou')->count();             
 
-        $customer = \App\Customer::all();
-        $categoryArea = [];
-        //dd($customer);
+        // $customer = \App\Customer::all();
+        // $categoryArea = [];
+        // //dd($customer);
 
-        foreach($customer as $cust){
-            $categoryArea[] = $cust->nama_area;
-        }
+        // foreach($customer as $cust){
+        //     $categoryArea[] = $cust->nama_area;
+        // }
         //dd($categoryArea);
-        return view('/admin/dashboard_admin',['data'=>$data,'categoryArea'=>$categoryArea,$customer]);
+        return view('/admin/dashboard_admin',$data);
     }
 
     public function superadmin()

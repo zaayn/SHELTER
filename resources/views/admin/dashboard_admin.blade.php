@@ -136,7 +136,24 @@ Highcharts.chart('clientChart', {
     series: [{
         name: 'Brands',
         colorByPoint: true,
-        data: {!!json.encode($categoryArea)!!}
+        data: [{
+            name: 'Surabaya',
+            y: 61.41,
+            sliced: true,
+            selected: true
+        }, {
+            name: 'Sidoarjo',
+            y: 11.84
+        }, {
+            name: 'Malang',
+            y: 10.85
+        }, {
+            name: 'Madiun',
+            y: 4.67
+        }, {
+            name: 'Tuban',
+            y: 4.18
+        }]
     }]
 });
         
