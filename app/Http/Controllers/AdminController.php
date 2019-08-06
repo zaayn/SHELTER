@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use App\datamou;
 use App\Kontrak;
 use App\Customer;
+use Carbon;
 use DateTime;
 use PDF;
 
@@ -46,16 +47,19 @@ class AdminController extends Controller
         'overheadcost','training','tanggal_invoice','time_of_payment','cut_of_date','kaporlap','devices',
         'chemical','pendaftaran_mou')
         ->get();
-        
+
         $data['no'] = 1;
         //dd($data);
-        $date1 = new DateTime($request->periode_kontrak);
-        $date2 = new DateTime($request->akhir_periode);
+        $date1 = new DateTime("$request->periode_kontrak");
+        $date2 = new DateTime("$request->akhir_periode");
 
         $diff = $date1->diff($date2);
-        $data['different'] = ($diff->format('%y') * 12) + $diff->format('%m');
+        $data['different'] = (($diff->format('%y') * 12) + $diff->format('%m'));
         // return (int) round($data['different']);
         // var_dump($request->periode_kontrak);
+        // dd($request->periode_kontrak);
+        // print_r($diff_in_months);
+
         if($data['different'] < 24)
         {
             $data['different'] = "Silver";

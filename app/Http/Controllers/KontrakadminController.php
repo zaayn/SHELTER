@@ -150,14 +150,17 @@ class KontrakadminController extends Controller
     public function reminder(Request $request) //filter kontrak h-30 hari 
     {
         $now = Carbon\Carbon::now();
-        $reminder = $now->diffInDays($request->akhir_periode) . str_plural(' day', $now->diffInDays($request->akhir_periode)). ' left';
-        if($reminder > 30)
+        $reminder = $now->diffInDays($request->akhir_periode);
+        // var_dump($reminder);
+        // return $reminder;
+        // DateDiff (Day,CheckIn,CheckOut)
+        if($reminder >= 0)
         {
             $data['customers'] = customer::all();
             $data['kontraks'] = DB::table('kontrak')
             ->join('customer', 'customer.kode_customer', '=', 'kontrak.kode_customer')
             ->select('kontrak.id_kontrak','customer.kode_customer','customer.nama_perusahaan','kontrak.periode_kontrak','kontrak.akhir_periode','kontrak.srt_pemberitahuan','kontrak.tgl_srt_pemberitahuan','kontrak.srt_penawaran','kontrak.tgl_srt_penawaran','kontrak.dealing','kontrak.tgl_dealing','kontrak.posisi_pks','kontrak.closing')
-            // ->where('kontrak.akhir_kontrak', '=', $request->akhir_)
+            ->where('kontrak.akhir_periode', '<', $reminder + 30)
             ->get();
             return view('admin/kontrak/reminder', $data);
         }else {
