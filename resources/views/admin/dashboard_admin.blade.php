@@ -10,6 +10,7 @@
                     <li><i class="fa fa-dashboard"></i> Home</li>
                     
                 </ol>
+                
             </div>
         </div>
     </div>
@@ -71,7 +72,7 @@
                 <ul class="nav nav-tabs pull-right">
                     <li class="active"><a href="#revenue-chart" data-toggle="tab">Area</a></li>
                     <li><a href="#sales-chart" data-toggle="tab">Donut</a></li>
-                    <li class="pull-left header"><i class="fa fa-inbox"></i>Customer</li>
+                    <li class="pull-left header"><i class="fa fa-inbox"></i>Client Aktif per Area</li>
                 </ul>
                 <div class="tab-content no-padding">
                 <!-- Morris chart - Sales -->
@@ -90,8 +91,8 @@
     <div class="col-md-3">
         <div class="panel block">
             <div class="panel-body">
-                <h4>Last Seen User</h4>
-                {{-- Code Here --}}
+                <h6>User Terakhir Login :</h6>
+                <div class="panel">{{$lastUser->username}}</div>
             </div>
         </div>
     </div>
@@ -142,25 +143,22 @@ Highcharts.chart('clientChart', {
         }
     },
     series: [{
-        name: 'Brands',
+        name: 'Client aktif',
         colorByPoint: true,
         data: [{
-            name: 'Surabaya',
+            name: 'Jawa Barat',
             y: 61.41,
             sliced: true,
             selected: true
         }, {
-            name: 'Sidoarjo',
+            name: 'Jawa Tengah',
             y: 11.84
         }, {
-            name: 'Malang',
+            name: 'Jawa Timur',
             y: 10.85
         }, {
-            name: 'Madiun',
+            name: 'Bali',
             y: 4.67
-        }, {
-            name: 'Tuban',
-            y: 4.18
         }]
     }]
 });
