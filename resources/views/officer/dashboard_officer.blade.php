@@ -10,13 +10,7 @@
                     <li><i class="fa fa-dashboard"></i> Home</li>
                     
                 </ol>
-                <div class="col-md-2" style="float:right;">
-                    <div class="panel panel-info">
-                    
-                    <div class="panel-heading">last user login:  and {{Auth::user()->last_login_at}}</div>
-                  
-                    </div>
-                </div>
+               
             </div>
         </div>
     </div>
@@ -71,21 +65,23 @@
         </a>
     </div>
 <div class="row">
-    <div class="col-md-12">
-        <div class="panel block">
+    <div class="col-md-9">
+        <div class="nav-tabs-custom">
             <div class="panel-body">
-                {{-- <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-                </div> --}} 
+                
                 <h2>Customer</h2>
                 {{----------- box -----------}}
                 hallo
                 {{----------- end box -----------}}
                 </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="panel block">
+            <div class="panel-body">
+                <h6>User Terakhir Login :</h6>
+                <div class="panel">{{$lastUser->username}}</div>
             </div>
         </div>
     </div>
