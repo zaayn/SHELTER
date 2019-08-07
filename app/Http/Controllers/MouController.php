@@ -34,7 +34,7 @@ class MouController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'id_kontrak'            => 'required|unique:datamou',
+            //'id_kontrak'            => 'required|unique:datamou',
             'hc'                    => 'required|integer',
             'invoice'               => 'required|integer',
             'mf'                    => 'required|integer',
@@ -57,8 +57,8 @@ class MouController extends Controller
         ]);
 
         $datamou = new datamou;
-        $datamou->no_mou = $request->no_mou;
-        $datamou->id_kontrak = $request->id_kontrak;
+       // $datamou->no_mou = $request->no_mou;
+       // $datamou->id_kontrak = $request->id_kontrak;
         $datamou->hc = $request->hc;
         $datamou->invoice = $request->invoice;
         $datamou->mf = $request->mf;
@@ -106,7 +106,7 @@ class MouController extends Controller
     {
         $datamou = datamou::findorFail($id);
         $request->validate([
-            'id_kontrak' => 'required',
+          //  'id_kontrak' => 'required',
             'hc' => 'required',
             'invoice' => 'required',
             'mf' => 'required',

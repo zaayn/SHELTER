@@ -10,6 +10,7 @@
                     <li><i class="fa fa-dashboard"></i> Home</li>
                     
                 </ol>
+                
             </div>
         </div>
     </div>
@@ -18,7 +19,7 @@
 
 @section('content')
 <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-9">
         <div class="panel block">
             <div class="panel-body">
                 {{-- <div class="card-body">
@@ -98,8 +99,17 @@
                 </a>
                 {{----------- end box -----------}}
                 </div>
+                
             </div>
         </div>
     </div>
+    <div class="col-md-3">
+                    
+                        <div class="panel-body">
+                            <h6>User Terakhir Login :</h6>
+                            <div class="panel">{{$lastUser->username}}</div>
+                        </div>
+                    
+                </div>
 </div>
 @endsection
