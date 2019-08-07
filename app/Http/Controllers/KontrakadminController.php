@@ -154,13 +154,13 @@ class KontrakadminController extends Controller
         // var_dump($reminder);
         // return $reminder;
         // DateDiff (Day,CheckIn,CheckOut)
-        if($reminder >= 0)
+        if($reminder < 30)
         {
             $data['customers'] = customer::all();
             $data['kontraks'] = DB::table('kontrak')
             ->join('customer', 'customer.kode_customer', '=', 'kontrak.kode_customer')
             ->select('kontrak.id_kontrak','customer.kode_customer','customer.nama_perusahaan','kontrak.periode_kontrak','kontrak.akhir_periode','kontrak.srt_pemberitahuan','kontrak.tgl_srt_pemberitahuan','kontrak.srt_penawaran','kontrak.tgl_srt_penawaran','kontrak.dealing','kontrak.tgl_dealing','kontrak.posisi_pks','kontrak.closing')
-            ->where('kontrak.akhir_periode', '<', $reminder + 30)
+            ->where('kontrak.akhir_periode', '=', $reminder) // ini bagaiman cara agar nampilin "akhir_periode" = H-30 hari
             ->get();
             return view('admin/kontrak/reminder', $data);
         }else {
