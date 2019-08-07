@@ -36,6 +36,9 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+    protected $dates = [
+        'current_login_at', 'last_login_at',
+    ];
 
     /**
      * The attributes that should be cast to native types.

@@ -11,6 +11,7 @@ use App\Customer;
 use Carbon;
 use DateTime;
 use PDF;
+use App\Listeners\LogSuccessfulLogin;
 
 class AdminController extends Controller
 {
@@ -20,15 +21,12 @@ class AdminController extends Controller
         $data['kontrak'] = DB::table('kontrak')->count();   
         $data['datamou'] = DB::table('datamou')->count();             
 
-        // $customer = \App\Customer::all();
-        // $categoryArea = [];
-        // //dd($customer);
-
-        // foreach($customer as $cust){
-        //     $categoryArea[] = $cust->nama_area;
-        // }
-        //dd($categoryArea);
-        return view('/admin/dashboard_admin',$data);
+        $lastUser = DB::table('users')
+                    ->select('username')
+                    ->orderBy('last_login_at','desc')
+                    ->skip(1)->first();
+        //dd($lastUser);
+        return view('/admin/dashboard_admin')->with($data)->with('lastUser',$lastUser);
     }
 
     public function superadmin()
@@ -101,5 +99,13 @@ class AdminController extends Controller
         $pdf = PDF::loadview('admin/customer/pdfdatacustomer',['datamous'=>$data]);
         $pdf->setPaper('A4','landscape');
         return $pdf->download('Laporan-Data-CustomerAll-CRM.pdf');
+    }
+    public function lastLogin(){
+        $lastUser = Auth::user()
+                    ->select('username')
+                    ->latest();
+        //dd($lastUser);
+                
+        return view('admin/dashboard_admin', compact('lastUser'));
     }
 }

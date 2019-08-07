@@ -66,7 +66,9 @@
         <span class="sr-only">Toggle navigation</span>
       </a>
       <!-- Navbar Right Menu -->
+      
       <div class="navbar-custom-menu">
+      
         <ul class="nav navbar-nav">
           
           <!-- Notifications: style can be found in dropdown.less -->
@@ -231,7 +233,7 @@
             </a>
               <ul class="treeview-menu">
                 <li class="active"><a href="{{asset('/admin/bisnis_unit')}}"><i class="fa fa-circle-o"></i> Daftar Bisnis Unit</a></li>
-                <li class="active"><a href="{{asset('/admin/area')}}"><i class="fa fa-circle-o"></i> Daftar area</a></li>
+                <li class="active"><a href="{{asset('/admin/area')}}"><i class="fa fa-circle-o"></i> Daftar Area</a></li>
                 <li class="active"><a href="{{asset('/admin/wilayah')}}"><i class="fa fa-circle-o"></i> Daftar Wilayah</a></li>
               </ul>
           </li> --}}

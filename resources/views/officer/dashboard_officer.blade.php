@@ -10,6 +10,13 @@
                     <li><i class="fa fa-dashboard"></i> Home</li>
                     
                 </ol>
+                <div class="col-md-2" style="float:right;">
+                    <div class="panel panel-info">
+                    
+                    <div class="panel-heading">last user login:  and {{Auth::user()->last_login_at}}</div>
+                  
+                    </div>
+                </div>
             </div>
         </div>
     </div>
