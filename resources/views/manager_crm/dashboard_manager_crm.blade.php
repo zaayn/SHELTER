@@ -96,12 +96,11 @@
         </div>
         <div class="col-md-3">
             <div class="panel block">
-            <div class="panel-body">
-                <h6>User Terakhir Login :</h6>
-                <div class="panel">{{$lastUser->username}}
-                </div>
-            </div>             
-        </div>
+                <div class="panel-body">
+                    <h6>User Terakhir Login :</h6>
+                    <div class="panel">{{$lastUser->username}}</div>
+                </div>             
+            </div>
         </div>
     </div>
     

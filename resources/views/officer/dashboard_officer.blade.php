@@ -76,8 +76,7 @@
                 </div>
             </div>
         </div>
-    </div>
-    <div class="col-md-3">
+        <div class="col-md-3">
         <div class="panel block">
             <div class="panel-body">
                 <h6>User Terakhir Login :</h6>
@@ -85,5 +84,7 @@
             </div>
         </div>
     </div>
+    </div>
+    
 </div>
 @endsection
