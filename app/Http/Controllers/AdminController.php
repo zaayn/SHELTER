@@ -25,9 +25,6 @@ class AdminController extends Controller
                     ->select('username')
                     ->orderBy('current_login_at','desc')
                     ->skip(1)->first();
-        //dd($lastUser);
-
-       
 
         return view('/admin/dashboard_admin')->with($data)->with('lastUser',$lastUser);
     }

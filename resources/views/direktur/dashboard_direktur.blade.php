@@ -32,7 +32,7 @@
                 {{----------- box -----------}}
                 <a href="{{asset('/direktur/direktur_customer')}}">
                     <div class="col-md-4">
-                        <div class="info-box bg-red col-md-4">
+                        <div class="info-box bg-red">
                         <span class="info-box-icon"><i class="fa fa-table"></i></span>
                             <div class="info-box-content">
                                 <span class="info-box-text">Laporan Customer</span>
@@ -43,7 +43,7 @@
                 </a>
                 <a href="{{asset('/direktur/direktur_kontrak')}}">
                     <div class="col-md-4">
-                        <div class="info-box bg-blue col-md-4">
+                        <div class="info-box bg-blue">
                         <span class="info-box-icon"><i class="fa fa-table"></i></span>
                             <div class="info-box-content">
                                 <span class="info-box-text">Laporan kontrak</span>
@@ -54,7 +54,7 @@
                 </a>
                 <a href="{{asset('/direktur/direktur_visit')}}">
                     <div class="col-md-4">
-                        <div class="info-box bg-green col-md-4">
+                        <div class="info-box bg-green">
                         <span class="info-box-icon"><i class="fa fa-table"></i></span>
                             <div class="info-box-content">
                                 <span class="info-box-text">Laporan Visit</span>
@@ -65,7 +65,7 @@
                 </a>
                 <a href="{{asset('/direktur/direktur_call')}}">
                     <div class="col-md-4">
-                        <div class="info-box bg-yellow col-md-4">
+                        <div class="info-box bg-yellow">
                         <span class="info-box-icon"><i class="fa fa-table"></i></span>
                             <div class="info-box-content">
                                 <span class="info-box-text">Laporan call</span>
@@ -76,7 +76,7 @@
                 </a>
                 <a href="{{asset('/direktur/direktur_keluhan')}}">
                     <div class="col-md-4">
-                        <div class="info-box bg-purple col-md-4">
+                        <div class="info-box bg-purple">
                         <span class="info-box-icon"><i class="fa fa-table"></i></span>
                             <div class="info-box-content">
                                 <span class="info-box-text">Laporan Keluhan</span>
@@ -87,7 +87,7 @@
                 </a>
                 <a href="{{asset('/direktur/direktur_mou')}}">
                         <div class="col-md-4">
-                            <div class="info-box bg-orange col-md-4">
+                            <div class="info-box bg-orange">
                             <span class="info-box-icon"><i class="fa fa-table"></i></span>
                                 <div class="info-box-content">
                                     <span class="info-box-text">Laporan data MOU</span>
