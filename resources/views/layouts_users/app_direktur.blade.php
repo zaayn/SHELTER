@@ -380,12 +380,12 @@
             </span>
           </a>
             <ul class="treeview-menu">
-              <li class="active"><a href="{{asset('direktur/direktur_customer')}}"><i class="fa fa-circle-o"></i> Laporan Customer</a></li>
-              <li class="active"><a href="{{asset('direktur/direktur_kontrak')}}"><i class="fa fa-circle-o"></i> Laporan Kontrak</a></li>
-              <li class="active"><a href="{{asset('direktur/direktur_visit')}}"><i class="fa fa-circle-o"></i> Laporan visit</a></li>
-              <li class="active"><a href="{{asset('direktur/direktur_call')}}"><i class="fa fa-circle-o"></i> Laporan Call</a></li>
-              <li class="active"><a href="{{asset('direktur/direktur_keluhan')}}"><i class="fa fa-circle-o"></i> Laporan Keluhan</a></li>
-              <li class="active"><a href="{{asset('direktur/direktur_mou')}}"><i class="fa fa-circle-o"></i> Laporan Data MOU</a></li>
+              <li class="active"><a href="{{asset('direktur/customer')}}"><i class="fa fa-circle-o"></i> Laporan Customer</a></li>
+              <li class="active"><a href="{{asset('direktur/kontrak')}}"><i class="fa fa-circle-o"></i> Laporan Kontrak</a></li>
+              <li class="active"><a href="{{asset('direktur/visit')}}"><i class="fa fa-circle-o"></i> Laporan Visit</a></li>
+              <li class="active"><a href="{{asset('direktur/call')}}"><i class="fa fa-circle-o"></i> Laporan Call</a></li>
+              <li class="active"><a href="{{asset('direktur/keluhan')}}"><i class="fa fa-circle-o"></i> Laporan Keluhan</a></li>
+              <li class="active"><a href="{{asset('direktur/mou')}}"><i class="fa fa-circle-o"></i> Laporan Data MOU</a></li>
             </ul>
         </li>
 

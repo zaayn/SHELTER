@@ -79,11 +79,7 @@
                 
                     <div class="panel">
                         <div id="clientChart"></div>
-                    
                     </div>
-                    <div class="chart tab-pane active" id="revenue-chart" style="position: relative; height: 300px;"></div>
-                    <div class="chart tab-pane" id="sales-chart" style="position: relative; height: 300px;"></div>
-                    
                 </div>
             </div>
     <!-- /.box -->
@@ -97,20 +93,7 @@
         </div>
     </div>
 </div>
-<div class="row">
-    <div class="col-md-12">
-        <div class="panel block">
-            <div class="panel-body">
-                <h2>Customer</h2>
-                {{----------- box -----------}}
-                
-                
-                {{----------- end box -----------}}
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+
 @endsection
 
 @section('js')
@@ -146,15 +129,15 @@ Highcharts.chart('clientChart', {
         name: 'Client aktif',
         colorByPoint: true,
         data: [{
-            name: 'Jawa Barat',
+            name: 'West',
             y: 61.41,
             sliced: true,
             selected: true
         }, {
-            name: 'Jawa Tengah',
+            name: 'Center',
             y: 11.84
         }, {
-            name: 'Jawa Timur',
+            name: 'West',
             y: 10.85
         }, {
             name: 'Bali',

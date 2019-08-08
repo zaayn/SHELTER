@@ -64,8 +64,8 @@
                                     <td>{{ $kontrak->posisi_pks }}</td>
                                     <td>{{ $kontrak->closing }}</td>
                                     <td>
-                                        <a href="{{route('edit.kontrak.officer',$kontrak->id_kontrak)}}" class="btn btn-info btn-sm">Ubah</a>
-                                        <a onclick="return confirm('Apakah anda yakin akan menghapus data ini ?')" href="{{route('destroy.kontrak.officer',$kontrak->id_kontrak)}}" class="btn btn-danger btn-sm">Hapus</a>
+                                        <a href="{{route('edit.kontrak.officer',$kontrak->id_kontrak)}}" class="btn btn-info btn-sm"><span class="fa fa-pencil"></span></a>
+                                        <a onclick="return confirm('Apakah anda yakin akan menghapus data ini ?')" href="{{route('destroy.kontrak.officer',$kontrak->id_kontrak)}}" class="btn btn-danger btn-sm"><span class="fa fa-trash"></span></a>
                                     </td>
                                 </tr>
                                 @endforeach  

@@ -1,4 +1,4 @@
-@extends('layouts_users.app_manager_crm')
+@extends('layouts_users.app_manager_non_crm')
 
 @section('content_header')
 <div class="row">
@@ -21,6 +21,10 @@
         <div class="col-md-12">
             <div class="panel block">
                 <div class="panel-body">
+                    <div style="float:right; margin-bottom:10px;">
+                        <a href="{{asset('/manager_non_crm/kontrak/exportExcel')}}" class="btn btn-default btn-sm" target="_blank">Download Excel</a>
+                        <a href="{{asset('/manager_non_crm/kontrak/exportPDF')}}" class="btn btn-default btn-sm" target="_blank">Download PDF</a>
+                    </div>
                             <hr style="border: solid #ddd; border-width: 1px 0 0; clear: both; margin: 22px 0 21px; height: 0;">
                             @include('admin.shared.components.alert')
                             <div style="overflow-x:auto;">
