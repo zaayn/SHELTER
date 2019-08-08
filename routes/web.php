@@ -202,19 +202,19 @@ Route::group(['prefix' => 'manager_crm',  'middleware' => 'is_manager_crm'], fun
 Route::group(['prefix' => 'direktur',  'middleware' => 'is_direktur'], function(){
     //manager crm
     Route::get('/home', 'DirekturController@index')->name('dashboard_officer'); //Dashboard Admin
-    Route::get('/direktur_call', 'DirekturController@call')->name('direktur_call');
-    Route::get('/direktur_keluhan', 'DirekturController@keluhan')->name('direktur_keluhan');
-    Route::get('/direktur_visit', 'DirekturController@visit')->name('direktur_visit');
-    Route::get('/direktur_kontrak', 'DirekturController@kontrak')->name('direktur_kontrak');
-    Route::get('/direktur_mou', 'DirekturController@mou')->name('direktur_mou');
-    Route::get('/direktur_customer', 'DirekturController@customer')->name('direktur_customer');
+    Route::get('/call', 'DirekturController@call')->name('direktur_call');
+    Route::get('/keluhan', 'DirekturController@keluhan')->name('direktur_keluhan');
+    Route::get('/visit', 'DirekturController@visit')->name('direktur_visit');
+    Route::get('/kontrak', 'DirekturController@kontrak')->name('direktur_kontrak');
+    Route::get('/mou', 'DirekturController@mou')->name('direktur_mou');
+    Route::get('/customer', 'DirekturController@customer')->name('direktur_customer');
 });
 
 Route::group(['prefix' => 'manager_non_crm',  'middleware' => 'is_manager_non_crm'], function(){
     //manager crm
     Route::get('/home', 'ManagerNonCrmController@index')->name('dashboard_officer'); //Dashboard Admin
-    Route::get('/manager_non_crm_kontrak', 'ManagerNonCrmController@kontrak')->name('manager_non_crm_kontrak');
-    Route::get('/manager_non_crm_mou', 'ManagerNonCrmController@mou')->name('manager_non_crm_mou');
-    Route::get('/manager_non_crm_customer', 'ManagerNonCrmController@customer')->name('manager_non_crm_customer');
+    Route::get('/kontrak', 'ManagerNonCrmController@kontrak')->name('manager_non_crm_kontrak');
+    Route::get('/mou', 'ManagerNonCrmController@mou')->name('manager_non_crm_mou');
+    Route::get('/customer', 'ManagerNonCrmController@customer')->name('manager_non_crm_customer');
 
 });

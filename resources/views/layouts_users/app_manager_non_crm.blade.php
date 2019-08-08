@@ -378,9 +378,9 @@
             </span>
           </a>
             <ul class="treeview-menu">
-              <li class="active"><a href="{{asset('/manager_non_crm/manager_non_crm_customer')}}"><i class="fa fa-circle-o"></i> Laporan Customer</a></li>
-              <li class="active"><a href="{{asset('/manager_non_crm/manager_non_crm_kontrak')}}"><i class="fa fa-circle-o"></i> Laporan Kontrak</a></li>
-              <li class="active"><a href="{{asset('/manager_non_crm/manager_non_crm_mou')}}"><i class="fa fa-circle-o"></i> Laporan Data MOU</a></li>
+              <li class="active"><a href="{{asset('/manager_non_crm/customer')}}"><i class="fa fa-circle-o"></i> Laporan Customer</a></li>
+              <li class="active"><a href="{{asset('/manager_non_crm/kontrak')}}"><i class="fa fa-circle-o"></i> Laporan Kontrak</a></li>
+              <li class="active"><a href="{{asset('/manager_non_crm/mou')}}"><i class="fa fa-circle-o"></i> Laporan Data MOU</a></li>
             </ul>
         </li>
 
