@@ -18,10 +18,10 @@ class OfficerController extends Controller
         $data['visits'] = DB::table('visit')->count();   
         $data['keluhans'] = DB::table('keluhan')->count();
         
-        $lastUser = Auth::user()
+        $lastUser = DB::table('users')
                     ->select('username')
-                    ->orderBy('last_login_at','desc')
-                    ->first();
+                    ->orderBy('current_login_at','desc')
+                    ->skip(1)->first();
 
         return view('/officer/dashboard_officer')->with($data)->with('lastUser',$lastUser);
     }

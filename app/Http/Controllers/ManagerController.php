@@ -22,7 +22,12 @@ class ManagerController extends Controller
         $data['kontrak'] = DB::table('kontrak')->count();
         $data['customers'] = DB::table('customer')->count();
         $data['datamous'] = DB::table('datamou')->count();
-        return view('/manager_crm/dashboard_manager_crm',$data);
+
+        $lastUser = DB::table('users')
+                    ->select('username')
+                    ->orderBy('current_login_at','desc')
+                    ->skip(1)->first();
+        return view('/manager_crm/dashboard_manager_crm')->with($data)->with('lastUser',$lastUser);
     }
     public function call()
     {  

@@ -162,6 +162,7 @@ class KontrakadminController extends Controller
             ->select('kontrak.id_kontrak','customer.kode_customer','customer.nama_perusahaan','kontrak.periode_kontrak','kontrak.akhir_periode','kontrak.srt_pemberitahuan','kontrak.tgl_srt_pemberitahuan','kontrak.srt_penawaran','kontrak.tgl_srt_penawaran','kontrak.dealing','kontrak.tgl_dealing','kontrak.posisi_pks','kontrak.closing')
             ->where('kontrak.akhir_periode', '=', $reminder) // ini bagaiman cara agar nampilin "akhir_periode" = H-30 hari
             ->get();
+            //dd($data['kontraks']);
             return view('admin/kontrak/reminder', $data);
         }else {
             return "hello";

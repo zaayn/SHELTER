@@ -23,7 +23,7 @@ class AdminController extends Controller
 
         $lastUser = DB::table('users')
                     ->select('username')
-                    ->orderBy('last_login_at','desc')
+                    ->orderBy('current_login_at','desc')
                     ->skip(1)->first();
         //dd($lastUser);
         return view('/admin/dashboard_admin')->with($data)->with('lastUser',$lastUser);
@@ -36,7 +36,12 @@ class AdminController extends Controller
         $data['area'] = DB::table('area')->count();
         $data['users'] = DB::table('users')->count();
 
-        return view('/admin/dashboard_superadmin',$data);
+        $lastUser = DB::table('users')
+                    ->select('username')
+                    ->orderBy('current_login_at','desc')
+                    ->skip(1)->first();
+
+        return view('/admin/dashboard_superadmin')->with($data)->with('lastUser',$lastUser);
     }
     public function data_customer(Request $request)
     {

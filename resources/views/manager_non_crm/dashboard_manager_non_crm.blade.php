@@ -67,6 +67,14 @@
                 </div>
             </div>
         </div>
+        <div class="col-xs-3" style="float:right;">
+                    
+                        <div class="panel-body">
+                            <h6>User Terakhir Login :</h6>
+                            <div class="panel">{{$lastUser->username}}</div>
+                        </div>
+                    
+                </div>
     </div>
 </div>
 @endsection
