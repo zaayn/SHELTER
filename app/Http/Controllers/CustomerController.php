@@ -37,12 +37,14 @@ class CustomerController extends Controller
     }
     public function customerCode($str, $as_space = array('-'))
     {
+        $numb = 0;
+        $numb++;
         $str = str_replace($as_space, ' ', trim($str));
         $ret = '';
         foreach (explode(' ', $str) as $word) {
             $ret .= strtoupper($word[0]);
         }
-        return $ret;
+        return $ret. sprintf("%03s", $numb);
 
 
     }
