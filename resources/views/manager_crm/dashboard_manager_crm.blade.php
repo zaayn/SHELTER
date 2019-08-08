@@ -22,18 +22,11 @@
     <div class="col-md-9">
         <div class="panel block">
             <div class="panel-body">
-                {{-- <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-                </div> --}} 
                 <h2>Daftar Laporan yang tersedia</h2>
                 {{----------- box -----------}}
                 <a href="{{asset('/manager_crm/manager_customer')}}">
-                    <div class="col-md-4">
-                        <div class="info-box bg-red col-md-4">
+                    <div class="col-md-6">
+                        <div class="info-box bg-red">
                         <span class="info-box-icon"><i class="fa fa-envelope-o"></i></span>
                             <div class="info-box-content">
                                 <span class="info-box-text">Laporan Customer</span>
@@ -43,8 +36,8 @@
                     </div>
                 </a>
                 <a href="{{asset('/manager_crm/manager_kontrak')}}">
-                    <div class="col-md-4">
-                        <div class="info-box bg-blue col-md-4">
+                    <div class="col-md-6">
+                        <div class="info-box bg-blue">
                         <span class="info-box-icon"><i class="fa fa-envelope-o"></i></span>
                             <div class="info-box-content">
                                 <span class="info-box-text">Laporan kontrak</span>
@@ -54,8 +47,8 @@
                     </div>
                 </a>
                 <a href="{{asset('/manager_crm/manager_visit')}}">
-                    <div class="col-md-4">
-                        <div class="info-box bg-green col-md-4">
+                    <div class="col-md-6">
+                        <div class="info-box bg-green">
                         <span class="info-box-icon"><i class="fa fa-envelope-o"></i></span>
                             <div class="info-box-content">
                                 <span class="info-box-text">Laporan Visit</span>
@@ -65,8 +58,8 @@
                     </div>
                 </a>
                 <a href="{{asset('/manager_crm/manager_call')}}">
-                    <div class="col-md-4">
-                        <div class="info-box bg-yellow col-md-4">
+                    <div class="col-md-6">
+                        <div class="info-box bg-yellow">
                         <span class="info-box-icon"><i class="fa fa-envelope-o"></i></span>
                             <div class="info-box-content">
                                 <span class="info-box-text">Laporan call</span>
@@ -76,8 +69,8 @@
                     </div>
                 </a>
                 <a href="{{asset('/manager_crm/manager_keluhan')}}">
-                    <div class="col-md-4">
-                        <div class="info-box bg-purple col-md-4">
+                    <div class="col-md-6">
+                        <div class="info-box bg-purple">
                         <span class="info-box-icon"><i class="fa fa-envelope-o"></i></span>
                             <div class="info-box-content">
                                 <span class="info-box-text">Laporan Keluhan</span>
@@ -87,8 +80,8 @@
                     </div>
                 </a>
                 <a href="{{asset('/manager_crm/manager_mou')}}">
-                    <div class="col-md-4">
-                        <div class="info-box bg-orange col-md-4">
+                    <div class="col-md-6">
+                        <div class="info-box bg-orange">
                         <span class="info-box-icon"><i class="fa fa-table"></i></span>
                             <div class="info-box-content">
                                 <span class="info-box-text">Laporan data MOU</span>
@@ -99,17 +92,18 @@
                 </a>
                 {{----------- end box -----------}}
                 </div>
-                
             </div>
         </div>
-    </div>
-    <div class="col-md-3">
-                    
-                        <div class="panel-body">
-                            <h6>User Terakhir Login :</h6>
-                            <div class="panel">{{$lastUser->username}}</div>
-                        </div>
-                    
+        <div class="col-md-3">
+            <div class="panel block">
+            <div class="panel-body">
+                <h6>User Terakhir Login :</h6>
+                <div class="panel">{{$lastUser->username}}
                 </div>
-</div>
+            </div>             
+        </div>
+        </div>
+    </div>
+    
+
 @endsection
