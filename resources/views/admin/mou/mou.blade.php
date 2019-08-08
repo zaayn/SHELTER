@@ -78,8 +78,8 @@
                                     <td>{{ $datamou->chemical }}</td>
                                     <td>{{ $datamou->pendaftaran_mou }}</td>
                                     <td>
-                                    <a href="{{route('edit.datamou',$datamou->no_mou)}}" class="btn btn-info btn-sm">Ubah</a>
-                                    <a onclick="return confirm('Apakah anda yakin akan menghapus data ini ?')" href="{{route('destroy.datamou',$datamou->no_mou)}}" class="btn btn-danger btn-sm">Hapus</a></td>
+                                    <a href="{{route('edit.datamou',$datamou->no_mou)}}" class="btn btn-info btn-sm"><span class="fa fa-pencil"></span></a>
+                                    <a onclick="return confirm('Apakah anda yakin akan menghapus data ini ?')" href="{{route('destroy.datamou',$datamou->no_mou)}}" class="btn btn-danger btn-sm"><span class="fa fa-trash"></span></a></td>
                                 </tr> 
                                 @endforeach
                                 </tbody>

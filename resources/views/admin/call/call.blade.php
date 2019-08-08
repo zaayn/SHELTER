@@ -53,8 +53,8 @@
                                     <td>{{ $call->pic_called }}</td>
                                     <td>{{ $call->hal_menonjol }}</td>
                                     <td>
-                                        <a href="{{route('edit.call',$call->call_id)}}" class="btn btn-info btn-sm">Ubah</a>
-                                        <a onclick="return confirm('Apakah anda yakin akan menghapus data ini ?')" href="{{route('destroy.call',$call->call_id)}}" class="btn btn-danger btn-sm">Hapus</a>
+                                        <a href="{{route('edit.call',$call->call_id)}}" class="btn btn-info btn-sm"><span class="fa fa-pencil"></span></a>
+                                        <a onclick="return confirm('Apakah anda yakin akan menghapus data ini ?')" href="{{route('destroy.call',$call->call_id)}}" class="btn btn-danger btn-sm"><span class="fa fa-trash"></span></a>
                                     </td>
                                 </tr>
                                 @endforeach    

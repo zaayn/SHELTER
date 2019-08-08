@@ -26,6 +26,9 @@ class AdminController extends Controller
                     ->orderBy('current_login_at','desc')
                     ->skip(1)->first();
         //dd($lastUser);
+
+       
+
         return view('/admin/dashboard_admin')->with($data)->with('lastUser',$lastUser);
     }
 
@@ -105,12 +108,19 @@ class AdminController extends Controller
         $pdf->setPaper('A4','landscape');
         return $pdf->download('Laporan-Data-CustomerAll-CRM.pdf');
     }
-    public function lastLogin(){
-        $lastUser = Auth::user()
-                    ->select('username')
-                    ->latest();
-        //dd($lastUser);
-                
-        return view('admin/dashboard_admin', compact('lastUser'));
+    public function chart(){
+        $customer = Customer::all();
+        $cat = [];
+        $amount = [];
+
+        foreach($customer as $cust){
+            $cat = $cust->nama_area;
+            $amount = DB::table('customer')
+                    ->select(count('nama_perusahaan'),'nama_area')
+                    ->first();
+        }
+        dd($amount);
+        return view('/admin/dashboard_admin', compact('customer','cat','amount'));
     }
+    
 }

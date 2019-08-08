@@ -62,8 +62,8 @@
                                     <td>{{ $keluhan->via }}</td>
                                     <td>{{ $keluhan->status }}</td>
                                     <td>
-                                        <a href="{{route('edit.keluhan.officer',$keluhan->id_keluhan)}}" class="btn btn-info btn-sm">Ubah</a>
-                                        <a onclick="return confirm('Apakah anda yakin akan menghapus data ini ?')" href="{{route('destroy.keluhan.officer',$keluhan->id_keluhan)}}" class="btn btn-danger btn-sm">Hapus</a>
+                                        <a href="{{route('edit.keluhan.officer',$keluhan->id_keluhan)}}" class="btn btn-info btn-sm"><span class="fa fa-pencil"></span></a>
+                                        <a onclick="return confirm('Apakah anda yakin akan menghapus data ini ?')" href="{{route('destroy.keluhan.officer',$keluhan->id_keluhan)}}" class="btn btn-danger btn-sm"><span class="fa fa-trash"></span></a>
                                     </td>
                                 </tr>
                                 @endforeach 

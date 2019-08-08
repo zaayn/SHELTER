@@ -21,6 +21,10 @@
         <div class="col-md-12">
             <div class="panel block">
                 <div class="panel-body">
+                    <div style="float:right; margin-bottom:10px;">
+                        <a href="{{asset('/direktur/customer/exportExcel')}}" class="btn btn-default btn-sm" target="_blank">Download Excel</a>
+                        <a href="{{asset('/direktur/customer/exportPDF')}}" class="btn btn-default btn-sm" target="_blank">Download PDF</a>
+                    </div>
                     {{-- ----------  -------------- filter ------------------------ --}}
                     
                     {{-- ---- end filter ------ --}}  
