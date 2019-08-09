@@ -49,18 +49,50 @@ class CustomerController extends Controller
         ->where('rule', 'officer_crm')->get();
         return view('/admin/customer/insert_customer',$data);
     }
+    // public function __construct(Request $request){
+    //   $this->request = $request;
+    // }
     public function customerCode($str, $as_space = array('-'))
     {
-        $numb = 0;
-        $numb++;
+        // $numb = 0;
+        // $numb++;
         $str = str_replace($as_space, ' ', trim($str));
         $ret = '';
         foreach (explode(' ', $str) as $word) {
             $ret .= strtoupper($word[0]);
         }
-        return $ret. sprintf("%03s", $numb);
+        $numb = 0;
+        ++$numb;
+        $code = DB::table('customer')->select('kode_customer')->get();
+        //dd($code);
+        $no = DB::table('customer')
+            ->select('kode_customer')
+            ->where('kode_customer', 'like', '$ret')
+            ->count();
+            foreach($code as $cd){
+              //dd($cd->kode_customer);
+              if(Customer::find($cd->kode_customer) == null){
+                $numb = sprintf("%03s", $numb);
+              }
+              elseif(Customer::find($cd->kode_customer)){
+                $numb = sprintf("%03s", ++$no);
+              }
+            }
+        //dd($no);
+        // foreach($code as $cd){
+        //   //dd($cd->kode_customer);
+        //   if(Customer::find($cd->kode_customer) == null){
+        //     $numb = sprintf("%03s", $numb);
+        //   }
+        //   elseif(Customer::find($cd->kode_customer)){
+        //     $numb = sprintf("%03s", ++$numb);
+        //   }
+        // }
+         return $ret.$numb;
 
-
+        
+          
+        
     }
     public function store(Request $request)
     {
@@ -75,6 +107,7 @@ class CustomerController extends Controller
         ,'cp'=>['required', 'string']
       ]);
 
+      
       $customer = new customer;
       
       $customer->nama_perusahaan    = $request->nama_perusahaan;
@@ -157,12 +190,5 @@ class CustomerController extends Controller
     }
     public function exportExcel(){
 		    return Excel::download(new CustomerExport, 'Laporan-Customer-CRM.xlsx');
-    }
-    public function clientChart(){
-        $result = \DB::table('customer')
-                    ->where('stockName','=','Infosys')
-                    ->orderBy('stockYear', 'ASC')
-                    ->get();
-        return response()->json($result);
     }
 }
