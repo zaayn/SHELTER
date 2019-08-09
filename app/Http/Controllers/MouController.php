@@ -57,8 +57,8 @@ class MouController extends Controller
         ]);
 
         $datamou = new datamou;
-       // $datamou->no_mou = $request->no_mou;
-       // $datamou->id_kontrak = $request->id_kontrak;
+       $datamou->no_mou = $request->no_mou;
+       $datamou->id_kontrak = $request->id_kontrak;
         $datamou->hc = $request->hc;
         $datamou->invoice = $request->invoice;
         $datamou->mf = $request->mf;

@@ -32,7 +32,7 @@
                 {{----------- box -----------}}
                 <a href="{{asset('/manager_non_crm/manager_non_crm_customer')}}">
                     <div class="col-md-4">
-                        <div class="info-box bg-red col-md-4">
+                        <div class="info-box bg-red">
                         <span class="info-box-icon"><i class="fa fa-envelope-o"></i></span>
                             <div class="info-box-content">
                                 <span class="info-box-text">Laporan Customer</span>
@@ -43,7 +43,7 @@
                 </a>
                 <a href="{{asset('/manager_non_crm/manager_non_crm_kontrak')}}">
                     <div class="col-md-4">
-                        <div class="info-box bg-blue col-md-4">
+                        <div class="info-box bg-blue">
                         <span class="info-box-icon"><i class="fa fa-envelope-o"></i></span>
                             <div class="info-box-content">
                                 <span class="info-box-text">Laporan kontrak</span>
@@ -54,7 +54,7 @@
                 </a>
                 <a href="{{asset('/manager_non_crm/manager_non_crm_mou')}}">
                         <div class="col-md-4">
-                            <div class="info-box bg-orange col-md-4">
+                            <div class="info-box bg-orange">
                             <span class="info-box-icon"><i class="fa fa-envelope-o"></i></span>
                                 <div class="info-box-content">
                                     <span class="info-box-text">Laporan data MOU</span>
@@ -76,5 +76,4 @@
             </div>
         </div>
     </div>
-</div>
 @endsection

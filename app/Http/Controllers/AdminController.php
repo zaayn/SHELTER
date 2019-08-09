@@ -25,9 +25,6 @@ class AdminController extends Controller
                     ->select('username')
                     ->orderBy('current_login_at','desc')
                     ->skip(1)->first();
-        //dd($lastUser);
-
-       
 
         return view('/admin/dashboard_admin')->with($data)->with('lastUser',$lastUser);
     }
@@ -63,14 +60,13 @@ class AdminController extends Controller
         ->get();
 
         $data['no'] = 1;
-        //dd($data);
-        $date1 = new DateTime("$request->periode_kontrak");
-        $date2 = new DateTime("$request->akhir_periode");
 
-        $diff = $date1->diff($date2);
-        $data['different'] = (($diff->format('%y') * 12) + $diff->format('%m'));
-        // return (int) round($data['different']);
-        // var_dump($request->periode_kontrak);
+        $start  = new DateTime($request->periode_kontrak);
+        $end    = new DateTime($request->akhir_periode);
+        $lama   = $end->diff($start)->format("%m");
+
+        // return (int) round($lama);
+        // var_dump($data['different']);
         // dd($request->periode_kontrak);
         // print_r($diff_in_months);
 
