@@ -1,5 +1,9 @@
 @extends('layouts_users.app_admin')
 
+@section('css')
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+@endsection
+
 @section('content_header')
 <div class="row">
     <div class="col-md-12">
@@ -97,55 +101,23 @@
 @endsection
 
 @section('js')
-<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script>
-Highcharts.chart('clientChart', {
-    chart: {
-        plotBackgroundColor: null,
-        plotBorderWidth: null,
-        plotShadow: false,
-        type: 'pie'
-    },
-    title: {
-        text: 'Client Aktif per Area'
-    },
-    tooltip: {
-        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-    },
-    plotOptions: {
-        pie: {
-            allowPointSelect: true,
-            cursor: 'pointer',
-            dataLabels: {
-                enabled: true,
-                format: '<b>{point.name}</b>: {point.percentage:.1f} %',
-                style: {
-                    color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
-                }
-            }
-        }
-    },
-    series: [{
-        name: 'Client aktif',
-        colorByPoint: true,
-        data: [{
-            name: 'West',
-            y: 61.41,
-            sliced: true,
-            selected: true
-        }, {
-            name: 'Center',
-            y: 11.84
-        }, {
-            name: 'West',
-            y: 10.85
-        }, {
-            name: 'Bali',
-            y: 4.67
-        }]
-    }]
-});
-        
-       
+var analytics = {!!$cat!!};
+
+google.charts.load('current', {'packages':['corechart']});
+
+google.charts.setOnLoadCallback(drawChart);
+
+function drawChart()
+{
+ var data = google.visualization.arrayToDataTable(analytics);
+ var options = {
+  title : 'Client Aktif per Area'
+ };
+ var chart = new google.visualization.PieChart(document.getElementById('clientChart'));
+ chart.draw(data, options);
+}
         </script>
 @endsection
