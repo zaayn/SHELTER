@@ -149,12 +149,6 @@ class KontrakadminController extends Controller
     }
     public function reminder() //filter kontrak h-30 hari 
     {
-        // $now = Carbon\Carbon::now();
-        // $reminder = $now->diffInDays($akhir_periode);
-        // var_dump($reminder);
-        // // return $reminder;
-        // if($reminder < 30)
-        // {
             $data['customers'] = customer::all();
             $data['kontraks'] = DB::table('kontrak')
             ->join('customer', 'customer.kode_customer', '=', 'kontrak.kode_customer')
@@ -165,8 +159,5 @@ class KontrakadminController extends Controller
             ->whereRaw('akhir_periode < NOW() + INTERVAL 30 DAY') 
             ->get();
             return view('admin/kontrak/reminder', $data);
-        // }else {
-        //     return "hello";
-        // }
     }
 }
