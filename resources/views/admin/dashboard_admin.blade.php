@@ -69,32 +69,23 @@
 </div>
 <div class="row">
     <div class="col-md-9">
-        <div class="nav-tabs-custom">
-            <!-- Tabs within a box -->
-                <ul class="nav nav-tabs pull-right">
-                    <li class="active"><a href="#revenue-chart" data-toggle="tab">Area</a></li>
-                    <li><a href="#sales-chart" data-toggle="tab">Donut</a></li>
-                    <li class="pull-left header"><i class="fa fa-inbox"></i>Client Aktif per Area</li>
-                </ul>
-                <div class="tab-content no-padding">
-
-                <style>
-                <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
-                </style>
-                <!-- Morris chart - Sales -->
-                
-                    
-                        <center><div id="clientChart" style="width:750px; height:450px;"></div></center>
-                    
+        <div class="panel panel-default" id="chart">
+            <div class="panel-heading"><h3>Client Aktif per Area</h3></div>
+                <div class="panel-body">
+                    <div style="overflow-x:auto;">
+                    <style>
+                    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+                    </style>
+                    <center><div id="clientChart" style="width:750px; height:550px;"></div></center>
                 </div>
-            </div>
-    <!-- /.box -->
+            </div>          
+        </div>
     </div>
-    <div class="col-md-3">
-        <div class="panel block">
-            <div class="panel-body">
+    <div class="col-md-3" id="lastseen">
+        <div class="panel panel-default">
+            <div class="panel-heading">
                 <h6>User Terakhir Login :</h6>
-                <div class="panel">{{$lastUser->username}}</div>
+                <h5>{{$lastUser->username}}</h5>
             </div>
         </div>
     </div>

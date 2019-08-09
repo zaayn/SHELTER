@@ -26,18 +26,16 @@ class AdminController extends Controller
                     ->orderBy('current_login_at','desc')
                     ->skip(1)->first();
 
-                    $amount = DB::table('customer')
+        $amount = DB::table('customer')
                     ->select(
-                        DB::raw('nama_area as area'),
-                        DB::raw('count(*) as jumlah'))
+                    DB::raw('nama_area as area'),
+                    DB::raw('count(*) as jumlah'))
                     ->groupBy('nama_area')
                     ->get();
         $cat[] = ['area','jumlah'];
         foreach($amount as $key => $value){
             $cat[++$key] = [$value->area, $value->jumlah];
         }
-        //dd($cat);
-
         return view('/admin/dashboard_admin')->with($data)->with('lastUser',$lastUser)->with('cat',$cat);
     }
 
@@ -116,18 +114,4 @@ class AdminController extends Controller
         $pdf->setPaper('A4','landscape');
         return $pdf->download('Laporan-Data-CustomerAll-CRM.pdf');
     }
-    public function chart(){
-        
-            $amount = DB::table('customer')
-                    ->select('count(*) as jumlah','nama_area')
-                    ->groupBy('nama_area')
-                    ->get();
-        $cat[] = ['jumlah','nama_area'];
-        foreach($amount as $key => $value){
-            $cat[++$key] = [$value->jumlah, $value->nama_area];
-        }
-        dd($amount);
-        return view('/admin/dashboard_admin')->with('amount',$amount)->with(json_encode($cat));
-    }
-    
 }
