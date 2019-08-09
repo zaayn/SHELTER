@@ -38,7 +38,7 @@ class AdminController extends Controller
         }
         //dd($cat);
 
-        return view('/admin/dashboard_admin')->with($data)->with('lastUser',$lastUser)->with('cat',json_encode($cat));
+        return view('/admin/dashboard_admin')->with($data)->with('lastUser',$lastUser)->with('cat',$cat);
     }
 
     public function superadmin()

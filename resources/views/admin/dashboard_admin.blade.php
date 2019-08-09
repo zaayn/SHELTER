@@ -1,8 +1,6 @@
 @extends('layouts_users.app_admin')
 
-@section('css')
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
-@endsection
+
 
 @section('content_header')
 <div class="row">
@@ -79,11 +77,15 @@
                     <li class="pull-left header"><i class="fa fa-inbox"></i>Client Aktif per Area</li>
                 </ul>
                 <div class="tab-content no-padding">
+
+                <style>
+                <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+                </style>
                 <!-- Morris chart - Sales -->
                 
-                    <div class="panel">
-                        <div id="clientChart"></div>
-                    </div>
+                    
+                        <center><div id="clientChart" style="width:750px; height:450px;"></div></center>
+                    
                 </div>
             </div>
     <!-- /.box -->
@@ -104,7 +106,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script>
-var analytics = {!!$cat!!};
+var analytics = {!!json_encode($cat)!!};
 
 google.charts.load('current', {'packages':['corechart']});
 
@@ -114,7 +116,7 @@ function drawChart()
 {
  var data = google.visualization.arrayToDataTable(analytics);
  var options = {
-  title : 'Client Aktif per Area'
+  
  };
  var chart = new google.visualization.PieChart(document.getElementById('clientChart'));
  chart.draw(data, options);
