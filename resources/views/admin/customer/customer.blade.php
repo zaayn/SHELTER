@@ -47,6 +47,7 @@
                                     <th>Area</th>
                                     <th>Wilayah</th>
                                     <th>Area Supervisor</th>
+                                    <th>Status</th>
                                     <th>Aksi</th>
                                 </thead>
                                 <tbody>
@@ -56,7 +57,7 @@
                                         <td>{{ $customer->kode_customer }}</td>
                                         <td>{{ $customer->nama_perusahaan }}</td>
                                         <td>{{ $customer->jenis_usaha }}</td>
-                                        <td>{{ $customer->bisnis_unit->nama_bisnis_unit }}</td>
+                                        <td>{{ $customer->nama_bisnis_unit }}</td>
                                         <td>{{ $customer->alamat }}</td>
                                         <td>{{ $customer->provinsi }}</td>
                                         <td>{{ $customer->kabupaten }}</td>
@@ -65,8 +66,9 @@
                                         {{-- <td>{{ $customer->nama_area}}</td> --}}
                                         {{-- <td>{{ $customer->wilayah->nama_wilayah}}</td> --}}
                                         <td>{{ $customer->nama_area}}</td>
-                                        <td>{{ $customer->wilayah->nama_wilayah}}</td>
+                                        <td>{{ $customer->nama_wilayah}}</td>
                                         <td>{{ $customer->nama_depan}}</td>
+                                        <td>{{ $customer->status}}</td>
                                         <td>
                                             <a href="{{route('edit.customer',$customer->kode_customer)}}" class="btn btn-info btn-sm">
                                                 <span class="fa fa-pencil"></span>
