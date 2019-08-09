@@ -68,17 +68,31 @@ class AdminController extends Controller
         'overheadcost','training','tanggal_invoice','time_of_payment','cut_of_date','kaporlap','devices',
         'chemical','pendaftaran_mou')
         ->get();
-
         $data['no'] = 1;
 
         $start  = new DateTime($request->periode_kontrak);
         $end    = new DateTime($request->akhir_periode);
-        $lama   = $end->diff($start)->format("%m");
+        $data['lama']   = $end->diff($start)->format("%m");
 
-        // return (int) round($lama);
-        // var_dump($data['different']);
-        // dd($request->periode_kontrak);
-        // print_r($diff_in_months);
+        if($data['lama'] < 24)
+        {
+            $data['lama'] = "Silver";
+        }
+        if($data['lama'] >= 24 && $data['lama'] < 60)
+        {
+            $data['lama'] = "Gold";
+        }
+        if($data['lama'] >= 60)
+        {
+            $data['lama'] = "Platinum";
+        }
+        return view('admin/data_customer', $data);
+    }
+    public function cust_type()
+    {
+        $start  = new DateTime($request->periode_kontrak);
+        $end    = new DateTime($request->akhir_periode);
+        $lama   = $end->diff($start)->format("%m");
 
         if($data['different'] < 24)
         {
@@ -92,7 +106,6 @@ class AdminController extends Controller
         {
             $data['different'] = "Platinum";
         }
-
         return view('admin/data_customer', $data);
     }
     public function exportPDF(){

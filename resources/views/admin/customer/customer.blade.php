@@ -21,7 +21,31 @@
         <div class="col-md-12">
             <div class="panel block">
                 <div class="panel-body">
-                    {{-- ----------  -------------- button download ------------------------ --}}
+                    {{-- ----------  -------------- filter ------------------------ --}}
+                    <form class="form-horizontal" id="form-filter" method="POST" action="{{route('filter.customer')}}">
+                        @csrf
+                        <div class="form-group">
+                            <label class="control-label col-md-2">Status Customer</label>
+                            <div class="col-md-6">
+                                <select class="form-control" name="status">
+                                        <option value="aktif">aktif</option>
+                                        <option value="non_aktif">Non aktif</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-1 col-md-offset-2">
+                                <a href="/admin/customer">
+                                    <button type="button" class="btn btn-primary"><i class="fa fa-refresh"></i> Reset</button>
+                                </a>    
+                            </div>
+                            <div class="col-md-2">
+                                <button type="submit" class="btn btn-primary" id="btn-filter"><i class="fa fa-filter"></i> Filter</button>
+                            </div>
+                        </div>
+                    </form>
+{{-- ---- end filter ------ --}}  
+{{-- ----------  -------------- button download ------------------------ --}}
                     <div style="float:right; margin-bottom:10px;">
                         <a href="{{asset('/admin/insert_customer')}}" class="btn btn-primary btn-sm">Insert Customer</a>
                         <a href="{{asset('/admin/customer/exportExcel')}}" class="btn btn-default btn-sm" target="_blank">Download Excel</a>
@@ -47,6 +71,7 @@
                                     <th>Area</th>
                                     <th>Wilayah</th>
                                     <th>Area Supervisor</th>
+                                    <th>Status</th>
                                     <th>Aksi</th>
                                 </thead>
                                 <tbody>
@@ -56,7 +81,7 @@
                                         <td>{{ $customer->kode_customer }}</td>
                                         <td>{{ $customer->nama_perusahaan }}</td>
                                         <td>{{ $customer->jenis_usaha }}</td>
-                                        <td>{{ $customer->bisnis_unit->nama_bisnis_unit }}</td>
+                                        <td>{{ $customer->nama_bisnis_unit }}</td>
                                         <td>{{ $customer->alamat }}</td>
                                         <td>{{ $customer->provinsi }}</td>
                                         <td>{{ $customer->kabupaten }}</td>
@@ -65,8 +90,9 @@
                                         {{-- <td>{{ $customer->nama_area}}</td> --}}
                                         {{-- <td>{{ $customer->wilayah->nama_wilayah}}</td> --}}
                                         <td>{{ $customer->nama_area}}</td>
-                                        <td>{{ $customer->wilayah->nama_wilayah}}</td>
+                                        <td>{{ $customer->nama_wilayah}}</td>
                                         <td>{{ $customer->nama_depan}}</td>
+                                        <td>{{ $customer->status}}</td>
                                         <td>
                                             <a href="{{route('edit.customer',$customer->kode_customer)}}" class="btn btn-info btn-sm">
                                                 <span class="fa fa-pencil"></span>

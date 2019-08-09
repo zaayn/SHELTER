@@ -21,6 +21,7 @@ class Customer extends Model
        ,'nama_area'
        ,'wilayah_id'
        ,'nama_depan'
+       ,'status'
        
     ];
     public $incrementing = false;

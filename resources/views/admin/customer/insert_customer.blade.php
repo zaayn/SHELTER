@@ -110,6 +110,15 @@
                             </select>
                         </div>
                     </div>
+                    <div class="form-group col-md-12">
+                        <label>Status :</label>
+                        <div>
+                            <select class="form-control" name="status">
+                                <option value="aktif">Aktif</option>
+                                <option value="non_aktif">Non Aktif</option>
+                            </select>
+                        </div>
+                    </div>
                       <div class="form-group col-md-12">
                         <button type="submit" class="btn btn-primary ">Submit</button>
                         <a onclick="return confirm('Perubahan anda belum disimpan. Tetap tinggalkan halaman ini ?')" href="user" class="btn btn-secondary"> Cancel</a>

@@ -75,7 +75,7 @@
                                     <td>{{ $datamou->jenis_usaha }}</td>
                                     <td>{{ $datamou->periode_kontrak }}</td>
                                     <td>{{ $datamou->akhir_periode }}</td>
-                                    <td>{{ $different }}</td>
+                                    <td>{{ $lama }}</td>
                                     <td>{{ $datamou->id_kontrak }}</td>
                                     <td>{{ $datamou->hc }}</td>
                                     <td>{{ $datamou->invoice }}</td>

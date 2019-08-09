@@ -112,6 +112,15 @@
                             </div>
                         </div>
                         <div class="form-group col-md-12">
+                            <label>Status :</label>
+                            <div>
+                                <select class="form-control" name="status">
+                                    <option value="aktif">Aktif</option>
+                                    <option value="non_aktif">Non Aktif</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-12">
                             <button type="submit" class="btn btn-lg btn-info btn-block ">
                                 Save
                             </button>

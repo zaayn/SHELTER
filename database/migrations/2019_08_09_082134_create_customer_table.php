@@ -27,6 +27,7 @@ class CreateCustomerTable extends Migration
             $table->string('nama_area');
             $table->integer('wilayah_id')->unsigned();
             $table->string('nama_depan');
+            $table->string('status');
             $table->timestamps();
         });
         Schema::table('customer', function($table)
