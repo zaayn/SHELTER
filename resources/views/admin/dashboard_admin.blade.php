@@ -1,5 +1,7 @@
 @extends('layouts_users.app_admin')
 
+
+
 @section('content_header')
 <div class="row">
     <div class="col-md-12">
@@ -67,28 +69,23 @@
 </div>
 <div class="row">
     <div class="col-md-9">
-        <div class="nav-tabs-custom">
-            <!-- Tabs within a box -->
-                <ul class="nav nav-tabs pull-right">
-                    <li class="active"><a href="#revenue-chart" data-toggle="tab">Area</a></li>
-                    <li><a href="#sales-chart" data-toggle="tab">Donut</a></li>
-                    <li class="pull-left header"><i class="fa fa-inbox"></i>Client Aktif per Area</li>
-                </ul>
-                <div class="tab-content no-padding">
-                <!-- Morris chart - Sales -->
-                
-                    <div class="panel">
-                        <div id="clientChart"></div>
-                    </div>
+        <div class="panel panel-default" id="chart">
+            <div class="panel-heading"><h3>Client Aktif per Area</h3></div>
+                <div class="panel-body">
+                    <div style="overflow-x:auto;">
+                    <style>
+                    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+                    </style>
+                    <center><div id="clientChart" style="width:750px; height:550px;"></div></center>
                 </div>
-            </div>
-    <!-- /.box -->
+            </div>          
+        </div>
     </div>
-    <div class="col-md-3">
-        <div class="panel block">
-            <div class="panel-body">
+    <div class="col-md-3" id="lastseen">
+        <div class="panel panel-default">
+            <div class="panel-heading">
                 <h6>User Terakhir Login :</h6>
-                <div class="panel">{{$lastUser->username}}</div>
+                <h5>{{$lastUser->username}}</h5>
             </div>
         </div>
     </div>
@@ -97,55 +94,23 @@
 @endsection
 
 @section('js')
-<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script>
-Highcharts.chart('clientChart', {
-    chart: {
-        plotBackgroundColor: null,
-        plotBorderWidth: null,
-        plotShadow: false,
-        type: 'pie'
-    },
-    title: {
-        text: 'Client Aktif per Area'
-    },
-    tooltip: {
-        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-    },
-    plotOptions: {
-        pie: {
-            allowPointSelect: true,
-            cursor: 'pointer',
-            dataLabels: {
-                enabled: true,
-                format: '<b>{point.name}</b>: {point.percentage:.1f} %',
-                style: {
-                    color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
-                }
-            }
-        }
-    },
-    series: [{
-        name: 'Client aktif',
-        colorByPoint: true,
-        data: [{
-            name: 'West',
-            y: 61.41,
-            sliced: true,
-            selected: true
-        }, {
-            name: 'Center',
-            y: 11.84
-        }, {
-            name: 'West',
-            y: 10.85
-        }, {
-            name: 'Bali',
-            y: 4.67
-        }]
-    }]
-});
-        
-       
+var analytics = {!!json_encode($cat)!!};
+
+google.charts.load('current', {'packages':['corechart']});
+
+google.charts.setOnLoadCallback(drawChart);
+
+function drawChart()
+{
+ var data = google.visualization.arrayToDataTable(analytics);
+ var options = {
+  
+ };
+ var chart = new google.visualization.PieChart(document.getElementById('clientChart'));
+ chart.draw(data, options);
+}
         </script>
 @endsection

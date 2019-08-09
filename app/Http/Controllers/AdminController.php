@@ -26,7 +26,17 @@ class AdminController extends Controller
                     ->orderBy('current_login_at','desc')
                     ->skip(1)->first();
 
-        return view('/admin/dashboard_admin')->with($data)->with('lastUser',$lastUser);
+        $amount = DB::table('customer')
+                    ->select(
+                    DB::raw('nama_area as area'),
+                    DB::raw('count(*) as jumlah'))
+                    ->groupBy('nama_area')
+                    ->get();
+        $cat[] = ['area','jumlah'];
+        foreach($amount as $key => $value){
+            $cat[++$key] = [$value->area, $value->jumlah];
+        }
+        return view('/admin/dashboard_admin')->with($data)->with('lastUser',$lastUser)->with('cat',$cat);
     }
 
     public function superadmin()
@@ -104,19 +114,4 @@ class AdminController extends Controller
         $pdf->setPaper('A4','landscape');
         return $pdf->download('Laporan-Data-CustomerAll-CRM.pdf');
     }
-    public function chart(){
-        $customer = Customer::all();
-        $cat = [];
-        $amount = [];
-
-        foreach($customer as $cust){
-            $cat = $cust->nama_area;
-            $amount = DB::table('customer')
-                    ->select(count('nama_perusahaan'),'nama_area')
-                    ->first();
-        }
-        dd($amount);
-        return view('/admin/dashboard_admin', compact('customer','cat','amount'));
-    }
-    
 }

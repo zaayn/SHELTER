@@ -23,7 +23,18 @@ class OfficerController extends Controller
                     ->orderBy('current_login_at','desc')
                     ->skip(1)->first();
 
-        return view('/officer/dashboard_officer')->with($data)->with('lastUser',$lastUser);
+        $amount = DB::table('customer')
+                    ->select(
+                    DB::raw('nama_area as area'),
+                    DB::raw('count(*) as jumlah'))
+                    ->groupBy('nama_area')
+                    ->get();
+        $cat[] = ['area','jumlah'];
+        foreach($amount as $key => $value){
+            $cat[++$key] = [$value->area, $value->jumlah];
+        }
+
+        return view('/officer/dashboard_officer')->with($data)->with('lastUser',$lastUser)->with('cat',$cat);
     }
     public function mou(){
         $data['datamous'] = datamou::all();

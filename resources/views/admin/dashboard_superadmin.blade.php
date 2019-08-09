@@ -83,34 +83,13 @@
     <!-- /.box -->
     </div>
     <div class="col-md-3">
-        <div class="panel block">
-            <div class="panel-body">
+        <div class="panel panel-default">
+            <div class="panel-heading">
                 <h6>User Terakhir Login :</h6>
-                    <div class="panel">{{$lastUser->username}}</div>
+                    <h5>{{$lastUser->username}}</h5>
             </div>
         </div>
     </div>
 </div>
-<div class="row">
-    <div class="col-md-12">
-        <div class="panel block">
-            <div class="panel-body">
-                <h2>Customer</h2>
-                {{----------- box -----------}}
-                
-                
-                {{----------- end box -----------}}
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-3">
-        <div class="panel block">
-            <div class="panel-body">
-                <h6>User Terakhir Login :</h6>
-                <div class="panel">{{$lastUser->username}}</div>
-            </div>
-        </div>
-    </div>
-</div>
+
 @endsection
