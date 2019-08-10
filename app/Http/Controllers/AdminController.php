@@ -70,8 +70,11 @@ class AdminController extends Controller
         ->get();
         $data['no'] = 1;
 
+        
         $start  = new DateTime($request->periode_kontrak);
         $end    = new DateTime($request->akhir_periode);
+
+
         $data['lama']   = $end->diff($start)->format("%m");
 
         if($data['lama'] < 24)
