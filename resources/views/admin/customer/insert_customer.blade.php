@@ -65,7 +65,7 @@
                       <div><input type="text" class="form-control"  name="provinsi" required></div>
                     </div>
                     <div class="form-group col-md-12">
-                      <label>Kabupaten :</label>
+                      <label>Kabupaten/Kota :</label>
                       <div><input type="text" class="form-control"  name="kabupaten" required></div>
                     </div>
                     <div class="form-group col-md-12">

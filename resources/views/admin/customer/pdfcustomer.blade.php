@@ -25,7 +25,7 @@
             <th>Bisnis Unit</th>
             <th>Alamat</th>
             <th>Provinsi</th>
-            <th>Kabupaten</th>
+            <th>Kabupaten/Kota</th>
             <th>telpon</th>
             <th>cp</th>
             <th>Area</th>

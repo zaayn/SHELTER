@@ -66,7 +66,7 @@
                 	        <input type="text" class="form-control" name="provinsi" value="{{ $customer->provinsi }}" required>
                         </div>
                         <div class="form-group col-md-12">
-                	        <label class="font-weight-bold">Kabupaten</label>
+                	        <label class="font-weight-bold">Kabupaten/Kota</label>
                 	        <input type="text" class="form-control" name="kabupaten" value="{{ $customer->kabupaten }}" required>
                         </div>
                         <div class="form-group col-md-12">
