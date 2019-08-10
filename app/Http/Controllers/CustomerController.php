@@ -63,12 +63,16 @@ class CustomerController extends Controller
         }
         $numb = 0;
         ++$numb;
+        //dd($ret);
         $code = DB::table('customer')->select('kode_customer')->get();
         //dd($code);
         $no = DB::table('customer')
-            ->select('kode_customer')
-            ->where('kode_customer', 'like', '$ret')
-            ->count();
+            ->select(
+              DB::raw('count(kode_customer)'))
+              ->where('kode_customer','like','$ret%')
+              ->get();
+
+        //dd($no);
             foreach($code as $cd){
               //dd($cd->kode_customer);
               if(Customer::find($cd->kode_customer) == null){
@@ -78,21 +82,8 @@ class CustomerController extends Controller
                 $numb = sprintf("%03s", ++$no);
               }
             }
-        //dd($no);
-        // foreach($code as $cd){
-        //   //dd($cd->kode_customer);
-        //   if(Customer::find($cd->kode_customer) == null){
-        //     $numb = sprintf("%03s", $numb);
-        //   }
-        //   elseif(Customer::find($cd->kode_customer)){
-        //     $numb = sprintf("%03s", ++$numb);
-        //   }
-        // }
-         return $ret.$numb;
 
-        
-          
-        
+         return $ret.$numb;    
     }
     public function store(Request $request)
     {

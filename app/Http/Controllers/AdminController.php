@@ -30,6 +30,7 @@ class AdminController extends Controller
                     ->select(
                     DB::raw('nama_area as area'),
                     DB::raw('count(*) as jumlah'))
+                    ->where('status', 'aktif')
                     ->groupBy('nama_area')
                     ->get();
         $cat[] = ['area','jumlah'];

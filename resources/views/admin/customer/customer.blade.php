@@ -65,7 +65,7 @@
                                     <th>Bisnis Unit</th>
                                     <th>Alamat</th>
                                     <th>Provinsi</th>
-                                    <th>Kabupaten</th>
+                                    <th>Kabupaten/Kota</th>
                                     <th>Telpon</th>
                                     <th>CP</th>
                                     <th>Area</th>
