@@ -191,4 +191,19 @@ class CustomerController extends Controller
     public function exportExcel(){
 		    return Excel::download(new CustomerExport, 'Laporan-Customer-CRM.xlsx');
     }
+    public function aktivasi($id)
+    {
+      $customer = customer::findOrFail($id);
+      // dd($customer->status);
+      if($customer->status == "aktif")
+      {
+        $customer->status = 'non_aktif';
+      }
+      elseif($customer->status == "non_aktif")
+      {
+        $customer->status = 'aktif';
+      }
+      if ($customer->save())
+          return redirect()->route('index.customer')->with(['success'=>'reset aktifasi sukses']);
+    }
 }

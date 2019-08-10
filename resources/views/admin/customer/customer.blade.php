@@ -100,6 +100,9 @@
                                             <a onclick="return confirm('Apakah anda yakin akan menghapus data ini ?')" href="{{route('delete.customer',$customer->kode_customer)}}" class="btn btn-danger btn-sm">
                                                 <span class="fa fa-trash"></span>
                                             </a>
+                                            <a onclick="return confirm('Apakah anda yakin ingin mengaktifkan/menonaktifkan customer ini ?')" href="{{route('reset.customer',$customer->kode_customer)}}" class="btn btn-warning btn-sm">
+                                                <span class="fa fa-eye"></span>
+                                            </a>
                                         </td>
                                     </tr>
                                     @endforeach

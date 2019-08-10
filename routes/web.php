@@ -121,6 +121,7 @@ Route::group(['prefix' => 'admin',  'middleware' => 'is_admin'], function(){
     Route::get('/datacustomer/exportPDF', 'AdminController@exportPDF');
     Route::get('/customer/exportExcel', 'CustomerController@exportExcel');
     Route::post('/filter/customer', 'CustomerController@filter')->name('filter.customer');
+    Route::get('/reset/customer{id}', 'CustomerController@aktivasi')->name('reset.customer');
 
 
     //------- laporan call
