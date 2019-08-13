@@ -80,7 +80,7 @@ class CustomerController extends Controller
                   //$numb = sprintf("%03s", ++$noo);
                   return $ret. sprintf("%03s", ++$noo);
                 }
-                dd($numb);
+                //dd($numb);
                 
               }
              
