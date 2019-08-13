@@ -71,8 +71,7 @@ class CustomerController extends Controller
 
               foreach($code as $cd){
                 //dd($cd->kode_customer);
-                if(Customer::find($cd->kode_customer) == null){
-                  //$numb = sprintf("%03s", $numb);
+                if($cd->isEmpty() || Customer::find($cd->kode_customer) == null){
                   
                   return $ret. sprintf("%03s", $numb);
                 }
@@ -196,5 +195,42 @@ class CustomerController extends Controller
       }
       if ($customer->save())
           return redirect()->route('index.customer')->with(['success'=>'reset aktifasi sukses']);
+    }
+    public function cust_type()
+    {
+      $data['no'] = 1;
+      $data['customers'] = DB::table('customer')
+      ->join('kontrak', 'customer.kode_customer', '=', 'kontrak.kode_customer')
+      ->select('customer.nama_perusahaan','kontrak.periode_kontrak','kontrak.akhir_periode')
+      ->distinct()->get();
+      $data['kontraks'] = DB::table('kontrak')->select('periode_kontrak','akhir_periode')->get();
+
+      foreach ($data['customers'] as $customer) 
+      {
+        foreach ($data['kontraks'] as $kontrak) {
+          $to = \Carbon\Carbon::createFromFormat('Y-m-d',$customer->periode_kontrak);
+          $from = \Carbon\Carbon::createFromFormat('Y-m-d',$customer->akhir_periode);
+          $diff_in_days = $to->diffInMonths($from);
+          $data['lama'] =+ $diff_in_days;
+        }
+        
+        dd($data['lama']);
+        if($data['lama'] < 24)
+        {
+            $data['lama'] = "Silver";
+            return view('/admin/cust_type',$data);
+        }
+        if($data['lama'] >= 24 && $data['lama'] < 60)
+        {
+           $data['lama'] = "Gold";
+           return view('/admin/cust_type',$data);
+        }
+        if($data['lama'] >= 60)
+        {
+            $data['lama'] = "Platinum";
+            return view('/admin/cust_type',$data);
+        }
+      }
+      
     }
 }
