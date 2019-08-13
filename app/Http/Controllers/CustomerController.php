@@ -55,61 +55,35 @@ class CustomerController extends Controller
     // }
     public function customerCode($str, $as_space = array('-'))
     {
-        // $numb = 0;
-        // $numb++;
+
         $str = str_replace($as_space, ' ', trim($str));
         $ret = '';
         foreach (explode(' ', $str) as $word) {
             $ret .= strtoupper($word[0]);
         }
         $numb = 0;
-           //dd($ret);
-          // $no = DB::table('customer')
-          // ->join('wilayah', 'customer.wilayah_id', '=', 'wilayah.wilayah_id')
-          // ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
-          // ->select('customer.kode_customer','customer.nama_perusahaan','customer.jenis_usaha','nama_bisnis_unit','customer.alamat','customer.provinsi','customer.kabupaten','customer.telpon','customer.cp','customer.nama_area','wilayah.nama_wilayah','customer.nama_depan','status')
-          // ->where('customer.kode_customer', '=', $ret)
-          // ->count(); 
-          // // dd($no);
-
           $code = DB::table('customer')->select('kode_customer')->get();
-          //dd($code);
-          //Discussion::where('kode_customer', 'REGEXP', "[0-9]','', REPLACE('$ret");
-          // $no = DB::table('customer')
-          //       ->select(DB::raw('COUNT(kode_customer)
-          //       WHERE REGEXP_REPLACE(kode_customer, '[0-9]','') = $ret '));
-              
-                // $query = "select (count(kode_customer))
-                //             from customer
-                //             where REGEXP_REPLACE(kode_customer, '[0-9]','') = ".$ret;
 
-                // $no = DB::select(DB::raw($query));
-                // //dd($no);
+                $no = DB::select('call store_p_cust(?)',[$ret]);
+                $noo = $no[0]->jml;
+  
    
 
               foreach($code as $cd){
-                dd($cd->kode_customer);
+                //dd($cd->kode_customer);
                 if(Customer::find($cd->kode_customer) == null){
-                  $numb = sprintf("%03s", $numb);
-                  //return $ret. sprintf("%03s", $numb);
+                  //$numb = sprintf("%03s", $numb);
+                  
+                  return $ret. sprintf("%03s", $numb);
                 }
                 elseif(Customer::find($cd->kode_customer)){
-                  $numb = sprintf("%03s", ++$no);
-                  //return $ret. sprintf("%03s", ++$no);
+                  //$numb = sprintf("%03s", ++$noo);
+                  return $ret. sprintf("%03s", ++$noo);
                 }
-                return $ret.$numb;
+                dd($numb);
+                
               }
-              
-        
-          // $total = 1;
-          // if($no >= 1)
-          // {
-          //   //++$total;
-          //   return $ret.sprintf("%03s", ++$total); 
-          // }
-          // else {
-          //   return $ret.sprintf("%03s", $numb);  
-          // } 
+             
     }
     public function store(Request $request)
     {
