@@ -75,13 +75,20 @@ class CustomerController extends Controller
           $code = DB::table('customer')->select('kode_customer')->get();
           //dd($code);
           //Discussion::where('kode_customer', 'REGEXP', "[0-9]','', REPLACE('$ret");
-          $no = DB::table('customer')
-              ->select(DB::raw('count(kode_customer)'))
-              ->where('kode_customer', 'REGEXP', "[0-9]','', REPLACE('$ret')");
-          dd($no);
+          // $no = DB::table('customer')
+          //       ->select(DB::raw('COUNT(kode_customer)
+          //       WHERE REGEXP_REPLACE(kode_customer, '[0-9]','') = $ret '));
+              
+                $query = "select (count(kode_customer))
+                            from customer
+                            where REGEXP_REPLACE(kode_customer, '[0-9]','') = ".$ret;
+
+                $no = DB::select(DB::raw($query));
+                //dd($no);
+   
 
               foreach($code as $cd){
-                //dd($cd->kode_customer);
+                dd($cd->kode_customer);
                 if(Customer::find($cd->kode_customer) == null){
                   $numb = sprintf("%03s", $numb);
                   //return $ret. sprintf("%03s", $numb);
