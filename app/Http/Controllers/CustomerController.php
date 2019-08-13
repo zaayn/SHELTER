@@ -62,28 +62,23 @@ class CustomerController extends Controller
             $ret .= strtoupper($word[0]);
         }
         $numb = 0;
-        ++$numb;
-        //dd($ret);
-        $code = DB::table('customer')->select('kode_customer')->get();
-        //dd($code);
+        // dd($ret);
         $no = DB::table('customer')
-            ->select(
-              DB::raw('count(kode_customer)'))
-              ->where('kode_customer','like','$ret%')
-              ->get();
-
-        //dd($no);
-            foreach($code as $cd){
-              //dd($cd->kode_customer);
-              if(Customer::find($cd->kode_customer) == null){
-                $numb = sprintf("%03s", $numb);
-              }
-              elseif(Customer::find($cd->kode_customer)){
-                $numb = sprintf("%03s", ++$no);
-              }
-            }
-
-         return $ret.$numb;    
+        ->join('wilayah', 'customer.wilayah_id', '=', 'wilayah.wilayah_id')
+        ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
+        ->select('customer.kode_customer','customer.nama_perusahaan','customer.jenis_usaha','nama_bisnis_unit','customer.alamat','customer.provinsi','customer.kabupaten','customer.telpon','customer.cp','customer.nama_area','wilayah.nama_wilayah','customer.nama_depan','status')
+        ->where('customer.kode_customer', '=', $ret)
+        ->count(); 
+        // dd($no);
+        
+          if($no >= 1)
+          {
+            $total++;
+            return $ret.sprintf("%03s", $total); 
+          }
+          else {
+            return $ret.sprintf("%03s", $numb);  
+          } 
     }
     public function store(Request $request)
     {
