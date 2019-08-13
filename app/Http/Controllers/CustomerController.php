@@ -79,12 +79,12 @@ class CustomerController extends Controller
           //       ->select(DB::raw('COUNT(kode_customer)
           //       WHERE REGEXP_REPLACE(kode_customer, '[0-9]','') = $ret '));
               
-                $query = "select (count(kode_customer))
-                            from customer
-                            where REGEXP_REPLACE(kode_customer, '[0-9]','') = ".$ret;
+                // $query = "select (count(kode_customer))
+                //             from customer
+                //             where REGEXP_REPLACE(kode_customer, '[0-9]','') = ".$ret;
 
-                $no = DB::select(DB::raw($query));
-                //dd($no);
+                // $no = DB::select(DB::raw($query));
+                // //dd($no);
    
 
               foreach($code as $cd){
