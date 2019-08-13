@@ -70,13 +70,34 @@ class AdminController extends Controller
         'chemical','pendaftaran_mou')
         ->get();
         $data['no'] = 1;
+        // dd($data['datamous']);
+        foreach ($data['datamous'] as $datas) {
+            $to = \Carbon\Carbon::createFromFormat('Y-m-d',$datas->periode_kontrak);
+            $from = \Carbon\Carbon::createFromFormat('Y-m-d',$datas->akhir_periode);
+            $diff_in_days = $to->diffInDays($from);
+            $data['lama'] = $diff_in_days;
 
+            if($data['lama'] < 720)
+            {
+            $data['lama'] = "Silver";
+            }
+            if($data['lama'] >= 720 && $data['lama'] < 1800)
+            {
+               $data['lama'] = "Gold";
+            }
+            if($data['lama'] >= 1800)
+            {
+                $data['lama'] = "Platinum";
+            }
+        }
+        // $fdate = $request->periode_kontrak;
+        // $tdate = $request->akhir_periode;
+        // $datetime1 = new DateTime($fdate);
+        // $datetime2 = new DateTime($tdate);
+        // $interval = $datetime1->diff($datetime2);
+        // $days = $interval->format('%a');
+        // dd($days);
         
-        $start  = new DateTime($request->periode_kontrak);
-        $end    = new DateTime($request->akhir_periode);
-
-
-        $data['lama']   = $end->diff($start)->format("%m");
 
         if($data['lama'] < 24)
         {
