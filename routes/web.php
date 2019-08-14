@@ -122,7 +122,7 @@ Route::group(['prefix' => 'admin',  'middleware' => 'is_admin'], function(){
     Route::get('/customer/exportExcel', 'CustomerController@exportExcel');
     Route::post('/filter/customer', 'CustomerController@filter')->name('filter.customer');
     Route::get('/reset/customer{id}', 'CustomerController@aktivasi')->name('reset.customer');
-
+    Route::get('/cust_type', 'CustomerController@cust_type')->name('cust.type');
 
     //------- laporan call
     Route::get('/insertcall', 'CalladminController@insert')->name('insert.call'); //show form insert

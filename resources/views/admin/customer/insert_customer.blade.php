@@ -121,7 +121,7 @@
                     </div>
                       <div class="form-group col-md-12">
                         <button type="submit" class="btn btn-primary ">Submit</button>
-                        <a onclick="return confirm('Perubahan anda belum disimpan. Tetap tinggalkan halaman ini ?')" href="user" class="btn btn-secondary"> Cancel</a>
+                        <a onclick="return confirm('Perubahan anda belum disimpan. Tetap tinggalkan halaman ini ?')" href="{{asset('/admin/customer')}}" class="btn btn-secondary"> Cancel</a>
                       </div>
                   </div>
                 </form>

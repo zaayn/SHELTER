@@ -89,6 +89,7 @@ class AdminController extends Controller
             {
                 $data['lama'] = "Platinum";
             }
+            
         }
         // $fdate = $request->periode_kontrak;
         // $tdate = $request->akhir_periode;
@@ -98,41 +99,9 @@ class AdminController extends Controller
         // $days = $interval->format('%a');
         // dd($days);
         
-
-        if($data['lama'] < 24)
-        {
-            $data['lama'] = "Silver";
-        }
-        if($data['lama'] >= 24 && $data['lama'] < 60)
-        {
-            $data['lama'] = "Gold";
-        }
-        if($data['lama'] >= 60)
-        {
-            $data['lama'] = "Platinum";
-        }
         return view('admin/data_customer', $data);
     }
-    public function cust_type()
-    {
-        $start  = new DateTime($request->periode_kontrak);
-        $end    = new DateTime($request->akhir_periode);
-        $lama   = $end->diff($start)->format("%m");
-
-        if($data['different'] < 24)
-        {
-            $data['different'] = "Silver";
-        }
-        if($data['different'] >= 24 && $data['different'] < 60)
-        {
-            $data['different'] = "Gold";
-        }
-        if($data['different'] >= 60)
-        {
-            $data['different'] = "Platinum";
-        }
-        return view('admin/data_customer', $data);
-    }
+    
     public function exportPDF(){
         $data['datamous'] = DB::table('datamou')
         ->join('kontrak','datamou.id_kontrak','=','kontrak.id_kontrak')
