@@ -68,17 +68,21 @@ class CustomerController extends Controller
                 $noo = $no[0]->jml;
   
    
-
+              //dd($code);
               foreach($code as $cd){
-                //dd($cd->kode_customer);
-                if($cd->isEmpty() || Customer::find($cd->kode_customer) == null){
-                  
-                  return $ret. sprintf("%03s", $numb);
-                }
-                elseif(Customer::find($cd->kode_customer)){
-                  //$numb = sprintf("%03s", ++$noo);
-                  return $ret. sprintf("%03s", ++$noo);
-                }
+                //dd($cd);
+               
+                  if($code->isEmpty() || Customer::find($cd->kode_customer) == null){
+                    //$numb = sprintf("%03s", $numb);
+                    
+                    return $ret. sprintf("%03s", $numb);
+                  }
+                  elseif(Customer::find($cd->kode_customer)){
+                    //$numb = sprintf("%03s", ++$noo);
+                    return $ret. sprintf("%03s", ++$noo);
+                  }
+                
+                else return $ret. "001";
                 //dd($numb);
                 
               }
