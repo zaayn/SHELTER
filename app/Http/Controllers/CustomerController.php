@@ -204,10 +204,20 @@ class CustomerController extends Controller
     {
       $data['no'] = 1;
       $data['customers'] = DB::table('customer')
-      ->join('kontrak', 'customer.kode_customer', '=', 'kontrak.kode_customer')
       ->select('customer.nama_perusahaan','kontrak.periode_kontrak','kontrak.akhir_periode')
-      ->distinct()->get();
-            // dd($data['customers']);
+      ->join('kontrak', 'customer.kode_customer', '=', 'kontrak.kode_customer')
+      ->distinct()
+      ->get();
+             //dd($data['customers']);
+
+             $customer = DB::table('customer')->select('kode_customer')->get();
+      
+             foreach($customer as $cust){
+               //dd($cust);
+               $periode_awal = DB::select('call store_p_awal(?)',[$cust->kode_customer]);
+               $periode_akhir = DB::select('call store_p_akhir(?)',[$cust->kode_customer]);
+               //dd($periode_awal[0]->prd);
+             }
 
       foreach ($data['customers'] as $customer)
       {
@@ -215,8 +225,10 @@ class CustomerController extends Controller
           $from = \Carbon\Carbon::createFromFormat('Y-m-d',$customer->akhir_periode);
           $diff_in_days = $to->diffInMonths($from);
           $data['lama'] =+ $diff_in_days;
+
+          //$awal = DB::select('')
         
-        // dd($data['lama']);
+         //dd($data['lama']);
         if($data['lama'] < 24)
         {
             $data['lama'] = "Silver";
