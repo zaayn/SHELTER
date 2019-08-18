@@ -40,6 +40,7 @@ class KontrakadminController extends Controller
         $data['kontraks'] = DB::table('kontrak')
         ->join('customer', 'customer.kode_customer', '=', 'kontrak.kode_customer')
         ->select('kontrak.id_kontrak','customer.kode_customer','customer.nama_perusahaan','kontrak.periode_kontrak','kontrak.akhir_periode','kontrak.srt_pemberitahuan','kontrak.tgl_srt_pemberitahuan','kontrak.srt_penawaran','kontrak.tgl_srt_penawaran','kontrak.dealing','kontrak.tgl_dealing','kontrak.posisi_pks','kontrak.closing')
+        
         ->get();
         return view('admin/kontrak/kontrak', $data);
 
@@ -47,7 +48,9 @@ class KontrakadminController extends Controller
 
     public function insert()
     {
-        $data['customers'] = customer::all();
+        $data['customers'] = DB::table('customer')
+                            ->where('status','aktif')
+                            ->get();
         return view('admin/kontrak/insertkontrak',$data);
     }
 
