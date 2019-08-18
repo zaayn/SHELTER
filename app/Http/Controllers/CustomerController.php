@@ -201,27 +201,39 @@ class CustomerController extends Controller
     {
       $data['no'] = 1;
       $data['customers'] = DB::table('customer')
-      ->select('customer.nama_perusahaan','kontrak.periode_kontrak','kontrak.akhir_periode')
+      ->select('customer.nama_perusahaan','kontrak.periode_kontrak','kontrak.akhir_periode','customer.kode_customer')
       ->join('kontrak', 'customer.kode_customer', '=', 'kontrak.kode_customer')
       ->distinct()
       ->get();
              //dd($data['customers']);
+             
 
-             $customer = DB::table('customer')->select('kode_customer')->get();
+            //  $customer = DB::table('customer')
+            //  ->select('customer.kode_customer')
+            //  ->join('kontrak', 'customer.kode_customer', '=', 'kontrak.kode_customer')
+            //  ->get();
+            //  //dd($customer);
       
-             foreach($customer as $cust){
-               //dd($cust);
-               $periode_awal = DB::select('call store_p_awal(?)',[$cust->kode_customer]);
-               $periode_akhir = DB::select('call store_p_akhir(?)',[$cust->kode_customer]);
-               //dd($periode_awal[0]->prd);
-             }
+            //  foreach($customer as $cust){
+            //    //dd($cust);
+            //    $periode_awal = DB::select('call store_p_awal(?)',[$cust->kode_customer]);
+            //    $periode_akhir = DB::select('call store_p_akhir(?)',[$cust->kode_customer]);
+            //    //dd($periode_akhir[0]->per);
+            //  }
 
       foreach ($data['customers'] as $customer)
       {
-          $to = \Carbon\Carbon::createFromFormat('Y-m-d',$customer->periode_kontrak);
-          $from = \Carbon\Carbon::createFromFormat('Y-m-d',$customer->akhir_periode);
+          $periode_awal = DB::select('call store_p_awal(?)',[$customer->kode_customer]);
+          $periode_akhir = DB::select('call store_p_akhir(?)',[$customer->kode_customer]);
+          //dd($periode_akhir[0]->per);
+
+          $to = \Carbon\Carbon::createFromFormat('Y-m-d',$periode_awal[0]->prd);
+          $from = \Carbon\Carbon::createFromFormat('Y-m-d',$periode_akhir[0]->per);
+          //dd($to);
           $diff_in_days = $to->diffInMonths($from);
+          //dd($diff_in_days);
           $data['lama'] =+ $diff_in_days;
+      
 
           //$awal = DB::select('')
         
