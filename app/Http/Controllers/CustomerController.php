@@ -63,30 +63,24 @@ class CustomerController extends Controller
         }
         $numb = 0;
           $code = DB::table('customer')->select('kode_customer')->get();
+          if($code->isEmpty())
+          {
+            return $ret. sprintf("%03s", $numb);
+          }
 
-                $no = DB::select('call store_p_cust(?)',[$ret]);
-                $noo = $no[0]->jml;
-  
-   
-              //dd($code);
+            $no = DB::select('call store_p_cust(?)',[$ret]);
+            $noo = $no[0]->jml;
+
               foreach($code as $cd){
-                //dd($cd);
-               
-                  if($code->isEmpty() || Customer::find($cd->kode_customer) == null){
-                    //$numb = sprintf("%03s", $numb);
-                    
+                  if(Customer::find($cd->kode_customer) == null)
+                  {
                     return $ret. sprintf("%03s", $numb);
                   }
-                  elseif(Customer::find($cd->kode_customer)){
-                    //$numb = sprintf("%03s", ++$noo);
+                  if(Customer::find($cd->kode_customer)){
                     return $ret. sprintf("%03s", ++$noo);
                   }
-                
-                else return $ret. "001";
-                //dd($numb);
-                
+                  else return $ret. "001";                
               }
-             
     }
     public function store(Request $request)
     {
