@@ -61,7 +61,7 @@ class CustomerController extends Controller
         foreach (explode(' ', $str) as $word) {
             $ret .= strtoupper($word[0]);
         }
-        $numb = 0;
+        $numb = 1;
           $code = DB::table('customer')->select('kode_customer')->get();
           if($code->isEmpty())
           {
@@ -79,11 +79,14 @@ class CustomerController extends Controller
                   if(Customer::find($cd->kode_customer)){
                     return $ret. sprintf("%03s", ++$noo);
                   }
-                  else return $ret. "001";                
+                  //else return $ret. "001";                
               }
     }
     public function store(Request $request)
     {
+      $code = DB::table('customer')->select('kode_customer')->get();
+      //dd($code);
+      
       $this->validate($request,[
         'nama_perusahaan'  =>['required', 'string']
         ,'jenis_usaha'      =>['required', 'string']
