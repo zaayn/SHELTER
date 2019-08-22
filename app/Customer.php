@@ -22,9 +22,11 @@ class Customer extends Model
        ,'wilayah_id'
        ,'nama_depan'
        ,'status'
+       ,'month_kontrak'
        
     ];
     public $incrementing = false;
+    protected $appends = ['customer_type'];
 
     public function wilayah()
     {
@@ -43,5 +45,22 @@ class Customer extends Model
 
         return $this->hasMany(kontrak::class);
 
+    }
+    
+    public function getCustomerTypeAttribute()
+    {
+        if($this->month_kontrak < 24)
+        {
+            return "Silver";
+        }
+
+        elseif($this->month_kontrak >= 24 && $this->month_kontrak < 60)
+        {
+          return "Gold";
+        }
+        elseif($this->month_kontrak >= 60)
+        {
+          return "Platinum";
+        }
     }
 }
