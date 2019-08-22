@@ -85,7 +85,14 @@ class KontrakadminController extends Controller
         $kontrak->posisi_pks = $request->posisi_pks;
         $kontrak->closing = $request->closing;
 
-        if ($kontrak->save()){
+        $customer = customer::findOrFail($request->kode_customer);
+        $to = \Carbon\Carbon::createFromFormat('Y-m-d',$kontrak->periode_kontrak);
+        $from = \Carbon\Carbon::createFromFormat('Y-m-d',$kontrak->akhir_periode);
+        $diff_in_month = $to->diffInMonths($from);
+        $customer->month_kontrak += $diff_in_month;
+        
+
+        if ($kontrak->save() && $customer->save()){
             return redirect('/admin/insertkontrak')->with('success', 'item berhasil ditambahkan');
         }
         else{

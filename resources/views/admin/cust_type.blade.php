@@ -21,13 +21,13 @@
         <div class="col-md-12">
             <div class="panel block">
                 <div class="panel-body">
-                </div>
+                
                         <hr style="border: solid #ddd; border-width: 1px 0 0; clear: both; margin: 22px 0 21px; height: 0;">
-                            <div style="overflow-x:auto;">
                             <table id="mydatatables" class="table table-responsive table-hover table-light table-striped">
                                 <thead>
                                     <th>Nomor</th>
                                     <th>Nama Perusahaan</th>
+                                    <th>jumlah bulan</th>
                                     <th>Customer Type</th>
                                 </thead>
                                 <tbody>
@@ -35,7 +35,8 @@
                                 <tr>
                                     <td>{{ $no++ }}</td>
                                     <td>{{ $customer->nama_perusahaan }}</td>
-                                    <td>{{ $lama }}</td>
+                                    <td>{{ $customer->month_kontrak }}</td>
+                                    <td>{{ $customer->customer_type }}</td>
                                 </tr> 
                                 @endforeach
                                 </tbody>
