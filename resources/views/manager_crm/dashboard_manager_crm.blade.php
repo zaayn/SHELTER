@@ -24,7 +24,7 @@
             <div class="panel-body">
                 <h2>Daftar Laporan yang tersedia</h2>
                 {{----------- box -----------}}
-                <a href="{{asset('/manager_crm/manager_customer')}}">
+                <a href="{{asset('/manager_crm/customer')}}">
                     <div class="col-md-6">
                         <div class="info-box bg-red">
                         <span class="info-box-icon"><i class="fa fa-envelope-o"></i></span>
@@ -35,7 +35,7 @@
                         </div>
                     </div>
                 </a>
-                <a href="{{asset('/manager_crm/manager_kontrak')}}">
+                <a href="{{asset('/manager_crm/kontrak')}}">
                     <div class="col-md-6">
                         <div class="info-box bg-blue">
                         <span class="info-box-icon"><i class="fa fa-envelope-o"></i></span>
@@ -46,7 +46,7 @@
                         </div>
                     </div>
                 </a>
-                <a href="{{asset('/manager_crm/manager_visit')}}">
+                <a href="{{asset('/manager_crm/visit')}}">
                     <div class="col-md-6">
                         <div class="info-box bg-green">
                         <span class="info-box-icon"><i class="fa fa-envelope-o"></i></span>
@@ -57,7 +57,7 @@
                         </div>
                     </div>
                 </a>
-                <a href="{{asset('/manager_crm/manager_call')}}">
+                <a href="{{asset('/manager_crm/call')}}">
                     <div class="col-md-6">
                         <div class="info-box bg-yellow">
                         <span class="info-box-icon"><i class="fa fa-envelope-o"></i></span>
@@ -68,7 +68,7 @@
                         </div>
                     </div>
                 </a>
-                <a href="{{asset('/manager_crm/manager_keluhan')}}">
+                <a href="{{asset('/manager_crm/keluhan')}}">
                     <div class="col-md-6">
                         <div class="info-box bg-purple">
                         <span class="info-box-icon"><i class="fa fa-envelope-o"></i></span>
@@ -79,7 +79,7 @@
                         </div>
                     </div>
                 </a>
-                <a href="{{asset('/manager_crm/manager_mou')}}">
+                <a href="{{asset('/manager_crm/mou')}}">
                     <div class="col-md-6">
                         <div class="info-box bg-orange">
                         <span class="info-box-icon"><i class="fa fa-table"></i></span>
