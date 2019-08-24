@@ -44,7 +44,7 @@
                                     <th>Dealing</th>
                                     <th>Tgl_Dealing</th>
                                     <th>Posisi Pks</th>
-                                    <th>Closing</th>
+                                    <th>Status</th>
                                     <th>Aksi</th>
                                 </thead>
                                 <tbody>

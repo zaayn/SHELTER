@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\DB;
 use App\Kontrak;
 use App\Customer;
 use PDF;
@@ -16,7 +17,10 @@ class KontrakController extends Controller
     public function index()
     {
         //use AuthenticatesUsers;
-        $data['kontraks'] = Kontrak::all();
+        $data['kontraks'] = DB::table('kontrak')
+        ->join('customer', 'customer.kode_customer', '=', 'kontrak.kode_customer')
+        ->select('kontrak.id_kontrak','customer.kode_customer','customer.nama_perusahaan','kontrak.periode_kontrak','kontrak.akhir_periode','kontrak.srt_pemberitahuan','kontrak.tgl_srt_pemberitahuan','kontrak.srt_penawaran','kontrak.tgl_srt_penawaran','kontrak.dealing','kontrak.tgl_dealing','kontrak.posisi_pks','kontrak.closing')
+        ->get();
         return view('officer/kontrak', $data);
 
     }
@@ -41,7 +45,6 @@ class KontrakController extends Controller
             'dealing' => 'required',
             'tgl_dealing' =>'required',
             'posisi_pks' => 'required',
-            'closing' =>'required',
         ]);
 
         $kontrak = new kontrak;
@@ -56,7 +59,7 @@ class KontrakController extends Controller
         $kontrak->dealing = $request->dealing;
         $kontrak->tgl_dealing = $request->tgl_dealing;
         $kontrak->posisi_pks = $request->posisi_pks;
-        $kontrak->closing = $request->closing;
+        $kontrak->closing = "aktif";
 
         if ($kontrak->save()){
             return redirect('/officer_crm/insertkontrak')->with('success', 'item berhasil ditambahkan');
@@ -89,7 +92,6 @@ class KontrakController extends Controller
             'dealing' => 'required',
             'tgl_dealing' =>'required',
             'posisi_pks' => 'required',
-            'closing' =>'required',
         ]);
 
         $kontrak->id_kontrak = $request->id_kontrak;
@@ -103,7 +105,7 @@ class KontrakController extends Controller
         $kontrak->dealing = $request->dealing;
         $kontrak->tgl_dealing = $request->tgl_dealing;
         $kontrak->posisi_pks = $request->posisi_pks;
-        $kontrak->closing = $request->closing;
+        $kontrak->closing = "aktif";
         
         if ($kontrak->save())
           return redirect()->route('index.kontrak.officer')->with(['success'=>'edit sukses']);
