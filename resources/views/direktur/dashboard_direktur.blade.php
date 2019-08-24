@@ -30,7 +30,7 @@
                 </div> --}} 
                 <h2>Daftar Laporan yang tersedia</h2>
                 {{----------- box -----------}}
-                <a href="{{asset('/direktur/direktur_customer')}}">
+                <a href="{{asset('/direktur/customer')}}">
                     <div class="col-md-4">
                         <div class="info-box bg-red">
                         <span class="info-box-icon"><i class="fa fa-table"></i></span>
@@ -41,7 +41,7 @@
                         </div>
                     </div>
                 </a>
-                <a href="{{asset('/direktur/direktur_kontrak')}}">
+                <a href="{{asset('/direktur/kontrak')}}">
                     <div class="col-md-4">
                         <div class="info-box bg-blue">
                         <span class="info-box-icon"><i class="fa fa-table"></i></span>
@@ -52,7 +52,7 @@
                         </div>
                     </div>
                 </a>
-                <a href="{{asset('/direktur/direktur_visit')}}">
+                <a href="{{asset('/direktur/visit')}}">
                     <div class="col-md-4">
                         <div class="info-box bg-green">
                         <span class="info-box-icon"><i class="fa fa-table"></i></span>
@@ -63,7 +63,7 @@
                         </div>
                     </div>
                 </a>
-                <a href="{{asset('/direktur/direktur_call')}}">
+                <a href="{{asset('/direktur/call')}}">
                     <div class="col-md-4">
                         <div class="info-box bg-yellow">
                         <span class="info-box-icon"><i class="fa fa-table"></i></span>
@@ -74,7 +74,7 @@
                         </div>
                     </div>
                 </a>
-                <a href="{{asset('/direktur/direktur_keluhan')}}">
+                <a href="{{asset('/direktur/keluhan')}}">
                     <div class="col-md-4">
                         <div class="info-box bg-purple">
                         <span class="info-box-icon"><i class="fa fa-table"></i></span>
@@ -85,7 +85,7 @@
                         </div>
                     </div>
                 </a>
-                <a href="{{asset('/direktur/direktur_mou')}}">
+                <a href="{{asset('/direktur/mou')}}">
                         <div class="col-md-4">
                             <div class="info-box bg-orange">
                             <span class="info-box-icon"><i class="fa fa-table"></i></span>

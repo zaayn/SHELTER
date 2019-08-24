@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\User;
+use Illuminate\Support\Facades\DB;
 use App\Call;
 use PDF;
 use Validator;
@@ -30,7 +31,11 @@ class CalladminController extends Controller
 
     public function insert()
     {
-      return view('admin/call/insertcall');
+        $data['users'] = DB::table('users')
+        ->join('wilayah', 'users.wilayah_id', '=', 'wilayah.wilayah_id')
+        ->select('wilayah.wilayah_id','users.nama_depan','wilayah.nama_wilayah')
+        ->where('rule', 'officer_crm')->get();
+      return view('admin/call/insertcall',$data);
     }
 
     /**
@@ -91,11 +96,13 @@ class CalladminController extends Controller
      */
     public function edit($call_id)
     {
-        // $where = array('call_id' => $call_id);
-        // $call  = Call::where($where)->first();
+        $data['users'] = DB::table('users')
+        ->join('wilayah', 'users.wilayah_id', '=', 'wilayah.wilayah_id')
+        ->select('wilayah.wilayah_id','users.nama_depan','wilayah.nama_wilayah')
+        ->where('rule', 'officer_crm')->get();
         $call = Call::findOrFail($call_id);
  
-        return view('admin/call/editcall')->with('call', $call);
+        return view('admin/call/editcall',$data)->with('call', $call);
     }
 
     /**

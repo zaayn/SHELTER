@@ -30,7 +30,7 @@
                 </div> --}} 
                 <h2>Daftar Laporan yang tersedia</h2>
                 {{----------- box -----------}}
-                <a href="{{asset('/manager_non_crm/manager_non_crm_customer')}}">
+                <a href="{{asset('/manager_non_crm/customer')}}">
                     <div class="col-md-4">
                         <div class="info-box bg-red">
                         <span class="info-box-icon"><i class="fa fa-envelope-o"></i></span>
@@ -41,7 +41,7 @@
                         </div>
                     </div>
                 </a>
-                <a href="{{asset('/manager_non_crm/manager_non_crm_kontrak')}}">
+                <a href="{{asset('/manager_non_crm/kontrak')}}">
                     <div class="col-md-4">
                         <div class="info-box bg-blue">
                         <span class="info-box-icon"><i class="fa fa-envelope-o"></i></span>
@@ -52,7 +52,7 @@
                         </div>
                     </div>
                 </a>
-                <a href="{{asset('/manager_non_crm/manager_non_crm_mou')}}">
+                <a href="{{asset('/manager_non_crm/mou')}}">
                         <div class="col-md-4">
                             <div class="info-box bg-orange">
                             <span class="info-box-icon"><i class="fa fa-envelope-o"></i></span>

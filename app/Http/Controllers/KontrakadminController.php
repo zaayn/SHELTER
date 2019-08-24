@@ -40,7 +40,6 @@ class KontrakadminController extends Controller
         $data['kontraks'] = DB::table('kontrak')
         ->join('customer', 'customer.kode_customer', '=', 'kontrak.kode_customer')
         ->select('kontrak.id_kontrak','customer.kode_customer','customer.nama_perusahaan','kontrak.periode_kontrak','kontrak.akhir_periode','kontrak.srt_pemberitahuan','kontrak.tgl_srt_pemberitahuan','kontrak.srt_penawaran','kontrak.tgl_srt_penawaran','kontrak.dealing','kontrak.tgl_dealing','kontrak.posisi_pks','kontrak.closing')
-        
         ->get();
         return view('admin/kontrak/kontrak', $data);
 
@@ -68,7 +67,6 @@ class KontrakadminController extends Controller
             'dealing' => 'required',
             'tgl_dealing' =>'required',
             'posisi_pks' => 'required',
-            'closing' =>'required',
         ]);
 
         $kontrak = new kontrak;
@@ -83,7 +81,7 @@ class KontrakadminController extends Controller
         $kontrak->dealing = $request->dealing;
         $kontrak->tgl_dealing = $request->tgl_dealing;
         $kontrak->posisi_pks = $request->posisi_pks;
-        $kontrak->closing = $request->closing;
+        $kontrak->closing = "aktif";
 
         $customer = customer::findOrFail($request->kode_customer);
         $to = \Carbon\Carbon::createFromFormat('Y-m-d',$kontrak->periode_kontrak);
@@ -123,7 +121,6 @@ class KontrakadminController extends Controller
             'dealing' => 'required',
             'tgl_dealing' =>'required',
             'posisi_pks' => 'required',
-            'closing' =>'required',
         ]);
 
         $kontrak->id_kontrak = $request->id_kontrak;
@@ -137,7 +134,7 @@ class KontrakadminController extends Controller
         $kontrak->dealing = $request->dealing;
         $kontrak->tgl_dealing = $request->tgl_dealing;
         $kontrak->posisi_pks = $request->posisi_pks;
-        $kontrak->closing = $request->closing;
+        $kontrak->closing = "aktif";
         
         if ($kontrak->save())
           return redirect()->route('index.kontrak')->with(['success'=>'edit sukses']);
@@ -166,8 +163,16 @@ class KontrakadminController extends Controller
             'kontrak.periode_kontrak','kontrak.akhir_periode','kontrak.srt_pemberitahuan',
             'kontrak.tgl_srt_pemberitahuan','kontrak.srt_penawaran','kontrak.tgl_srt_penawaran',
             'kontrak.dealing','kontrak.tgl_dealing','kontrak.posisi_pks','kontrak.closing')
-            ->whereRaw('akhir_periode < NOW() + INTERVAL 30 DAY') 
+            ->whereRaw('akhir_periode < NOW() + INTERVAL 60 DAY') 
             ->get();
             return view('admin/kontrak/reminder', $data);
     }
+    public function closed($id_kontrak) //filter kontrak h-30 hari 
+    {
+        $kontrak = Kontrak::findorFail($id_kontrak);
+        $kontrak->dealing = "sudah deal";
+        $kontrak->posisi_pks = "di shelter";
+        $kontrak->closing = "closed";
+        if ($kontrak->save())
+        return redirect()->route('index.kontrak')->with(['success'=>'Closing Kontrak sukses']);    }
 }

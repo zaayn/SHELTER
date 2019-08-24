@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Foundation\Validation\ValidatesRequests;
+use Illuminate\Support\Facades\DB;
 use App\Visit;
 use Validator;
 use PDF;
@@ -27,7 +28,11 @@ class VisitadminController extends Controller
 
     public function insert()
     {
-      return view('admin/visit/insertvisit');
+        $data['users'] = DB::table('users')
+        ->join('wilayah', 'users.wilayah_id', '=', 'wilayah.wilayah_id')
+        ->select('wilayah.wilayah_id','users.nama_depan','wilayah.nama_wilayah')
+        ->where('rule', 'officer_crm')->get();
+      return view('admin/visit/insertvisit',$data);
     }
 
     /**
@@ -88,10 +93,14 @@ class VisitadminController extends Controller
      */
     public function edit($visit_id)
     {
+        $data['users'] = DB::table('users')
+        ->join('wilayah', 'users.wilayah_id', '=', 'wilayah.wilayah_id')
+        ->select('wilayah.wilayah_id','users.nama_depan','wilayah.nama_wilayah')
+        ->where('rule', 'officer_crm')->get();
         $where = array('visit_id' => $visit_id);
         $visit  = Visit::where($where)->first();
  
-        return view('admin/visit/editvisit')->with('visit', $visit);
+        return view('admin/visit/editvisit',$data)->with('visit', $visit);
     }
 
     /**

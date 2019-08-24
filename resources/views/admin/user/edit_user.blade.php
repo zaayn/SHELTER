@@ -61,7 +61,7 @@
                       <div class="form-group">
                         <label>Password :</label>
                         <div>
-                          <input type="text" class="form-control" name="password" value="{{ $user->password}}"disabled>
+                          <input type="text" class="form-control" name="password" value="{{ $user->password}}">
                         </div>
                       </div>
                       <div class="form-group">
@@ -73,7 +73,7 @@
                       <div class="form-group">
                         <label>Wilayah Supervisi :</label>
                         <div>
-                          <input type="text" class="form-control" name="wilayah_id" value="{{ $user->wilayah_id}}"disabled>
+                          <input type="text" class="form-control" name="wilayah_id" value="{{ $user->wilayah_id}}">
                         </div>
                         {{-- <div>
                           <select class="form-control" name="wilayah_id">
@@ -95,7 +95,7 @@
                                 <option value="manager_non_crm">Manager Non CRM</option>
                                 <option value="direktur">Direktur</option>
                             </select> --}}
-                            <input type="text" class="form-control" name="rule" value="{{ $user->rule}}"disabled>
+                            <input type="text" class="form-control" name="rule" value="{{ $user->rule}}">
                         </div>
                     </div>
 
