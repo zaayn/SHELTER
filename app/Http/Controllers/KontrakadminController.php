@@ -166,7 +166,7 @@ class KontrakadminController extends Controller
             'kontrak.periode_kontrak','kontrak.akhir_periode','kontrak.srt_pemberitahuan',
             'kontrak.tgl_srt_pemberitahuan','kontrak.srt_penawaran','kontrak.tgl_srt_penawaran',
             'kontrak.dealing','kontrak.tgl_dealing','kontrak.posisi_pks','kontrak.closing')
-            ->whereRaw('akhir_periode < NOW() + INTERVAL 30 DAY') 
+            ->whereRaw('akhir_periode < NOW() + INTERVAL 60 DAY') 
             ->get();
             return view('admin/kontrak/reminder', $data);
     }

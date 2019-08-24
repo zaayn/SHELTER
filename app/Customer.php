@@ -23,6 +23,8 @@ class Customer extends Model
        ,'nama_depan'
        ,'status'
        ,'month_kontrak'
+       ,'jenis_perusahaan'
+       ,'negara'
        
     ];
     public $incrementing = false;
