@@ -34,6 +34,16 @@
                             </div>
                         </div>
                         <div class="form-group">
+                            <label class="control-label col-md-2">Wilayah</label>
+                            <div class="col-md-6">
+                                <select class="form-control" name="wilayah_id">
+                                @foreach($wilayahs as $wilayah)
+                                    <option value="{{ $wilayah->wilayah_id }}">{{ $wilayah->nama_wilayah }}</option>
+                                @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
                             <div class="col-md-1 col-md-offset-2">
                                 <a href="/admin/customer">
                                     <button type="button" class="btn btn-primary"><i class="fa fa-refresh"></i> Reset</button>

@@ -19,7 +19,16 @@ class AdminController extends Controller
     {
         $data['customer'] = DB::table('customer')->count();
         $data['kontrak'] = DB::table('kontrak')->count();   
-        $data['datamou'] = DB::table('datamou')->count();             
+        $data['datamou'] = DB::table('datamou')->count();   
+        $data['customers'] = customer::all();
+            $data['kontraks'] = DB::table('kontrak')
+            ->join('customer', 'customer.kode_customer', '=', 'kontrak.kode_customer')
+            ->select('kontrak.id_kontrak','customer.kode_customer','customer.nama_perusahaan',
+            'kontrak.periode_kontrak','kontrak.akhir_periode','kontrak.srt_pemberitahuan',
+            'kontrak.tgl_srt_pemberitahuan','kontrak.srt_penawaran','kontrak.tgl_srt_penawaran',
+            'kontrak.dealing','kontrak.tgl_dealing','kontrak.posisi_pks','kontrak.closing')
+            ->whereRaw('akhir_periode < NOW() + INTERVAL 60 DAY') 
+            ->get();          
 
         $lastUser = DB::table('users')
                     ->select('username')
