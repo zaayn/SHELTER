@@ -40,12 +40,12 @@
                     
 
                     <div class="form-group">
-                    <div class="form-group col-md-12">
+                        <div class="form-group col-md-12">
                             <label>Nama Customer :</label>
                             <div>
-                                <select class="form-control" name="nama_customer">
+                                <select class="form-control" name="kode_customer">
                                 @foreach($customers as $customer)
-                                    <option value="{{ $customer->nama_perusahaan }}">{{ $customer->kode_customer }} - {{ $customer->nama_perusahaan }} - {{ $customer->bisnis_unit->nama_bisnis_unit }}</option>
+                                    <option value="{{ $customer->kode_customer }}">{{ $customer->kode_customer }} - {{ $customer->nama_perusahaan }} - {{ $customer->bisnis_unit->nama_bisnis_unit }}</option>
                                 @endforeach
                                 </select>
                             </div>

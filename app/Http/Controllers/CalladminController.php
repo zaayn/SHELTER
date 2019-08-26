@@ -25,8 +25,12 @@ class CalladminController extends Controller
      */
     public function index()
     {
-        // $data['calls'] = call::orderBy('call_id','desc');
         $data['calls'] = call::all();
+        $data['calls'] = DB::table('call')
+        ->join('customer', 'call.kode_customer', '=', 'customer.kode_customer')
+        ->select('customer.kode_customer','call.kode_customer','call_id','customer.nama_perusahaan','spv_pic','tanggal_call','jam_call','pembicaraan','pic_called','hal_menonjol')
+        ->get();
+
         return view('admin/call/call', $data);
         
     }
@@ -58,7 +62,6 @@ class CalladminController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nama_customer' => 'required',
             'spv_pic' => 'required',
             'tanggal_call' => 'required|date',
             'jam_call' => 'required',
@@ -69,7 +72,7 @@ class CalladminController extends Controller
 
         $call = new call;
         $call->call_id          = $request->call_id;
-        $call->nama_customer    = $request->nama_customer;
+        $call->kode_customer    = $request->kode_customer;
         $call->spv_pic          = $request->spv_pic;
         $call->tanggal_call     = $request->tanggal_call;
         $call->jam_call         = $request->jam_call;
@@ -100,6 +103,8 @@ class CalladminController extends Controller
      */
     public function edit($call_id)
     {
+        $data['bisnis_units'] = bisnis_unit::all();
+        $data['customers'] = customer::all();
         $data['users'] = DB::table('users')
         ->join('wilayah', 'users.wilayah_id', '=', 'wilayah.wilayah_id')
         ->select('wilayah.wilayah_id','users.nama_depan','wilayah.nama_wilayah')
@@ -120,7 +125,6 @@ class CalladminController extends Controller
     {
         $call   =   Call::findorFail($id);
         $this->validate($request,[
-            'nama_customer'=>['required', 'string'],
             'spv_pic'=>['required', 'string'],
             'tanggal_call'=>['required', 'date'],
             'jam_call'=>['required'],
@@ -129,7 +133,7 @@ class CalladminController extends Controller
             'hal_menonjol'=>['required', 'string']
           ]);
         
-        $call->nama_customer    = $request->nama_customer;
+        $call->kode_customer    = $request->kode_customer;
         $call->spv_pic          = $request->spv_pic;
         $call->tanggal_call     = $request->tanggal_call;
         $call->jam_call         = $request->jam_call;

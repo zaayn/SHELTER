@@ -45,7 +45,7 @@
                                 @foreach($calls as $call)
                                 <tr>
                                     <td>{{ $call->call_id  }}</td>
-                                    <td>{{ $call->nama_customer }}</td>
+                                    <td>{{ $call->nama_perusahaan }}</td>
                                     <td>{{ $call->spv_pic }}</td>
                                     <td>{{ $call->tanggal_call }}</td>
                                     <td>{{ $call->jam_call }}</td>
