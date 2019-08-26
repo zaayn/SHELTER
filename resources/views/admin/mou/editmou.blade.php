@@ -61,8 +61,16 @@
                 	        <input type="text" class="form-control" name="mf_persen" value="{{$datamou->mf_persen}}" required>
                         </div>
                         <div class="form-group col-md-12">
+                	        <label class="font-weight-bold">Ket % (TK)</label>
+                	        <input type="text" class="form-control" name="bpjs_tk_persen" value="{{$datamou->bpjs_tk_persen}}" placeholder="Opsional">
+                        </div>
+                        <div class="form-group col-md-12">
                 	        <label class="font-weight-bold">BPJS Ketenagakerjaan</label>
                 	        <input type="text" class="form-control" name="bpjs_tenagakerja" value="{{$datamou->bpjs_tenagakerja}}" placeholder="Opsional">
+                        </div>
+                        <div class="form-group col-md-12">
+                	        <label class="font-weight-bold">Ket % (Kes)</label>
+                	        <input type="text" class="form-control" name="bpjs_kes_persen" value="{{$datamou->bpjs_kes_persen}}" placeholder="Opsional">
                         </div>
                         <div class="form-group col-md-12">
                 	        <label class="font-weight-bold">BPJS Kesehatan</label>
@@ -94,11 +102,11 @@
                         </div>
                         <div class="form-group col-md-12">
                 	        <label class="font-weight-bold">Tanggal Invoice</label>
-                	        <input type="date" class="form-control" name="tanggal_invoice" value="{{$datamou->tanggal_invoice}}" required>
+                	        <input type="text" class="form-control" name="tanggal_invoice" value="{{$datamou->tanggal_invoice}}" required>
                         </div>
                         <div class="form-group col-md-12">
                 	        <label class="font-weight-bold">Time of Payment</label>
-                	        <input type="date" class="form-control" name="time_of_payment" value="{{$datamou->time_of_payment}}" required>
+                	        <input type="text" class="form-control" name="time_of_payment" value="{{$datamou->time_of_payment}}" required>
                         </div>
                         <div class="form-group col-md-12">
                 	        <label class="font-weight-bold">Cut of Date</label>
