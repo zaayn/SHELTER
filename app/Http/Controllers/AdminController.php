@@ -36,9 +36,10 @@ class AdminController extends Controller
         ->where('keluhan.status', 'opened')->get();
 
         $lastUser = DB::table('users')
-                    ->select('username')
+                    ->select('username','current_login_at')
                     ->orderBy('current_login_at','desc')
-                    ->skip(1)->first();
+                    ->get();
+        
 
         $amount = DB::table('customer')
                     ->select(
@@ -134,5 +135,13 @@ class AdminController extends Controller
         $pdf = PDF::loadview('admin/customer/pdfdatacustomer',['datamous'=>$data]);
         $pdf->setPaper('A4','landscape');
         return $pdf->download('Laporan-Data-CustomerAll-CRM.pdf');
+    }
+    public function keluhanBelum(){
+        $data['keluhans'] = DB::table('keluhan')
+        ->join('customer', 'keluhan.kode_customer', '=', 'customer.kode_customer')
+        ->select('id_keluhan','customer.kode_customer','customer.nama_perusahaan','keluhan.kode_customer','spv_pic','tanggal_keluhan','jam_keluhan','keluhan','pic','jam_follow','follow_up','closing_case','via','keluhan.status')
+        ->where('keluhan.status', '=', 'Belum ditangani')
+        ->get();
+        return view('admin/dashboard_admin', $data);
     }
 }
