@@ -36,7 +36,9 @@
                                     <th>Invoice</th>
                                     <th>MF</th>
                                     <th>MF (%)</th>
+                                    <th>Ket. % (TK)</th>
                                     <th>BPJS Ketenagakerjaan</th>
+                                    <th>Ket. % (Kes)</th>
                                     <th>BPJS Kesehatan</th>
                                     <th>Jiwasraya</th>
                                     <th>Ramamusa</th>
@@ -58,11 +60,13 @@
                                 <tr>
                                     <td>{{ $datamou->no_mou }}</td>
                                     <td>{{ $datamou->id_kontrak }}</td>
-                                    <td>{{ $datamou->hc }}</td>
-                                    <td>{{ $datamou->invoice }}</td>
+                                    <td>Rp {{ number_format($datamou->hc, 2, ',','.') }}</td>
+                                    <td>Rp {{ number_format($datamou->invoice, 2, ',','.') }}</td>
                                     <td>{{ $datamou->mf }}</td>
                                     <td>{{ $datamou->mf_persen }}</td>
+                                    <td>{{ $datamou->bpjs_tk_persen}}</td>
                                     <td>{{ $datamou->bpjs_tenagakerja }}</td>
+                                    <td>{{ $datamou->bpjs_kes_persen}}</td>
                                     <td>{{ $datamou->bpjs_kesehatan }}</td>
                                     <td>{{ $datamou->jiwasraya }}</td>
                                     <td>{{ $datamou->ramamusa }}</td>
