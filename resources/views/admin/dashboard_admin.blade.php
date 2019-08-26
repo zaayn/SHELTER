@@ -85,7 +85,9 @@
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h6>User Terakhir Login :</h6>
-                <h5>{{$lastUser->username}}</h5>
+                @foreach($lastUser as $last)
+                <h5>{{$last->username}} {{$last->current_login_at}}</h5>
+                @endforeach
             </div>
         </div>
     </div>
