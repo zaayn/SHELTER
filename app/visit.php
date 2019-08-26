@@ -19,6 +19,6 @@ class visit extends Model
     ];
     public function customer()
     {
-        return $this->belongsTo(\App\Area::class,'kode_customer','kode_customer');
+        return $this->belongsTo(\App\Customer::class,'kode_customer','kode_customer');
     }
 }

@@ -56,9 +56,11 @@ class Customer extends Model
     }
     public function visit()
     {
-
         return $this->hasMany(visit::class);
-
+    }
+    public function keluhan()
+    {
+        return $this->hasMany(keluhan::class);
     }
     
     public function getCustomerTypeAttribute()

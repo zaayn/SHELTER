@@ -30,7 +30,7 @@
                             @include('admin.shared.components.alert')
                             <table id="mydatatables" class="table table-collapse table-hover table-light table-striped">
                                 <thead>
-                                    <th>ID Keluhan</th>
+                                    <th>No</th>
                                     <th>Nama Customer</th>
                                     <th>SPV_PIC</th>
                                     <th>Tanggal</th>
@@ -48,7 +48,7 @@
                                 @foreach($keluhans as $keluhan)
                                 <tr>
                                     <td>{{ $keluhan->id_keluhan  }}</td>
-                                    <td>{{ $keluhan->nama_customer }}</td>
+                                    <td>{{ $keluhan->nama_perusahaan }}</td>
                                     <td>{{ $keluhan->spv_pic }}</td>
                                     <td>{{ $keluhan->tanggal_keluhan }}</td>
                                     <td>{{ $keluhan->jam_keluhan }}</td>
