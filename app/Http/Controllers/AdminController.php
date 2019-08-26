@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use App\datamou;
 use App\Kontrak;
 use App\Customer;
+use App\Keluhan;
 use Carbon;
 use DateTime;
 use PDF;
@@ -21,14 +22,18 @@ class AdminController extends Controller
         $data['kontrak'] = DB::table('kontrak')->count();   
         $data['datamou'] = DB::table('datamou')->count();   
         $data['customers'] = customer::all();
-            $data['kontraks'] = DB::table('kontrak')
-            ->join('customer', 'customer.kode_customer', '=', 'kontrak.kode_customer')
-            ->select('kontrak.id_kontrak','customer.kode_customer','customer.nama_perusahaan',
-            'kontrak.periode_kontrak','kontrak.akhir_periode','kontrak.srt_pemberitahuan',
-            'kontrak.tgl_srt_pemberitahuan','kontrak.srt_penawaran','kontrak.tgl_srt_penawaran',
-            'kontrak.dealing','kontrak.tgl_dealing','kontrak.posisi_pks','kontrak.closing')
-            ->whereRaw('akhir_periode < NOW() + INTERVAL 60 DAY') 
-            ->get();          
+        $data['kontraks'] = DB::table('kontrak')
+        ->join('customer', 'customer.kode_customer', '=', 'kontrak.kode_customer')
+        ->select('kontrak.id_kontrak','customer.kode_customer','customer.nama_perusahaan',
+        'kontrak.periode_kontrak','kontrak.akhir_periode','kontrak.srt_pemberitahuan',
+        'kontrak.tgl_srt_pemberitahuan','kontrak.srt_penawaran','kontrak.tgl_srt_penawaran',
+        'kontrak.dealing','kontrak.tgl_dealing','kontrak.posisi_pks','kontrak.closing')
+        ->whereRaw('akhir_periode < NOW() + INTERVAL 60 DAY') 
+        ->get();    
+        $data['keluhans'] = DB::table('keluhan')
+        ->join('customer', 'keluhan.kode_customer', '=', 'customer.kode_customer')
+        ->select('id_keluhan','customer.kode_customer','customer.nama_perusahaan','keluhan.kode_customer','spv_pic','tanggal_keluhan','jam_keluhan','keluhan','pic','jam_follow','follow_up','closing_case','via','keluhan.status')
+        ->get();     
 
         $lastUser = DB::table('users')
                     ->select('username')
