@@ -33,7 +33,7 @@ class AdminController extends Controller
         $data['keluhans'] = DB::table('keluhan')
         ->join('customer', 'keluhan.kode_customer', '=', 'customer.kode_customer')
         ->select('id_keluhan','customer.kode_customer','customer.nama_perusahaan','keluhan.kode_customer','spv_pic','tanggal_keluhan','jam_keluhan','keluhan','pic','jam_follow','follow_up','closing_case','via','keluhan.status')
-        ->get();     
+        ->where('keluhan.status', 'opened')->get();
 
         $lastUser = DB::table('users')
                     ->select('username')
