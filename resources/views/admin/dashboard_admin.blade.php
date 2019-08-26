@@ -97,7 +97,7 @@
                 <div class="panel-heading"><h3>Reminder Closing Rekontrak</h3></div>
                         <hr style="border: solid #ddd; border-width: 1px 0 0; clear: both; margin: 22px 0 21px; height: 0;">
                         @include('admin.shared.components.alert')
-                        
+                        <!-- table reminder -->
                         <table id="mydatatables" class="table table-responsive table-hover table-light table-striped">
                             <thead>
                                 <th>Nomor Kontrak</th>
@@ -141,7 +141,55 @@
                 </div>
             </div>
         </div>
-
+        <!-- table keluhan -->
+<div class="row">
+        <div class="col-md-12">
+            <div class="panel block">
+                <div class="panel-body"> 
+                    <div class="panel-heading"><h3>Daftar Keluhan yang Belum Ditangani</h3></div>
+                    <hr style="border: solid #ddd; border-width: 1px 0 0; clear: both; margin: 22px 0 21px; height: 0;">
+                        @include('admin.shared.components.alert')
+                            <table id="mydatatables" class="table table-collapse table-hover table-light table-striped">
+                                <thead>
+                                    <th>No</th>
+                                    <th>Nama Customer</th>
+                                    <th>SPV_PIC</th>
+                                    <th>Tanggal</th>
+                                    <th>Waktu Keluhan</th>
+                                    <th>Keluhan</th>
+                                    <th>PIC Keluhan</th>
+                                    <th>Waktu Follow</th>
+                                    <th>Follow Up</th>
+                                    <th>Closing Case</th>
+                                    <th>Via</th>
+                                    <th>Status</th>
+                                    <th>Aksi</th>
+                                </thead>
+                                <tbody>
+                                @foreach($keluhans as $keluhan)
+                                <tr>
+                                    <td>{{ $keluhan->id_keluhan  }}</td>
+                                    <td>{{ $keluhan->nama_perusahaan }}</td>
+                                    <td>{{ $keluhan->spv_pic }}</td>
+                                    <td>{{ $keluhan->tanggal_keluhan }}</td>
+                                    <td>{{ $keluhan->jam_keluhan }}</td>
+                                    <td>{{ $keluhan->keluhan }}</td>
+                                    <td>{{ $keluhan->pic }}</td>
+                                    <td>{{ $keluhan->jam_follow }}</td>
+                                    <td>{{ $keluhan->follow_up }}</td>
+                                    <td>{{ $keluhan->closing_case }}</td>
+                                    <td>{{ $keluhan->via }}</td>
+                                    <td>{{ $keluhan->status }}</td>
+                                    <td><a href="{{route('edit.keluhan',$keluhan->id_keluhan)}}" class="btn btn-info btn-sm"><span class="fa fa-pencil"></span></a>
+                                    <a onclick="return confirm('Apakah anda yakin akan menghapus data ini ?')" href="{{route('destroy.keluhan',$keluhan->id_keluhan)}}" class="btn btn-danger btn-sm"><span class="fa fa-trash"></span></a></td>
+                                </tr>
+                            @endforeach 
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
 
 @section('js')

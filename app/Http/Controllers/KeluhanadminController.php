@@ -9,18 +9,25 @@ use App\Keluhan;
 use PDF;
 use Excel;
 use App\Exports\KeluhanExport;
+use App\Customer;
+use App\bisnis_unit;
 
 
 class KeluhanadminController extends Controller
 {
     public function index()
     {
-        $data['keluhans'] = Keluhan::all();
+        $data['keluhans'] = DB::table('keluhan')
+        ->join('customer', 'keluhan.kode_customer', '=', 'customer.kode_customer')
+        ->select('id_keluhan','customer.kode_customer','customer.nama_perusahaan','keluhan.kode_customer','spv_pic','tanggal_keluhan','jam_keluhan','keluhan','pic','jam_follow','follow_up','closing_case','via','keluhan.status')
+        ->get();
         return view('admin/keluhan/keluhan', $data);
     }
 
     public function insert()
     {
+        $data['bisnis_units'] = bisnis_unit::all();
+        $data['customers'] = customer::all();
         $data['users'] = DB::table('users')
         ->join('wilayah', 'users.wilayah_id', '=', 'wilayah.wilayah_id')
         ->select('wilayah.wilayah_id','users.nama_depan','wilayah.nama_wilayah')
@@ -28,23 +35,9 @@ class KeluhanadminController extends Controller
       return view('admin/keluhan/insertkeluhan',$data);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    
     public function store(Request $request)
     {
         $request->validate([
-            'nama_customer' => 'required',
             'spv_pic' => 'required',
             'tanggal_keluhan' => 'required|date',
             'jam_keluhan' => 'required',
@@ -59,7 +52,7 @@ class KeluhanadminController extends Controller
 
         $keluhan = new keluhan;
         $keluhan->id_keluhan = $request->id_keluhan;
-        $keluhan->nama_customer = $request->nama_customer;
+        $keluhan->kode_customer = $request->kode_customer;
         $keluhan->spv_pic = $request->spv_pic;
         $keluhan->tanggal_keluhan = $request->tanggal_keluhan;
         $keluhan->jam_keluhan = $request->jam_keluhan;
@@ -79,21 +72,10 @@ class KeluhanadminController extends Controller
         }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id_keluhan)
     {
+        $data['bisnis_units'] = bisnis_unit::all();
+        $data['customers'] = customer::all();
         $data['users'] = DB::table('users')
         ->join('wilayah', 'users.wilayah_id', '=', 'wilayah.wilayah_id')
         ->select('wilayah.wilayah_id','users.nama_depan','wilayah.nama_wilayah')
@@ -104,18 +86,10 @@ class KeluhanadminController extends Controller
         return view('admin/keluhan/editkeluhan',$data)->with('keluhan', $keluhan);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id_keluhan)
     {
         $keluhan = keluhan::findorFail($id_keluhan);
         $request->validate([
-            'nama_customer' => 'required',
             'spv_pic' => 'required',
             'tanggal_keluhan' => 'required|date',
             'jam_keluhan' => 'required',
@@ -128,7 +102,7 @@ class KeluhanadminController extends Controller
             'status' =>'required',
         ]);
 
-        $keluhan->nama_customer = $request->nama_customer;
+        $keluhan->kode_customer = $request->kode_customer;
         $keluhan->spv_pic = $request->spv_pic;
         $keluhan->jam_keluhan = $request->jam_keluhan;
         $keluhan->keluhan = $request->keluhan;
@@ -143,12 +117,6 @@ class KeluhanadminController extends Controller
           return redirect()->route('index.keluhan')->with(['success'=>'edit sukses']);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id_keluhan)
     {
         $keluhan = Keluhan::where('id_keluhan',$id_keluhan)->delete();

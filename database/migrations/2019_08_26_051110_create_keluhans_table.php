@@ -14,8 +14,8 @@ class CreateKeluhansTable extends Migration
     public function up()
     {
         Schema::create('keluhan', function (Blueprint $table) {
-            $table->increments('id_keluhan');
-            $table->string('nama_customer');
+            $table->increments('id_keluhan')->unique();
+            $table->string('kode_customer');
             $table->string('spv_pic');
             $table->date('tanggal_keluhan');
             $table->time('jam_keluhan');
@@ -27,6 +27,13 @@ class CreateKeluhansTable extends Migration
             $table->string('via');
             $table->string('status');
             $table->timestamps();
+        });
+        Schema::table('keluhan', function($table)
+        {
+            $table->foreign('kode_customer')
+                ->references('kode_customer')
+                ->on('customer')
+                ->onDelete('cascade');
         });
     }
 

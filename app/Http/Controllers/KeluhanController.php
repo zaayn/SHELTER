@@ -5,27 +5,28 @@ use Illuminate\Http\Request;
 use Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Foundation\Validation\ValidatesRequests;
+use Illuminate\Support\Facades\DB;
 use App\Keluhan;
 use PDF;
+use App\Customer;
+use App\bisnis_unit;
 
 class KeluhanController extends Controller
 {
     public function index()
     {
-        //dd(Auth::user()->rule);
-        $data['keluhans'] = Keluhan::all();
-        // if(Auth::user()->rule == 'admin'){
-        //     return view('admin/keluhan/keluhan', $data);
-        // }
-        // elseif(Auth::user()->rule == 'officer_crm'){
-        //     return view('officer/keluhan', $data);
-        // }
+        $data['keluhans'] = DB::table('keluhan')
+        ->join('customer', 'keluhan.kode_customer', '=', 'customer.kode_customer')
+        ->select('id_keluhan','customer.kode_customer','customer.nama_perusahaan','keluhan.kode_customer','spv_pic','tanggal_keluhan','jam_keluhan','keluhan','pic','jam_follow','follow_up','closing_case','via','keluhan.status')
+        ->get();
         return view('officer/keluhan', $data);
         
     }
 
     public function insert()
     {
+        $data['bisnis_units'] = bisnis_unit::all();
+        $data['customers'] = customer::all();
         $data['users'] = DB::table('users')
         ->join('wilayah', 'users.wilayah_id', '=', 'wilayah.wilayah_id')
         ->select('wilayah.wilayah_id','users.nama_depan','wilayah.nama_wilayah')
@@ -33,23 +34,9 @@ class KeluhanController extends Controller
         return view('officer/insertkeluhan',$data);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    
     public function store(Request $request)
     {
         $request->validate([
-            'nama_customer' => 'required',
             'spv_pic' => 'required',
             'tanggal_keluhan' => 'required|date',
             'jam_keluhan' => 'required',
@@ -64,7 +51,7 @@ class KeluhanController extends Controller
 
         $keluhan = new keluhan;
         $keluhan->id_keluhan = $request->id_keluhan;
-        $keluhan->nama_customer = $request->nama_customer;
+        $keluhan->kode_customer = $request->kode_customer;
         $keluhan->spv_pic = $request->spv_pic;
         $keluhan->tanggal_keluhan = $request->tanggal_keluhan;
         $keluhan->jam_keluhan = $request->jam_keluhan;
@@ -76,70 +63,32 @@ class KeluhanController extends Controller
         $keluhan->via = $request->via;
         $keluhan->status = $request->status;
 
-        
-        // if (Auth::user()->rule == 'admin') {
-        //     if ($keluhan->save()){
-        //         return redirect('/admin/insertkeluhan')->with('success', 'item berhasil ditambahkan');
-        //     }
-        //     else{
-        //         return redirect('/admin/insertkeluhan')->with('error', 'item gagal ditambahkan');
-        //     }
-        // }
-        // elseif (Auth::user()->rule == 'officer_crm') {
             if ($keluhan->save()){
                 return redirect('/officer_crm/insertkeluhan')->with('success', 'item berhasil ditambahkan');
             }
             else{
                 return redirect('/officer_crm/insertkeluhan')->with('error', 'item gagal ditambahkan');
-            }
-        //}
-            
+            }   
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id_keluhan)
     {
+        $data['bisnis_units'] = bisnis_unit::all();
+        $data['customers'] = customer::all();
         $data['users'] = DB::table('users')
         ->join('wilayah', 'users.wilayah_id', '=', 'wilayah.wilayah_id')
         ->select('wilayah.wilayah_id','users.nama_depan','wilayah.nama_wilayah')
         ->where('rule', 'officer_crm')->get();
         $where = array('id_keluhan' => $id_keluhan);
         $keluhan  = Keluhan::where($where)->first();
-        
-        // if(Auth::user()->rule == 'admin'){
-        //     return view('admin/keluhan/editkeluhan')->with('keluhan', $keluhan);
-        // }
-        // if(Auth::user()->rule == 'officer_crm'){
-        //     return view('officer/editkeluhan')->with('keluhan', $keluhan);
-        // }
-        return view('officer/editkeluhan',$data)->with('keluhan', $keluhan);
-        
+
+        return view('officer/editkeluhan',$data)->with('keluhan', $keluhan);      
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id_keluhan)
     {
         $keluhan = keluhan::findorFail($id_keluhan);
         $request->validate([
-            'nama_customer' => 'required',
             'spv_pic' => 'required',
             'tanggal_keluhan' => 'required|date',
             'jam_keluhan' => 'required',
@@ -152,7 +101,7 @@ class KeluhanController extends Controller
             'status' =>'required',
         ]);
 
-        $keluhan->nama_customer = $request->nama_customer;
+        $keluhan->kode_customer = $request->kode_customer;
         $keluhan->spv_pic = $request->spv_pic;
         $keluhan->jam_keluhan = $request->jam_keluhan;
         $keluhan->keluhan = $request->keluhan;
@@ -167,12 +116,6 @@ class KeluhanController extends Controller
           return redirect()->route('index.keluhan.officer')->with(['success'=>'edit sukses']);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id_keluhan)
     {
         $keluhan = Keluhan::where('id_keluhan',$id_keluhan)->delete();

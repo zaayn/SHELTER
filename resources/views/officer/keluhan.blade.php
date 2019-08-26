@@ -32,25 +32,25 @@
                             
                             <table id="mydatatables" class="table table-responsive table-hover table-light table-striped">
                                 <thead>
-                                    <th style="width:10%">ID Keluhan</th>
-                                    <th style="width:75%">Nama Customer</th>
-                                    <th style="width:15%">SPV_PIC</th>
-                                    <th style="width:10%">Tanggal</th>
-                                    <th style="width:75%">Waktu Keluhan</th>
-                                    <th style="width:10%">Keluhan</th>
-                                    <th style="width:75%">PIC Keluhan</th>
-                                    <th style="width:15%">Waktu Follow</th>
-                                    <th style="width:75%">Follow Up</th>
-                                    <th style="width:10%">Closing Case</th>
-                                    <th style="width:75%">Via</th>
-                                    <th style="width:15%">Status</th>
-                                    <th style="width:15%">Aksi</th>
+                                    <th>ID Keluhan</th>
+                                    <th>Nama Customer</th>
+                                    <th>SPV_PIC</th>
+                                    <th>Tanggal</th>
+                                    <th>Waktu Keluhan</th>
+                                    <th>Keluhan</th>
+                                    <th>PIC Keluhan</th>
+                                    <th>Waktu Follow</th>
+                                    <th>Follow Up</th>
+                                    <th>Closing Case</th>
+                                    <th>Via</th>
+                                    <th>Status</th>
+                                    <th>Aksi</th>
                                 </thead>
                                 <tbody>
                                 @foreach($keluhans as $keluhan)
                                 <tr>
                                     <td>{{ $keluhan->id_keluhan  }}</td>
-                                    <td>{{ $keluhan->nama_customer }}</td>
+                                    <td>{{ $keluhan->nama_perusahaan }}</td>
                                     <td>{{ $keluhan->spv_pic }}</td>
                                     <td>{{ $keluhan->tanggal_keluhan }}</td>
                                     <td>{{ $keluhan->jam_keluhan }}</td>
