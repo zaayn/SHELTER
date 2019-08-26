@@ -48,6 +48,18 @@ class Customer extends Model
         return $this->hasMany(kontrak::class);
 
     }
+    public function call()
+    {
+
+        return $this->hasMany(call::class);
+
+    }
+    public function visit()
+    {
+
+        return $this->hasMany(visit::class);
+
+    }
     
     public function getCustomerTypeAttribute()
     {

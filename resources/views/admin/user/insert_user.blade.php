@@ -81,7 +81,7 @@
                                 <option value="superadmin">Super Admin</option>
                                 <option value="admin">Admin</option>
                                 <option value="officer_crm">Officer CRM</option>
-                                <option value="manager_crm">Manager Officer</option>
+                                <option value="manager_crm">Manager CRM</option>
                                 <option value="manager_non_crm">Manager Non CRM</option>
                                 <option value="direktur">Direktur</option>
                             </select>

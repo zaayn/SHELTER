@@ -28,8 +28,20 @@
                             <label class="control-label col-md-2">Status Customer</label>
                             <div class="col-md-6">
                                 <select class="form-control" name="status">
+                                        <option value="">--- Select Status ---</option>
                                         <option value="aktif">aktif</option>
                                         <option value="non_aktif">Non aktif</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-2">Wilayah</label>
+                            <div class="col-md-6">
+                                <select class="form-control" name="wilayah_id">
+                                    <option value="">--- Select Wilayah ---</option>
+                                @foreach($wilayahs as $wilayah)
+                                    <option value="{{ $wilayah->wilayah_id }}">{{ $wilayah->nama_wilayah }}</option>
+                                @endforeach
                                 </select>
                             </div>
                         </div>

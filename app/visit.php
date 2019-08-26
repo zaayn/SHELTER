@@ -17,4 +17,8 @@ class visit extends Model
        ,'pic_meeted'
        ,'kegiatan'
     ];
+    public function customer()
+    {
+        return $this->belongsTo(\App\Area::class,'kode_customer','kode_customer');
+    }
 }

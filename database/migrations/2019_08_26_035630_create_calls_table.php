@@ -14,8 +14,8 @@ class CreateCallsTable extends Migration
     public function up()
     {
         Schema::create('call', function (Blueprint $table) {
-            $table->increments('call_id');
-            $table->string('nama_customer');
+            $table->increments('call_id')->unique();
+            $table->string('kode_customer');
             $table->string('spv_pic');
             $table->datetime('tanggal_call');
             $table->time('jam_call');
@@ -23,6 +23,13 @@ class CreateCallsTable extends Migration
             $table->string('pic_called');
             $table->string('hal_menonjol');
             $table->timestamps();
+        });
+        Schema::table('call', function($table)
+        {
+            $table->foreign('kode_customer')
+                ->references('kode_customer')
+                ->on('customer')
+                ->onDelete('cascade');
         });
     }
 
