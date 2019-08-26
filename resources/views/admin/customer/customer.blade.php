@@ -55,7 +55,7 @@
                             <hr style="border: solid #ddd; border-width: 1px 0 0; clear: both; margin: 22px 0 21px; height: 0;">
                            
                             @include('admin.shared.components.alert')
-                            <table id="mydatatables" class="table table-collapse table-hover table-light table-striped cell-border table-responsive">
+                            <table id="mydatatables" class="table table-collapse table-hover table-light table-striped  table-responsive">
                                 <thead>
                                 
                                     <th>No</th>
@@ -63,6 +63,8 @@
                                     <th>Nama Perusahaan</th>
                                     <th>Jenis Usaha</th>
                                     <th>Bisnis Unit</th>
+                                    <th>Jenis Perusahaan</th>
+                                    <th>Asal Negara</th>
                                     <th>Alamat</th>
                                     <th>Provinsi</th>
                                     <th>Kabupaten/Kota</th>
@@ -82,6 +84,8 @@
                                         <td>{{ $customer->nama_perusahaan }}</td>
                                         <td>{{ $customer->jenis_usaha }}</td>
                                         <td>{{ $customer->nama_bisnis_unit }}</td>
+                                        <td>{{ $customer->jenis_perusahaan }}</td>
+                                        <td>{{ $customer->negara }}</td>
                                         <td>{{ $customer->alamat }}</td>
                                         <td>{{ $customer->provinsi }}</td>
                                         <td>{{ $customer->kabupaten }}</td>

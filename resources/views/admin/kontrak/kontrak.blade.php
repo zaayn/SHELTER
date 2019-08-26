@@ -21,9 +21,7 @@
         <div class="col-md-12">
             <div class="panel block" id="myForm">
                 <div class="panel-body">
-                    <div class="load" align="center">
-                        <img src="{{asset('img/spinner.gif')}}" width="60px">
-                    </div>
+                    
                     {{-- ----------  -------------- filter ------------------------ --}}
                     <form class="form-horizontal" id="form-filter" method="POST" action="{{route('filter.kontrak')}}">
                         @csrf
@@ -73,7 +71,7 @@
                                     <th>Dealing</th>
                                     <th>Tgl_Dealing</th>
                                     <th>Posisi Pks</th>
-                                    <th>Closing</th>
+                                    <th>Status</th>
                                     <th>Aksi</th>
                                 </thead>
                                 <tbody>
@@ -95,6 +93,7 @@
                                     <td>
                                         <a href="{{route('edit.kontrak',$kontrak->id_kontrak)}}" class="btn btn-info btn-sm"><span class="fa fa-pencil"></span></a>
                                         <a onclick="return confirm('Apakah anda yakin akan menghapus data ini ?')" href="{{route('destroy.kontrak',$kontrak->id_kontrak)}}" class="btn btn-danger btn-sm"><span class="fa fa-trash"></span></a>
+                                        <a onclick="return confirm('Apakah anda yakin akan menutup kontrak ini ?')" href="{{route('closed.kontrak',$kontrak->id_kontrak)}}" class="btn btn-warning btn-sm">Closed</a>
                                     </td>
                                 </tr>
                                 @endforeach  
@@ -106,13 +105,3 @@
             </div>
 @endsection
 
-@section('js')
-<script>
-$(document).ready(function() {
-        setTimeout(function () {
-            $(".load").html("");
-            $("#myForm").fadeIn(1000);
-        }, 900);
-    });
-</script>
-@endsection

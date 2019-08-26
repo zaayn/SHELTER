@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Foundation\Validation\ValidatesRequests;
+use Illuminate\Support\Facades\DB;
 use App\Keluhan;
 use PDF;
 use Excel;
@@ -20,7 +21,11 @@ class KeluhanadminController extends Controller
 
     public function insert()
     {
-      return view('admin/keluhan/insertkeluhan');
+        $data['users'] = DB::table('users')
+        ->join('wilayah', 'users.wilayah_id', '=', 'wilayah.wilayah_id')
+        ->select('wilayah.wilayah_id','users.nama_depan','wilayah.nama_wilayah')
+        ->where('rule', 'officer_crm')->get();
+      return view('admin/keluhan/insertkeluhan',$data);
     }
 
     /**
@@ -89,10 +94,14 @@ class KeluhanadminController extends Controller
      */
     public function edit($id_keluhan)
     {
+        $data['users'] = DB::table('users')
+        ->join('wilayah', 'users.wilayah_id', '=', 'wilayah.wilayah_id')
+        ->select('wilayah.wilayah_id','users.nama_depan','wilayah.nama_wilayah')
+        ->where('rule', 'officer_crm')->get();
         $where = array('id_keluhan' => $id_keluhan);
         $keluhan  = Keluhan::where($where)->first();
  
-        return view('admin/keluhan/editkeluhan')->with('keluhan', $keluhan);
+        return view('admin/keluhan/editkeluhan',$data)->with('keluhan', $keluhan);
     }
 
     /**

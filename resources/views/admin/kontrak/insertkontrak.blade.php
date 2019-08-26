@@ -88,8 +88,8 @@
                         <div class="form-group col-md-12">
                 	        <label class="font-weight-bold">Dealing</label>
                 	        <select class ="form-control" name="dealing" required>
-                            <option value="Sudah Deal">Sudah deal</option>
-                            <option value="Belum Deal">Belum deal</option>
+                            <option value="sudah deal">Sudah deal</option>
+                            <option value="belum deal">Belum deal</option>
                           </select>
                         </div>
                         <div class="form-group col-md-12">
@@ -99,13 +99,9 @@
                         <div class="form-group col-md-12">
                 	        <label class="font-weight-bold">Posisi Pks</label>
                 	        <select class ="form-control" name="posisi_pks" required>
-                            <option value="di Shelter">di Shelter</option>
-                            <option value="di Client">di Client</option>
+                            <option value="di shelter">di Shelter</option>
+                            <option value="di client">di Client</option>
                           </select>
-                        </div>
-                        <div class="form-group col-md-12">
-                	        <label class="font-weight-bold">Closing</label>
-                	        <input type="text" class="form-control" name="closing" required>
                         </div>
 
                         

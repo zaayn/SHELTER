@@ -165,8 +165,9 @@ Route::group(['prefix' => 'admin',  'middleware' => 'is_admin'], function(){
         Route::get('/kontrak/exportPDF', 'KontrakadminController@exportPDF');
         Route::get('/kontrak/exportExcel', 'KontrakadminController@exportExcel');
         Route::get('/reminder', 'KontrakadminController@reminder')->name('index.reminder.kontrak');
-        // Route::get('/insertreminder', 'KontrakadminController@insert_reminder')->name('reminder.kontrak');
-    
+        Route::get('/closed/kontrak{id_kontrak}', 'KontrakadminController@closed')->name('closed.kontrak');
+
+
         //------- laporan mou
         Route::get('/insertmou', 'MouController@insert')->name('insert.datamou'); //show form insert
         Route::get('/mou', 'MouController@index')->name('index.datamou');

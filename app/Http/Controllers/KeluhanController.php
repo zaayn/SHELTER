@@ -26,13 +26,11 @@ class KeluhanController extends Controller
 
     public function insert()
     {
-        // if(Auth::user()->rule == 'admin'){
-        //     return view('admin/keluhan/insertkeluhan');
-        // }
-        // elseif(Auth::user()->rule == 'officer_crm'){
-        //     return view('officer/insertkeluhan');
-        // }
-        return view('officer/insertkeluhan');
+        $data['users'] = DB::table('users')
+        ->join('wilayah', 'users.wilayah_id', '=', 'wilayah.wilayah_id')
+        ->select('wilayah.wilayah_id','users.nama_depan','wilayah.nama_wilayah')
+        ->where('rule', 'officer_crm')->get();
+        return view('officer/insertkeluhan',$data);
     }
 
     /**
@@ -113,6 +111,10 @@ class KeluhanController extends Controller
      */
     public function edit($id_keluhan)
     {
+        $data['users'] = DB::table('users')
+        ->join('wilayah', 'users.wilayah_id', '=', 'wilayah.wilayah_id')
+        ->select('wilayah.wilayah_id','users.nama_depan','wilayah.nama_wilayah')
+        ->where('rule', 'officer_crm')->get();
         $where = array('id_keluhan' => $id_keluhan);
         $keluhan  = Keluhan::where($where)->first();
         
@@ -122,7 +124,7 @@ class KeluhanController extends Controller
         // if(Auth::user()->rule == 'officer_crm'){
         //     return view('officer/editkeluhan')->with('keluhan', $keluhan);
         // }
-        return view('officer/editkeluhan')->with('keluhan', $keluhan);
+        return view('officer/editkeluhan',$data)->with('keluhan', $keluhan);
         
     }
 

@@ -45,8 +45,14 @@
                 	        <input type="text" class="form-control" name="nama_customer" value="{{ $visit->nama_customer }}" required>
                         </div>
                         <div class="form-group col-md-12">
-                	        <label class="font-weight-bold">SPV_PIC</label>
-                	        <input type="text" class="form-control" name="spv_pic" value="{{ $visit->spv_pic }}" required>
+                            <label>SPV PIC :</label>
+                            <div>
+                                <select class="form-control" name="spv_pic">
+                                @foreach($users as $users)
+                                    <option value="{{ $users->nama_depan }}">{{ $users->nama_depan }} - {{ $users->nama_wilayah }}</option>
+                                @endforeach
+                                </select>
+                            </div>
                         </div>
                         <div class="form-group col-md-12">
                 	        <label class="font-weight-bold">Tanggal</label>
