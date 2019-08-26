@@ -61,19 +61,19 @@
                 	        <input type="text" class="form-control" name="mf_persen" value="{{$datamou->mf_persen}}" required>
                         </div>
                         <div class="form-group col-md-12">
-                	        <label class="font-weight-bold">Ket % (TK)</label>
+                	        <label class="font-weight-bold">Ket % BPJS Ketenagakerjaan</label>
                 	        <input type="text" class="form-control" name="bpjs_tk_persen" value="{{$datamou->bpjs_tk_persen}}" placeholder="Opsional">
                         </div>
                         <div class="form-group col-md-12">
-                	        <label class="font-weight-bold">BPJS Ketenagakerjaan</label>
+                	        <label class="font-weight-bold">Nominal BPJS Ketenagakerjaan</label>
                 	        <input type="text" class="form-control" name="bpjs_tenagakerja" value="{{$datamou->bpjs_tenagakerja}}" placeholder="Opsional">
                         </div>
                         <div class="form-group col-md-12">
-                	        <label class="font-weight-bold">Ket % (Kes)</label>
+                	        <label class="font-weight-bold">Ket % BPJS Kesehatan</label>
                 	        <input type="text" class="form-control" name="bpjs_kes_persen" value="{{$datamou->bpjs_kes_persen}}" placeholder="Opsional">
                         </div>
                         <div class="form-group col-md-12">
-                	        <label class="font-weight-bold">BPJS Kesehatan</label>
+                	        <label class="font-weight-bold">Nominal BPJS Kesehatan</label>
                 	        <input type="text" class="form-control" name="bpjs_kesehatan" value="{{$datamou->bpjs_kesehatan}}" placeholder="Opsional">
                         </div>
                         <div class="form-group col-md-12">
@@ -85,11 +85,11 @@
                 	        <input type="text" class="form-control" name="ramamusa" value="{{$datamou->ramamusa}}" placeholder="Opsional">
                         </div>
                         <div class="form-group col-md-12">
-                	        <label class="font-weight-bold">Ditagihkan</label>
+                	        <label class="font-weight-bold">THR Ditagihkan</label>
                 	        <input type="text" class="form-control" name="ditagihkan" value="{{$datamou->ditagihkan}}" laceholder="Opsional">
                         </div>
                         <div class="form-group col-md-12">
-                	        <label class="font-weight-bold">Diprovisasikan</label>
+                	        <label class="font-weight-bold">THR Diprovisasikan</label>
                 	        <input type="text" class="form-control" name="diprovisasikan" value="{{$datamou->diprovisasikan}}" placeholder="Opsional">
                         </div>
                         <div class="form-group col-md-12">
