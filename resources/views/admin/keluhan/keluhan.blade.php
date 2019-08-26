@@ -30,7 +30,7 @@
                             @include('admin.shared.components.alert')
                             <table id="mydatatables" class="table table-collapse table-hover table-light table-striped">
                                 <thead>
-                                    <th>ID Keluhan</th>
+                                    <th>No</th>
                                     <th>Nama Customer</th>
                                     <th>SPV_PIC</th>
                                     <th>Tanggal</th>
@@ -48,7 +48,7 @@
                                 @foreach($keluhans as $keluhan)
                                 <tr>
                                     <td>{{ $keluhan->id_keluhan  }}</td>
-                                    <td>{{ $keluhan->nama_customer }}</td>
+                                    <td>{{ $keluhan->nama_perusahaan }}</td>
                                     <td>{{ $keluhan->spv_pic }}</td>
                                     <td>{{ $keluhan->tanggal_keluhan }}</td>
                                     <td>{{ $keluhan->jam_keluhan }}</td>
@@ -60,7 +60,15 @@
                                     <td>{{ $keluhan->via }}</td>
                                     <td>{{ $keluhan->status }}</td>
                                     <td><a href="{{route('edit.keluhan',$keluhan->id_keluhan)}}" class="btn btn-info btn-sm"><span class="fa fa-pencil"></span></a>
-                                    <a onclick="return confirm('Apakah anda yakin akan menghapus data ini ?')" href="{{route('destroy.keluhan',$keluhan->id_keluhan)}}" class="btn btn-danger btn-sm"><span class="fa fa-trash"></span></a></td>
+                                    <a onclick="return confirm('Apakah anda yakin akan menghapus data ini?')" href="{{route('destroy.keluhan',$keluhan->id_keluhan)}}" class="btn btn-danger btn-sm"><span class="fa fa-trash"></span></a>
+                                    @if($keluhan->status == 'Belum ditangani')
+                                    <a onclick="return confirm('Apakah anda yakin keluhan ini sudah ditangani?')" href="{{route('reset.keluhan',$keluhan->id_keluhan)}}" class="btn btn-warning btn-sm">
+                                        Tangani
+                                    </a>
+                                    @endif
+                                   
+                                    </td>
+                                    
                                 </tr>
                                 @endforeach 
                                 </tbody>

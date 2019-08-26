@@ -21,9 +21,7 @@
         <div class="col-md-12">
             <div class="panel block" id="myForm">
                 <div class="panel-body">
-                    <div class="load" align="center">
-                        <img src="{{asset('img/spinner.gif')}}" width="60px">
-                    </div>
+                    
                     {{-- ----------  -------------- filter ------------------------ --}}
                     <form class="form-horizontal" id="form-filter" method="POST" action="{{route('filter.kontrak')}}">
                         @csrf
@@ -107,13 +105,3 @@
             </div>
 @endsection
 
-@section('js')
-<script>
-$(document).ready(function() {
-        setTimeout(function () {
-            $(".load").html("");
-            $("#myForm").fadeIn(1000);
-        }, 900);
-    });
-</script>
-@endsection

@@ -39,8 +39,14 @@
                     {{ csrf_field() }}
                     <div class="form-group">
                         <div class="form-group col-md-12">
-                	        <label class="font-weight-bold">Nama Customer</label>
-                	        <input type="text" class="form-control" name="nama_customer" required>
+                            <label>Nama Customer :</label>
+                            <div>
+                                <select class="form-control" name="kode_customer">
+                                @foreach($customers as $customer)
+                                    <option value="{{ $customer->kode_customer }}">{{ $customer->kode_customer }} - {{ $customer->nama_perusahaan }} - {{ $customer->bisnis_unit->nama_bisnis_unit }}</option>
+                                @endforeach
+                                </select>
+                            </div>
                         </div>
                         <div class="form-group col-md-12">
                             <label>SPV PIC :</label>
@@ -92,7 +98,10 @@
                         </div>
                         <div class="form-group col-md-12">
                 	        <label class="font-weight-bold">Status</label>
-                	        <input type="text" class="form-control" name="status" required>
+                	        <select class ="form-control" name="status" required>
+                            <option value="Belum ditangani">Belum ditangani</option>
+                            <option value="Sudah ditangani">Sudah ditangani</option>
+                            </select>
                         </div>
                         <div class="col-md-12">
                             <button type="submit" class="btn btn-lg btn-info btn-block ">

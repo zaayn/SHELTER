@@ -21,4 +21,8 @@ class keluhan extends Model
        ,'via'
        ,'status'
     ];
+    public function customer()
+    {
+        return $this->belongsTo(\App\Customer::class,'kode_customer','kode_customer');
+    }
 }

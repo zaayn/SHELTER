@@ -27,7 +27,7 @@ class KontrakController extends Controller
 
     public function insert()
     {
-        $data['customers'] = customer::all();
+        $data['customers'] = customer::where('status','aktif');
         return view('officer/insertkontrak',$data);
     }
 

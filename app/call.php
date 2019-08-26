@@ -17,4 +17,8 @@ class call extends Model
        ,'pic_called'
        ,'hal_menonjol'
     ];
+    public function customer()
+    {
+        return $this->belongsTo(\App\Customer::class,'kode_customer','kode_customer');
+    }
 }

@@ -67,13 +67,6 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-3">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h6>User Terakhir Login :</h6>
-                    <h5>{{$lastUser->username}}</h5>
-                </div>
-            </div>
-        </div>
+       
     </div>
 @endsection
