@@ -131,4 +131,15 @@ class KeluhanadminController extends Controller
     public function exportExcel(){
         return Excel::download(new KeluhanExport, 'Laporan-Keluhan-CRM.xlsx');
     }
+    public function aktivasi($id){
+      $keluhan = keluhan::findOrFail($id);
+      // dd($customer->status);
+      if($keluhan->status == "Belum ditangani")
+      {
+        $keluhan->status = 'Sudah ditangani';
+      }
+     
+      if ($keluhan->save())
+          return redirect()->route('index.keluhan')->with(['success'=>'reset aktifasi sukses']);
+    }
 }
