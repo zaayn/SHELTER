@@ -140,6 +140,6 @@ class KeluhanadminController extends Controller
       }
      
       if ($keluhan->save())
-          return redirect()->route('index.keluhan')->with(['success'=>'reset aktifasi sukses']);
+          return redirect()->route('index.keluhan')->with(['success'=>'keluhan sukses ditangani']);
     }
 }
