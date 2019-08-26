@@ -41,13 +41,15 @@
 
                     <div class="form-group">
                         <div class="form-group col-md-12">
-                	        <label class="font-weight-bold">Nama Customer</label>
-                	        <input type="text" class="form-control" name="nama_customer" required>
+                            <label>Nama Customer :</label>
+                            <div>
+                                <select class="form-control" name="nama_customer">
+                                @foreach($customers as $customer)
+                                    <option value="{{ $customer->nama_perusahaan }}">{{ $customer->kode_customer }} - {{ $customer->nama_perusahaan }} - {{ $customer->bisnis_unit->nama_bisnis_unit }}</option>
+                                @endforeach
+                                </select>
+                            </div>
                         </div>
-                        {{-- <div class="form-group col-md-12">
-                	        <label class="font-weight-bold">SPV_PIC</label>
-                	        <input type="text" class="form-control" name="spv_pic" required>
-                        </div> --}}
                         <div class="form-group col-md-12">
                             <label>SPV PIC :</label>
                             <div>

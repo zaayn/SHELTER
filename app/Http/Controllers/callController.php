@@ -13,6 +13,8 @@ use PDF;
 use Validator;
 use App\Exports\CallExport;
 use Maatwebsite\Excel\Facades\Excel;
+use App\Customer;
+use App\bisnis_unit;
 
 class callController extends Controller
 {
@@ -28,18 +30,10 @@ class callController extends Controller
         return view('officer/call', $data);
         
     }
-    // public function __construct(){
-    //     dd(Auth::user());
-    //     if (Auth::user()->$rule == 'admin') {
-    //         return view('admin/call/call',$data);
-    //     }
-    //     elseif (Auth::user()->$rule == 'officer_crm') {
-    //         return view('officer/call', $data);
-    //     }
-    // }
-
     public function insert()
     {
+        $data['bisnis_units'] = bisnis_unit::all();
+        $data['customers'] = customer::all();
         $data['users'] = DB::table('users')
         ->join('wilayah', 'users.wilayah_id', '=', 'wilayah.wilayah_id')
         ->select('wilayah.wilayah_id','users.nama_depan','wilayah.nama_wilayah')

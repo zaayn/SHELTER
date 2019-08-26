@@ -13,6 +13,8 @@ use PDF;
 use Validator;
 use App\Exports\CallExport;
 use Maatwebsite\Excel\Facades\Excel;
+use App\Customer;
+use App\bisnis_unit;
 
 class CalladminController extends Controller
 {
@@ -31,6 +33,8 @@ class CalladminController extends Controller
 
     public function insert()
     {
+        $data['bisnis_units'] = bisnis_unit::all();
+        $data['customers'] = customer::all();
         $data['users'] = DB::table('users')
         ->join('wilayah', 'users.wilayah_id', '=', 'wilayah.wilayah_id')
         ->select('wilayah.wilayah_id','users.nama_depan','wilayah.nama_wilayah')
