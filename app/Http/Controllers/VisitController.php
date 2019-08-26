@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\DB;
 use App\Visit;
 use Validator;
 use PDF;
+use App\Customer;
+use App\bisnis_unit;
 
 class VisitController extends Controller
 {
@@ -18,14 +20,18 @@ class VisitController extends Controller
      */
     public function index()
     {
-        // $data['visit'] = Visit::orderBy('visit_id','desc');
-        $data['visits'] = visit::all();
+        $data['visits'] = DB::table('visit')
+        ->join('customer', 'visit.kode_customer', '=', 'customer.kode_customer')
+        ->select('customer.kode_customer','visit.kode_customer','visit_id','customer.nama_perusahaan','spv_pic','tanggal_visit','waktu_in','waktu_out','pic_meeted','kegiatan')
+        ->get();
 
         return view('officer/visit', $data);
     }
 
     public function insert()
     {
+        $data['bisnis_units'] = bisnis_unit::all();
+        $data['customers'] = customer::all();
         $data['users'] = DB::table('users')
         ->join('wilayah', 'users.wilayah_id', '=', 'wilayah.wilayah_id')
         ->select('wilayah.wilayah_id','users.nama_depan','wilayah.nama_wilayah')
@@ -49,7 +55,6 @@ class VisitController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nama_customer' => 'required',
             'spv_pic' => 'required',
             'tanggal_visit' => 'required|date',
             'waktu_in' => 'required',
@@ -60,7 +65,7 @@ class VisitController extends Controller
 
         $visit = new visit;
         $visit->visit_id = $request->visit_id;
-        $visit->nama_customer = $request->nama_customer;
+        $visit->kode_customer = $request->kode_customer;
         $visit->spv_pic = $request->spv_pic;
         $visit->tanggal_visit = $request->tanggal_visit;
         $visit->waktu_in = $request->waktu_in;
@@ -76,21 +81,10 @@ class VisitController extends Controller
         }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($visit_id)
     {
+        $data['bisnis_units'] = bisnis_unit::all();
+        $data['customers'] = customer::all();
         $data['users'] = DB::table('users')
         ->join('wilayah', 'users.wilayah_id', '=', 'wilayah.wilayah_id')
         ->select('wilayah.wilayah_id','users.nama_depan','wilayah.nama_wilayah')
@@ -101,18 +95,10 @@ class VisitController extends Controller
         return view('officer/editvisit',$data)->with('visit', $visit);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $visit_id)
     {
         $visit = visit::findorFail($visit_id);
         $request->validate([
-            'nama_customer' => 'required',
             'spv_pic' => 'required',
             'tanggal_visit' => 'required|date',
             'waktu_in' => 'required',
@@ -121,7 +107,7 @@ class VisitController extends Controller
             'kegiatan' =>'required',
         ]);
 
-        $visit->nama_customer = $request->nama_customer;
+        $visit->kode_customer = $request->kode_customer;
         $visit->spv_pic = $request->spv_pic;
         $visit->tanggal_visit = $request->tanggal_visit;
         $visit->waktu_in = $request->waktu_in;
@@ -133,12 +119,6 @@ class VisitController extends Controller
           return redirect()->route('index.visit.officer')->with(['success'=>'edit sukses']);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($visit_id)
     {
         $visit = Visit::where('visit_id',$visit_id)->delete();

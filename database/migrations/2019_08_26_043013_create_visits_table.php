@@ -14,8 +14,8 @@ class CreateVisitsTable extends Migration
     public function up()
     {
         Schema::create('visit', function (Blueprint $table) {
-            $table->increments('visit_id');
-            $table->string('nama_customer');
+            $table->increments('visit_id')->unique();
+            $table->string('kode_customer');
             $table->string('spv_pic');
             $table->date('tanggal_visit');
             $table->time('waktu_in');
@@ -23,6 +23,13 @@ class CreateVisitsTable extends Migration
             $table->string('pic_meeted');
             $table->string('kegiatan');
             $table->timestamps();
+        });
+        Schema::table('visit', function($table)
+        {
+            $table->foreign('kode_customer')
+                ->references('kode_customer')
+                ->on('customer')
+                ->onDelete('cascade');
         });
     }
 
