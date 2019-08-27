@@ -68,20 +68,18 @@
                 	        <input type="text" class="form-control" name="mf_persen" required>
                         </div>
                         <div class="form-group col-md-12">
-                	        <label class="font-weight-bold">Ket % (TK)</label>
-                	        <input type="text" class="form-control" name="bpjs_tk_persen" placeholder="Opsional">
-                        </div>
-                        <div class="form-group col-md-12">
                 	        <label class="font-weight-bold">BPJS Ketenagakerjaan</label>
-                	        <input type="text" class="form-control" name="bpjs_tenagakerja" placeholder="Opsional">
+                	        <input type="text" class="form-control" name="bpjs_tk_persen" placeholder="Ket %">
                         </div>
                         <div class="form-group col-md-12">
-                	        <label class="font-weight-bold">Ket % (Kes)</label>
-                	        <input type="text" class="form-control" name="bpjs_kes_persen" placeholder="Opsional">
+                	        <input type="text" class="form-control" name="bpjs_tenagakerja" placeholder="Nominal">
                         </div>
                         <div class="form-group col-md-12">
                 	        <label class="font-weight-bold">BPJS Kesehatan</label>
-                	        <input type="text" class="form-control" name="bpjs_kesehatan" placeholder="Opsional">
+                	        <input type="text" class="form-control" name="bpjs_kes_persen" placeholder="Ket %">
+                        </div>
+                        <div class="form-group col-md-12">
+                	        <input type="text" class="form-control" name="bpjs_kesehatan" placeholder="Nominal">
                         </div>
                         <div class="form-group col-md-12">
                 	        <label class="font-weight-bold">Jiwasraya</label>
@@ -92,12 +90,11 @@
                 	        <input type="text" class="form-control" name="ramamusa" placeholder="Opsional">
                         </div>
                         <div class="form-group col-md-12">
-                	        <label class="font-weight-bold">Ditagihkan</label>
-                	        <input type="text" class="form-control" name="ditagihkan" placeholder="Opsional">
+                	        <label class="font-weight-bold">THR</label>
+                	        <input type="text" class="form-control" name="ditagihkan" placeholder="ditagihkan (Opsional)">
                         </div>
                         <div class="form-group col-md-12">
-                	        <label class="font-weight-bold">Diprovisasikan</label>
-                	        <input type="text" class="form-control" name="diprovisasikan" placeholder="Opsional">
+                	        <input type="text" class="form-control" name="diprovisasikan" placeholder="diprovisasikan (Opsional)">
                         </div>
                         <div class="form-group col-md-12">
                 	        <label class="font-weight-bold">Overheadcost</label>

@@ -36,10 +36,10 @@
                                     <th>Invoice</th>
                                     <th>MF</th>
                                     <th>MF (%)</th>
-                                    <th>Ket. % (TK)</th>
-                                    <th>BPJS Ketenagakerjaan</th>
-                                    <th>Ket. % (Kes)</th>
-                                    <th>BPJS Kesehatan</th>
+                                    <th>Ket. % BPJS Ketenagakerjaan<th>
+                                    <th>Nominal BPJS Ketenagakerjaan</th>
+                                    <th>Ket. % BPJS Kesehatan</th>
+                                    <th>Nominal BPJS Kesehatan</th>
                                     <th>Jiwasraya</th>
                                     <th>Ramamusa</th>
                                     <th>Ditagihkan</th>
