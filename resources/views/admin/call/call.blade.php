@@ -22,7 +22,7 @@
             <div class="panel block">
                 <div class="panel-body">
                 {{-- ----------  -------------- filter ------------------------ --}}
-                    <form class="form-horizontal" id="form-filter" method="POST" action="{{route('filter.bisnis_unit')}}">
+                    <form class="form-horizontal" id="form-filter" method="POST" action="{{route('filter.call')}}">
                             @csrf
                             <div class="form-group">
                                 <label class="control-label col-md-2">Bisnis Unit</label>
