@@ -153,6 +153,7 @@ Route::group(['prefix' => 'admin',  'middleware' => 'is_admin'], function(){
         Route::post('/update/keluhan{id_keluhan}','KeluhanadminController@update')->name('update.keluhan');
         Route::get('/keluhan/exportPDF', 'KeluhanadminController@exportPDF');
         Route::get('/keluhan/exportExcel', 'KeluhanadminController@exportExcel');
+        Route::get('/reset/keluhan{id}', 'KeluhanadminController@aktivasi')->name('reset.keluhan');
     
         //------- laporan kontrak
         Route::get('/insertkontrak', 'KontrakadminController@insert')->name('insert.kontrak'); //show form insert

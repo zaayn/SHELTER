@@ -98,7 +98,10 @@
                         </div>
                         <div class="form-group col-md-12">
                 	        <label class="font-weight-bold">Status</label>
-                	        <input type="text" class="form-control" name="status" required>
+                	        <select class ="form-control" name="status" required>
+                            <option value="Belum ditangani">Belum ditangani</option>
+                            <option value="Sudah ditangani">Sudah ditangani</option>
+                            </select>
                         </div>
                         <div class="col-md-12">
                             <button type="submit" class="btn btn-lg btn-info btn-block ">

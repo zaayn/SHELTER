@@ -28,8 +28,8 @@ class CreateDatamousTable extends Migration
             $table->string('diprovisasikan')->nullable();
             $table->string('overheadcost');
             $table->string('training');
-            $table->date('tanggal_invoice');
-            $table->date('time_of_payment');
+            $table->string('tanggal_invoice');
+            $table->string('time_of_payment');
             $table->string('cut_of_date');
             $table->string('kaporlap');
             $table->string('devices');

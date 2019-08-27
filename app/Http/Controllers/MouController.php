@@ -56,14 +56,18 @@ class MouController extends Controller
             'pendaftaran_mou'       => 'required',
         ]);
 
+        //setlocale(LC_MONETARY,"id_ID");
+
         $datamou = new datamou;
-       $datamou->no_mou = $request->no_mou;
-       $datamou->id_kontrak = $request->id_kontrak;
+        $datamou->no_mou = $request->no_mou;
+        $datamou->id_kontrak = $request->id_kontrak;
         $datamou->hc = $request->hc;
         $datamou->invoice = $request->invoice;
         $datamou->mf = $request->mf;
         $datamou->mf_persen = $request->mf_persen;
+        $datamou->bpjs_tk_persen = $request->bpjs_tk_persen;
         $datamou->bpjs_tenagakerja = $request->bpjs_tenagakerja;
+        $datamou->bpjs_kes_persen = $request->bpjs_kes_persen;
         $datamou->bpjs_kesehatan = $request->bpjs_kesehatan;
         $datamou->jiwasraya = $request->jiwasraya;
         $datamou->ramamusa = $request->ramamusa;
@@ -132,7 +136,9 @@ class MouController extends Controller
         $datamou->invoice = $request->invoice;
         $datamou->mf = $request->mf;
         $datamou->mf_persen = $request->mf_persen;
+        $datamou->bpjs_tk_persen = $request->bpjs_tk_persen;
         $datamou->bpjs_tenagakerja = $request->bpjs_tenagakerja;
+        $datamou->bpjs_kes_persen = $request->bpjs_kes_persen;
         $datamou->bpjs_kesehatan = $request->bpjs_kesehatan;
         $datamou->jiwasraya = $request->jiwasraya;
         $datamou->ramamusa = $request->ramamusa;
