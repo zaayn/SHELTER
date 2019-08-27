@@ -28,6 +28,7 @@ Route::group(['prefix' => 'officer_crm',  'middleware' => 'is_officer_crm'], fun
     Route::post('/update/call{call_id}','callController@update')->name('update.call.officer');
     Route::get('/call/exportPDF', 'callController@exportPDF');
     Route::get('/call/exportExcel', 'CalladminController@exportExcel');
+    Route::post('/filter/bisnis_unit', 'callController@filter')->name('filter.bisnis');
 
     //------- laporan visit
     Route::get('/insertvisit', 'VisitController@insert')->name('insert.visit.officer'); //show form insert
@@ -133,6 +134,7 @@ Route::group(['prefix' => 'admin',  'middleware' => 'is_admin'], function(){
     Route::post('/update/call{call_id}','CalladminController@update')->name('update.call');
     Route::get('/call/exportPDF', 'CalladminController@exportPDF');
     Route::get('/call/exportExcel', 'CalladminController@exportExcel');
+    Route::post('/filter/bisnis_unit', 'CalladminController@filter')->name('filter.bisnis_unit');
 
         //------- laporan visit
         Route::get('/insertvisit', 'Visitadmincontroller@insert')->name('insert.visit'); //show form insert

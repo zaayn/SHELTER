@@ -18,17 +18,15 @@ use App\bisnis_unit;
 
 class CalladminController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
+        $data['bisnis_units'] = bisnis_unit::all();
         $data['calls'] = call::all();
         $data['calls'] = DB::table('call')
         ->join('customer', 'call.kode_customer', '=', 'customer.kode_customer')
-        ->select('customer.kode_customer','call.kode_customer','call_id','customer.nama_perusahaan','spv_pic','tanggal_call','jam_call','pembicaraan','pic_called','hal_menonjol')
+        ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
+        ->select('customer.kode_customer','call.kode_customer','call_id','customer.nama_perusahaan','spv_pic','tanggal_call','jam_call',
+        'pembicaraan','pic_called','hal_menonjol')
         ->get();
 
         return view('admin/call/call', $data);
@@ -114,13 +112,6 @@ class CalladminController extends Controller
         return view('admin/call/editcall',$data)->with('call', $call);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         $call   =   Call::findorFail($id);
@@ -145,12 +136,6 @@ class CalladminController extends Controller
           return redirect()->route('index.call')->with(['success'=>'edit sukses']);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($call_id)
     {
         $call = Call::where('call_id',$call_id)->delete();
@@ -185,11 +170,26 @@ class CalladminController extends Controller
         return $ret;
 
     }
-    //$phrase = 'Stack-Overflow Questions IT Tags Users Meta Example';
-    // initialism($phrase);
-
     public function exportExcel()
 	{
 		return Excel::download(new CallExport, 'Laporan-Call-CRM.xlsx');
+    }
+    public function filter(Request $request)
+    {
+      if($request->bu_id)
+      {
+        $data['bisnis_units'] = bisnis_unit::all();
+        $data['calls'] = call::all();
+        $data['calls'] = DB::table('call')
+        ->join('customer', 'call.kode_customer', '=', 'customer.kode_customer')
+        ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
+        ->select('bisnis_unit.bu_id','customer.kode_customer','call.kode_customer','call_id','customer.nama_perusahaan','spv_pic','tanggal_call','jam_call',
+        'pembicaraan','pic_called','hal_menonjol','bisnis_unit.nama_bisnis_unit')
+        ->where('bisnis_unit.bu_id', '=', $request->bu_id)
+        ->get();
+
+        return view('admin/call/call', $data);
+        
+      }
     }
 }
