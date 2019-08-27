@@ -49,6 +49,7 @@ Route::group(['prefix' => 'officer_crm',  'middleware' => 'is_officer_crm'], fun
     Route::post('/update/keluhan{id_keluhan}','KeluhanController@update')->name('update.keluhan.officer');
     Route::get('/keluhan/exportPDF', 'KeluhanController@exportPDF');
     Route::get('/keluhan/exportExcel', 'KeluhanadminController@exportExcel');
+    Route::post('/filter/bisnis_unit', 'KeluhanController@filter')->name('keluhan2.bisnis_unit');
 
     //------- laporan kontrak
     Route::get('/insertkontrak', 'KontrakController@insert')->name('insert.kontrak.officer'); //show form insert
@@ -156,6 +157,7 @@ Route::group(['prefix' => 'admin',  'middleware' => 'is_admin'], function(){
         Route::get('/keluhan/exportPDF', 'KeluhanadminController@exportPDF');
         Route::get('/keluhan/exportExcel', 'KeluhanadminController@exportExcel');
         Route::get('/reset/keluhan{id}', 'KeluhanadminController@aktivasi')->name('reset.keluhan');
+        Route::post('/filter/bisnis_unit', 'KeluhanadminController@filter')->name('keluhan.bisnis_unit');
     
         //------- laporan kontrak
         Route::get('/insertkontrak', 'KontrakadminController@insert')->name('insert.kontrak'); //show form insert
