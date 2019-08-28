@@ -1,12 +1,12 @@
-// $(document).ready(function(){
-//     $('#mydatatables').DataTable({
-//         "sScrollX": "100%",
-//         "sScrollXInner": "100%",    
-//         show: true,
-//         // dom: 'Bfrtip',
-//         buttons: ['copy', 'csv', 'excel', 'pdf', 'print']
-//       });
-// })
+$(document).ready(function(){
+    $('#mydatatables2').DataTable({
+        "sScrollX": "100%",
+        "sScrollXInner": "100%",    
+        show: true,
+        // dom: 'Bfrtip',
+        buttons: ['copy', 'csv', 'excel', 'pdf', 'print']
+      });
+})
 $(document).ready(function() {
   // Setup - add a text input to each footer cell
   $('#mydatatables thead tr').clone(true).appendTo( '#mydatatables thead' );
