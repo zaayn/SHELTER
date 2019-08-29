@@ -78,7 +78,7 @@ class AdminController extends Controller
         ->join('kontrak','datamou.id_kontrak','=','kontrak.id_kontrak')
         ->join('customer', 'kontrak.kode_customer', '=', 'customer.kode_customer')
         ->join('bisnis_unit','customer.bu_id','=','bisnis_unit.bu_id')
-        ->select('kontrak.id_kontrak','customer.kode_customer','customer.nama_perusahaan',
+        ->select('bpjs_tk_persen','bpjs_kes_persen','kontrak.id_kontrak','customer.kode_customer','customer.nama_perusahaan',
         'kontrak.periode_kontrak','kontrak.akhir_periode','kontrak.srt_pemberitahuan',
         'kontrak.tgl_srt_pemberitahuan','kontrak.srt_penawaran','kontrak.tgl_srt_penawaran',
         'kontrak.dealing','kontrak.tgl_dealing','kontrak.posisi_pks','kontrak.closing',
