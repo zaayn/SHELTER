@@ -62,6 +62,7 @@ Route::group(['prefix' => 'officer_crm',  'middleware' => 'is_officer_crm'], fun
     Route::get('/mou', 'OfficerController@mou')->name('mou.officer');
     Route::get('/kontrak/exportPDF', 'KontrakController@exportPDF');
     Route::get('/kontrak/exportExcel', 'KontrakadminController@exportExcel');
+    Route::post('/filter/kontrak', 'KontrakController@filter')->name('kontrak.filter');
 
     Route::get('/mou/exportPDF', 'OfficerController@exportPDF');
 
