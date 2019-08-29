@@ -15,6 +15,7 @@ class KeluhanController extends Controller
 {
     public function index()
     {
+        $data['bisnis_units'] = bisnis_unit::all();
         $data['keluhans'] = DB::table('keluhan')
         ->join('customer', 'keluhan.kode_customer', '=', 'customer.kode_customer')
         ->select('id_keluhan','customer.kode_customer','customer.nama_perusahaan','keluhan.kode_customer','spv_pic','tanggal_keluhan','jam_keluhan','keluhan','pic','jam_follow','follow_up','closing_case','via','keluhan.status')
@@ -126,5 +127,23 @@ class KeluhanController extends Controller
       $pdf = PDF::loadview('officer/pdfkeluhan',['keluhan'=>$keluhan]);
       $pdf->setPaper('A4','landscape');
       return $pdf->download('Laporan-Keluhan-CRM.pdf');
+    }
+    public function filter(Request $request)
+    {
+      if($request->bu_id)
+      {
+        $data['bisnis_units'] = bisnis_unit::all();
+        $data['keluhans'] = DB::table('keluhan')
+        ->join('customer', 'keluhan.kode_customer', '=', 'customer.kode_customer')
+        ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
+        ->select('id_keluhan','customer.kode_customer','customer.nama_perusahaan','keluhan.kode_customer','spv_pic','tanggal_keluhan',
+        'jam_keluhan','keluhan','pic','jam_follow','follow_up','closing_case','via',
+        'keluhan.status','bisnis_unit.bu_id','bisnis_unit.nama_bisnis_unit')
+        ->where('bisnis_unit.bu_id', '=', $request->bu_id)
+        ->get();
+
+        return view('officer/keluhan', $data);
+        
+      }
     }
 }

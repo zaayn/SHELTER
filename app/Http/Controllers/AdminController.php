@@ -9,6 +9,7 @@ use App\datamou;
 use App\Kontrak;
 use App\Customer;
 use App\Keluhan;
+use App\User;
 use Carbon;
 use DateTime;
 use PDF;
@@ -36,9 +37,11 @@ class AdminController extends Controller
         ->where('keluhan.status', 'belum ditangani')->get();
 
         $lastUser = DB::table('users')
-                    ->select('username','current_login_at')
+                    ->whereNotNull('current_login_at')
                     ->orderBy('current_login_at','desc')
                     ->get();
+      
+        
         
 
         $amount = DB::table('customer')

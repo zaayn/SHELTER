@@ -20,6 +20,7 @@ class VisitController extends Controller
      */
     public function index()
     {
+        $data['bisnis_units'] = bisnis_unit::all();
         $data['visits'] = DB::table('visit')
         ->join('customer', 'visit.kode_customer', '=', 'customer.kode_customer')
         ->select('customer.kode_customer','visit.kode_customer','visit_id','customer.nama_perusahaan','spv_pic','tanggal_visit','waktu_in','waktu_out','pic_meeted','kegiatan')
@@ -129,5 +130,22 @@ class VisitController extends Controller
         $pdf = PDF::loadview('officer/pdfvisit',['visit'=>$visit]);
         $pdf->setPaper('A4','landscape');
     	return $pdf->download('Laporan-Visit-CRM.pdf');
+    }
+    public function filter(Request $request)
+    {
+      if($request->bu_id)
+      {
+        $data['bisnis_units'] = bisnis_unit::all();
+        $data['visits'] = DB::table('visit')
+        ->join('customer', 'visit.kode_customer', '=', 'customer.kode_customer')
+        ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
+        ->select('bisnis_unit.bu_id','bisnis_unit.nama_bisnis_unit','customer.kode_customer','visit.kode_customer','visit_id','customer.nama_perusahaan','spv_pic',
+        'tanggal_visit','waktu_in','waktu_out','pic_meeted','kegiatan')
+        ->where('bisnis_unit.bu_id', '=', $request->bu_id)
+        ->get();
+
+        return view('officer/visit', $data);
+        
+      }
     }
 }
