@@ -11,12 +11,14 @@ use Excel;
 use App\Exports\KeluhanExport;
 use App\Customer;
 use App\bisnis_unit;
+use App\wilayah;
 
 
 class KeluhanadminController extends Controller
 {
     public function index()
     {
+        $data['wilayahs'] = wilayah::all();
         $data['bisnis_units'] = bisnis_unit::all();
         $data['keluhans'] = DB::table('keluhan')
         ->join('customer', 'keluhan.kode_customer', '=', 'customer.kode_customer')
@@ -145,16 +147,53 @@ class KeluhanadminController extends Controller
     }
     public function filter(Request $request)
     {
-      if($request->bu_id)
+      if($request->bu_id && $request->wilayah_id)
       {
+        $data['wilayahs'] = wilayah::all();
         $data['bisnis_units'] = bisnis_unit::all();
         $data['keluhans'] = DB::table('keluhan')
         ->join('customer', 'keluhan.kode_customer', '=', 'customer.kode_customer')
+        ->join('wilayah','wilayah.wilayah_id','=','customer.wilayah_id')
         ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
-        ->select('id_keluhan','customer.kode_customer','customer.nama_perusahaan','keluhan.kode_customer','spv_pic','tanggal_keluhan',
+        ->select('wilayah.wilayah_id','wilayah.nama_wilayah','id_keluhan','customer.kode_customer','customer.nama_perusahaan','keluhan.kode_customer','spv_pic','tanggal_keluhan',
         'jam_keluhan','keluhan','pic','jam_follow','follow_up','closing_case','via',
         'keluhan.status','bisnis_unit.bu_id','bisnis_unit.nama_bisnis_unit')
         ->where('bisnis_unit.bu_id', '=', $request->bu_id)
+        ->where('wilayah.wilayah_id', '=', $request->wilayah_id)
+        ->get();
+
+        return view('admin/keluhan/keluhan', $data);
+        
+      }
+      elseif($request->bu_id)
+      {
+        $data['wilayahs'] = wilayah::all();
+        $data['bisnis_units'] = bisnis_unit::all();
+        $data['keluhans'] = DB::table('keluhan')
+        ->join('customer', 'keluhan.kode_customer', '=', 'customer.kode_customer')
+        ->join('wilayah','wilayah.wilayah_id','=','customer.wilayah_id')
+        ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
+        ->select('wilayah.wilayah_id','wilayah.nama_wilayah','id_keluhan','customer.kode_customer','customer.nama_perusahaan','keluhan.kode_customer','spv_pic','tanggal_keluhan',
+        'jam_keluhan','keluhan','pic','jam_follow','follow_up','closing_case','via',
+        'keluhan.status','bisnis_unit.bu_id','bisnis_unit.nama_bisnis_unit')
+        ->where('bisnis_unit.bu_id', '=', $request->bu_id)
+        ->get();
+
+        return view('admin/keluhan/keluhan', $data);
+        
+      }
+      elseif($request->wilayah_id)
+      {
+        $data['wilayahs'] = wilayah::all();
+        $data['bisnis_units'] = bisnis_unit::all();
+        $data['keluhans'] = DB::table('keluhan')
+        ->join('customer', 'keluhan.kode_customer', '=', 'customer.kode_customer')
+        ->join('wilayah','wilayah.wilayah_id','=','customer.wilayah_id')
+        ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
+        ->select('wilayah.wilayah_id','wilayah.nama_wilayah','id_keluhan','customer.kode_customer','customer.nama_perusahaan','keluhan.kode_customer','spv_pic','tanggal_keluhan',
+        'jam_keluhan','keluhan','pic','jam_follow','follow_up','closing_case','via',
+        'keluhan.status','bisnis_unit.bu_id','bisnis_unit.nama_bisnis_unit')
+        ->where('wilayah.wilayah_id', '=', $request->wilayah_id)
         ->get();
 
         return view('admin/keluhan/keluhan', $data);
