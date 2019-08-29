@@ -28,6 +28,7 @@
                     </div>
                             <hr style="border: solid #ddd; border-width: 1px 0 0; clear: both; margin: 22px 0 21px; height: 0;">
                             @include('admin.shared.components.alert')
+                            <div style="overflow-x:auto;">
                             <table id="mydatatables" class="table table-responsive table-hover table-light table-striped">
                                 <thead>
                                     <th>No. MoU</th>
@@ -36,7 +37,7 @@
                                     <th>Invoice</th>
                                     <th>MF</th>
                                     <th>MF (%)</th>
-                                    <th>Ket. % BPJS Ketenagakerjaan<th>
+                                    <th>Ket. % BPJS Ketenagakerjaan</th>
                                     <th>Nominal BPJS Ketenagakerjaan</th>
                                     <th>Ket. % BPJS Kesehatan</th>
                                     <th>Nominal BPJS Kesehatan</th>
@@ -90,8 +91,9 @@
                                 @endforeach
                                 </tbody>
                             </table>
-                            </div>
                         </div>
                     </div>
+                </div>
             </div>
+        </div>
 @endsection
