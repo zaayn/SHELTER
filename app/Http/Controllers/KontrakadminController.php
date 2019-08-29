@@ -15,18 +15,22 @@ use Carbon;
 use PDF;
 use Excel;
 Use App\Exports\KontrakExport;
+use App\bisnis_unit;
 
 class KontrakadminController extends Controller
 {
     public function filter(Request $request)
     {
-        if($request->kode_customer)
+        if($request->kode_customer && $request->bu_id)
         {
+            $data['bisnis_units'] = bisnis_unit::all();
             $data['customers'] = customer::all();
             $data['kontraks'] = DB::table('kontrak')
             ->join('customer', 'customer.kode_customer', '=', 'kontrak.kode_customer')
-            ->select('kontrak.id_kontrak','customer.kode_customer','customer.nama_perusahaan','kontrak.periode_kontrak','kontrak.akhir_periode','kontrak.srt_pemberitahuan','kontrak.tgl_srt_pemberitahuan','kontrak.srt_penawaran','kontrak.tgl_srt_penawaran','kontrak.dealing','kontrak.tgl_dealing','kontrak.posisi_pks','kontrak.closing')
+            ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
+            ->select('bisnis_unit.nama_bisnis_unit','bisnis_unit.bu_id','kontrak.id_kontrak','customer.kode_customer','customer.nama_perusahaan','kontrak.periode_kontrak','kontrak.akhir_periode','kontrak.srt_pemberitahuan','kontrak.tgl_srt_pemberitahuan','kontrak.srt_penawaran','kontrak.tgl_srt_penawaran','kontrak.dealing','kontrak.tgl_dealing','kontrak.posisi_pks','kontrak.closing')
             ->where('customer.kode_customer', '=', $request->kode_customer)
+            ->where('bisnis_unit.bu_id', '=', $request->bu_id)
             ->get();
             return view('admin/kontrak/kontrak', $data);
         }
@@ -36,6 +40,7 @@ class KontrakadminController extends Controller
     }
     public function index()
     {
+        $data['bisnis_units'] = bisnis_unit::all();
         $data['customers'] = customer::all();
         $data['kontraks'] = DB::table('kontrak')
         ->join('customer', 'customer.kode_customer', '=', 'kontrak.kode_customer')
@@ -174,5 +179,6 @@ class KontrakadminController extends Controller
         $kontrak->posisi_pks = "di shelter";
         $kontrak->closing = "closed";
         if ($kontrak->save())
-        return redirect()->route('index.kontrak')->with(['success'=>'Closing Kontrak sukses']);    }
+        return redirect()->route('index.kontrak')->with(['success'=>'Closing Kontrak sukses']);    
+    }
 }

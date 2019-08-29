@@ -26,6 +26,16 @@
                     <form class="form-horizontal" id="form-filter" method="POST" action="{{route('filter.kontrak')}}">
                         @csrf
                         <div class="form-group">
+                            <label class="control-label col-md-2">Bisnis Unit</label>
+                            <div class="col-md-6">
+                                <select class="form-control" name="bu_id">
+                                @foreach($bisnis_units as $bisnis_unit)
+                                    <option value="{{ $bisnis_unit->bu_id }}">{{ $bisnis_unit->nama_bisnis_unit }}</option>
+                                @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
                             <label class="control-label col-md-2">Nama Perusahaan</label>
                                 <div class="col-md-6">
                                     <select class="form-control" name="kode_customer">

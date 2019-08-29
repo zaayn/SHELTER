@@ -13,6 +13,7 @@ use App\wilayah;
 use App\User;
 use PDF;
 use Excel;
+use App\datamou;
 use App\Exports\CustomerExport;
 
 
@@ -229,4 +230,26 @@ class CustomerController extends Controller
       return view('/admin/cust_type', $data);
       
     }
+    public function profile()
+    {  
+      $data['customers'] = customer::all();
+        $data['no'] = 1;
+        return view('admin/customer/profile', $data);
+    }
+    public function filter_profile(Request $request)
+    {  
+      $data['datamous'] = datamou::all();
+      $data['customers'] = DB::table('customer')
+      ->join('wilayah', 'customer.wilayah_id', '=', 'wilayah.wilayah_id')
+      ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
+      ->select('customer.kode_customer','customer.nama_perusahaan','customer.jenis_usaha','nama_bisnis_unit','customer.alamat','customer.provinsi','customer.kabupaten','customer.telpon','customer.cp','customer.nama_area','wilayah.nama_wilayah','customer.nama_depan','status','jenis_perusahaan','negara')
+      ->where('customer.kode_customer', '=', $request->kode_customer)->get();  
+      $data['kontraks'] = DB::table('kontrak')
+      ->join('customer', 'customer.kode_customer', '=', 'kontrak.kode_customer')
+      ->select('kontrak.id_kontrak','customer.kode_customer','customer.nama_perusahaan','kontrak.periode_kontrak','kontrak.akhir_periode','kontrak.srt_pemberitahuan','kontrak.tgl_srt_pemberitahuan','kontrak.srt_penawaran','kontrak.tgl_srt_penawaran','kontrak.dealing','kontrak.tgl_dealing','kontrak.posisi_pks','kontrak.closing')
+      ->where('customer.kode_customer', '=', $request->kode_customer)->get();
+      $data['no'] = 1;
+      return view('admin/customer/profile2', $data);
+    }
+
 }

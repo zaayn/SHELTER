@@ -126,6 +126,8 @@ Route::group(['prefix' => 'admin',  'middleware' => 'is_admin'], function(){
     Route::post('/filter/customer', 'CustomerController@filter')->name('filter.customer');
     Route::get('/reset/customer{id}', 'CustomerController@aktivasi')->name('reset.customer');
     Route::get('/cust_type', 'CustomerController@cust_type')->name('cust.type');
+    Route::get('/profile', 'CustomerController@profile')->name('cust.profile');
+    Route::post('/filter/profile', 'CustomerController@filter_profile')->name('filter.profile');
 
     //------- laporan call
     Route::get('/insertcall', 'CalladminController@insert')->name('insert.call'); //show form insert
