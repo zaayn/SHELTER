@@ -100,7 +100,7 @@
                         <hr style="border: solid #ddd; border-width: 1px 0 0; clear: both; margin: 22px 0 21px; height: 0;">
                         @include('admin.shared.components.alert')
                         <!-- table reminder -->
-                        <table id="mydatatables" class="table table-responsive table-hover table-light table-striped">
+                        <table id="mydatatables2" class="table table-responsive table-hover table-light table-striped">
                             <thead>
                                 <th>Nomor Kontrak</th>
                                 <th>Nama Perusahaan</th>
@@ -151,7 +151,7 @@
                     <div class="panel-heading"><h3>Daftar Keluhan yang Belum Ditangani</h3></div>
                     <hr style="border: solid #ddd; border-width: 1px 0 0; clear: both; margin: 22px 0 21px; height: 0;">
                         @include('admin.shared.components.alert')
-                            <table id="mydatatables" class="table table-collapse table-hover table-light table-striped">
+                            <table id="mydatatables2" class="table table-collapse table-hover table-light table-striped">
                                 <thead>
                                     <th>No</th>
                                     <th>Nama Customer</th>
