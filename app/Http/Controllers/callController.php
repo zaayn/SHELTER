@@ -15,6 +15,7 @@ use App\Exports\CallExport;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Customer;
 use App\bisnis_unit;
+use App\wilayah;
 
 class callController extends Controller
 {
@@ -25,6 +26,7 @@ class callController extends Controller
      */
     public function index()
     {
+        $data['wilayahs'] = wilayah::all();
         $data['bisnis_units'] = bisnis_unit::all();
         $data['calls'] = call::all();
         $data['calls'] = DB::table('call')
@@ -45,19 +47,6 @@ class callController extends Controller
       return view('officer/insertcall',$data);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    
     public function store(Request $request)
     {
         $request->validate([
@@ -87,19 +76,6 @@ class callController extends Controller
         }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($call_id)
     {
         $data['bisnis_units'] = bisnis_unit::all();
@@ -113,13 +89,6 @@ class callController extends Controller
         return view('officer/editcall',$data)->with('call', $call);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         $call   =   Call::findorFail($id);
@@ -144,12 +113,6 @@ class callController extends Controller
           return redirect()->route('index.call.officer')->with(['success'=>'edit sukses']);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($call_id)
     {
         $call = Call::where('call_id',$call_id)->delete();
@@ -181,20 +144,52 @@ class callController extends Controller
     }
     public function filter(Request $request)
     {
-      if($request->bu_id)
+      if($request->bu_id && $request->wilayah_id)
       {
+        $data['wilayahs'] = wilayah::all();
         $data['bisnis_units'] = bisnis_unit::all();
         $data['calls'] = call::all();
         $data['calls'] = DB::table('call')
         ->join('customer', 'call.kode_customer', '=', 'customer.kode_customer')
+        ->join('wilayah','wilayah.wilayah_id','=','customer.wilayah_id')
         ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
-        ->select('bisnis_unit.bu_id','customer.kode_customer','call.kode_customer','call_id','customer.nama_perusahaan','spv_pic','tanggal_call','jam_call',
+        ->select('wilayah.wilayah_id','bisnis_unit.bu_id','customer.kode_customer','call.kode_customer','call_id','customer.nama_perusahaan','spv_pic','tanggal_call','jam_call',
         'pembicaraan','pic_called','hal_menonjol','bisnis_unit.nama_bisnis_unit')
         ->where('bisnis_unit.bu_id', '=', $request->bu_id)
+        ->where('wilayah.wilayah_id', '=', $request->wilayah_id)
         ->get();
 
         return view('officer/call', $data);
-        
       }
+      elseif ($request->bu_id) {
+        $data['wilayahs'] = wilayah::all();
+        $data['bisnis_units'] = bisnis_unit::all();
+        $data['calls'] = call::all();
+        $data['calls'] = DB::table('call')
+        ->join('customer', 'call.kode_customer', '=', 'customer.kode_customer')
+        ->join('wilayah','wilayah.wilayah_id','=','customer.wilayah_id')
+        ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
+        ->select('wilayah.wilayah_id','bisnis_unit.bu_id','customer.kode_customer','call.kode_customer','call_id','customer.nama_perusahaan','spv_pic','tanggal_call','jam_call',
+        'pembicaraan','pic_called','hal_menonjol','bisnis_unit.nama_bisnis_unit')
+        ->where('bisnis_unit.bu_id', '=', $request->bu_id)
+        ->get();
+        return view('officer/call', $data);
+
+      } 
+      elseif ($request->wilayah_id) {
+        $data['wilayahs'] = wilayah::all();
+        $data['bisnis_units'] = bisnis_unit::all();
+        $data['calls'] = call::all();
+        $data['calls'] = DB::table('call')
+        ->join('customer', 'call.kode_customer', '=', 'customer.kode_customer')
+        ->join('wilayah','wilayah.wilayah_id','=','customer.wilayah_id')
+        ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
+        ->select('wilayah.wilayah_id','bisnis_unit.bu_id','customer.kode_customer','call.kode_customer','call_id','customer.nama_perusahaan','spv_pic','tanggal_call','jam_call',
+        'pembicaraan','pic_called','hal_menonjol','bisnis_unit.nama_bisnis_unit')
+        ->where('wilayah.wilayah_id', '=', $request->wilayah_id)
+        ->get();
+        return view('officer/call', $data);
+
+      } 
     }
 }
