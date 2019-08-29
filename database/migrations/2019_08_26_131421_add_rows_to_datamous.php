@@ -14,8 +14,8 @@ class AddRowsToDatamous extends Migration
     public function up()
     {
         Schema::table('datamou', function (Blueprint $table) {
-            $table->string('bpjs_tk_persen')->after('mf_persen');
-            $table->string('bpjs_kes_persen')->after('bpjs_tenagakerja');
+            $table->string('bpjs_tk_persen')->after('mf_persen')->nullable();
+            $table->string('bpjs_kes_persen')->after('bpjs_tenagakerja')->nullable();
         });
     }
 
