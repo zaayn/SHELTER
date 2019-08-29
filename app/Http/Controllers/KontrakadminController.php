@@ -11,6 +11,7 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\DB;
 use App\Kontrak;
 use App\Customer;
+use App\Datamou;
 use Carbon;
 use PDF;
 use Excel;
@@ -115,7 +116,7 @@ class KontrakadminController extends Controller
         $kontrak->dealing = $request->dealing;
         $kontrak->tgl_dealing = $request->tgl_dealing;
         $kontrak->posisi_pks = $request->posisi_pks;
-        $kontrak->closing = "aktif";
+        $kontrak->closing = "Aktif";
 
         $customer = customer::findOrFail($request->kode_customer);
         $to = \Carbon\Carbon::createFromFormat('Y-m-d',$kontrak->periode_kontrak);
@@ -206,8 +207,14 @@ class KontrakadminController extends Controller
         $kontrak = Kontrak::findorFail($id_kontrak);
         $kontrak->dealing = "sudah deal";
         $kontrak->posisi_pks = "di shelter";
-        $kontrak->closing = "closed";
+        $kontrak->closing = "Closed";
         if ($kontrak->save())
         return redirect()->route('index.kontrak')->with(['success'=>'Closing Kontrak sukses']);    
+    }
+    public function insertmou($id_kontrak){
+        //$where = array('id_kontrak' => $id_kontrak);
+        $insertmou  = Datamou::findOrFail($id_kontrak);
+ 
+        return view('admin/mou/insertmou')->with('insertmou', $insertmou);
     }
 }
