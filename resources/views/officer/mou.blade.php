@@ -36,7 +36,7 @@
                                     <th>Invoice</th>
                                     <th>MF</th>
                                     <th>MF (%)</th>
-                                    <th>Ket. % BPJS Ketenagakerjaan<th>
+                                    <th>Ket. % BPJS Ketenagakerjaan</th>
                                     <th>Nominal BPJS Ketenagakerjaan</th>
                                     <th>Ket. % BPJS Kesehatan</th>
                                     <th>Nominal BPJS Kesehatan</th>
