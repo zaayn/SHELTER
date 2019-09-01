@@ -220,7 +220,6 @@
               <li class="active"><a href="{{asset('/admin/insertvisit')}}"><i class="fa fa-circle-o"></i>Insert Laporan Visit</a></li>
               <li class="active"><a href="{{asset('/admin/insertcall')}}"><i class="fa fa-circle-o"></i>Insert Laporan Call</a></li>
               <li class="active"><a href="{{asset('/admin/insertkeluhan')}}"><i class="fa fa-circle-o"></i>Insert Laporan Keluhan</a></li>
-              <li class="active"><a href="{{asset('/admin/insertmou')}}"><i class="fa fa-circle-o"></i>Insert Laporan Data MOU</a></li>
             </ul>
         </li>
 

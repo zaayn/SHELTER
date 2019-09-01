@@ -213,8 +213,9 @@ class KontrakadminController extends Controller
     }
     public function insertmou($id_kontrak){
         //$where = array('id_kontrak' => $id_kontrak);
-        $insertmou  = Datamou::findOrFail($id_kontrak);
+        $kontrak = Kontrak::findOrFail($id_kontrak);
+        //dd($kontrak);
  
-        return view('admin/mou/insertmou')->with('insertmou', $insertmou);
+        return view('admin/mou/insertmou')->with('kontrak',$kontrak);
     }
 }

@@ -20,6 +20,7 @@ class MouController extends Controller
         $data['datamous'] = datamou::all();
         return view('admin/mou/mou', $data);
     }
+    
 
     public function insert()
     {
@@ -33,8 +34,9 @@ class MouController extends Controller
 
     public function store(Request $request)
     {
+        
         $request->validate([
-            //'id_kontrak'            => 'required|unique:datamou',
+            'id_kontrak'            => 'required|unique:datamou',
             'hc'                    => 'required|integer',
             'invoice'               => 'required|integer',
             'mf'                    => 'required|integer',
@@ -57,7 +59,7 @@ class MouController extends Controller
         ]);
 
         //setlocale(LC_MONETARY,"id_ID");
-
+        //$kontrak = Kontrak::findorFail($id_kontrak);
         $datamou = new datamou;
         $datamou->no_mou = $request->no_mou;
         $datamou->id_kontrak = $request->id_kontrak;
@@ -84,7 +86,8 @@ class MouController extends Controller
         $datamou->pendaftaran_mou = $request->pendaftaran_mou;
 
         if ($datamou->save()){
-            return redirect('/admin/insertmou')->with('success', 'item berhasil ditambahkan');
+            //return redirect()->route('insertmou.kontrak')->with('success', 'item berhasil ditambahkan');
+            return redirect('/admin/insert/mou{$id_kontrak}')->with('success', 'item berhasil ditambahkan');
         }
         else{
             return redirect('/admin/insertmou')->with('error', 'item gagal ditambahkan');

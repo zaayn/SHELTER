@@ -22,7 +22,6 @@
             <div class="panel block">
                 <div class="panel-body">
                     <div style="float:right; margin-bottom:10px;">
-                        <a href="{{asset('/admin/insertmou')}}" class="btn btn-primary btn-sm">Insert MoU</a>
                         <a href="{{asset('/admin/mou/exportExcel')}}" class="btn btn-default btn-sm" target="_blank">Download Excel</a>
                         <a href="{{asset('/admin/mou/exportPDF')}}" class="btn btn-default btn-sm" target="_blank">Download PDF</a>
                     </div>
