@@ -49,7 +49,9 @@
                                     <th>Invoice</th>
                                     <th>MF</th>
                                     <th>MF (%)</th>
+                                    <th>BPJS ketenagakerjaan %</th>
                                     <th>BPJS Ketenagakerjaan</th>
+                                    <th>BPJS kesehatan %</th>
                                     <th>BPJS Kesehatan</th>
                                     <th>Jiwasraya</th>
                                     <th>Ramamusa</th>
@@ -82,7 +84,9 @@
                                     <td>{{ $datamou->invoice }}</td>
                                     <td>{{ $datamou->mf }}</td>
                                     <td>{{ $datamou->mf_persen }}</td>
+                                    <td>{{ $datamou->bpjs_tk_persen }}</td>
                                     <td>{{ $datamou->bpjs_tenagakerja }}</td>
+                                    <td>{{ $datamou->bpjs_kes_persen }}</td>
                                     <td>{{ $datamou->bpjs_kesehatan }}</td>
                                     <td>{{ $datamou->jiwasraya }}</td>
                                     <td>{{ $datamou->ramamusa }}</td>

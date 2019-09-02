@@ -220,7 +220,6 @@
               <li class="active"><a href="{{asset('/admin/insertvisit')}}"><i class="fa fa-circle-o"></i>Insert Laporan Visit</a></li>
               <li class="active"><a href="{{asset('/admin/insertcall')}}"><i class="fa fa-circle-o"></i>Insert Laporan Call</a></li>
               <li class="active"><a href="{{asset('/admin/insertkeluhan')}}"><i class="fa fa-circle-o"></i>Insert Laporan Keluhan</a></li>
-              <li class="active"><a href="{{asset('/admin/insertmou')}}"><i class="fa fa-circle-o"></i>Insert Laporan Data MOU</a></li>
             </ul>
         </li>
 
@@ -265,6 +264,7 @@
           <ul class="treeview-menu">
             {{-- <li><a href="{{asset('/admin/user')}}"><i class="fa fa-circle-o"></i> User CRM</a></li> --}}
             <li class="active"><a href="{{asset('/admin/customer')}}"><i class="fa fa-circle-o"></i> Customer</a></li>
+            <li class="active"><a href="{{asset('/admin/profile')}}"><i class="fa fa-circle-o"></i> Profile Customer</a></li>
           </ul>
         </li>
 

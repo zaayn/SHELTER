@@ -29,19 +29,20 @@
                             <label class="control-label col-md-2">Bisnis Unit</label>
                             <div class="col-md-6">
                                 <select class="form-control" name="bu_id">
+                                    <option value="">--- SELECT BISNIS UNIT ---</option>
                                 @foreach($bisnis_units as $bisnis_unit)
                                     <option value="{{ $bisnis_unit->bu_id }}">{{ $bisnis_unit->nama_bisnis_unit }}</option>
                                 @endforeach
                                 </select>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label class="control-label col-md-2">Nama Perusahaan</label>
-                                <div class="col-md-6">
-                                    <select class="form-control" name="kode_customer">
-                                        <option>ALL</option>
-                                        @foreach($customers as $customer)
-                                            <option value="{{ $customer->kode_customer }}">{{ $customer->kode_customer }} - {{$customer->nama_perusahaan}}</option>
+                            <div class="form-group">
+                                    <label class="control-label col-md-2">Wilayah</label>
+                                    <div class="col-md-6">
+                                        <select class="form-control" name="wilayah_id">
+                                            <option value="">--- SELECT WILAYAH ---</option>
+                                        @foreach($wilayahs as $wilayah)
+                                            <option value="{{ $wilayah->wilayah_id }}">{{ $wilayah->nama_wilayah }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -103,7 +104,10 @@
                                     <td>
                                         <a href="{{route('edit.kontrak',$kontrak->id_kontrak)}}" class="btn btn-info btn-sm"><span class="fa fa-pencil"></span></a>
                                         <a onclick="return confirm('Apakah anda yakin akan menghapus data ini ?')" href="{{route('destroy.kontrak',$kontrak->id_kontrak)}}" class="btn btn-danger btn-sm"><span class="fa fa-trash"></span></a>
-                                        <a onclick="return confirm('Apakah anda yakin akan menutup kontrak ini ?')" href="{{route('closed.kontrak',$kontrak->id_kontrak)}}" class="btn btn-warning btn-sm">Closed</a>
+                                        @if($kontrak->closing == 'Aktif')
+                                        <a onclick="return confirm('Apakah anda yakin akan menutup kontrak ini ?')" href="{{route('closed.kontrak',$kontrak->id_kontrak)}}" class="btn btn-warning btn-sm">Close</a>
+                                        @endif
+                                        <a href="{{route('insertmou.kontrak',$kontrak->id_kontrak)}}" class="btn btn-info btn-sm">insertmou</span></a>
                                     </td>
                                 </tr>
                                 @endforeach  

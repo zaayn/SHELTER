@@ -28,12 +28,24 @@
                                 <label class="control-label col-md-2">Bisnis Unit</label>
                                 <div class="col-md-6">
                                     <select class="form-control" name="bu_id">
+                                        <option value="">--- SELECT Bisnis Unit ---</option>
                                     @foreach($bisnis_units as $bisnis_unit)
                                         <option value="{{ $bisnis_unit->bu_id }}">{{ $bisnis_unit->nama_bisnis_unit }}</option>
                                     @endforeach
                                     </select>
                                 </div>
                             </div>
+                            <div class="form-group">
+                                    <label class="control-label col-md-2">Wilayah</label>
+                                    <div class="col-md-6">
+                                        <select class="form-control" name="wilayah_id">
+                                            <option value="">--- SELECT WILAYAH ---</option>
+                                        @foreach($wilayahs as $wilayah)
+                                            <option value="{{ $wilayah->wilayah_id }}">{{ $wilayah->nama_wilayah }}</option>
+                                        @endforeach
+                                        </select>
+                                    </div>
+                                </div>
                             <div class="form-group">
                                 <div class="col-md-1 col-md-offset-2">
                                     <a href="/officer_crm/bisnis_unit">

@@ -5,7 +5,7 @@
     <div class="col-md-12">
         <div class="panel block">
             <div class="panel-body">
-                <h1>Daftar Customer</h1>
+                <h1>Profile Customer</h1>
                 <ol class="breadcrumb">
                     <li><a href={{asset('/admin/home')}}"><i class="fa fa-dashboard"></i> Home</a></li>
                     <li class="active">Customer</li>
@@ -123,6 +123,7 @@
     <div class="col-md-12">
         <div class="panel block">
             <div class="panel-body">
+                <div class="panel-heading"><h3>Daftar Riwayat Kontrak</h3></div>
                 <table id="mydatatables2" class="table table-responsive table-hover table-light table-striped">
                     <thead>
                         <th>Nomor Kontrak</th>
@@ -164,19 +165,20 @@
                     </tr>
                     @endforeach
                     </tbody>
-                    </table> 
-                </div>
+                </table> 
             </div>
         </div>
     </div>
+</div>
 
 <div class="row">
         <div class="col-md-12">
             <div class="panel block">
                 <div class="panel-body">
-                            <hr style="border: solid #ddd; border-width: 1px 0 0; clear: both; margin: 22px 0 21px; height: 0;">
+                    <div class="panel-heading"><h3>Daftar MoU perusahaan</h3></div>
+                        <hr style="border: solid #ddd; border-width: 1px 0 0; clear: both; margin: 22px 0 21px; height: 0;">
                             @include('admin.shared.components.alert')
-                            <table id="mydatatables" class="table table-responsive table-hover table-light table-striped">
+                            <table id="mydatatables2" class="table table-responsive table-hover table-light table-striped">
                                 <thead>
                                     <th>No. MoU</th>
                                     <th>Nomor Kontrak</th>
@@ -206,7 +208,6 @@
                                 <tbody>
                                 @foreach ($datamous as $datamou)
                                 <tr>
-                                
                                     <td>{{ $datamou->no_mou }}</td>
                                     <td>{{ $datamou->id_kontrak }}</td>
                                     <td>Rp {{ number_format($datamou->hc, 2, ',','.') }}</td>
@@ -231,14 +232,15 @@
                                     <td>{{ $datamou->chemical }}</td>
                                     <td>{{ $datamou->pendaftaran_mou }}</td>
                                     <td>
-                                    <a href="{{route('edit.datamou',$datamou->no_mou)}}" class="btn btn-info btn-sm"><span class="fa fa-pencil"></span></a>
-                                    <a onclick="return confirm('Apakah anda yakin akan menghapus data ini ?')" href="{{route('destroy.datamou',$datamou->no_mou)}}" class="btn btn-danger btn-sm"><span class="fa fa-trash"></span></a></td>
+                                        <a href="{{route('edit.datamou',$datamou->no_mou)}}" class="btn btn-info btn-sm"><span class="fa fa-pencil"></span></a>
+                                        <a onclick="return confirm('Apakah anda yakin akan menghapus data ini ?')" href="{{route('destroy.datamou',$datamou->no_mou)}}" class="btn btn-danger btn-sm"><span class="fa fa-trash"></span></a>
+                                    </td>
                                 </tr> 
                                 @endforeach
                                 </tbody>
                             </table>
-                            </div>
                         </div>
                     </div>
+                </div>
             </div>
 @endsection

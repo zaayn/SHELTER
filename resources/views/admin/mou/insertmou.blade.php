@@ -34,22 +34,15 @@
                   @endif
 
                   <br>
-
-                <form action="{{route('store.datamou')}}" method="post">
+    
+                <form action="{{route('store.datamou', $kontrak->id_kontrak)}}" method="post">
                     {{ csrf_field() }}
                     
 
                     <div class="form-group">
                         <div class="form-group col-md-12">
                             <label>Kontrak Perusahaan :</label>
-                            <div>
-                                <select class="form-control" name="id_kontrak">
-                                    <option>Pilih Periode Kontrak perusahaan</option>
-                                @foreach($kontraks as $kontrak)
-                                    <option value="{{ $kontrak->id_kontrak }}">{{ $kontrak->id_kontrak }} - {{ $kontrak->nama_perusahaan}} periode {{ $kontrak->periode_kontrak }}</option>
-                                @endforeach
-                                </select>
-                            </div>
+                            <input type="text" class="form-control" name="id_kontrak" value="{{$kontrak->id_kontrak}}"  required>
                         </div>
                         <div class="form-group col-md-12">
                 	        <label class="font-weight-bold">HC</label>
@@ -139,6 +132,7 @@
                         </div>
                     </div>
                 </form>
+            
               </div>
             </div>
           </div>
