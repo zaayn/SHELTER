@@ -72,10 +72,7 @@ class KontrakadminController extends Controller
         $data['wilayahs'] = wilayah::all();
         $data['bisnis_units'] = bisnis_unit::all();
         $data['customers'] = customer::all();
-        $data['kontraks'] = DB::table('kontrak')
-        ->join('customer', 'customer.kode_customer', '=', 'kontrak.kode_customer')
-        ->select('kontrak.id_kontrak','customer.kode_customer','customer.nama_perusahaan','kontrak.periode_kontrak','kontrak.akhir_periode','kontrak.srt_pemberitahuan','kontrak.tgl_srt_pemberitahuan','kontrak.srt_penawaran','kontrak.tgl_srt_penawaran','kontrak.dealing','kontrak.tgl_dealing','kontrak.posisi_pks','kontrak.closing')
-        ->get();
+        $data['kontraks'] = kontrak::all();
         return view('admin/kontrak/kontrak', $data);
 
     }
@@ -211,10 +208,10 @@ class KontrakadminController extends Controller
         if ($kontrak->save())
         return redirect()->route('index.kontrak')->with(['success'=>'Closing Kontrak sukses']);    
     }
+
     public function insertmou($id_kontrak){
         //$where = array('id_kontrak' => $id_kontrak);
         $kontrak = Kontrak::findOrFail($id_kontrak);
-        //dd($kontrak);
  
         return view('admin/mou/insertmou')->with('kontrak',$kontrak);
     }
