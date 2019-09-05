@@ -107,7 +107,7 @@
                                         @if($kontrak->closing == 'Aktif')
                                         <a onclick="return confirm('Apakah anda yakin akan menutup kontrak ini ?')" href="{{route('closed.kontrak',$kontrak->id_kontrak)}}" class="btn btn-warning btn-sm">Close</a>
                                         @endif
-                                        @if($kontrak->datamou)
+                                        @if(!$kontrak->datamou)
                                         <a href="{{route('insertmou.kontrak',$kontrak->id_kontrak)}}" class="btn btn-default btn-sm">Tambah MoU</span></a>
                                         @endif
                                     </td>

@@ -36,7 +36,6 @@ class MouController extends Controller
     {
         
         $request->validate([
-            'id_kontrak'            => 'required|unique:datamou',
             'hc'                    => 'required|integer',
             'invoice'               => 'required|integer',
             'mf'                    => 'required|integer',
