@@ -65,7 +65,7 @@
         </a>
     </div>
 <div class="row">
-    <div class="col-md-9">
+    <div class="col-md-12">
         <div class="panel panel-default" id="chart">
             <div class="panel-heading"><h3>Client Aktif per Area</h3></div>
                 <div class="panel-body">

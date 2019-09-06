@@ -19,7 +19,7 @@
 
 @section('content')
 <div class="row">
-    <div class="col-md-9">
+    <div class="col-md-12">
         <div class="panel block">
             <div class="panel-body">
                 <h2>Daftar Laporan yang tersedia</h2>
