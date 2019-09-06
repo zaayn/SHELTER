@@ -36,7 +36,6 @@ class MouController extends Controller
     {
         
         $request->validate([
-            'id_kontrak'            => 'required|unique:datamou',
             'hc'                    => 'required|integer',
             'invoice'               => 'required|integer',
             'mf'                    => 'required|integer',
@@ -87,7 +86,7 @@ class MouController extends Controller
 
         if ($datamou->save()){
             //return redirect()->route('insertmou.kontrak')->with('success', 'item berhasil ditambahkan');
-            return redirect('/admin/insert/mou{$id_kontrak}')->with('success', 'item berhasil ditambahkan');
+            return redirect('/admin/mou')->with('success', 'item berhasil ditambahkan');
         }
         else{
             return redirect('/admin/insertmou')->with('error', 'item gagal ditambahkan');
