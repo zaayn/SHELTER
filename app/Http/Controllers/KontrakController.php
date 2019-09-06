@@ -31,7 +31,7 @@ class KontrakController extends Controller
 
     public function insert()
     {
-        $data['customers'] = customer::where('status','aktif');
+        $data['customers'] = customer::where('status','Aktif');
         return view('officer/insertkontrak',$data);
     }
 
