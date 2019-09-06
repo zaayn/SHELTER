@@ -28,8 +28,8 @@ $(document).ready(function() {
   var table = $('#mydatatables').DataTable( {
       orderCellsTop: true,
       fixedHeader: true,
-      paging: false,
-      searching: false,
+      paging: true,
+      searching: true,
       "sScrollX": "100%",
       "sScrollXInner": "100%",    
       show: true,

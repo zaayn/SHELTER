@@ -34,7 +34,9 @@ class MouController extends Controller
 
     public function store(Request $request, $id_kontrak)
     {
-        
+        $check=datamou::where('id_kontrak', $id_kontrak);
+        if($check) abort(404);
+
         $request->validate([
             'hc'                    => 'required|integer',
             'invoice'               => 'required|integer',
