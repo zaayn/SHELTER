@@ -63,7 +63,7 @@ class KontrakController extends Controller
         $kontrak->dealing = $request->dealing;
         $kontrak->tgl_dealing = $request->tgl_dealing;
         $kontrak->posisi_pks = $request->posisi_pks;
-        $kontrak->closing = "aktif";
+        $kontrak->closing = "Aktif";
 
         if ($kontrak->save()){
             return redirect('/officer_crm/insertkontrak')->with('success', 'item berhasil ditambahkan');

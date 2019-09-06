@@ -42,7 +42,7 @@
                     <div class="form-group">
                         <div class="form-group col-md-12">
                             <label>Kontrak Perusahaan</label>
-                            <input type="text" class="form-control" name="id_kontrak" value="{{ $kontrak->id_kontrak }}"  required>
+                            <input type="text" class="form-control" name="id_kontrak" value="{{ $kontrak->id_kontrak }}" disabled required>
                         </div>
                         <div class="form-group col-md-12">
                 	        <label class="font-weight-bold">HC</label>

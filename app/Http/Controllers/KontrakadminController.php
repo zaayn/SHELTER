@@ -72,7 +72,10 @@ class KontrakadminController extends Controller
         $data['wilayahs'] = wilayah::all();
         $data['bisnis_units'] = bisnis_unit::all();
         $data['customers'] = customer::all();
-        $data['kontraks'] = kontrak::all();
+        $data['kontraks'] = DB::table('kontrak')
+        ->join('customer', 'customer.kode_customer', '=', 'kontrak.kode_customer')
+        ->join('datamou', 'datamou.id_kontrak', '=', 'kontrak.id_kontrak')
+        ->get();
         return view('admin/kontrak/kontrak', $data);
 
     }
@@ -88,7 +91,7 @@ class KontrakadminController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'id_kontrak' => 'required',
+            'id_kontrak' => 'required|unique:kontrak',
             'kode_customer' => 'required',
             'periode_kontrak' => 'required|date',
             'akhir_periode' => 'required|date',

@@ -32,7 +32,7 @@ class MouController extends Controller
         return view('admin/mou/insertmou',$data);
     }
 
-    public function store(Request $request)
+    public function store(Request $request, $id_kontrak)
     {
         
         $request->validate([
@@ -61,7 +61,7 @@ class MouController extends Controller
         //$kontrak = Kontrak::findorFail($id_kontrak);
         $datamou = new datamou;
         $datamou->no_mou = $request->no_mou;
-        $datamou->id_kontrak = $request->id_kontrak;
+        $datamou->id_kontrak = $id_kontrak;
         $datamou->hc = $request->hc;
         $datamou->invoice = $request->invoice;
         $datamou->mf = $request->mf;
