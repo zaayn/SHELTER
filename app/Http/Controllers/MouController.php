@@ -16,7 +16,7 @@ class MouController extends Controller
 {
     public function index()
     {
-        //dd(Auth::user());
+        $data['no'] = 1;
         $data['datamous'] = datamou::all();
         return view('admin/mou/mou', $data);
     }
