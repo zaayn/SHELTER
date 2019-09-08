@@ -42,8 +42,8 @@
                                 <tbody>
                                 @foreach($visits as $visit)
                                 <tr>
-                                    <td>{{ $visit->visit_id  }}</td>
-                                    <td>{{ $visit->nama_customer }}</td>
+                                    <td>{{ $no++  }}</td>
+                                    <td>{{ $visit->nama_perusahaan }}</td>
                                     <td>{{ $visit->spv_pic }}</td>
                                     <td>{{ $visit->tanggal_visit }}</td>
                                     <td>{{ $visit->waktu_in }}</td>

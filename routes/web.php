@@ -171,7 +171,7 @@ Route::group(['prefix' => 'admin',  'middleware' => 'is_admin'], function(){
         Route::get('/delete/kontrak{id_kontrak}','KontrakadminController@destroy')->name('destroy.kontrak');
         Route::get('/edit/editkontrak{id_kontrak}','KontrakadminController@edit')->name('edit.kontrak');
         Route::post('/update/kontrak{id_kontrak}','KontrakadminController@update')->name('update.kontrak');
-        Route::post('/filter/user', 'KontrakadminController@filter')->name('filter.kontrak');
+        Route::post('/filter/kontrak', 'KontrakadminController@filter')->name('filter.kontrak');
         Route::get('/kontrak/exportPDF', 'KontrakadminController@exportPDF');
         Route::get('/kontrak/exportExcel', 'KontrakadminController@exportExcel');
         Route::get('/reminder', 'KontrakadminController@reminder')->name('index.reminder.kontrak');
@@ -182,7 +182,7 @@ Route::group(['prefix' => 'admin',  'middleware' => 'is_admin'], function(){
         //------- laporan mou
         Route::get('/insertmou', 'MouController@insert')->name('insert.datamou'); //show form insert
         Route::get('/mou', 'MouController@index')->name('index.datamou');
-        Route::post('/store/datamou', 'MouController@store')->name('store.datamou');
+        Route::post('/store/datamou/{id_kontrak}', 'MouController@store')->name('store.datamou');
         Route::get('/delete/datamou{no_mou}','MouController@destroy')->name('destroy.datamou');
         Route::get('/edit/datamou{no_mou}','MouController@edit')->name('edit.datamou');
         Route::post('/update/datamou{no_mou}','MouController@update')->name('update.datamou');

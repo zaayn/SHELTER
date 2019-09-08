@@ -37,6 +37,7 @@ class OfficerController extends Controller
         return view('/officer/dashboard_officer')->with($data)->with('lastUser',$lastUser)->with('cat',$cat);
     }
     public function mou(){
+        $data['no'] = 1;
         $data['datamous'] = datamou::all();
         return view('officer/mou', $data);
     }
