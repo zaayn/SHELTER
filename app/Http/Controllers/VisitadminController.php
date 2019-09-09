@@ -18,8 +18,8 @@ class VisitadminController extends Controller
 {
     public function index()
     {
-        $data['wilayahs'] = Wilayah::all();
-        $data['bisnis_units'] = Bisnis_unit::all();
+        $data['wilayahs'] = wilayah::all();
+        $data['bisnis_units'] = bisnis_unit::all();
         $data['visits'] = DB::table('visit')
         ->join('customer', 'visit.kode_customer', '=', 'customer.kode_customer')
         ->select('customer.kode_customer','visit.kode_customer','visit_id','customer.nama_perusahaan','spv_pic','tanggal_visit','waktu_in','waktu_out','pic_meeted','kegiatan')
@@ -108,11 +108,11 @@ class VisitadminController extends Controller
 
     public function destroy($visit_id)
     {
-        $visit = Visit::where('visit_id',$visit_id)->delete();
+        $visit = visit::where('visit_id',$visit_id)->delete();
         return redirect()->route('index.visit')->with('success', 'delete sukses');
     }
     public function exportPDF(){
-		$visit = Visit::all();
+		$visit = visit::all();
         $pdf = PDF::loadview('admin/visit/pdfvisit',['visit'=>$visit]);
         $pdf->setPaper('A4','landscape');
     	return $pdf->download('Laporan-Visit-CRM.pdf');
