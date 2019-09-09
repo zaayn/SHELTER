@@ -28,10 +28,9 @@
   
   <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
 
-	<link rel="stylesheet" type="text/css" href="assets/css/bootstrap.css">
-
+	
   {{-- manual style css --}}
-  <link rel="stylesheet" href="{{asset('admin_lte/css_ubut/style.css')}}">
+  
   <link rel="stylesheet" href="{{asset('css/admin.css')}}">
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -341,6 +340,7 @@
 <script src="{{asset('admin_lte/bower_components/jquery/dist/jquery.min.js')}}"></script>
 <script src="{{asset('https://code.jquery.com/jquery-3.4.0.min.js')}}"></script>
 <script src="{{asset('https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js')}}"></script>
+
 <script src="{{asset('https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js')}}"></script>
 
 

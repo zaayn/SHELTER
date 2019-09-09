@@ -38,7 +38,9 @@ class ManagerNonCrmController extends Controller
     }
     public function kontrak()
     {  
-        $data['kontrak'] = kontrak::all();
+        $data['kontrak'] = DB::table('kontrak')
+        ->join('customer', 'customer.kode_customer', '=', 'kontrak.kode_customer')
+        ->get();
         $data['no'] = 1;
         return view('manager_non_crm/manager_non_crm_kontrak', $data);
     }

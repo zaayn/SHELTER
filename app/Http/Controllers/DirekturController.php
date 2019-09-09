@@ -31,25 +31,36 @@ class DirekturController extends Controller
     }
     public function call()
     {  
-        $data['calls'] = call::all();
+
+        $data['calls'] = DB::table('call')
+        ->join('customer', 'call.kode_customer', '=', 'customer.kode_customer')
+        ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
+        ->get();
         $data['no'] = 1;
         return view('direktur/direktur_call', $data);
     }
     public function keluhan()
     {  
-        $data['keluhan'] = keluhan::all();
+        $data['keluhan'] = DB::table('keluhan')
+        ->join('customer', 'keluhan.kode_customer', '=', 'customer.kode_customer')
+        ->get();
         $data['no'] = 1;
         return view('direktur/direktur_keluhan', $data);
     }
     public function visit()
     {  
-        $data['visits'] = visit::all();
+        $data['visits'] = DB::table('visit')
+        ->join('customer', 'visit.kode_customer', '=', 'customer.kode_customer')
+        ->get();
         $data['no'] = 1;
         return view('direktur/direktur_visit', $data);
     }
     public function kontrak()
     {  
-        $data['kontrak'] = kontrak::all();
+        $data['kontrak'] = DB::table('kontrak')
+        ->join('customer', 'customer.kode_customer', '=', 'kontrak.kode_customer')
+        ->join('datamou', 'datamou.id_kontrak', '=', 'kontrak.id_kontrak')
+        ->get();
         $data['no'] = 1;
         return view('direktur/direktur_kontrak', $data);
     }

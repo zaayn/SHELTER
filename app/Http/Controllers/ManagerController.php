@@ -31,25 +31,35 @@ class ManagerController extends Controller
     }
     public function call()
     {  
-        $data['calls'] = call::all();
+        $data['calls'] = DB::table('call')
+        ->join('customer', 'call.kode_customer', '=', 'customer.kode_customer')
+        ->get();
         $data['no'] = 1;
         return view('manager_crm/manager_call', $data);
     }
     public function keluhan()
     {  
-        $data['keluhan'] = keluhan::all();
+        $data['keluhan'] = DB::table('keluhan')
+        ->join('customer', 'keluhan.kode_customer', '=', 'customer.kode_customer')
+        ->select('id_keluhan','customer.kode_customer','customer.nama_perusahaan','keluhan.kode_customer','spv_pic','tanggal_keluhan','jam_keluhan','keluhan','pic','jam_follow','follow_up','closing_case','via','keluhan.status')
+        ->get();
         $data['no'] = 1;
         return view('manager_crm/manager_keluhan', $data);
     }
     public function visit()
     {  
-        $data['visits'] = visit::all();
+        $data['visits'] = DB::table('visit')
+        ->join('customer', 'visit.kode_customer', '=', 'customer.kode_customer')
+        ->select('customer.kode_customer','visit.kode_customer','visit_id','customer.nama_perusahaan','spv_pic','tanggal_visit','waktu_in','waktu_out','pic_meeted','kegiatan')
+        ->get();
         $data['no'] = 1;
         return view('manager_crm/manager_visit', $data);
     }
     public function kontrak()
     {  
-        $data['kontrak'] = kontrak::all();
+        $data['kontrak'] = DB::table('kontrak')
+        ->join('customer', 'customer.kode_customer', '=', 'kontrak.kode_customer')
+        ->get();
         $data['no'] = 1;
         return view('manager_crm/manager_kontrak', $data);
     }

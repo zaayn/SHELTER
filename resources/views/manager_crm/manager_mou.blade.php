@@ -55,7 +55,7 @@
                                 <tbody>
                                 @foreach ($datamous as $datamou)
                                 <tr>
-                                    <td>{{ $datamou->no_mou }}</td>
+                                    <td>{{ $no++ }}</td>
                                     <td>{{ $datamou->id_kontrak }}</td>
                                     <td>{{ $datamou->hc }}</td>
                                     <td>{{ $datamou->invoice }}</td>

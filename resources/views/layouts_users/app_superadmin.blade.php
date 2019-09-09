@@ -28,8 +28,7 @@
   
   <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
 
-	<link rel="stylesheet" type="text/css" href="assets/css/bootstrap.css">
-
+	
   {{-- manual style css --}}
   <link rel="stylesheet" href="{{asset('css/admin.css')}}">
 

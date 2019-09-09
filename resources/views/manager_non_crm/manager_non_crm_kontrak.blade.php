@@ -30,19 +30,19 @@
                             <div style="overflow-x:auto;">
                             <table id="mydatatables" class="table table-responsive table-hover table-light table-striped">
                                 <thead>
-                                    <th style="width:10%">ID Kontrak</th>
-                                    <th style="width:75%">Kode Customer</th>
-                                    <th style="width:75%">Nama Perusahaan</th>
-                                    <th style="width:15%">Periode Kontrak</th>
-                                    <th style="width:10%">Akhir Periode</th>
-                                    <th style="width:75%">Surat Pemberitahuan</th>
-                                    <th style="width:10%">Tgl_Surat Pemberitahuan</th>
-                                    <th style="width:75%">Surat Penawaran</th>
-                                    <th style="width:15%">Tgl_Surat Penawaran</th>
-                                    <th style="width:75%">Dealing</th>
-                                    <th style="width:10%">Tgl_Dealing</th>
-                                    <th style="width:75%">Posisi Pks</th>
-                                    <th style="width:15%">Closing</th>
+                                    <th>ID Kontrak</th>
+                                    <th>Kode Customer</th>
+                                    <th>Nama Perusahaan</th>
+                                    <th>Periode Kontrak</th>
+                                    <th>Akhir Periode</th>
+                                    <th>Surat Pemberitahuan</th>
+                                    <th>Tgl_Surat Pemberitahuan</th>
+                                    <th>Surat Penawaran</th>
+                                    <th>Tgl_Surat Penawaran</th>
+                                    <th>Dealing</th>
+                                    <th>Tgl_Dealing</th>
+                                    <th>Posisi Pks</th>
+                                    <th>Closing</th>
                                 </thead>
                                 <tbody>
                                 @foreach($kontrak as $ko)

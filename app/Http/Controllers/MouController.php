@@ -16,7 +16,7 @@ class MouController extends Controller
 {
     public function index()
     {
-        //dd(Auth::user());
+        $data['no'] = 1;
         $data['datamous'] = datamou::all();
         return view('admin/mou/mou', $data);
     }
@@ -32,9 +32,11 @@ class MouController extends Controller
         return view('admin/mou/insertmou',$data);
     }
 
-    public function store(Request $request)
+    public function store(Request $request, $id_kontrak)
     {
-        
+        $check=datamou::where('id_kontrak', $id_kontrak);
+        if($check) abort(404);
+
         $request->validate([
             'hc'                    => 'required|integer',
             'invoice'               => 'required|integer',
@@ -61,7 +63,7 @@ class MouController extends Controller
         //$kontrak = Kontrak::findorFail($id_kontrak);
         $datamou = new datamou;
         $datamou->no_mou = $request->no_mou;
-        $datamou->id_kontrak = $request->id_kontrak;
+        $datamou->id_kontrak = $id_kontrak;
         $datamou->hc = $request->hc;
         $datamou->invoice = $request->invoice;
         $datamou->mf = $request->mf;

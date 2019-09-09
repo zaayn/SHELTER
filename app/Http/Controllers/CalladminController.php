@@ -21,9 +21,9 @@ class CalladminController extends Controller
 {
     public function index()
     {
-        $data['wilayahs'] = wilayah::all();
-        $data['bisnis_units'] = bisnis_unit::all();
-        $data['calls'] = call::all();
+        $data['no'] = 1;
+        $data['wilayahs'] = Wilayah::all();
+        $data['bisnis_units'] = Bisnis_unit::all();
         $data['calls'] = DB::table('call')
         ->join('customer', 'call.kode_customer', '=', 'customer.kode_customer')
         ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
