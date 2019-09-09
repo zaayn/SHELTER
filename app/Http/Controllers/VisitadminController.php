@@ -78,7 +78,7 @@ class VisitadminController extends Controller
         ->select('wilayah.wilayah_id','users.nama_depan','wilayah.nama_wilayah')
         ->where('rule', 'officer_crm')->get();
         $where = array('visit_id' => $visit_id);
-        $visit  = Visit::where($where)->first();
+        $visit  = visit::where($where)->first();
  
         return view('admin/visit/editvisit',$data)->with('visit', $visit);
     }
@@ -131,8 +131,6 @@ class VisitadminController extends Controller
         ->join('customer', 'visit.kode_customer', '=', 'customer.kode_customer')
         ->join('wilayah','wilayah.wilayah_id','=','customer.wilayah_id')
         ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
-        ->select('wilayah.wilayah_id','bisnis_unit.bu_id','bisnis_unit.nama_bisnis_unit','customer.kode_customer','visit.kode_customer','visit_id','customer.nama_perusahaan','spv_pic',
-        'tanggal_visit','waktu_in','waktu_out','pic_meeted','kegiatan')
         ->where('bisnis_unit.bu_id', '=', $request->bu_id)
         ->where('wilayah.wilayah_id', '=', $request->wilayah_id)
         ->get();
@@ -147,8 +145,6 @@ class VisitadminController extends Controller
         ->join('customer', 'visit.kode_customer', '=', 'customer.kode_customer')
         ->join('wilayah','wilayah.wilayah_id','=','customer.wilayah_id')
         ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
-        ->select('wilayah.wilayah_id','bisnis_unit.bu_id','bisnis_unit.nama_bisnis_unit','customer.kode_customer','visit.kode_customer','visit_id','customer.nama_perusahaan','spv_pic',
-        'tanggal_visit','waktu_in','waktu_out','pic_meeted','kegiatan')
         ->where('bisnis_unit.bu_id', '=', $request->bu_id)
         ->get();
 
@@ -162,8 +158,6 @@ class VisitadminController extends Controller
         ->join('customer', 'visit.kode_customer', '=', 'customer.kode_customer')
         ->join('wilayah','wilayah.wilayah_id','=','customer.wilayah_id')
         ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
-        ->select('wilayah.wilayah_id','bisnis_unit.bu_id','bisnis_unit.nama_bisnis_unit','customer.kode_customer','visit.kode_customer','visit_id','customer.nama_perusahaan','spv_pic',
-        'tanggal_visit','waktu_in','waktu_out','pic_meeted','kegiatan')
         ->where('wilayah.wilayah_id', '=', $request->wilayah_id)
         ->get();
 
