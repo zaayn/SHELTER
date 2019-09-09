@@ -23,7 +23,6 @@ class VisitadminController extends Controller
         $data['bisnis_units'] = bisnis_unit::all();
         $data['visits'] = DB::table('visit')
         ->join('customer', 'visit.kode_customer', '=', 'customer.kode_customer')
-        ->select('customer.kode_customer','visit.kode_customer','visit_id','customer.nama_perusahaan','spv_pic','tanggal_visit','waktu_in','waktu_out','pic_meeted','kegiatan')
         ->get();
 
         return view('admin/visit/visit', $data);
