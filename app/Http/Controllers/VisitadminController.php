@@ -5,14 +5,14 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Support\Facades\DB;
-use App\Visit;
+use App\visit;
 use Validator;
 use PDF;
 use Excel;
 use App\Exports\VisitExport;
 use App\Customer;
-use App\Bisnis_unit;
-use App\Wilayah;
+use App\bisnis_unit;
+use App\wilayah;
 
 class VisitadminController extends Controller
 {
