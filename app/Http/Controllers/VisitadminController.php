@@ -24,8 +24,8 @@ class VisitadminController extends Controller
         $data['visits'] = DB::table('visit')
         ->join('customer', 'visit.kode_customer', '=', 'customer.kode_customer')
         ->get();
-return var_dump($data);
-        // return view('/admin/visit/visit', $data);
+
+        return view('/admin/visit/visit', $data);
     }
 
     public function insert()
