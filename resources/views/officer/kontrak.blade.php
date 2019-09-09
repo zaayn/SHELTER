@@ -67,8 +67,7 @@
                             @include('admin.shared.components.alert')
                             <div style="overflow-x:auto;">
                             
-                            <table id="mydatatables" class="table table-responsive table-hover table-light table-striped">
-                                <thead>
+                                <table id="mydatatables" class="table table-collapse table-hover table-light table-striped cell-border table-responsive">                                <thead>
                                     <th>Nomor Kontrak</th>
                                     <th>Kode Customer</th>
                                     <th>Nama Perusahaan</th>

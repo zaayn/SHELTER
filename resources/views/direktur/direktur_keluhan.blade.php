@@ -27,8 +27,8 @@
                     </div>
                             <hr style="border: solid #ddd; border-width: 1px 0 0; clear: both; margin: 22px 0 21px; height: 0;">
                             <div style="overflow-x:auto;">
-                            <table id="mydatatables" class="table table-collapse table-hover table-light table-striped">
-                                <thead>
+                                <table id="mydatatables" class="table table-collapse table-hover table-light table-striped cell-border table-responsive">
+                                    <thead>
                                     <th>ID Keluhan</th>
                                     <th>Nama Customer</th>
                                     <th>SPV_PIC</th>

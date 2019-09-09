@@ -25,8 +25,7 @@
                     
                     {{-- ---- end filter ------ --}}  
                             <hr style="border: solid #ddd; border-width: 1px 0 0; clear: both; margin: 22px 0 21px; height: 0;">
-                            <table id="mydatatables" class="table table-collapse table-hover table-light table-striped cell-border table-responsive">
-                                <thead>
+                            <table id="mydatatables" class="table table-collapse table-hover table-light table-striped cell-border table-responsive">                                <thead>
                                     <th>No</th>
                                     <th>Kode Customer</th>
                                     <th>Nama Perusahaan</th>

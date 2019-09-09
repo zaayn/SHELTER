@@ -30,8 +30,7 @@
                             <div style="overflow-x:auto;">
                             {{-- <a href="/kontrak/exportExcel" class="btn btn-success btn-sm" target="_blank">EXPORT EXCEL</a> --}}
                             {{-- <a href="/insertkontrak" class="btn btn-primary btn-sm">Input Kontrak</a> --}}
-                            <table id="mydatatables" class="table table-responsive table-hover table-light table-striped">
-                                <thead>
+                            <table id="mydatatables" class="table table-collapse table-hover table-light table-striped cell-border table-responsive">                                <thead>
                                     <th>No. MoU</th>
                                     <th>ID Kontrak</th>
                                     <th>HC</th>
