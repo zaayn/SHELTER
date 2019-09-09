@@ -59,7 +59,7 @@
                                 @foreach ($datamous as $datamou)
                                 <tr>
                                 
-                                    <td>{{ $datamou->no_mou }}</td>
+                                    <td>{{ $no++ }}</td>
                                     <td>{{ $datamou->id_kontrak }}</td>
                                     <td>Rp {{ number_format($datamou->hc, 2, ',','.') }}</td>
                                     <td>Rp {{ number_format($datamou->invoice, 2, ',','.') }}</td>

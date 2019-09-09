@@ -5,27 +5,27 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Support\Facades\DB;
-use App\Visit;
+use App\visit;
 use Validator;
 use PDF;
 use Excel;
 use App\Exports\VisitExport;
 use App\Customer;
-use App\Bisnis_unit;
-use App\Wilayah;
+use App\bisnis_unit;
+use App\wilayah;
 
 class VisitadminController extends Controller
 {
     public function index()
     {
-        $data['wilayahs'] = Wilayah::all();
-        $data['bisnis_units'] = Bisnis_unit::all();
+        $data['no'] = 1;
+        $data['wilayahs'] = wilayah::all();
+        $data['bisnis_units'] = bisnis_unit::all();
         $data['visits'] = DB::table('visit')
         ->join('customer', 'visit.kode_customer', '=', 'customer.kode_customer')
-        ->select('customer.kode_customer','visit.kode_customer','visit_id','customer.nama_perusahaan','spv_pic','tanggal_visit','waktu_in','waktu_out','pic_meeted','kegiatan')
         ->get();
 
-        return view('admin/visit/visit', $data);
+        return view('/admin/visit/visit', $data);
     }
 
     public function insert()
@@ -77,7 +77,7 @@ class VisitadminController extends Controller
         ->select('wilayah.wilayah_id','users.nama_depan','wilayah.nama_wilayah')
         ->where('rule', 'officer_crm')->get();
         $where = array('visit_id' => $visit_id);
-        $visit  = Visit::where($where)->first();
+        $visit  = visit::where($where)->first();
  
         return view('admin/visit/editvisit',$data)->with('visit', $visit);
     }
@@ -108,11 +108,11 @@ class VisitadminController extends Controller
 
     public function destroy($visit_id)
     {
-        $visit = Visit::where('visit_id',$visit_id)->delete();
+        $visit = visit::where('visit_id',$visit_id)->delete();
         return redirect()->route('index.visit')->with('success', 'delete sukses');
     }
     public function exportPDF(){
-		$visit = Visit::all();
+		$visit = visit::all();
         $pdf = PDF::loadview('admin/visit/pdfvisit',['visit'=>$visit]);
         $pdf->setPaper('A4','landscape');
     	return $pdf->download('Laporan-Visit-CRM.pdf');
@@ -130,8 +130,6 @@ class VisitadminController extends Controller
         ->join('customer', 'visit.kode_customer', '=', 'customer.kode_customer')
         ->join('wilayah','wilayah.wilayah_id','=','customer.wilayah_id')
         ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
-        ->select('wilayah.wilayah_id','bisnis_unit.bu_id','bisnis_unit.nama_bisnis_unit','customer.kode_customer','visit.kode_customer','visit_id','customer.nama_perusahaan','spv_pic',
-        'tanggal_visit','waktu_in','waktu_out','pic_meeted','kegiatan')
         ->where('bisnis_unit.bu_id', '=', $request->bu_id)
         ->where('wilayah.wilayah_id', '=', $request->wilayah_id)
         ->get();
@@ -146,8 +144,6 @@ class VisitadminController extends Controller
         ->join('customer', 'visit.kode_customer', '=', 'customer.kode_customer')
         ->join('wilayah','wilayah.wilayah_id','=','customer.wilayah_id')
         ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
-        ->select('wilayah.wilayah_id','bisnis_unit.bu_id','bisnis_unit.nama_bisnis_unit','customer.kode_customer','visit.kode_customer','visit_id','customer.nama_perusahaan','spv_pic',
-        'tanggal_visit','waktu_in','waktu_out','pic_meeted','kegiatan')
         ->where('bisnis_unit.bu_id', '=', $request->bu_id)
         ->get();
 
@@ -161,8 +157,6 @@ class VisitadminController extends Controller
         ->join('customer', 'visit.kode_customer', '=', 'customer.kode_customer')
         ->join('wilayah','wilayah.wilayah_id','=','customer.wilayah_id')
         ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
-        ->select('wilayah.wilayah_id','bisnis_unit.bu_id','bisnis_unit.nama_bisnis_unit','customer.kode_customer','visit.kode_customer','visit_id','customer.nama_perusahaan','spv_pic',
-        'tanggal_visit','waktu_in','waktu_out','pic_meeted','kegiatan')
         ->where('wilayah.wilayah_id', '=', $request->wilayah_id)
         ->get();
 

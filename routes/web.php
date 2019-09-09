@@ -142,12 +142,12 @@ Route::group(['prefix' => 'admin',  'middleware' => 'is_admin'], function(){
     Route::post('/filter/call', 'CalladminController@filter')->name('filter.call');
 
         //------- laporan visit
-        Route::get('/insertvisit', 'Visitadmincontroller@insert')->name('insert.visit'); //show form insert
-        Route::get('/visit', 'Visitadmincontroller@index')->name('index.visit');
-        Route::post('/store/visit', 'Visitadmincontroller@store')->name('store.visit');
-        Route::get('/delete/visit{visit_id}','Visitadmincontroller@destroy')->name('destroy.visit');
-        Route::get('/edit/editvisit{visit_id}','Visitadmincontroller@edit')->name('edit.visit');
-        Route::post('/update/visit{visit_id}','Visitadmincontroller@update')->name('update.visit');
+        Route::get('/insertvisit', 'VisitadminController@insert')->name('insert.visit'); //show form insert
+        Route::get('/visit', 'VisitadminController@index')->name('index.visit');
+        Route::post('/store/visit', 'VisitadminController@store')->name('store.visit');
+        Route::get('/delete/visit{visit_id}','VisitadminController@destroy')->name('destroy.visit');
+        Route::get('/edit/editvisit{visit_id}','VisitadminController@edit')->name('edit.visit');
+        Route::post('/update/visit{visit_id}','VisitadminController@update')->name('update.visit');
         Route::get('/visit/exportPDF', 'VisitadminController@exportPDF');
         Route::get('/visit/exportExcel', 'VisitadminController@exportExcel');
         Route::post('/filter/visit', 'VisitadminController@filter')->name('filter.visit');

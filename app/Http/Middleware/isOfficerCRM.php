@@ -18,5 +18,6 @@ class isOfficerCRM
         if( auth()->user()->isofficercrm()) {
             return $next($request);
         }
+        return redirect('/login');
     }
 }
