@@ -25,7 +25,7 @@ class VisitadminController extends Controller
         ->join('customer', 'visit.kode_customer', '=', 'customer.kode_customer')
         ->get();
 
-        return view('admin/visit/visit', $data);
+        return view('/admin/visit/visit', $data);
     }
 
     public function insert()

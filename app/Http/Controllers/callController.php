@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Foundation\Auth\User;
-use App\Call;
+use App\call;
 use PDF;
 use Validator;
 use App\Exports\CallExport;
