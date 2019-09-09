@@ -18,5 +18,6 @@ class isManagerNonCRM
         if( auth()->user()->ismanagernoncrm()) {
             return $next($request);
         }
+        return redirect('/login');
     }
 }
