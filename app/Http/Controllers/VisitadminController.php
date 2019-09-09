@@ -11,8 +11,8 @@ use PDF;
 use Excel;
 use App\Exports\VisitExport;
 use App\Customer;
-use App\bisnis_unit;
-use App\wilayah;
+use App\Bisnis_unit;
+use App\Wilayah;
 
 class VisitadminController extends Controller
 {

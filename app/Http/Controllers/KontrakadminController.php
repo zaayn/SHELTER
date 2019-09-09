@@ -16,8 +16,8 @@ use Carbon;
 use PDF;
 use Excel;
 Use App\Exports\KontrakExport;
-use App\bisnis_unit;
-use App\wilayah;
+use App\Bisnis_unit;
+use App\Wilayah;
 
 class KontrakadminController extends Controller
 {
