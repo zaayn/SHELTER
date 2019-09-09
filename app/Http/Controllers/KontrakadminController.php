@@ -16,14 +16,15 @@ use Carbon;
 use PDF;
 use Excel;
 Use App\Exports\KontrakExport;
-use App\Bisnis_unit;
-use App\Wilayah;
+use App\bisnis_unit;
+use App\wilayah;
 
 class KontrakadminController extends Controller
 {
     public function filter(Request $request)
     {
-        if($request->bu_id && $request->wilayah_id)
+        if($request->
+        bu_id && $request->wilayah_id)
         {
             $data['wilayahs'] = wilayah::all();
             $data['bisnis_units'] = bisnis_unit::all();
