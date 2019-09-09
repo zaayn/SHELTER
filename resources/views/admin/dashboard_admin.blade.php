@@ -101,7 +101,7 @@
                         @include('admin.shared.components.alert')
                         <!-- table reminder -->
                         <div style="overflow-x:auto;">
-                        <table id="mydatatables2" class="table table-responsive table-hover table-light table-striped">
+                        <table id="mydatatables" class="table table-responsive table-hover table-light table-striped">
                             <thead>
                                 <th>Nomor Kontrak</th>
                                 <th>Nama Perusahaan</th>
