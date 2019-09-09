@@ -18,5 +18,6 @@ class isSuperAdmin
         if( auth()->user()->issuperadmin()) {
             return $next($request);
         }
+        return redirect('/login');
     }
 }

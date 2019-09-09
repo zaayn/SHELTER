@@ -23,7 +23,8 @@ class KontrakadminController extends Controller
 {
     public function filter(Request $request)
     {
-        if($request->bu_id && $request->wilayah_id)
+        if($request->
+        bu_id && $request->wilayah_id)
         {
             $data['wilayahs'] = wilayah::all();
             $data['bisnis_units'] = bisnis_unit::all();
@@ -69,8 +70,8 @@ class KontrakadminController extends Controller
     }
     public function index()
     {
-        $data['wilayahs'] = wilayah::all();
-        $data['bisnis_units'] = bisnis_unit::all();
+        $data['wilayahs'] = Wilayah::all();
+        $data['bisnis_units'] = Bisnis_unit::all();
         $data['customers'] = customer::all();
         $data['kontraks'] = DB::table('kontrak')
         ->join('customer', 'customer.kode_customer', '=', 'kontrak.kode_customer')

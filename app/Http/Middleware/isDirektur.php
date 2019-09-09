@@ -19,6 +19,6 @@ class isDirektur
             return $next($request);
         }
        
-            // return redirect('dashboard_direktur');
+        return redirect('/login');
     }
 }

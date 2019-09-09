@@ -48,7 +48,7 @@
                             </div>
                             <div class="form-group">
                                 <div class="col-md-1 col-md-offset-2">
-                                    <a href="/admin/bisnis_unit">
+                                    <a href="{{asset('/admin/visit')}}">
                                         <button type="button" class="btn btn-primary"><i class="fa fa-refresh"></i> Reset</button>
                                     </a>    
                                 </div>
@@ -81,7 +81,7 @@
                                 <tbody>
                                 @foreach($visits as $visit)
                                 <tr>
-                                    <td>{{ $visit->visit_id  }}</td>
+                                    <td>{{ $no++  }}</td>
                                     <td>{{ $visit->nama_perusahaan }}</td>
                                     <td>{{ $visit->spv_pic }}</td>
                                     <td>{{ $visit->tanggal_visit }}</td>
