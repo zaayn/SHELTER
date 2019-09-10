@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\DB;
-use App\Kontrak;
+use App\kontrak;
 use App\Customer;
 use App\Datamou;
 use Carbon;
@@ -105,7 +105,7 @@ class KontrakadminController extends Controller
             'posisi_pks' => 'required',
         ]);
 
-        $kontrak = new Kontrak;
+        $kontrak = new kontrak;
         $kontrak->id_kontrak = $request->id_kontrak;
         $kontrak->kode_customer = $request->kode_customer;
         $kontrak->periode_kontrak = $request->periode_kontrak;
