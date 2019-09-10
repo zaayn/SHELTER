@@ -65,7 +65,7 @@
                     </div>    
                             <hr style="border: solid #ddd; border-width: 1px 0 0; clear: both; margin: 22px 0 21px; height: 0;">
                             @include('admin.shared.components.alert')
-                            <table id="mydatatables" class="table table-collapse table-hover table-light table-striped">
+                            <table id="mydatatables" class="table table-collapse table-hover table-light table-striped cell-border table-responsive">
                                 <thead>
                                     <th>No</th>
                                     <th>Nama Customer</th>

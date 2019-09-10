@@ -28,8 +28,7 @@
                             @include('admin.shared.components.alert')
                             <div style="overflow-x:auto;">
                             
-                            <table id="mydatatables" class="table table-responsive table-hover table-light table-striped">
-                                <thead>
+                                <table id="mydatatables" class="table table-collapse table-hover table-light table-striped cell-border table-responsive">                                <thead>
                                     <th>No. MoU</th>
                                     <th>ID Kontrak</th>
                                     <th>HC</th>
