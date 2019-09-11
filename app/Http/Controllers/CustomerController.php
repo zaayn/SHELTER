@@ -7,9 +7,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\DB;
 use App\Customer;
-use App\bisnis_unit;
-use App\area;
-use App\wilayah;
+use App\Bisnis_unit;
+use App\Area;
+use App\Ailayah;
 use App\User;
 use PDF;
 use Excel;
@@ -22,7 +22,7 @@ class CustomerController extends Controller
 {
     public function index()
     {  
-      $data['wilayahs'] = wilayah::all();
+      $data['wilayahs'] = Wilayah::all();
       $data['customers'] = DB::table('customer')
       ->join('wilayah', 'customer.wilayah_id', '=', 'wilayah.wilayah_id')
       ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
@@ -35,7 +35,7 @@ class CustomerController extends Controller
     {
       if($request->status && $request->wilayah_id)
       {
-        $data['wilayahs'] = wilayah::all();
+        $data['wilayahs'] = Wilayah::all();
         $data['customers'] = DB::table('customer')
         ->join('wilayah', 'customer.wilayah_id', '=', 'wilayah.wilayah_id')
         ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
@@ -47,7 +47,7 @@ class CustomerController extends Controller
       }
       if($request->wilayah_id)
       {
-        $data['wilayahs'] = wilayah::all();
+        $data['wilayahs'] = Wilayah::all();
         $data['customers'] = DB::table('customer')
         ->join('wilayah', 'customer.wilayah_id', '=', 'wilayah.wilayah_id')
         ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
@@ -60,9 +60,9 @@ class CustomerController extends Controller
     }
     public function insert()
     {
-        $data['bisnis_units'] = bisnis_unit::all();
-        $data['areas'] = area::all();
-        $data['wilayahs'] = wilayah::all();
+        $data['bisnis_units'] = Bisnis_unit::all();
+        $data['areas'] = Area::all();
+        $data['wilayahs'] = Wilayah::all();
         $data['users'] = DB::table('users')
         ->join('wilayah', 'users.wilayah_id', '=', 'wilayah.wilayah_id')
         ->select('wilayah.wilayah_id','users.nama_depan','wilayah.nama_wilayah')
@@ -119,7 +119,7 @@ class CustomerController extends Controller
       ]);
 
       
-      $customer = new customer;
+      $customer = new Customer;
       
       $customer->nama_perusahaan    = $request->nama_perusahaan;
       $customer->kode_customer      = $this->customerCode($request->nama_perusahaan);
@@ -147,20 +147,20 @@ class CustomerController extends Controller
       }
     }
     public function delete($kode_customer){
-      $customer = customer::findOrFail($kode_customer)->delete();
+      $customer = Customer::findOrFail($kode_customer)->delete();
       return redirect()->route('index.customer')->with('success', 'delete sukses');
     }
     public function edit($kode_customer){
-        $data['bisnis_units'] = bisnis_unit::all();
-        $data['areas'] = area::all();
-        $data['wilayahs'] = wilayah::all();
+        $data['bisnis_units'] = Bisnis_unit::all();
+        $data['areas'] = Area::all();
+        $data['wilayahs'] = Wilayah::all();
         $data['users'] = DB::table('users')->where('rule', 'officer_crm')->get();
-        $customer = customer::findOrFail($kode_customer);
+        $customer = Customer::findOrFail($kode_customer);
         return view('admin/customer/edit_customer',$data)->with('customer', $customer);
     }
 
     public function update(Request $request, $id){
-      $customer = customer::findOrFail($id);
+      $customer = Customer::findOrFail($id);
       $this->validate($request,[
         'jenis_usaha'      =>['required', 'string']
         ,'alamat'=>['required', 'string']
@@ -209,7 +209,7 @@ class CustomerController extends Controller
     }
     public function aktivasi($id)
     {
-      $customer = customer::findOrFail($id);
+      $customer = Customer::findOrFail($id);
       // dd($customer->status);
       if($customer->status == "aktif")
       {
@@ -225,20 +225,20 @@ class CustomerController extends Controller
     public function cust_type()
     {
       $data['no'] = 1;
-      $data['customers'] = customer::all();
+      $data['customers'] = Customer::all();
 
       return view('/admin/cust_type', $data);
       
     }
     public function profile()
     {  
-      $data['customers'] = customer::all();
+      $data['customers'] = Customer::all();
         $data['no'] = 1;
         return view('admin/customer/profile', $data);
     }
     public function filter_profile(Request $request)
     {  
-      $data['datamous'] = datamou::all();
+      $data['datamous'] = Datamou::all();
       $data['customers'] = DB::table('customer')
       ->join('wilayah', 'customer.wilayah_id', '=', 'wilayah.wilayah_id')
       ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')

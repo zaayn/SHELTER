@@ -66,13 +66,13 @@ class DirekturController extends Controller
     }
     public function mou()
     {  
-        $data['datamous'] = datamou::all();
+        $data['datamous'] = Datamou::all();
         $data['no'] = 1;
         return view('direktur/direktur_mou', $data);
     }
     public function customer()
     {  
-        $data['customers'] = customer::all();
+        $data['customers'] = Customer::all();
         $data['no'] = 1;
         return view('direktur/direktur_customer', $data);
     }

@@ -5,7 +5,7 @@ use Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\DB;
-use App\datamou;
+use App\Datamou;
 use App\Kontrak;
 use App\Customer;
 use App\Keluhan;
@@ -22,7 +22,7 @@ class AdminController extends Controller
         $data['customer'] = DB::table('customer')->count();
         $data['kontrak'] = DB::table('kontrak')->count();   
         $data['datamou'] = DB::table('datamou')->count();   
-        $data['customers'] = customer::all();
+        $data['customers'] = Customer::all();
         $data['kontraks'] = DB::table('kontrak')
         ->join('customer', 'customer.kode_customer', '=', 'kontrak.kode_customer')
         ->select('kontrak.id_kontrak','customer.kode_customer','customer.nama_perusahaan',
