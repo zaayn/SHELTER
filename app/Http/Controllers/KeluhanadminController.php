@@ -11,7 +11,7 @@ use Excel;
 use App\Exports\KeluhanExport;
 use App\Customer;
 use App\Bisnis_unit;
-use App\wilayah;
+use App\Wilayah;
 
 
 class KeluhanadminController extends Controller
