@@ -8,14 +8,14 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Foundation\Auth\User;
-use App\call;
+use App\Call;
 use PDF;
 use Validator;
 use App\Exports\CallExport;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Customer;
-use App\bisnis_unit;
-use App\wilayah;
+use App\Bisnis_unit;
+use App\Wilayah;
 
 class callController extends Controller
 {
