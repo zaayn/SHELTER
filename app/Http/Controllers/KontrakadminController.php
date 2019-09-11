@@ -23,8 +23,7 @@ class KontrakadminController extends Controller
 {
     public function filter(Request $request)
     {
-        if($request->
-        bu_id && $request->wilayah_id)
+        if($request->bu_id && $request->wilayah_id)
         {
             $data['wilayahs'] = Wilayah::all();
             $data['bisnis_units'] = Bisnis_unit::all();
@@ -33,13 +32,13 @@ class KontrakadminController extends Controller
             ->join('customer', 'customer.kode_customer', '=', 'kontrak.kode_customer')
             ->join('wilayah','wilayah.wilayah_id','=','customer.wilayah_id')
             ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
-            ->join('datamou', 'datamou.id_kontrak', '=', 'kontrak.id_kontrak')
+            // ->join('datamou', 'datamou.id_kontrak', '=', 'kontrak.id_kontrak')
             ->where('bisnis_unit.bu_id', '=', $request->bu_id)
             ->where('wilayah.wilayah_id', '=', $request->wilayah_id)
             ->get();
             return view('admin/kontrak/kontrak', $data);
         }
-        elseif($request->bu_id)
+        if($request->bu_id)
         {
             $data['wilayahs'] = Wilayah::all();
             $data['bisnis_units'] = Bisnis_unit::all();
@@ -48,7 +47,7 @@ class KontrakadminController extends Controller
             ->join('customer', 'customer.kode_customer', '=', 'kontrak.kode_customer')
             ->join('wilayah','wilayah.wilayah_id','=','customer.wilayah_id')
             ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
-            ->join('datamou', 'datamou.id_kontrak', '=', 'kontrak.id_kontrak')
+            // ->join('datamou', 'datamou.id_kontrak', '=', 'kontrak.id_kontrak')
             ->where('bisnis_unit.bu_id', '=', $request->bu_id)
             ->get();
             return view('admin/kontrak/kontrak', $data);
@@ -62,7 +61,7 @@ class KontrakadminController extends Controller
             ->join('customer', 'customer.kode_customer', '=', 'kontrak.kode_customer')
             ->join('wilayah','wilayah.wilayah_id','=','customer.wilayah_id')
             ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
-            ->join('datamou', 'datamou.id_kontrak', '=', 'kontrak.id_kontrak')
+            // ->join('datamou', 'datamou.id_kontrak', '=', 'kontrak.id_kontrak')
             ->where('wilayah.wilayah_id', '=', $request->wilayah_id)
             ->get();
             return view('admin/kontrak/kontrak', $data);
@@ -72,11 +71,10 @@ class KontrakadminController extends Controller
     {
         $data['wilayahs'] = Wilayah::all();
         $data['bisnis_units'] = Bisnis_unit::all();
-        $data['customers'] = Customer::all();
+        $data['customers'] = Customer::all();        
         $data['kontraks'] = DB::table('kontrak')
         ->join('customer', 'customer.kode_customer', '=', 'kontrak.kode_customer')
-        ->join('datamou', 'datamou.id_kontrak', '=', 'kontrak.id_kontrak')
-        ->select('datamou.no_mou','kontrak.id_kontrak','customer.kode_customer','customer.nama_perusahaan','kontrak.periode_kontrak','kontrak.akhir_periode','kontrak.srt_pemberitahuan','kontrak.tgl_srt_pemberitahuan','kontrak.srt_penawaran','kontrak.tgl_srt_penawaran','kontrak.dealing','kontrak.tgl_dealing','kontrak.posisi_pks','kontrak.closing')
+        ->select('kontrak.id_kontrak','customer.kode_customer','customer.nama_perusahaan','kontrak.periode_kontrak','kontrak.akhir_periode','kontrak.srt_pemberitahuan','kontrak.tgl_srt_pemberitahuan','kontrak.srt_penawaran','kontrak.tgl_srt_penawaran','kontrak.dealing','kontrak.tgl_dealing','kontrak.posisi_pks','kontrak.closing')
         ->get();
         return view('admin/kontrak/kontrak', $data);
 

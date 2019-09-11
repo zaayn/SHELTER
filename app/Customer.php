@@ -39,13 +39,13 @@ class Customer extends Model
     public function bisnis_unit()
     {
 
-        return $this->belongsTo(\App\bisnis_unit::class,'bu_id','bu_id');
+        return $this->belongsTo(\App\Bisnis_unit::class,'bu_id','bu_id');
 
     }
     public function kontrak()
     {
 
-        return $this->hasMany(kontrak::class);
+        return $this->hasMany(\App\Kontrak::class);
 
     }
     public function call()

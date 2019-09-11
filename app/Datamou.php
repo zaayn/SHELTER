@@ -9,8 +9,7 @@ class datamou extends Model
     protected $table = 'datamou';
     protected $primaryKey = 'no_mou';
     protected $fillable = [
-        'no_mou'
-       ,'id_kontrak'
+       'id_kontrak'
        ,'hc'
        ,'invoice'
        ,'mf'
