@@ -98,7 +98,7 @@
                         </div>
                         <div class="form-group col-md-12">
                 	        <label class="font-weight-bold">Status</label>
-                	        <select class ="form-control" name="status" required>
+                	        <select class ="form-control" name="status" value="{{$keluhan->status}}" required>
                             <option value="Belum ditangani">Belum ditangani</option>
                             <option value="Sudah ditangani">Sudah ditangani</option>
                             </select>
