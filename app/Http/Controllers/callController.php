@@ -26,6 +26,7 @@ class callController extends Controller
      */
     public function index()
     {
+        $data['no'] = 1;
         $data['wilayahs'] = Wilayah::all();
         $data['bisnis_units'] = Bisnis_unit::all();
         $data['calls'] = Call::all();
