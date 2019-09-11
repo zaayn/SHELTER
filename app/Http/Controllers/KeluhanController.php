@@ -9,15 +9,15 @@ use Illuminate\Support\Facades\DB;
 use App\Keluhan;
 use PDF;
 use App\Customer;
-use App\bisnis_unit;
-use App\wilayah;
+use App\Bisnis_unit;
+use App\Wilayah;
 
 class KeluhanController extends Controller
 {
     public function index()
     {
-        $data['wilayahs'] = wilayah::all();
-        $data['bisnis_units'] = bisnis_unit::all();
+        $data['wilayahs'] = Wilayah::all();
+        $data['bisnis_units'] = Bisnis_unit::all();
         $data['keluhans'] = DB::table('keluhan')
         ->join('customer', 'keluhan.kode_customer', '=', 'customer.kode_customer')
         ->select('id_keluhan','customer.kode_customer','customer.nama_perusahaan','keluhan.kode_customer','spv_pic','tanggal_keluhan','jam_keluhan','keluhan','pic','jam_follow','follow_up','closing_case','via','keluhan.status')
@@ -28,8 +28,8 @@ class KeluhanController extends Controller
 
     public function insert()
     {
-        $data['bisnis_units'] = bisnis_unit::all();
-        $data['customers'] = customer::all();
+        $data['bisnis_units'] = Bisnis_unit::all();
+        $data['customers'] = Customer::all();
         $data['users'] = DB::table('users')
         ->join('wilayah', 'users.wilayah_id', '=', 'wilayah.wilayah_id')
         ->select('wilayah.wilayah_id','users.nama_depan','wilayah.nama_wilayah')
@@ -76,8 +76,8 @@ class KeluhanController extends Controller
 
     public function edit($id_keluhan)
     {
-        $data['bisnis_units'] = bisnis_unit::all();
-        $data['customers'] = customer::all();
+        $data['bisnis_units'] = Bisnis_unit::all();
+        $data['customers'] = Customer::all();
         $data['users'] = DB::table('users')
         ->join('wilayah', 'users.wilayah_id', '=', 'wilayah.wilayah_id')
         ->select('wilayah.wilayah_id','users.nama_depan','wilayah.nama_wilayah')
@@ -90,7 +90,7 @@ class KeluhanController extends Controller
 
     public function update(Request $request, $id_keluhan)
     {
-        $keluhan = keluhan::findorFail($id_keluhan);
+        $keluhan = Keluhan::findorFail($id_keluhan);
         $request->validate([
             'spv_pic' => 'required',
             'tanggal_keluhan' => 'required|date',
@@ -134,8 +134,8 @@ class KeluhanController extends Controller
     {
       if($request->bu_id && $request->wilayah_id)
       {
-        $data['wilayahs'] = wilayah::all();
-        $data['bisnis_units'] = bisnis_unit::all();
+        $data['wilayahs'] = Wilayah::all();
+        $data['bisnis_units'] = Bisnis_unit::all();
         $data['keluhans'] = DB::table('keluhan')
         ->join('customer', 'keluhan.kode_customer', '=', 'customer.kode_customer')
         ->join('wilayah','wilayah.wilayah_id','=','customer.wilayah_id')
@@ -152,8 +152,8 @@ class KeluhanController extends Controller
       }
       elseif($request->bu_id)
       {
-        $data['wilayahs'] = wilayah::all();
-        $data['bisnis_units'] = bisnis_unit::all();
+        $data['wilayahs'] = Wilayah::all();
+        $data['bisnis_units'] = Bisnis_unit::all();
         $data['keluhans'] = DB::table('keluhan')
         ->join('customer', 'keluhan.kode_customer', '=', 'customer.kode_customer')
         ->join('wilayah','wilayah.wilayah_id','=','customer.wilayah_id')
@@ -169,8 +169,8 @@ class KeluhanController extends Controller
       }
       elseif($request->wilayah_id)
       {
-        $data['wilayahs'] = wilayah::all();
-        $data['bisnis_units'] = bisnis_unit::all();
+        $data['wilayahs'] = Wilayah::all();
+        $data['bisnis_units'] = Bisnis_unit::all();
         $data['keluhans'] = DB::table('keluhan')
         ->join('customer', 'keluhan.kode_customer', '=', 'customer.kode_customer')
         ->join('wilayah','wilayah.wilayah_id','=','customer.wilayah_id')

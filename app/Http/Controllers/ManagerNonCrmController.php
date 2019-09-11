@@ -23,16 +23,13 @@ class ManagerNonCrmController extends Controller
         $data['customers'] = DB::table('customer')->count();
         $data['datamous'] = DB::table('datamou')->count();
 
-        $lastUser = DB::table('users')
-                    ->select('username')
-                    ->orderBy('current_login_at','desc')
-                    ->skip(1)->first();
-        return view('/manager_non_crm/dashboard_manager_non_crm')->with($data)->with('lastUser',$lastUser);
+      
+        return view('/manager_non_crm/dashboard_manager_non_crm', $data);
     }
    
     public function customer()
     {  
-        $data['customers'] = customer::all();
+        $data['customers'] = Customer::all();
         $data['no'] = 1;
         return view('manager_non_crm/manager_non_crm_customer', $data);
     }
@@ -46,7 +43,7 @@ class ManagerNonCrmController extends Controller
     }
     public function mou()
     {  
-        $data['datamous'] = datamou::all();
+        $data['datamous'] = Datamou::all();
         $data['no'] = 1;
         return view('manager_non_crm/manager_non_crm_mou', $data);
     }

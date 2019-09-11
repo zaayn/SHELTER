@@ -9,7 +9,7 @@ use App\Call;
 use App\Keluhan;
 use App\Visit;
 use App\Kontrak;
-use App\datamou;
+use App\Datamou;
 use App\Customer;
 
 class ManagerController extends Controller
@@ -23,11 +23,8 @@ class ManagerController extends Controller
         $data['customers'] = DB::table('customer')->count();
         $data['datamous'] = DB::table('datamou')->count();
 
-        $lastUser = DB::table('users')
-                    ->select('username')
-                    ->orderBy('current_login_at','desc')
-                    ->skip(1)->first();
-        return view('/manager_crm/dashboard_manager_crm')->with($data)->with('lastUser',$lastUser);
+        
+        return view('/manager_crm/dashboard_manager_crm', $data);
     }
     public function call()
     {  
@@ -65,13 +62,13 @@ class ManagerController extends Controller
     }
     public function mou()
     {  
-        $data['datamous'] = datamou::all();
+        $data['datamous'] = Datamou::all();
         $data['no'] = 1;
         return view('manager_crm/manager_mou', $data);
     }
     public function customer()
     {  
-        $data['customers'] = customer::all();
+        $data['customers'] = Customer::all();
         $data['no'] = 1;
         return view('manager_crm/manager_customer', $data);
     }

@@ -15,16 +15,16 @@ class UserController extends Controller
 {
     public function insert()
     {
-        $data['areas'] = area::all();
-        $data['wilayahs'] = wilayah::all();
+        $data['areas'] = Area::all();
+        $data['wilayahs'] = Wilayah::all();
         return view('admin/user/insert_user',$data);
     }
     public function filter(Request $request)
     {   
         if($request->rule)
         {
-            $data['wilayahs'] = wilayah::all();
-            $data['areas'] = area::all();
+            $data['wilayahs'] = Wilayah::all();
+            $data['areas'] = Area::all();
             $data['no'] = 1;
             $data['users'] = DB::table('users')
             ->join('wilayah', 'users.wilayah_id', '=', 'wilayah.wilayah_id')
@@ -35,9 +35,9 @@ class UserController extends Controller
                 return view('admin/user/user', $data);
         }
         else {
-            $data['users'] = user::all();
-            $data['areas'] = area::all();
-            $data['wilayahs'] = wilayah::all();
+            $data['users'] = User::all();
+            $data['areas'] = Area::all();
+            $data['wilayahs'] = Wilayah::all();
             $data['no'] = 1;
             return view('admin/user/user', $data);
         }
@@ -46,8 +46,8 @@ class UserController extends Controller
     public function index(Request $request)
     {   
         // $data['users'] = user::all();
-        $data['areas'] = area::all();
-        $data['wilayahs'] = wilayah::all();
+        $data['areas'] = Area::all();
+        $data['wilayahs'] = Wilayah::all();
         $data['no'] = 1;
         $data['users'] = DB::table('users')
         ->join('wilayah', 'users.wilayah_id', '=', 'wilayah.wilayah_id')
@@ -87,7 +87,7 @@ class UserController extends Controller
       }
     }
     public function update(Request $request, $id){
-        $user = user::findorFail($id);
+        $user = User::findorFail($id);
         $this->validate($request,[
             'username'      =>['required', 'string'],
             'nama_depan'    =>['required', 'string'],
@@ -110,14 +110,14 @@ class UserController extends Controller
           return redirect()->route('index.user')->with(['success'=>'edit sukses']);
     }
     public function delete($email){
-        $user = user::findOrFail($email)->delete();
+        $user = User::findOrFail($email)->delete();
         return redirect()->route('index.user')->with('success', 'delete sukses');
     }
     public function edit($email){
         
-        $user = user::findOrFail($email);
-        $data['areas'] = area::all();
-        $data['wilayahs'] = wilayah::all();
+        $user = User::findOrFail($email);
+        $data['areas'] = Area::all();
+        $data['wilayahs'] = Wilayah::all();
         return view('admin/user/edit_user',$data)->with('user', $user);
     }
     

@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Support\Facades\DB;
 use PDF;
-use App\datamou;
+use App\Datamou;
 use App\Kontrak;
 use App\Customer;
 use Excel;
@@ -17,7 +17,7 @@ class MouController extends Controller
     public function index()
     {
         $data['no'] = 1;
-        $data['datamous'] = datamou::all();
+        $data['datamous'] = Datamou::all();
         return view('admin/mou/mou', $data);
     }
     
@@ -28,13 +28,13 @@ class MouController extends Controller
         ->join('customer', 'customer.kode_customer', '=', 'kontrak.kode_customer')
         ->select('kontrak.id_kontrak','customer.kode_customer','customer.nama_perusahaan','kontrak.periode_kontrak','kontrak.akhir_periode','kontrak.srt_pemberitahuan','kontrak.tgl_srt_pemberitahuan','kontrak.srt_penawaran','kontrak.tgl_srt_penawaran','kontrak.dealing','kontrak.tgl_dealing','kontrak.posisi_pks','kontrak.closing')
         ->get();
-        $data['customers'] = customer::all();
+        $data['customers'] = Customer::all();
         return view('admin/mou/insertmou',$data);
     }
 
     public function store(Request $request, $id_kontrak)
     {
-        $check=datamou::where('id_kontrak', $id_kontrak);
+        $check=Datamou::where('id_kontrak', $id_kontrak);
         if($check) abort(404);
 
         $request->validate([
@@ -61,7 +61,7 @@ class MouController extends Controller
 
         //setlocale(LC_MONETARY,"id_ID");
         //$kontrak = Kontrak::findorFail($id_kontrak);
-        $datamou = new datamou;
+        $datamou = new Datamou;
         $datamou->no_mou = $request->no_mou;
         $datamou->id_kontrak = $id_kontrak;
         $datamou->hc = $request->hc;
@@ -98,7 +98,7 @@ class MouController extends Controller
     public function edit($no_mou)
     {
         $where = array('no_mou' => $no_mou);
-        $datamou  = datamou::where($where)->first();
+        $datamou  = Datamou::where($where)->first();
  
         return view('admin/mou/editmou')->with('datamou', $datamou);
     }
@@ -112,7 +112,7 @@ class MouController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $datamou = datamou::findorFail($id);
+        $datamou = Datamou::findorFail($id);
         $request->validate([
           //  'id_kontrak' => 'required',
             'hc' => 'required',
@@ -170,11 +170,11 @@ class MouController extends Controller
      */
     public function destroy($no_mou)
     {
-        $datamou = datamou::where('no_mou',$no_mou)->delete();
+        $datamou = Datamou::where('no_mou',$no_mou)->delete();
         return redirect()->route('index.datamou')->with('success', 'delete sukses');
     }
     public function exportPDF(){
-        $mou = datamou::all();
+        $mou = Datamou::all();
         $pdf = PDF::loadview('admin/mou/pdfmou',['datamou'=>$mou]);
         $pdf->setPaper('A4','landscape');
         return $pdf->download('Laporan-Mou-CRM.pdf');
