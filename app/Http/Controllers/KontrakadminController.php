@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\DB;
-use App\kontrak;
+use App\Kontrak;
 use App\Customer;
 use App\Datamou;
 use Carbon;
