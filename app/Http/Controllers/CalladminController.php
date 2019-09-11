@@ -116,7 +116,7 @@ class CalladminController extends Controller
 
     public function update(Request $request, $id)
     {
-        $call   =   Call::findorFail($id);
+        $call   =   call::findorFail($id);
         $this->validate($request,[
             'spv_pic'=>['required', 'string'],
             'tanggal_call'=>['required', 'date'],
