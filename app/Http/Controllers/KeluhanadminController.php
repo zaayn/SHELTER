@@ -10,7 +10,7 @@ use PDF;
 use Excel;
 use App\Exports\KeluhanExport;
 use App\Customer;
-use App\bisnis_unit;
+use App\Bisnis_unit;
 use App\wilayah;
 
 
