@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\DB;
-use App\datamou;
+use App\Datamou;
 use PDF;
 use Auth;
 
@@ -18,10 +18,7 @@ class OfficerController extends Controller
         $data['visits'] = DB::table('visit')->count();   
         $data['keluhans'] = DB::table('keluhan')->count();
         
-        $lastUser = DB::table('users')
-                    ->select('username')
-                    ->orderBy('current_login_at','desc')
-                    ->skip(1)->first();
+
 
         $amount = DB::table('customer')
                     ->select(
@@ -34,16 +31,16 @@ class OfficerController extends Controller
             $cat[++$key] = [$value->area, $value->jumlah];
         }
 
-        return view('/officer/dashboard_officer')->with($data)->with('lastUser',$lastUser)->with('cat',$cat);
+        return view('/officer/dashboard_officer')->with($data)->with('cat',$cat);
     }
     public function mou(){
         $data['no'] = 1;
-        $data['datamous'] = datamou::all();
+        $data['datamous'] = Datamou::all();
         return view('officer/mou', $data);
     }
     public function exportPDF()
 	{
-		$mou = datamou::all();
+		$mou = Datamou::all();
         $pdf = PDF::loadview('officer/pdfmou',['datamou'=>$mou]);
         $pdf->setPaper('A4','landscape');
     	return $pdf->download('Laporan-MoU-CRM.pdf');

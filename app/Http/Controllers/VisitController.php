@@ -9,8 +9,8 @@ use App\Visit;
 use Validator;
 use PDF;
 use App\Customer;
-use App\bisnis_unit;
-use App\wilayah;
+use App\Bisnis_unit;
+use App\Wilayah;
 
 class VisitController extends Controller
 {
@@ -21,8 +21,8 @@ class VisitController extends Controller
      */
     public function index()
     {
-        $data['wilayahs'] = wilayah::all();
-        $data['bisnis_units'] = bisnis_unit::all();
+        $data['wilayahs'] = Wilayah::all();
+        $data['bisnis_units'] = Bisnis_unit::all();
         $data['visits'] = DB::table('visit')
         ->join('customer', 'visit.kode_customer', '=', 'customer.kode_customer')
         ->select('customer.kode_customer','visit.kode_customer','visit_id','customer.nama_perusahaan','spv_pic','tanggal_visit','waktu_in','waktu_out','pic_meeted','kegiatan')
@@ -33,8 +33,8 @@ class VisitController extends Controller
 
     public function insert()
     {
-        $data['bisnis_units'] = bisnis_unit::all();
-        $data['customers'] = customer::all();
+        $data['bisnis_units'] = Bisnis_unit::all();
+        $data['customers'] = Customer::all();
         $data['users'] = DB::table('users')
         ->join('wilayah', 'users.wilayah_id', '=', 'wilayah.wilayah_id')
         ->select('wilayah.wilayah_id','users.nama_depan','wilayah.nama_wilayah')
@@ -66,7 +66,7 @@ class VisitController extends Controller
             'kegiatan' =>'required',
         ]);
 
-        $visit = new visit;
+        $visit = new Visit;
         $visit->visit_id = $request->visit_id;
         $visit->kode_customer = $request->kode_customer;
         $visit->spv_pic = $request->spv_pic;
@@ -86,8 +86,8 @@ class VisitController extends Controller
 
     public function edit($visit_id)
     {
-        $data['bisnis_units'] = bisnis_unit::all();
-        $data['customers'] = customer::all();
+        $data['bisnis_units'] = Bisnis_unit::all();
+        $data['customers'] = Customer::all();
         $data['users'] = DB::table('users')
         ->join('wilayah', 'users.wilayah_id', '=', 'wilayah.wilayah_id')
         ->select('wilayah.wilayah_id','users.nama_depan','wilayah.nama_wilayah')
@@ -137,8 +137,8 @@ class VisitController extends Controller
     {
       if($request->bu_id && $request->wilayah_id)
       {
-        $data['wilayahs'] = wilayah::all();
-        $data['bisnis_units'] = bisnis_unit::all();
+        $data['wilayahs'] = Wilayah::all();
+        $data['bisnis_units'] = Bisnis_unit::all();
         $data['visits'] = DB::table('visit')
         ->join('customer', 'visit.kode_customer', '=', 'customer.kode_customer')
         ->join('wilayah','wilayah.wilayah_id','=','customer.wilayah_id')
@@ -153,8 +153,8 @@ class VisitController extends Controller
       }
       elseif($request->bu_id)
       {
-        $data['wilayahs'] = wilayah::all();
-        $data['bisnis_units'] = bisnis_unit::all();
+        $data['wilayahs'] = Wilayah::all();
+        $data['bisnis_units'] = Bisnis_unit::all();
         $data['visits'] = DB::table('visit')
         ->join('customer', 'visit.kode_customer', '=', 'customer.kode_customer')
         ->join('wilayah','wilayah.wilayah_id','=','customer.wilayah_id')
@@ -168,8 +168,8 @@ class VisitController extends Controller
       }
       elseif($request->wilayah_id)
       {
-        $data['wilayahs'] = wilayah::all();
-        $data['bisnis_units'] = bisnis_unit::all();
+        $data['wilayahs'] = Wilayah::all();
+        $data['bisnis_units'] = Bisnis_unit::all();
         $data['visits'] = DB::table('visit')
         ->join('customer', 'visit.kode_customer', '=', 'customer.kode_customer')
         ->join('wilayah','wilayah.wilayah_id','=','customer.wilayah_id')

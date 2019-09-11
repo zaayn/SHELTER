@@ -26,9 +26,9 @@ class callController extends Controller
      */
     public function index()
     {
-        $data['wilayahs'] = wilayah::all();
-        $data['bisnis_units'] = bisnis_unit::all();
-        $data['calls'] = call::all();
+        $data['wilayahs'] = Wilayah::all();
+        $data['bisnis_units'] = Bisnis_unit::all();
+        $data['calls'] = Call::all();
         $data['calls'] = DB::table('call')
         ->join('customer', 'call.kode_customer', '=', 'customer.kode_customer')
         ->select('customer.kode_customer','call.kode_customer','call_id','customer.nama_perusahaan','spv_pic','tanggal_call','jam_call','pembicaraan','pic_called','hal_menonjol')
@@ -38,8 +38,8 @@ class callController extends Controller
     }
     public function insert()
     {
-        $data['bisnis_units'] = bisnis_unit::all();
-        $data['customers'] = customer::all();
+        $data['bisnis_units'] = Bisnis_unit::all();
+        $data['customers'] = Customer::all();
         $data['users'] = DB::table('users')
         ->join('wilayah', 'users.wilayah_id', '=', 'wilayah.wilayah_id')
         ->select('wilayah.wilayah_id','users.nama_depan','wilayah.nama_wilayah')
@@ -78,8 +78,8 @@ class callController extends Controller
 
     public function edit($call_id)
     {
-        $data['bisnis_units'] = bisnis_unit::all();
-        $data['customers'] = customer::all();
+        $data['bisnis_units'] = Bisnis_unit::all();
+        $data['customers'] = Customer::all();
         $data['users'] = DB::table('users')
         ->join('wilayah', 'users.wilayah_id', '=', 'wilayah.wilayah_id')
         ->select('wilayah.wilayah_id','users.nama_depan','wilayah.nama_wilayah')

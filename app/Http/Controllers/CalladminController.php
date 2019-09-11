@@ -8,14 +8,14 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Support\Facades\DB;
-use App\call;
+use App\Call;
 use PDF;
 use Validator;
 use App\Exports\CallExport;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Customer;
-use App\bisnis_unit;
-use App\wilayah;
+use App\Bisnis_unit;
+use App\Wilayah;
 
 class CalladminController extends Controller
 {
@@ -37,8 +37,8 @@ class CalladminController extends Controller
 
     public function insert()
     {
-        $data['bisnis_units'] = bisnis_unit::all();
-        $data['customers'] = customer::all();
+        $data['bisnis_units'] = Bisnis_unit::all();
+        $data['customers'] = Customer::all();
         $data['users'] = DB::table('users')
         ->join('wilayah', 'users.wilayah_id', '=', 'wilayah.wilayah_id')
         ->select('wilayah.wilayah_id','users.nama_depan','wilayah.nama_wilayah')
@@ -103,8 +103,8 @@ class CalladminController extends Controller
      */
     public function edit($call_id)
     {
-        $data['bisnis_units'] = bisnis_unit::all();
-        $data['customers'] = customer::all();
+        $data['bisnis_units'] = Bisnis_unit::all();
+        $data['customers'] = Customer::all();
         $data['users'] = DB::table('users')
         ->join('wilayah', 'users.wilayah_id', '=', 'wilayah.wilayah_id')
         ->select('wilayah.wilayah_id','users.nama_depan','wilayah.nama_wilayah')
@@ -162,16 +162,6 @@ class CalladminController extends Controller
             return view('admin.call.call', ['call' => $call]);
 
     }
-    public function customerCode($str, $as_space = array('-'))
-    {
-        $str = str_replace($as_space, ' ', trim($str));
-        $ret = '';
-        foreach (explode(' ', $str) as $word) {
-            $ret .= strtoupper($word[0]);
-        }
-        return $ret;
-
-    }
     public function exportExcel()
 	{
 		return Excel::download(new CallExport, 'Laporan-Call-CRM.xlsx');
@@ -180,9 +170,9 @@ class CalladminController extends Controller
     {
       if($request->bu_id && $request->wilayah_id)
       {
-        $data['wilayahs'] = wilayah::all();
-        $data['bisnis_units'] = bisnis_unit::all();
-        $data['calls'] = call::all();
+        $data['wilayahs'] = Wilayah::all();
+        $data['bisnis_units'] = Bisnis_unit::all();
+        $data['calls'] = Call::all();
         $data['calls'] = DB::table('call')
         ->join('customer', 'call.kode_customer', '=', 'customer.kode_customer')
         ->join('wilayah','wilayah.wilayah_id','=','customer.wilayah_id')
@@ -196,9 +186,9 @@ class CalladminController extends Controller
         return view('admin/call/call', $data);
       }
       elseif ($request->bu_id) {
-        $data['wilayahs'] = wilayah::all();
-        $data['bisnis_units'] = bisnis_unit::all();
-        $data['calls'] = call::all();
+        $data['wilayahs'] = Wilayah::all();
+        $data['bisnis_units'] = Bisnis_unit::all();
+        $data['calls'] = Call::all();
         $data['calls'] = DB::table('call')
         ->join('customer', 'call.kode_customer', '=', 'customer.kode_customer')
         ->join('wilayah','wilayah.wilayah_id','=','customer.wilayah_id')
@@ -211,9 +201,9 @@ class CalladminController extends Controller
 
       } 
       elseif ($request->wilayah_id) {
-        $data['wilayahs'] = wilayah::all();
-        $data['bisnis_units'] = bisnis_unit::all();
-        $data['calls'] = call::all();
+        $data['wilayahs'] = Wilayah::all();
+        $data['bisnis_units'] = Bisnis_unit::all();
+        $data['calls'] = Call::all();
         $data['calls'] = DB::table('call')
         ->join('customer', 'call.kode_customer', '=', 'customer.kode_customer')
         ->join('wilayah','wilayah.wilayah_id','=','customer.wilayah_id')

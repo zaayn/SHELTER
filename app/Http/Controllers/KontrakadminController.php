@@ -9,15 +9,15 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\DB;
-use App\kontrak;
+use App\Kontrak;
 use App\Customer;
 use App\Datamou;
 use Carbon;
 use PDF;
 use Excel;
 Use App\Exports\KontrakExport;
-use App\bisnis_unit;
-use App\wilayah;
+use App\Bisnis_unit;
+use App\Wilayah;
 
 class KontrakadminController extends Controller
 {
@@ -26,9 +26,9 @@ class KontrakadminController extends Controller
         if($request->
         bu_id && $request->wilayah_id)
         {
-            $data['wilayahs'] = wilayah::all();
-            $data['bisnis_units'] = bisnis_unit::all();
-            $data['customers'] = customer::all();
+            $data['wilayahs'] = Wilayah::all();
+            $data['bisnis_units'] = Bisnis_unit::all();
+            $data['customers'] = Customer::all();
             $data['kontraks'] = DB::table('kontrak')
             ->join('customer', 'customer.kode_customer', '=', 'kontrak.kode_customer')
             ->join('wilayah','wilayah.wilayah_id','=','customer.wilayah_id')
@@ -41,9 +41,9 @@ class KontrakadminController extends Controller
         }
         elseif($request->bu_id)
         {
-            $data['wilayahs'] = wilayah::all();
-            $data['bisnis_units'] = bisnis_unit::all();
-            $data['customers'] = customer::all();
+            $data['wilayahs'] = Wilayah::all();
+            $data['bisnis_units'] = Bisnis_unit::all();
+            $data['customers'] = Customer::all();
             $data['kontraks'] = DB::table('kontrak')
             ->join('customer', 'customer.kode_customer', '=', 'kontrak.kode_customer')
             ->join('wilayah','wilayah.wilayah_id','=','customer.wilayah_id')
@@ -55,9 +55,9 @@ class KontrakadminController extends Controller
         }
         if($request->wilayah_id)
         {
-            $data['wilayahs'] = wilayah::all();
-            $data['bisnis_units'] = bisnis_unit::all();
-            $data['customers'] = customer::all();
+            $data['wilayahs'] = Wilayah::all();
+            $data['bisnis_units'] = Bisnis_unit::all();
+            $data['customers'] = Customer::all();
             $data['kontraks'] = DB::table('kontrak')
             ->join('customer', 'customer.kode_customer', '=', 'kontrak.kode_customer')
             ->join('wilayah','wilayah.wilayah_id','=','customer.wilayah_id')
@@ -106,7 +106,7 @@ class KontrakadminController extends Controller
             'posisi_pks' => 'required',
         ]);
 
-        $kontrak = new kontrak;
+        $kontrak = new Kontrak;
         $kontrak->id_kontrak = $request->id_kontrak;
         $kontrak->kode_customer = $request->kode_customer;
         $kontrak->periode_kontrak = $request->periode_kontrak;
@@ -120,7 +120,7 @@ class KontrakadminController extends Controller
         $kontrak->posisi_pks = $request->posisi_pks;
         $kontrak->closing = "Aktif";
 
-        $customer = customer::findOrFail($request->kode_customer);
+        $customer = Customer::findOrFail($request->kode_customer);
         $to = \Carbon\Carbon::createFromFormat('Y-m-d',$kontrak->periode_kontrak);
         $from = \Carbon\Carbon::createFromFormat('Y-m-d',$kontrak->akhir_periode);
         $diff_in_month = $to->diffInMonths($from);
@@ -193,7 +193,7 @@ class KontrakadminController extends Controller
     }
     public function reminder() //filter kontrak h-30 hari 
     {
-            $data['customers'] = customer::all();
+            $data['customers'] = Customer::all();
             $data['kontraks'] = DB::table('kontrak')
             ->join('customer', 'customer.kode_customer', '=', 'kontrak.kode_customer')
             ->select('kontrak.id_kontrak','customer.kode_customer','customer.nama_perusahaan',
