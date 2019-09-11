@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\DB;
 use App\Customer;
 use App\Bisnis_unit;
 use App\Area;
-use App\Ailayah;
+use App\Wilayah;
 use App\User;
 use PDF;
 use Excel;
