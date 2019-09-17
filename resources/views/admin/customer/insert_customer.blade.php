@@ -60,8 +60,8 @@
                       <label>Jenis Perusahaan :</label>
                       <div>
                           <select class="form-control" name="jenis_perusahaan">
-                              <option value="pma">PMA</option>
-                              <option value="pmn">PMN</option>
+                              <option value="PMA">PMA</option>
+                              <option value="PMN">PMN</option>
                           </select>
                       </div>
                   </div>
