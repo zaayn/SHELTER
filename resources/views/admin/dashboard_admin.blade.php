@@ -83,8 +83,8 @@
     </div>
     <div class="col-md-3" id="lastseen">
         <div class="panel panel-default">
-            <div class="panel-heading">
-                <h5>User Terakhir Login :</h5>
+            <div class="panel-heading"><h3>User Terakhir Login :</h3></div>
+            <div class="panel-body">
                 @foreach($lastUser as $last)
                 <h5><strong>{{$last->username}}</strong> - {{ \Carbon\Carbon::parse($last->current_login_at)->diffForHumans()}}</h5>
                 @endforeach
