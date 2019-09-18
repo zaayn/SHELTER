@@ -18,6 +18,7 @@ class KeluhanadminController extends Controller
 {
     public function index()
     {
+      $data['no'] = 1;
         $data['wilayahs'] = Wilayah::all();
         $data['bisnis_units'] = Bisnis_unit::all();
         $data['keluhans'] = DB::table('keluhan')

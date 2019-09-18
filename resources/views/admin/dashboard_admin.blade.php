@@ -83,8 +83,8 @@
     </div>
     <div class="col-md-3" id="lastseen">
         <div class="panel panel-default">
-            <div class="panel-heading">
-                <h5>User Terakhir Login :</h5>
+            <div class="panel-heading"><h3>User Terakhir Login :</h3></div>
+            <div class="panel-body">
                 @foreach($lastUser as $last)
                 <h5><strong>{{$last->username}}</strong> - {{ \Carbon\Carbon::parse($last->current_login_at)->diffForHumans()}}</h5>
                 @endforeach
@@ -135,6 +135,12 @@
                                 <td>
                                     <a href="{{route('edit.kontrak',$kontrak->id_kontrak)}}" class="btn btn-info btn-sm"><span class="fa fa-pencil"></span></a>
                                     <a onclick="return confirm('Apakah anda yakin akan menghapus data ini ?')" href="{{route('destroy.kontrak',$kontrak->id_kontrak)}}" class="btn btn-danger btn-sm"><span class="fa fa-trash"></span></a>
+                                    @if($kontrak->closing == 'Aktif')
+                                        <a onclick="return confirm('Apakah anda yakin akan menutup kontrak ini ?')" href="{{route('closed.kontrak',$kontrak->id_kontrak)}}" class="btn btn-warning btn-sm">Close</a>
+                                    @endif
+                                    @if(!isset($kontrak->datamou))
+                                        <a href="{{route('insertmou.kontrak',$kontrak->id_kontrak)}}" class="btn btn-default btn-sm">Tambah MoU</span></a>
+                                    @endif
                                 </td>
                             </tr>
                             @endforeach  

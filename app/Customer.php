@@ -51,16 +51,16 @@ class Customer extends Model
     public function call()
     {
 
-        return $this->hasMany(call::class);
+        return $this->hasMany(\App\Call::class);
 
     }
     public function visit()
     {
-        return $this->hasMany(visit::class);
+        return $this->hasMany(\App\Visit::class);
     }
     public function keluhan()
     {
-        return $this->hasMany(keluhan::class);
+        return $this->hasMany(\App\Keluhan::class);
     }
     
     public function getCustomerTypeAttribute()
