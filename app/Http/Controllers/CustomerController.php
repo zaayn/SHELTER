@@ -211,13 +211,13 @@ class CustomerController extends Controller
     {
       $customer = Customer::findOrFail($id);
       // dd($customer->status);
-      if($customer->status == "aktif")
+      if($customer->status == "Aktif")
       {
-        $customer->status = 'non_aktif';
+        $customer->status = 'Non_aktif';
       }
-      elseif($customer->status == "non_aktif")
+      elseif($customer->status == "Non_aktif")
       {
-        $customer->status = 'aktif';
+        $customer->status = 'Aktif';
       }
       if ($customer->save())
           return redirect()->route('index.customer')->with(['success'=>'reset aktifasi sukses']);

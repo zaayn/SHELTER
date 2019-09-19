@@ -213,8 +213,8 @@ class KontrakadminController extends Controller
     public function closed($id_kontrak) //filter kontrak h-30 hari 
     {
         $kontrak = Kontrak::findorFail($id_kontrak);
-        $kontrak->dealing = "sudah deal";
-        $kontrak->posisi_pks = "di shelter";
+        $kontrak->dealing = "Sudah Deal";
+        $kontrak->posisi_pks = "di Shelter";
         $kontrak->closing = "Closed";
         if ($kontrak->save())
         return redirect()->route('index.kontrak')->with(['success'=>'Closing Kontrak sukses']);    
