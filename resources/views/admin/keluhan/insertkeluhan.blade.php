@@ -8,7 +8,7 @@
                 <h1>Form Insert Keluhan</h1>
                 <ol class="breadcrumb">
                     <li><a href="{{asset('/admin/home')}}"><i class="fa fa-dashboard"></i> Home</a></li>
-                    <li><a href="{{asset('/admin/insertkeluhan')}}"></i>Keluhan</a></li>
+                    <li><a href="{{asset('/admin/keluhan')}}"></i>Keluhan</a></li>
                     <li class="active">Insert Keluhan</li>
                 </ol>
             </div>
