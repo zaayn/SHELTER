@@ -60,16 +60,16 @@
                             <div class="form-group col-md-12">
                                 <label>Jenis Perusahaan :</label>
                                 <div>
-                                    <select class="form-control" name="jenis_perusahaan">
+                                    <select class="form-control" name="jenis_perusahaan" value="{{ $customer->jenis_perusahaan }}">
                                         <option value="pma">PMA</option>
                                         <option value="pmn">PMN</option>
                                     </select>
                                 </div>
                             </div>
-                            <div class="form-group col-md-12">
-                                <label>Asal Negara :</label>
-                                <div><input type="text" class="form-control"  name="negara" required></div>
-                              </div>
+                        <div class="form-group col-md-12">
+                            <label>Asal Negara :</label>
+                            <div><input type="text" class="form-control"  name="negara" value="{{ $customer->negara }}" required></div>
+                        </div>
                         <div class="form-group col-md-12">
                 	        <label class="font-weight-bold">Alamat</label>
                 	        <input type="text" class="form-control" name="alamat" value="{{ $customer->alamat }}" required>
