@@ -77,13 +77,18 @@ class KontrakadminController extends Controller
         ->select('kontrak.id_kontrak','customer.kode_customer','customer.nama_perusahaan','kontrak.periode_kontrak','kontrak.akhir_periode','kontrak.srt_pemberitahuan','kontrak.tgl_srt_pemberitahuan','kontrak.srt_penawaran','kontrak.tgl_srt_penawaran','kontrak.dealing','kontrak.tgl_dealing','kontrak.posisi_pks','kontrak.closing')
         ->get();
         $data['akhir_periode'] = DB::table('kontrak')->select('periode_kontrak','akhir_periode')->get();
-        if($data['akhir_periode'] > NOW())
+
+        if($kontrak->closing == "Aktif")
         {
-            $kontrak->dealing = "sudah deal";
-            $kontrak->posisi_pks = "di shelter";
-            $kontrak->closing = "Closed";
-            $kontrak->save();
+            if($data['akhir_periode'] > NOW())
+            {
+                $kontrak->dealing = "Sudah Deal";
+                $kontrak->posisi_pks = "di Shelter";
+                $kontrak->closing = "Closed";
+                $kontrak->save();
+            }
         }
+        
         return view('admin/kontrak/kontrak', $data);
 
     }
