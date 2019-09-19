@@ -168,7 +168,7 @@ class KontrakadminController extends Controller
         $kontrak->closing = "Closed";
         
         if ($kontrak->save())
-          return redirect()->route('index.kontrak')->with(['success'=>'edit sukses']);
+          return redirect()->route('index.kontrak')->with(['success'=>'Closing Kontrak sukses']);
     }
 
     public function update(Request $request, $id_kontrak)
