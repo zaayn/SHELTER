@@ -88,7 +88,7 @@
 
           <p>
             Halaman yang anda cari tidak ditemukan.<br>
-            <a href="{{ URL::previous()}}">Kembali ke dashboard</a>
+            <a href="{{ asset(URL::previous())}}">Kembali ke dashboard</a>
           </p>
 
           
