@@ -97,7 +97,7 @@
                         <div class="form-group col-md-12">
                             <label>Area :</label>
                             <div>
-                                <select class="form-control" name="nama_area">
+                                <select class="form-control" name="nama_area" value="{{ $customer->nama_area }}>
                                 @foreach($areas as $area)
                                     <option value="{{ $area->nama_area }}">{{ $area->nama_area }}</option>
                                 @endforeach
@@ -107,7 +107,7 @@
                         <div class="form-group col-md-12">
                             <label>Wilayah :</label>
                             <div>
-                                <select class="form-control" name="wilayah_id">
+                                <select class="form-control" name="wilayah_id" value="{{ $customer->wilayah_id }}>
                                 @foreach($wilayahs as $wilayah)
                                     <option value="{{ $wilayah->wilayah_id }}">{{ $wilayah->nama_wilayah }}</option>
                                 @endforeach
