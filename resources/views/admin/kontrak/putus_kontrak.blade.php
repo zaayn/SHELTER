@@ -5,7 +5,7 @@
     <div class="col-md-12">
         <div class="panel block">
             <div class="panel-body">
-                <h1>Form Edit Kontrak</h1>
+                <h1>Form Sebab Putus Kontrak</h1>
                 <ol class="breadcrumb">
                     <li><a href="{{asset('/admin/home')}}"><i class="fa fa-dashboard"></i> Home</a></li>
                     <li><a href="{{asset('/admin/kontrak')}}"></i>Kontrak</a></li>
