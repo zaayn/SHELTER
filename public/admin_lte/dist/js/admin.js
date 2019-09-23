@@ -37,3 +37,6 @@ $(document).ready(function() {
       buttons: ['copy', 'csv', 'excel', 'pdf', 'print']
   } );
 } );
+$(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+  })
