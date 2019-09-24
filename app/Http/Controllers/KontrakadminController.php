@@ -78,7 +78,7 @@ class KontrakadminController extends Controller
         $data['customers'] = Customer::all();  
               
         $data['kontraks'] = DB::table('kontrak')
-        // ->join('datamou', 'kontrak.id_kontrak', '=', 'datamou.id_kontrak')
+        ->join('datamou', 'kontrak.id_kontrak', '=', 'datamou.id_kontrak')
         ->join('customer', 'customer.kode_customer', '=', 'kontrak.kode_customer')
         ->get();
         // if($kontrak->closing == "Aktif")
