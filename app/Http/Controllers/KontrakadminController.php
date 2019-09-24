@@ -81,6 +81,8 @@ class KontrakadminController extends Controller
         ->join('datamou', 'kontrak.id_kontrak', '=', 'datamou.id_kontrak')
         ->join('customer', 'customer.kode_customer', '=', 'kontrak.kode_customer')
         ->get();
+        
+        //ini gatau ditaruh mana
         // if($kontrak->closing == "Aktif")
         // {
         //     if($data['akhir_periode'] > NOW())
