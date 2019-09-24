@@ -70,9 +70,10 @@
                             
                             <table id="mydatatables" class="table table-collapse table-hover table-light table-striped cell-border table-responsive">
                                 <thead>
+                                    <th>Nomor </th>
                                     <th>Nomor Kontrak</th>
                                     <th>Kode Customer</th>
-                                    <th>Nama Perusahaan</th>
+                                    {{-- <th>Nama Perusahaan</th> --}}
                                     <th>Periode Kontrak</th>
                                     <th>Akhir Periode</th>
                                     <th>Surat Pemberitahuan</th>
@@ -88,9 +89,10 @@
                                 <tbody>
                                 @foreach($kontraks as $kontrak)
                                 <tr>
+                                    <td>{{ $no++  }}</td>
                                     <td>{{ $kontrak->id_kontrak }}</td>
                                     <td>{{ $kontrak->kode_customer }}</td>
-                                    <td>{{ $kontrak->nama_perusahaan }}</td>
+                                    {{-- <td>{{ $kontrak->nama_perusahaan }}</td> --}}
                                     <td>{{ $kontrak->periode_kontrak }}</td>
                                     <td>{{ $kontrak->akhir_periode }}</td>
                                     <td>{{ $kontrak->srt_pemberitahuan }}</td>
@@ -107,7 +109,7 @@
                                         @if($kontrak->closing == 'Aktif')
                                         <a onclick="return confirm('Apakah anda yakin akan menutup kontrak ini ?')" href="{{route('putus.kontrak',$kontrak->id_kontrak)}}" class="btn btn-warning btn-sm" data-toggle="tooltip" data-placement="right" title="Close"><span class="fa fa-ban"></span></a>
                                         @endif
-                                        @if(!isset($kontrak->no_mou))
+                                        @if(isset($kontrak->datamou))
                                             <a href="{{route('insertmou.kontrak',$kontrak->id_kontrak)}}" class="btn btn-default btn-sm" data-toggle="tooltip" data-placement="right" title="Tambah MoU"><span class="fa fa-plus"></span></a>
                                         @else
                                             {{-- <a href="{{route('insertmou.kontrak',$kontrak->id_kontrak)}}" class="btn btn-default btn-sm">Lihat MoU</span></a> --}}

@@ -25,6 +25,7 @@ class KontrakadminController extends Controller
     {
         if($request->bu_id && $request->wilayah_id)
         {
+            $data['no'] = 1;
             $data['wilayahs'] = Wilayah::all();
             $data['bisnis_units'] = Bisnis_unit::all();
             $data['customers'] = Customer::all();
@@ -40,6 +41,7 @@ class KontrakadminController extends Controller
         }
         if($request->bu_id)
         {
+            $data['no'] = 1;
             $data['wilayahs'] = Wilayah::all();
             $data['bisnis_units'] = Bisnis_unit::all();
             $data['customers'] = Customer::all();
@@ -54,6 +56,7 @@ class KontrakadminController extends Controller
         }
         if($request->wilayah_id)
         {
+            $data['no'] = 1;
             $data['wilayahs'] = Wilayah::all();
             $data['bisnis_units'] = Bisnis_unit::all();
             $data['customers'] = Customer::all();
@@ -69,19 +72,15 @@ class KontrakadminController extends Controller
     }
     public function index()
     {
+        $data['no'] = 1;
         $data['wilayahs'] = Wilayah::all();
         $data['bisnis_units'] = Bisnis_unit::all();
-        $data['customers'] = Customer::all();        
+        $data['customers'] = Customer::all();  
+              
         $data['kontraks'] = DB::table('kontrak')
-        ->join('customer', 'customer.kode_customer', '=', 'kontrak.kode_customer')
-        ->join('datamou', 'kontrak.id_kontrak', '=', 'datamou.id_kontrak')
-        ->get();
-        // $data['kontraks'] = DB::table('customer')
-        // ->join('kontrak', 'customer.kode_customer', '=', 'kontrak.kode_customer')
         // ->join('datamou', 'kontrak.id_kontrak', '=', 'datamou.id_kontrak')
-        // ->get();
-        // $data['akhir_periode'] = DB::table('kontrak')->select('periode_kontrak','akhir_periode')->get();
-
+        ->join('customer', 'customer.kode_customer', '=', 'kontrak.kode_customer')
+        ->get();
         // if($kontrak->closing == "Aktif")
         // {
         //     if($data['akhir_periode'] > NOW())
