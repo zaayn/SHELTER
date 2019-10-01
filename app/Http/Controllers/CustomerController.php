@@ -238,7 +238,11 @@ class CustomerController extends Controller
     }
     public function filter_profile(Request $request)
     {  
-      $data['datamous'] = Datamou::all();
+      $data['datamous'] = DB::table('datamou')
+      ->join('kontrak', 'datamou.id_kontrak', '=', 'kontrak.id_kontrak')
+      ->join('customer', 'customer.kode_customer', '=', 'kontrak.kode_customer')
+      ->where('customer.kode_customer', '=', $request->kode_customer)
+      ->get();
       $data['customers'] = DB::table('customer')
       ->join('wilayah', 'customer.wilayah_id', '=', 'wilayah.wilayah_id')
       ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
