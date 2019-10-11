@@ -116,11 +116,11 @@
                                             <a onclick="return confirm('Apakah anda yakin akan menghapus data ini ?')" href="{{route('delete.customer',$customer->kode_customer)}}" class="btn btn-danger btn-sm">
                                                 <span class="fa fa-trash"></span>
                                             </a>
-                                            @if($customer->status == 'aktif')
+                                            @if($customer->status == 'Aktif')
                                             <a onclick="return confirm('Apakah anda yakin ingin menonaktifkan customer ini ?')" href="{{route('reset.customer',$customer->kode_customer)}}" class="btn btn-warning btn-sm">
                                                 Non-aktifkan
                                             </a>
-                                            @elseif($customer->status == 'non_aktif')
+                                            @elseif($customer->status == 'Non_aktif')
                                             <a onclick="return confirm('Apakah anda yakin ingin mengaktifkan customer ini ?')" href="{{route('reset.customer',$customer->kode_customer)}}" class="btn btn-warning btn-sm">
                                                 Aktifkan
                                             </a>

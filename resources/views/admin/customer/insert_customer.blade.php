@@ -127,8 +127,8 @@
                         <label>Status :</label>
                         <div>
                             <select class="form-control" name="status">
-                                <option value="aktif">Aktif</option>
-                                <option value="non_aktif" selected="selected">Non Aktif</option>
+                                <option value="Aktif">Aktif</option>
+                                <option value="Non_aktif" selected="selected">Non Aktif</option>
                             </select>
                         </div>
                     </div>
