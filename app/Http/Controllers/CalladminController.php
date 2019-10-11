@@ -38,7 +38,6 @@ class CalladminController extends Controller
     public function insert()
     {
         $data['bisnis_units'] = Bisnis_unit::all();
-        // $data['customers'] = Customer::all();
         $data['customers'] = DB::table('customer')
         ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
         ->where('status', 'Aktif')->get();
