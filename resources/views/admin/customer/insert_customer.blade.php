@@ -39,7 +39,7 @@
                   <div class="form-group">
                     
                     <div class="form-group col-md-12">
-                      <label>Nama Perusahaan :</label>
+                      <label>Nama Customer :</label>
                       <div><input type="text" class="form-control"  name="nama_perusahaan" required></div>
                     </div>
                     <div class="form-group col-md-12">
