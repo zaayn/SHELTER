@@ -31,9 +31,7 @@ class VisitadminController extends Controller
     public function insert()
     {
         $data['bisnis_units'] = Bisnis_unit::all();
-        $data['customers'] = DB::table('customer')
-                            ->where('status','Aktif')
-                            ->get();;
+        $data['customers'] = Customer::where('status','Aktif')->get();
         $data['users'] = DB::table('users')
         ->join('wilayah', 'users.wilayah_id', '=', 'wilayah.wilayah_id')
         ->select('wilayah.wilayah_id','users.nama_depan','wilayah.nama_wilayah')
