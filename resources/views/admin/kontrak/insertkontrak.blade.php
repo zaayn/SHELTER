@@ -45,15 +45,19 @@
                 	        <input type="text" class="form-control" name="id_kontrak" required>
                         </div>
                         <div class="form-group col-md-12">
-                            <label>Nama Perusahaan :</label>
+                            <label>Nama Perusahaan</label>
                             <div>
-                                <select class="form-control" name="kode_customer">
-                                    <option>Pilih Perusahaan</option>
-                                @foreach($customers as $customer)
+                                <!-- <select class="form-control" name="kode_customer"> -->
+                                <input list="browsers" class="form-control" name="kode_customer">
+                                <datalist id="browsers">
+                            @foreach($customers as $customer)
                                     <option value="{{ $customer->kode_customer }}">{{ $customer->kode_customer }} - {{ $customer->nama_perusahaan }}</option>
                                 @endforeach
-                                </select>
+                            </datalist>
+                                <!-- </select> -->
                             </div>
+                            
+                            
                         </div>
                         <div class="form-group col-md-12">
                 	        <label class="font-weight-bold">Periode Kontrak</label>
