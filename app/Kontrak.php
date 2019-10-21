@@ -32,7 +32,6 @@ class kontrak extends Model
 
     public function datamou()
     {
-        // return $this->hasOne(\App\Datamou::class,'id_kontrak','id_kontrak');
-        return $this->hasOne('App\datamou');
+        return $this->hasOne(\App\Datamou::class,'id_kontrak','id_kontrak');
     }
 }

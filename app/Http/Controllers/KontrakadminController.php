@@ -76,23 +76,10 @@ class KontrakadminController extends Controller
         $data['wilayahs'] = Wilayah::all();
         $data['bisnis_units'] = Bisnis_unit::all();
         $data['customers'] = Customer::all();  
-              
-        $data['kontraks'] = DB::table('kontrak')
-        // ->join('datamou', 'kontrak.id_kontrak', '=', 'datamou.id_kontrak')
-        ->join('customer', 'customer.kode_customer', '=', 'kontrak.kode_customer')
-        ->get();
         
-        //ini gatau ditaruh mana
-        // if($kontrak->closing == "Aktif")
-        // {
-        //     if($data['akhir_periode'] > NOW())
-        //     {
-        //         $kontrak->dealing = "Sudah Deal";
-        //         $kontrak->posisi_pks = "di Shelter";
-        //         $kontrak->closing = "Closed";
-        //         $kontrak->save();
-        //     }
-        // }
+
+         $data['kontraks'] = Kontrak::all();
+      
 
         return view('admin/kontrak/kontrak', $data);
 
