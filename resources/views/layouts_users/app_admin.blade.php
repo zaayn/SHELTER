@@ -334,7 +334,7 @@
  
 <!-- ./wrapper -->
 <!-- jQuery 3 -->
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="{{asset('admin_lte/bower_components/jquery/dist/jquery.min.js')}}"></script>
 <script src="{{asset('https://code.jquery.com/jquery-3.4.0.min.js')}}"></script>
 <script src="{{asset('https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js')}}"></script>
