@@ -31,13 +31,9 @@ class AdminController extends Controller
         'kontrak.dealing','kontrak.tgl_dealing','kontrak.posisi_pks','kontrak.closing')
         ->whereRaw('akhir_periode < NOW() + INTERVAL 60 DAY') 
         ->get();    
-        $data['keluhans'] = DB::table('keluhan')
-        ->join('customer', 'keluhan.kode_customer', '=', 'customer.kode_customer')
-        ->select('id_keluhan','customer.kode_customer','customer.nama_perusahaan','keluhan.kode_customer','spv_pic','tanggal_keluhan','jam_keluhan','keluhan','pic','jam_follow','follow_up','closing_case','via','keluhan.status')
-        ->where('keluhan.status', 'belum ditangani')->get();
+        $data['keluhans'] = Keluhan::where('status', 'Belum ditangani')->get();
 
-        $lastUser = DB::table('users')
-                    ->whereNotNull('current_login_at')
+        $lastUser = User::whereNotNull('current_login_at')
                     ->orderBy('current_login_at','desc')
                     ->get();
       
@@ -140,10 +136,7 @@ class AdminController extends Controller
         return $pdf->download('Laporan-Data-CustomerAll-CRM.pdf');
     }
     public function keluhanBelum(){
-        $data['keluhans'] = DB::table('keluhan')
-        ->join('customer', 'keluhan.kode_customer', '=', 'customer.kode_customer')
-        ->select('id_keluhan','customer.kode_customer','customer.nama_perusahaan','keluhan.kode_customer','spv_pic','tanggal_keluhan','jam_keluhan','keluhan','pic','jam_follow','follow_up','closing_case','via','keluhan.status')
-        ->where('keluhan.status', '=', 'Belum ditangani')
+        $data['keluhans'] = Keluhan::where('status','Belum ditangani')
         ->get();
         return view('admin/dashboard_admin', $data);
     }

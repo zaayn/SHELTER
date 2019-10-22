@@ -69,15 +69,15 @@
                                 <thead>
                                     <th>No</th>
                                     <th>Nama Customer</th>
-                                    <th>SPV_PIC</th>
+                                    <th>Departemen Tertuju</th>
                                     <th>Tanggal</th>
-                                    <th>Waktu Keluhan</th>
-                                    <th>Keluhan</th>
-                                    <th>PIC Keluhan</th>
-                                    <th>Waktu Follow</th>
-                                    <th>Follow Up</th>
-                                    <th>Closing Case</th>
-                                    <th>Via</th>
+                                    <th>Topik Permasalahan</th>
+                                    <th>Saran Penyelesaian</th>
+                                    <th>Time Target (Tgl)</th>
+                                    <th>Confirm closed PIC</th>
+                                    <th>Case</th>
+                                    <th>Actual Closed</th>
+                                    <th>Uraian Penyelesaian</th>
                                     <th>Status</th>
                                     <th>Aksi</th>
                                 </thead>
@@ -86,15 +86,15 @@
                                 <tr>
                                     <td>{{ $no++  }}</td>
                                     <td>{{ $keluhan->nama_perusahaan }}</td>
-                                    <td>{{ $keluhan->spv_pic }}</td>
+                                    <td>{{ $keluhan->departemen }}</td>
                                     <td>{{ $keluhan->tanggal_keluhan }}</td>
-                                    <td>{{ $keluhan->jam_keluhan }}</td>
-                                    <td>{{ $keluhan->keluhan }}</td>
-                                    <td>{{ $keluhan->pic }}</td>
-                                    <td>{{ $keluhan->jam_follow }}</td>
-                                    <td>{{ $keluhan->follow_up }}</td>
-                                    <td>{{ $keluhan->closing_case }}</td>
-                                    <td>{{ $keluhan->via }}</td>
+                                    <td>{{ $keluhan->topik_masalah }}</td>
+                                    <td>{{ $keluhan->saran_penyelesaian }}</td>
+                                    <td>{{ $keluhan->time_target }}</td>
+                                    <td>{{ $keluhan->confirm_pic }}</td>
+                                    <td>{{ $keluhan->case }}</td>
+                                    <td>{{ $keluhan->actual_case }}</td>
+                                    <td>{{ $keluhan->uraian_penyelesaian }}</td>
                                     <td>{{ $keluhan->status }}</td>
                                     <td><a href="{{route('edit.keluhan',$keluhan->id_keluhan)}}" class="btn btn-info btn-sm"><span class="fa fa-pencil"></span></a>
                                     <a onclick="return confirm('Apakah anda yakin akan menghapus data ini?')" href="{{route('destroy.keluhan',$keluhan->id_keluhan)}}" class="btn btn-danger btn-sm"><span class="fa fa-trash"></span></a>

@@ -28,33 +28,33 @@
                             <hr style="border: solid #ddd; border-width: 1px 0 0; clear: both; margin: 22px 0 21px; height: 0;">
                             <div style="overflow-x:auto;">
                                 <table id="mydatatables" class="table table-collapse table-hover table-light table-striped cell-border table-responsive">                                <thead>
-                                    <th style="width:10%">ID Keluhan</th>
-                                    <th style="width:75%">Nama Customer</th>
-                                    <th style="width:15%">SPV_PIC</th>
-                                    <th style="width:10%">Tanggal</th>
-                                    <th style="width:75%">Waktu Keluhan</th>
-                                    <th style="width:10%">Keluhan</th>
-                                    <th style="width:75%">PIC Keluhan</th>
-                                    <th style="width:15%">Waktu Follow</th>
-                                    <th style="width:75%">Follow Up</th>
-                                    <th style="width:10%">Closing Case</th>
-                                    <th style="width:75%">Via</th>
-                                    <th style="width:15%">Status</th>
+                                    <th>ID Keluhan</th>
+                                    <th>Nama Customer</th>
+                                    <th>Departemen Tertuju</th>
+                                    <th>Tanggal</th>
+                                    <th>Topik Permasalahan</th>
+                                    <th>Saran Penyelesaian</th>
+                                    <th>Time Target (Tgl)</th>
+                                    <th>Confirm closed PIC</th>
+                                    <th>Case</th>
+                                    <th>Actual Closed</th>
+                                    <th>Uraian Penyelesaian</th>
+                                    <th>Status</th>
                                 </thead>
                                 <tbody>
                                 @foreach($keluhan as $ke)
                                 <tr>
                                     <td>{{ $no++  }}</td>
                                     <td>{{ $ke->nama_perusahaan }}</td>
-                                    <td>{{ $ke->spv_pic }}</td>
+                                    <td>{{ $ke->departemen }}</td>
                                     <td>{{ $ke->tanggal_keluhan }}</td>
-                                    <td>{{ $ke->jam_keluhan }}</td>
-                                    <td>{{ $ke->keluhan }}</td>
-                                    <td>{{ $ke->pic }}</td>
-                                    <td>{{ $ke->jam_follow }}</td>
-                                    <td>{{ $ke->follow_up }}</td>
-                                    <td>{{ $ke->closing_case }}</td>
-                                    <td>{{ $ke->via }}</td>
+                                    <td>{{ $ke->topik_masalah }}</td>
+                                    <td>{{ $ke->saran_penyelesaian }}</td>
+                                    <td>{{ $ke->time_target }}</td>
+                                    <td>{{ $ke->confirm_pic }}</td>
+                                    <td>{{ $ke->case }}</td>
+                                    <td>{{ $ke->actual_case }}</td>
+                                    <td>{{ $ke->uraian_penyelesaian }}</td>
                                     <td>{{ $ke->status }}</td>
                                 </tr>
                                 @endforeach 

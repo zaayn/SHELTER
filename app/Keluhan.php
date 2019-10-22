@@ -10,15 +10,15 @@ class keluhan extends Model
     protected $primaryKey = 'id_keluhan';
     protected $fillable = [
         'nama_customer'
-       ,'spv_pic'
+       ,'departemen'
        ,'tanggal_keluhan'
-       ,'jam_keluhan'
-       ,'keluhan'
-       ,'pic'
-       ,'jam_follow'
-       ,'follow_up'
-       ,'closing_case'
-       ,'via'
+       ,'topik_masalah'
+       ,'saran_penyelesaian'
+       ,'time_target'
+       ,'confirm_pic'
+       ,'case'
+       ,'actual_case'
+       ,'uraian_penyelesaian'
        ,'status'
     ];
     public function customer()
