@@ -31,15 +31,15 @@
                                     <thead>
                                     <th>ID Keluhan</th>
                                     <th>Nama Customer</th>
-                                    <th>SPV_PIC</th>
+                                    <th>Departemen Tertuju</th>
                                     <th>Tanggal</th>
-                                    <th>Waktu Keluhan</th>
-                                    <th>Keluhan</th>
-                                    <th>PIC Keluhan</th>
-                                    <th>Waktu Follow</th>
-                                    <th>Follow Up</th>
-                                    <th>Closing Case</th>
-                                    <th>Via</th>
+                                    <th>Topik Permasalahan</th>
+                                    <th>Saran Penyelesaian</th>
+                                    <th>Time Target (Tgl)</th>
+                                    <th>Confirm closed PIC</th>
+                                    <th>Case</th>
+                                    <th>Actual Closed</th>
+                                    <th>Uraian Penyelesaian</th>
                                     <th>Status</th>
                                 </thead>
                                 <tbody>
@@ -47,15 +47,15 @@
                                 <tr>
                                     <td>{{ $no++  }}</td>
                                     <td>{{ $ke->nama_perusahaan }}</td>
-                                    <td>{{ $ke->spv_pic }}</td>
+                                    <td>{{ $ke->departemen }}</td>
                                     <td>{{ $ke->tanggal_keluhan }}</td>
-                                    <td>{{ $ke->jam_keluhan }}</td>
-                                    <td>{{ $ke->keluhan }}</td>
-                                    <td>{{ $ke->pic }}</td>
-                                    <td>{{ $ke->jam_follow }}</td>
-                                    <td>{{ $ke->follow_up }}</td>
-                                    <td>{{ $ke->closing_case }}</td>
-                                    <td>{{ $ke->via }}</td>
+                                    <td>{{ $ke->topik_masalah }}</td>
+                                    <td>{{ $ke->saran_penyelesaian }}</td>
+                                    <td>{{ $ke->time_target }}</td>
+                                    <td>{{ $ke->confirm_pic }}</td>
+                                    <td>{{ $ke->case }}</td>
+                                    <td>{{ $ke->actual_case }}</td>
+                                    <td>{{ $ke->uraian_penyelesaian }}</td>
                                     <td>{{ $ke->status }}</td>
                                 </tr>
                                 @endforeach 
