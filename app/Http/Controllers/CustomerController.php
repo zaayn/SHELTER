@@ -17,7 +17,6 @@ use App\datamou;
 use App\Exports\CustomerExport;
 
 
-//test
 class CustomerController extends Controller
 {
     public function index()
@@ -62,17 +61,24 @@ class CustomerController extends Controller
         $data['users'] = User::where('rule', 'officer_crm')->get();
         return view('/admin/customer/insert_customer',$data);
     }
-    // public function __construct(Request $request){
-    //   $this->request = $request;
-    // }
     public function customerCode($str, $as_space = array('-'))
     {
 
-        $str = str_replace($as_space, ' ', trim($str));
-        $ret = '';
-        foreach (explode(' ', $str) as $word) {
-            $ret .= strtoupper($word[0]);
+        $data = str_replace($as_space, ' ', trim($str));
+        $words = explode(" ", $data);
+        $ret = "";
+        
+        foreach ($words as $w) {
+            $arr = str_split($w);
+            foreach($arr as $letter){
+                if(preg_match('/^[A-Za-z]+$/i', $letter)){
+                    $ret .= $letter;
+                    break;
+                }
+            }
         }
+        $ret = strtoupper($ret);
+
         $numb = 1;
           $code = DB::table('customer')->select('kode_customer')->get();
           if($code->isEmpty())
@@ -90,8 +96,7 @@ class CustomerController extends Controller
                   }
                   if(Customer::find($cd->kode_customer)){
                     return $ret. sprintf("%03s", ++$noo);
-                  }
-                  //else return $ret. "001";                
+                  }               
               }
     }
     public function store(Request $request)
