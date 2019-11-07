@@ -4,11 +4,13 @@ namespace App\Http\Controllers;
 // namespace App\Http\Controllers\Auth;
 // use Auth;
 //use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Collection;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Eloquent\Model;
 use App\Kontrak;
 use App\Customer;
 use App\Datamou;
@@ -25,14 +27,15 @@ class KontrakadminController extends Controller
     {
         if($request->bu_id && $request->wilayah_id)
         {
+            $data['no'] = 1;
             $data['wilayahs'] = Wilayah::all();
             $data['bisnis_units'] = Bisnis_unit::all();
             $data['customers'] = Customer::all();
+            // $data['kontraks'] = kontrak::all()
             $data['kontraks'] = DB::table('kontrak')
             ->join('customer', 'customer.kode_customer', '=', 'kontrak.kode_customer')
             ->join('wilayah','wilayah.wilayah_id','=','customer.wilayah_id')
             ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
-            // ->join('datamou', 'datamou.id_kontrak', '=', 'kontrak.id_kontrak')
             ->where('bisnis_unit.bu_id', '=', $request->bu_id)
             ->where('wilayah.wilayah_id', '=', $request->wilayah_id)
             ->get();
@@ -40,6 +43,7 @@ class KontrakadminController extends Controller
         }
         if($request->bu_id)
         {
+            $data['no'] = 1;
             $data['wilayahs'] = Wilayah::all();
             $data['bisnis_units'] = Bisnis_unit::all();
             $data['customers'] = Customer::all();
@@ -47,21 +51,21 @@ class KontrakadminController extends Controller
             ->join('customer', 'customer.kode_customer', '=', 'kontrak.kode_customer')
             ->join('wilayah','wilayah.wilayah_id','=','customer.wilayah_id')
             ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
-            // ->join('datamou', 'datamou.id_kontrak', '=', 'kontrak.id_kontrak')
             ->where('bisnis_unit.bu_id', '=', $request->bu_id)
             ->get();
             return view('admin/kontrak/kontrak', $data);
         }
         if($request->wilayah_id)
         {
+            $data['no'] = 1;
             $data['wilayahs'] = Wilayah::all();
             $data['bisnis_units'] = Bisnis_unit::all();
             $data['customers'] = Customer::all();
+            // $data['kontraks'] = kontrak::all()
             $data['kontraks'] = DB::table('kontrak')
             ->join('customer', 'customer.kode_customer', '=', 'kontrak.kode_customer')
             ->join('wilayah','wilayah.wilayah_id','=','customer.wilayah_id')
             ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
-            // ->join('datamou', 'datamou.id_kontrak', '=', 'kontrak.id_kontrak')
             ->where('wilayah.wilayah_id', '=', $request->wilayah_id)
             ->get();
             return view('admin/kontrak/kontrak', $data);
@@ -69,30 +73,19 @@ class KontrakadminController extends Controller
     }
     public function index()
     {
+        $data['no'] = 1;
         $data['wilayahs'] = Wilayah::all();
         $data['bisnis_units'] = Bisnis_unit::all();
-        $data['customers'] = Customer::all();        
-        $data['kontraks'] = DB::table('kontrak')
-        ->join('customer', 'customer.kode_customer', '=', 'kontrak.kode_customer')
-        ->select('kontrak.id_kontrak','customer.kode_customer','customer.nama_perusahaan','kontrak.periode_kontrak','kontrak.akhir_periode','kontrak.srt_pemberitahuan','kontrak.tgl_srt_pemberitahuan','kontrak.srt_penawaran','kontrak.tgl_srt_penawaran','kontrak.dealing','kontrak.tgl_dealing','kontrak.posisi_pks','kontrak.closing')
-        ->get();
-        $data['akhir_periode'] = DB::table('kontrak')->select('periode_kontrak','akhir_periode')->get();
-        if($data['akhir_periode'] > NOW())
-        {
-            $kontrak->dealing = "sudah deal";
-            $kontrak->posisi_pks = "di shelter";
-            $kontrak->closing = "Closed";
-            $kontrak->save();
-        }
+        $data['customers'] = Customer::all();  
+        $data['kontraks'] = kontrak::all();      
+
         return view('admin/kontrak/kontrak', $data);
 
     }
 
     public function insert()
     {
-        $data['customers'] = DB::table('customer')
-                            ->where('status','aktif')
-                            ->get();
+        $data['customers'] = Customer::where('status','Aktif')->get();
         return view('admin/kontrak/insertkontrak',$data);
     }
 
@@ -125,6 +118,7 @@ class KontrakadminController extends Controller
         $kontrak->tgl_dealing = $request->tgl_dealing;
         $kontrak->posisi_pks = $request->posisi_pks;
         $kontrak->closing = "Aktif";
+        $kontrak->putus_kontrak = $request->putus_kontrak;
 
         $customer = Customer::findOrFail($request->kode_customer);
         $to = \Carbon\Carbon::createFromFormat('Y-m-d',$kontrak->periode_kontrak);
@@ -147,6 +141,27 @@ class KontrakadminController extends Controller
         $kontrak  = Kontrak::where($where)->first();
  
         return view('admin/kontrak/editkontrak')->with('kontrak', $kontrak);
+    }
+    public function putus_kontrak($id_kontrak)
+    {
+        $where = array('id_kontrak' => $id_kontrak);
+        $kontrak  = Kontrak::where($where)->first();
+ 
+        return view('admin/kontrak/putus_kontrak')->with('kontrak', $kontrak);
+    }
+    public function update_putus(Request $request, $id_kontrak)
+    {
+        $kontrak = Kontrak::findorFail($id_kontrak);
+        $request->validate([
+            'putus_kontrak' => 'required',
+        ]);
+        $kontrak->putus_kontrak = $request->putus_kontrak;
+        $kontrak->dealing = "Sudah Deal";
+        $kontrak->posisi_pks = "di Shelter";
+        $kontrak->closing = "Closed";
+        
+        if ($kontrak->save())
+          return redirect()->route('index.kontrak')->with(['success'=>'Closing Kontrak sukses']);
     }
 
     public function update(Request $request, $id_kontrak)
@@ -178,6 +193,7 @@ class KontrakadminController extends Controller
         $kontrak->tgl_dealing = $request->tgl_dealing;
         $kontrak->posisi_pks = $request->posisi_pks;
         $kontrak->closing = "Aktif";
+        $kontrak->putus_kontrak = $request->putus_kontrak;
         
         if ($kontrak->save())
           return redirect()->route('index.kontrak')->with(['success'=>'edit sukses']);
@@ -210,15 +226,15 @@ class KontrakadminController extends Controller
             ->get();
             return view('admin/kontrak/reminder', $data);
     }
-    public function closed($id_kontrak) //filter kontrak h-30 hari 
-    {
-        $kontrak = Kontrak::findorFail($id_kontrak);
-        $kontrak->dealing = "sudah deal";
-        $kontrak->posisi_pks = "di shelter";
-        $kontrak->closing = "Closed";
-        if ($kontrak->save())
-        return redirect()->route('index.kontrak')->with(['success'=>'Closing Kontrak sukses']);    
-    }
+    // public function closed($id_kontrak) //filter kontrak h-30 hari 
+    // {
+    //     $kontrak = Kontrak::findorFail($id_kontrak);
+    //     $kontrak->dealing = "Sudah Deal";
+    //     $kontrak->posisi_pks = "di Shelter";
+    //     $kontrak->closing = "Closed";
+    //     if ($kontrak->save())
+    //     return redirect()->route('index.kontrak')->with(['success'=>'Closing Kontrak sukses']);    
+    // }
 
     public function insertmou($id_kontrak){
         //$where = array('id_kontrak' => $id_kontrak);

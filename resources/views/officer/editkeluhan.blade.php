@@ -49,13 +49,14 @@
                             </div>
                         </div>
                         <div class="form-group col-md-12">
-                            <label>SPV PIC :</label>
+                            <label>Departemen</label>
                             <div>
-                                <select class="form-control" name="spv_pic">
+                                {{--<select class="form-control" name="spv_pic">
                                 @foreach($users as $users)
                                     <option value="{{ $users->nama_depan }}">{{ $users->nama_depan }} - {{ $users->nama_wilayah }}</option>
                                 @endforeach
-                                </select>
+                                </select>--}}
+                                <input type="text" class="form-control" name="departemen" value="{{ $keluhan->departemen }}" required>
                             </div>
                         </div>
                         <div class="form-group col-md-12">
@@ -63,38 +64,39 @@
                 	        <input type="date" class="form-control" name="tanggal_keluhan" value="{{ $keluhan->tanggal_keluhan }}" required>
                         </div>
                         <div class="form-group col-md-12">
-                	        <label class="font-weight-bold">Waktu Keluhan</label>
-                	        <input type="time" class="form-control" name="jam_keluhan" value="{{ $keluhan->jam_keluhan }}" required>
+                	        <label class="font-weight-bold">Topik Permasalahan</label>
+                	        <input type="text" class="form-control" name="topik_masalah" value="{{ $keluhan->topik_masalah }}" required>
                         </div>
                         <div class="form-group col-md-12">
-                	        <label class="font-weight-bold">Keluhan</label>
-                	        <input type="text" class="form-control" name="keluhan" value="{{ $keluhan->keluhan }}" required>
+                	        <label class="font-weight-bold">Saran Penyelesaian</label>
+                	        <input type="text" class="form-control" name="saran_penyelesaian" value="{{ $keluhan->saran_penyelesaian }}" required>
                         </div>
                         <div class="form-group col-md-12">
-                	        <label class="font-weight-bold">PIC</label>
-                	        <input type="text" class="form-control" name="pic" value="{{ $keluhan->pic }}" required>
+                	        <label class="font-weight-bold">Time Target</label>
+                	        <input type="date" class="form-control" name="time_target" value="{{ $keluhan->time_target }}" required>
                         </div>
                         <div class="form-group col-md-12">
-                	        <label class="font-weight-bold">Waktu Follow</label>
-                	        <input type="time" class="form-control" name="jam_follow" value="{{ $keluhan->jam_follow }}" required>
+                	        <label class="font-weight-bold">Confirm Closed PIC</label>
+                	        <input type="date" class="form-control" name="confirm_pic" value="{{ $keluhan->confirm_pic }}" required>
                         </div>
                         <div class="form-group col-md-12">
-                	        <label class="font-weight-bold">Follow Up</label>
-                	        <input type="text" class="form-control" name="follow_up" value="{{ $keluhan->follow_up }}" required>
+                	        <label class="font-weight-bold">Case</label>
+                	        <input type="text" class="form-control" name="case" value="{{ $keluhan->case }}" required>
                         </div>
                         <div class="form-group col-md-12">
-                	        <label class="font-weight-bold">Closing Case</label>
-                	        <input type="text" class="form-control" name="closing_case" value="{{ $keluhan->closing_case }}" required>
+                	        <label class="font-weight-bold">Actual Case</label>
+                	        <input type="date" class="form-control" name="actual_case" value="{{ $keluhan->actual_case }}" required>
                         </div>
                         <div class="form-group col-md-12">
-                	        <label class="font-weight-bold">Via</label>
-                	        <select class ="form-control" name="via" value="{{ $keluhan->via }}" required>
+                	        <label class="font-weight-bold">Uraian Penyelesaian</label>
+                	    {{--<select class ="form-control" name="via" value="{{ $keluhan->via }}" required>
                             <option value="Telepon">Telepon</option>
                             <option value="BBM">BBM</option>
                             <option value="Email">Email</option>
                             <option value="Meeting">Meeting</option>
                             <option value="Other">Other</option>
-                          </select>
+                          </select>--}}
+                          <input type="text" class="form-control" name="uraian_penyelesaian" value="{{ $keluhan->uraian_penyelesaian }}" required>
                         </div>
                         <div class="form-group col-md-12">
                 	        <label class="font-weight-bold">Status</label>

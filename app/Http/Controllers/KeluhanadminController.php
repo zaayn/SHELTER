@@ -18,12 +18,11 @@ class KeluhanadminController extends Controller
 {
     public function index()
     {
-      $data['no'] = 1;
+        $data['no'] = 1;
         $data['wilayahs'] = Wilayah::all();
         $data['bisnis_units'] = Bisnis_unit::all();
         $data['keluhans'] = DB::table('keluhan')
         ->join('customer', 'keluhan.kode_customer', '=', 'customer.kode_customer')
-        ->select('id_keluhan','customer.kode_customer','customer.nama_perusahaan','keluhan.kode_customer','spv_pic','tanggal_keluhan','jam_keluhan','keluhan','pic','jam_follow','follow_up','closing_case','via','keluhan.status')
         ->get();
         return view('admin/keluhan/keluhan', $data);
     }
@@ -31,7 +30,7 @@ class KeluhanadminController extends Controller
     public function insert()
     {
         $data['bisnis_units'] = Bisnis_unit::all();
-        $data['customers'] = Customer::all();
+        $data['customers'] = Customer::where('status','Aktif')->get();
         $data['users'] = DB::table('users')
         ->join('wilayah', 'users.wilayah_id', '=', 'wilayah.wilayah_id')
         ->select('wilayah.wilayah_id','users.nama_depan','wilayah.nama_wilayah')
@@ -42,30 +41,30 @@ class KeluhanadminController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'spv_pic' => 'required',
+            'departemen' => 'required',
             'tanggal_keluhan' => 'required|date',
-            'jam_keluhan' => 'required',
-            'keluhan' => 'required',
-            'pic' => 'required',
-            'jam_follow' => 'required',
-            'follow_up' =>'required',
-            'closing_case' => 'required',
-            'via' => 'required',
+            'topik_masalah' => 'required',
+            'saran_penyelesaian' => 'required',
+            'time_target' => 'required',
+            'confirm_pic' => 'required',
+            'case' =>'required',
+            'actual_case' => 'required',
+            'uraian_penyelesaian' => 'required',
             'status' =>'required',
         ]);
 
         $keluhan = new Keluhan;
         $keluhan->id_keluhan = $request->id_keluhan;
         $keluhan->kode_customer = $request->kode_customer;
-        $keluhan->spv_pic = $request->spv_pic;
+        $keluhan->departemen = $request->departemen;
         $keluhan->tanggal_keluhan = $request->tanggal_keluhan;
-        $keluhan->jam_keluhan = $request->jam_keluhan;
-        $keluhan->keluhan = $request->keluhan;
-        $keluhan->pic = $request->pic;
-        $keluhan->jam_follow = $request->jam_follow;
-        $keluhan->follow_up = $request->follow_up;
-        $keluhan->closing_case = $request->closing_case;
-        $keluhan->via = $request->via;
+        $keluhan->topik_masalah = $request->topik_masalah;
+        $keluhan->saran_penyelesaian = $request->saran_penyelesaian;
+        $keluhan->time_target = $request->time_target;
+        $keluhan->confirm_pic = $request->confirm_pic;
+        $keluhan->case = $request->case;
+        $keluhan->actual_case = $request->actual_case;
+        $keluhan->uraian_penyelesaian = $request->uraian_penyelesaian;
         $keluhan->status = $request->status;
 
         if ($keluhan->save()){
@@ -94,27 +93,27 @@ class KeluhanadminController extends Controller
     {
         $keluhan = Keluhan::findorFail($id_keluhan);
         $request->validate([
-            'spv_pic' => 'required',
+            'departemen' => 'required',
             'tanggal_keluhan' => 'required|date',
-            'jam_keluhan' => 'required',
-            'keluhan' => 'required',
-            'pic' => 'required',
-            'jam_follow' => 'required',
-            'follow_up' =>'required',
-            'closing_case' => 'required',
-            'via' => 'required',
+            'topik_masalah' => 'required',
+            'saran_penyelesaian' => 'required',
+            'time_target' => 'required',
+            'confirm_pic' => 'required',
+            'case' =>'required',
+            'actual_case' => 'required',
+            'uraian_penyelesaian' => 'required',
             'status' =>'required',
         ]);
 
         $keluhan->kode_customer = $request->kode_customer;
-        $keluhan->spv_pic = $request->spv_pic;
-        $keluhan->jam_keluhan = $request->jam_keluhan;
-        $keluhan->keluhan = $request->keluhan;
-        $keluhan->pic = $request->pic;
-        $keluhan->jam_follow = $request->jam_follow;
-        $keluhan->follow_up = $request->follow_up;
-        $keluhan->closing_case = $request->closing_case;
-        $keluhan->via = $request->via;
+        $keluhan->departemen = $request->departemen;
+        $keluhan->topik_masalah = $request->topik_masalah;
+        $keluhan->saran_penyelesaian = $request->saran_penyelesaian;
+        $keluhan->time_target = $request->time_target;
+        $keluhan->confirm_pic = $request->confirm_pic;
+        $keluhan->case = $request->case;
+        $keluhan->actual_case = $request->actual_case;
+        $keluhan->uraian_penyelesaian = $request->uraian_penyelesaian;
         $keluhan->status = $request->status;
         
         if ($keluhan->save())
@@ -150,14 +149,15 @@ class KeluhanadminController extends Controller
     {
       if($request->bu_id && $request->wilayah_id)
       {
+        $data['no'] = 1;
         $data['wilayahs'] = Wilayah::all();
         $data['bisnis_units'] = Bisnis_unit::all();
         $data['keluhans'] = DB::table('keluhan')
         ->join('customer', 'keluhan.kode_customer', '=', 'customer.kode_customer')
         ->join('wilayah','wilayah.wilayah_id','=','customer.wilayah_id')
         ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
-        ->select('wilayah.wilayah_id','wilayah.nama_wilayah','id_keluhan','customer.kode_customer','customer.nama_perusahaan','keluhan.kode_customer','spv_pic','tanggal_keluhan',
-        'jam_keluhan','keluhan','pic','jam_follow','follow_up','closing_case','via',
+        ->select('wilayah.wilayah_id','wilayah.nama_wilayah','id_keluhan','customer.kode_customer','customer.nama_perusahaan','keluhan.kode_customer','departemen','tanggal_keluhan',
+        'topik_masalah','saran_penyelesaian','time_target','confirm_pic','case','actual_case','uraian_penyelesaian',
         'keluhan.status','bisnis_unit.bu_id','bisnis_unit.nama_bisnis_unit')
         ->where('bisnis_unit.bu_id', '=', $request->bu_id)
         ->where('wilayah.wilayah_id', '=', $request->wilayah_id)
@@ -168,14 +168,15 @@ class KeluhanadminController extends Controller
       }
       elseif($request->bu_id)
       {
+        $data['no'] = 1;
         $data['wilayahs'] = Wilayah::all();
         $data['bisnis_units'] = Bisnis_unit::all();
         $data['keluhans'] = DB::table('keluhan')
         ->join('customer', 'keluhan.kode_customer', '=', 'customer.kode_customer')
         ->join('wilayah','wilayah.wilayah_id','=','customer.wilayah_id')
         ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
-        ->select('wilayah.wilayah_id','wilayah.nama_wilayah','id_keluhan','customer.kode_customer','customer.nama_perusahaan','keluhan.kode_customer','spv_pic','tanggal_keluhan',
-        'jam_keluhan','keluhan','pic','jam_follow','follow_up','closing_case','via',
+        ->select('wilayah.wilayah_id','wilayah.nama_wilayah','id_keluhan','customer.kode_customer','customer.nama_perusahaan','keluhan.kode_customer','departemen','tanggal_keluhan',
+        'topik_masalah','saran_penyelesaian','time_target','confirm_pic','case','actual_case','uraian_penyelesaian',
         'keluhan.status','bisnis_unit.bu_id','bisnis_unit.nama_bisnis_unit')
         ->where('bisnis_unit.bu_id', '=', $request->bu_id)
         ->get();
@@ -185,14 +186,15 @@ class KeluhanadminController extends Controller
       }
       elseif($request->wilayah_id)
       {
+        $data['no'] = 1;
         $data['wilayahs'] = Wilayah::all();
         $data['bisnis_units'] = Bisnis_unit::all();
         $data['keluhans'] = DB::table('keluhan')
         ->join('customer', 'keluhan.kode_customer', '=', 'customer.kode_customer')
         ->join('wilayah','wilayah.wilayah_id','=','customer.wilayah_id')
         ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
-        ->select('wilayah.wilayah_id','wilayah.nama_wilayah','id_keluhan','customer.kode_customer','customer.nama_perusahaan','keluhan.kode_customer','spv_pic','tanggal_keluhan',
-        'jam_keluhan','keluhan','pic','jam_follow','follow_up','closing_case','via',
+        ->select('wilayah.wilayah_id','wilayah.nama_wilayah','id_keluhan','customer.kode_customer','customer.nama_perusahaan','keluhan.kode_customer','departemen','tanggal_keluhan',
+        'topik_masalah','saran_penyelesaian','time_target','confirm_pic','case','actual_case','uraian_penyelesaian',
         'keluhan.status','bisnis_unit.bu_id','bisnis_unit.nama_bisnis_unit')
         ->where('wilayah.wilayah_id', '=', $request->wilayah_id)
         ->get();

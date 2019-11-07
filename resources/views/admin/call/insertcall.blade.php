@@ -43,11 +43,12 @@
                         <div class="form-group col-md-12">
                             <label>Nama Customer :</label>
                             <div>
-                                <select class="form-control" name="kode_customer">
+                                <input list="browsers" class="form-control" name="kode_customer">
+                                <datalist id="browsers">
                                 @foreach($customers as $customer)
-                                    <option value="{{ $customer->kode_customer }}">{{ $customer->kode_customer }} - {{ $customer->nama_perusahaan }} - {{ $customer->bisnis_unit->nama_bisnis_unit }}</option>
+                                    <option value="{{ $customer->kode_customer }}">{{ $customer->kode_customer }} - {{ $customer->nama_perusahaan }} - {{ $customer->nama_bisnis_unit }}</option>
                                 @endforeach
-                                </select>
+                                </datalist>
                             </div>
                         </div>
                         <div class="form-group col-md-12">

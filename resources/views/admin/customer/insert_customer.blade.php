@@ -39,7 +39,7 @@
                   <div class="form-group">
                     
                     <div class="form-group col-md-12">
-                      <label>Nama Perusahaan :</label>
+                      <label>Nama Customer :</label>
                       <div><input type="text" class="form-control"  name="nama_perusahaan" required></div>
                     </div>
                     <div class="form-group col-md-12">
@@ -127,8 +127,8 @@
                         <label>Status :</label>
                         <div>
                             <select class="form-control" name="status">
-                                <option value="aktif">Aktif</option>
-                                <option value="non_aktif" selected="selected">Non Aktif</option>
+                                <option value="Aktif">Aktif</option>
+                                <option value="Non_aktif" selected="selected">Non Aktif</option>
                             </select>
                         </div>
                     </div>

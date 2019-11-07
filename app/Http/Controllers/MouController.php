@@ -24,18 +24,15 @@ class MouController extends Controller
 
     public function insert()
     {
-        $data['kontraks'] = DB::table('kontrak')
-        ->join('customer', 'customer.kode_customer', '=', 'kontrak.kode_customer')
-        ->select('kontrak.id_kontrak','customer.kode_customer','customer.nama_perusahaan','kontrak.periode_kontrak','kontrak.akhir_periode','kontrak.srt_pemberitahuan','kontrak.tgl_srt_pemberitahuan','kontrak.srt_penawaran','kontrak.tgl_srt_penawaran','kontrak.dealing','kontrak.tgl_dealing','kontrak.posisi_pks','kontrak.closing')
-        ->get();
+        $data['kontraks'] = Kontrak::where('status','Aktif')->get();
         $data['customers'] = Customer::all();
         return view('admin/mou/insertmou',$data);
     }
 
     public function store(Request $request, $id_kontrak)
     {
-        // $check=Datamou::where('id_kontrak', $id_kontrak);
-        // if($check) abort(404);
+        $check=Datamou::where('id_kontrak', $id_kontrak)->first();
+        if($check) return redirect('/admin/kontrak')->with('error', 'Kontrak sudah memiliki MoU');
 
         $request->validate([
             'hc'                    => 'required|integer',

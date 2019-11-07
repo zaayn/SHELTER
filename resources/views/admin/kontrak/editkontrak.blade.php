@@ -8,7 +8,7 @@
                 <h1>Form Edit Kontrak</h1>
                 <ol class="breadcrumb">
                     <li><a href="{{asset('/admin/home')}}"><i class="fa fa-dashboard"></i> Home</a></li>
-                    <li><a href="area"></i>Kontrak</a></li>
+                    <li><a href="{{asset('/admin/kontrak')}}"></i>Kontrak</a></li>
                     <li class="active">Edit Kontrak</li>
                 </ol>
             </div>

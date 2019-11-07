@@ -23,11 +23,7 @@ class CustomerController extends Controller
     public function index()
     {  
       $data['wilayahs'] = Wilayah::all();
-      $data['customers'] = DB::table('customer')
-      ->join('wilayah', 'customer.wilayah_id', '=', 'wilayah.wilayah_id')
-      ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
-      ->select('customer.kode_customer','customer.nama_perusahaan','customer.jenis_usaha','nama_bisnis_unit','customer.alamat','customer.provinsi','customer.kabupaten','customer.telpon','customer.cp','customer.nama_area','wilayah.nama_wilayah','customer.nama_depan','status','jenis_perusahaan','negara')
-      ->get();
+      $data['customers'] = Customer::all();
         $data['no'] = 1;
         return view('admin/customer/customer', $data);
     }
@@ -63,10 +59,7 @@ class CustomerController extends Controller
         $data['bisnis_units'] = Bisnis_unit::all();
         $data['areas'] = Area::all();
         $data['wilayahs'] = Wilayah::all();
-        $data['users'] = DB::table('users')
-        ->join('wilayah', 'users.wilayah_id', '=', 'wilayah.wilayah_id')
-        ->select('wilayah.wilayah_id','users.nama_depan','wilayah.nama_wilayah')
-        ->where('rule', 'officer_crm')->get();
+        $data['users'] = User::where('rule', 'officer_crm')->get();
         return view('/admin/customer/insert_customer',$data);
     }
     // public function __construct(Request $request){
@@ -211,13 +204,13 @@ class CustomerController extends Controller
     {
       $customer = Customer::findOrFail($id);
       // dd($customer->status);
-      if($customer->status == "aktif")
+      if($customer->status == "Aktif")
       {
-        $customer->status = 'non_aktif';
+        $customer->status = 'Non_aktif';
       }
-      elseif($customer->status == "non_aktif")
+      elseif($customer->status == "Non_aktif")
       {
-        $customer->status = 'aktif';
+        $customer->status = 'Aktif';
       }
       if ($customer->save())
           return redirect()->route('index.customer')->with(['success'=>'reset aktifasi sukses']);
@@ -238,7 +231,11 @@ class CustomerController extends Controller
     }
     public function filter_profile(Request $request)
     {  
-      $data['datamous'] = Datamou::all();
+      $data['datamous'] = DB::table('datamou')
+      ->join('kontrak', 'datamou.id_kontrak', '=', 'kontrak.id_kontrak')
+      ->join('customer', 'customer.kode_customer', '=', 'kontrak.kode_customer')
+      ->where('customer.kode_customer', '=', $request->kode_customer)
+      ->get();
       $data['customers'] = DB::table('customer')
       ->join('wilayah', 'customer.wilayah_id', '=', 'wilayah.wilayah_id')
       ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')

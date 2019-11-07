@@ -40,7 +40,9 @@ class callController extends Controller
     public function insert()
     {
         $data['bisnis_units'] = Bisnis_unit::all();
-        $data['customers'] = Customer::all();
+        $data['customers'] = DB::table('customer')
+        ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
+        ->where('status', 'Aktif')->get();
         $data['users'] = DB::table('users')
         ->join('wilayah', 'users.wilayah_id', '=', 'wilayah.wilayah_id')
         ->select('wilayah.wilayah_id','users.nama_depan','wilayah.nama_wilayah')

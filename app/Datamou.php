@@ -35,6 +35,6 @@ class datamou extends Model
 
     public function kontrak()
     {
-        return $this->belongsTo(\App\kontrak::class, 'id_kontrak', 'id_kontrak');
+        return $this->belongsTo(\App\Kontrak::class, 'id_kontrak', 'id_kontrak');
     }
 }

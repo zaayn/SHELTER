@@ -175,8 +175,10 @@ Route::group(['prefix' => 'admin',  'middleware' => 'is_admin'], function(){
         Route::get('/kontrak/exportPDF', 'KontrakadminController@exportPDF');
         Route::get('/kontrak/exportExcel', 'KontrakadminController@exportExcel');
         Route::get('/reminder', 'KontrakadminController@reminder')->name('index.reminder.kontrak');
-        Route::get('/closed/kontrak{id_kontrak}', 'KontrakadminController@closed')->name('closed.kontrak');
+        // Route::get('/closed/kontrak{id_kontrak}', 'KontrakadminController@closed')->name('closed.kontrak');
         Route::get('/insert/mou{id_kontrak}','KontrakadminController@insertmou')->name('insertmou.kontrak');
+        Route::get('/edit/putus_kontrak{id_kontrak}','KontrakadminController@putus_kontrak')->name('putus.kontrak');
+        Route::post('/update/putus_kontrak{id_kontrak}','KontrakadminController@update_putus')->name('update.putus');
 
 
         //------- laporan mou

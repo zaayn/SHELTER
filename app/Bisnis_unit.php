@@ -17,7 +17,7 @@ class bisnis_unit extends Model
     public function customer()
     {
 
-        return $this->hasMany(customer::class);
+        return $this->hasMany(\App\Customer::class);
 
     }
 }

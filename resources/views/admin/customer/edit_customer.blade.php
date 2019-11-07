@@ -60,16 +60,16 @@
                             <div class="form-group col-md-12">
                                 <label>Jenis Perusahaan :</label>
                                 <div>
-                                    <select class="form-control" name="jenis_perusahaan">
+                                    <select class="form-control" name="jenis_perusahaan" value="{{ $customer->jenis_perusahaan }}">
                                         <option value="pma">PMA</option>
                                         <option value="pmn">PMN</option>
                                     </select>
                                 </div>
                             </div>
-                            <div class="form-group col-md-12">
-                                <label>Asal Negara :</label>
-                                <div><input type="text" class="form-control"  name="negara" required></div>
-                              </div>
+                        <div class="form-group col-md-12">
+                            <label>Asal Negara :</label>
+                            <div><input type="text" class="form-control"  name="negara" value="{{ $customer->negara }}" required></div>
+                        </div>
                         <div class="form-group col-md-12">
                 	        <label class="font-weight-bold">Alamat</label>
                 	        <input type="text" class="form-control" name="alamat" value="{{ $customer->alamat }}" required>
@@ -97,7 +97,7 @@
                         <div class="form-group col-md-12">
                             <label>Area :</label>
                             <div>
-                                <select class="form-control" name="nama_area">
+                                <select class="form-control" name="nama_area" value="{{ $customer->nama_area }}>
                                 @foreach($areas as $area)
                                     <option value="{{ $area->nama_area }}">{{ $area->nama_area }}</option>
                                 @endforeach
@@ -107,7 +107,7 @@
                         <div class="form-group col-md-12">
                             <label>Wilayah :</label>
                             <div>
-                                <select class="form-control" name="wilayah_id">
+                                <select class="form-control" name="wilayah_id" value="{{ $customer->wilayah_id }}>
                                 @foreach($wilayahs as $wilayah)
                                     <option value="{{ $wilayah->wilayah_id }}">{{ $wilayah->nama_wilayah }}</option>
                                 @endforeach
@@ -128,8 +128,8 @@
                             <label>Status :</label>
                             <div>
                                 <select class="form-control" name="status">
-                                    <option value="aktif">Aktif</option>
-                                    <option value="non_aktif">Non Aktif</option>
+                                    <option value="Aktif">Aktif</option>
+                                    <option value="Non_aktif">Non Aktif</option>
                                 </select>
                             </div>
                         </div>
