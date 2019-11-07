@@ -20,7 +20,9 @@ class KeluhanController extends Controller
       $data['no'] = 1;
         $data['wilayahs'] = Wilayah::all();
         $data['bisnis_units'] = Bisnis_unit::all();
-        $data['keluhans'] = Keluhan::all();
+        $data['keluhans'] = DB::table('keluhan')
+        ->join('customer', 'keluhan.kode_customer', '=', 'customer.kode_customer')
+        ->get();
         return view('officer/keluhan', $data);
         
     }
