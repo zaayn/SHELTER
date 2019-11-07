@@ -169,7 +169,7 @@ Route::group(['prefix' => 'admin',  'middleware' => 'is_admin'], function(){
         Route::get('/kontrak', 'KontrakadminController@index')->name('index.kontrak');
         Route::post('/store/kontrak', 'KontrakadminController@store')->name('store.kontrak');
         Route::get('/delete/kontrak{id_kontrak}','KontrakadminController@destroy')->name('destroy.kontrak');
-        Route::get('/edit/editkontrak{no}','KontrakadminController@edit')->name('edit.kontrak');
+        Route::get('/edit/editkontrak{id_kontrak}','KontrakadminController@edit')->name('edit.kontrak');
         Route::post('/update/kontrak{id_kontrak}','KontrakadminController@update')->name('update.kontrak');
         Route::post('/filter/kontrak', 'KontrakadminController@filter')->name('filter.kontrak');
         Route::get('/kontrak/exportPDF', 'KontrakadminController@exportPDF');
