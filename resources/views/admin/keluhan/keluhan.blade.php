@@ -48,7 +48,7 @@
                             </div>
                             <div class="form-group">
                                 <div class="col-md-1 col-md-offset-2">
-                                    <a href="/admin/bisnis_unit">
+                                    <a href="{{asset('/admin/keluhan')}}">
                                         <button type="button" class="btn btn-primary"><i class="fa fa-refresh"></i> Reset</button>
                                     </a>    
                                 </div>
