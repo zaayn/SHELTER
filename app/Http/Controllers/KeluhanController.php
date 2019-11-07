@@ -17,7 +17,7 @@ class KeluhanController extends Controller
 {
     public function index()
     {
-      $data['no'] = 1;
+        $data['no'] = 1;
         $data['wilayahs'] = Wilayah::all();
         $data['bisnis_units'] = Bisnis_unit::all();
         $data['keluhans'] = DB::table('keluhan')
@@ -129,6 +129,7 @@ class KeluhanController extends Controller
     {
       if($request->bu_id && $request->wilayah_id)
       {
+        $data['no'] = 1;
         $data['wilayahs'] = Wilayah::all();
         $data['bisnis_units'] = Bisnis_unit::all();
         $data['keluhans'] = DB::table('keluhan')
@@ -147,6 +148,7 @@ class KeluhanController extends Controller
       }
       elseif($request->bu_id)
       {
+        $data['no'] = 1;
         $data['wilayahs'] = Wilayah::all();
         $data['bisnis_units'] = Bisnis_unit::all();
         $data['keluhans'] = DB::table('keluhan')
@@ -164,6 +166,7 @@ class KeluhanController extends Controller
       }
       elseif($request->wilayah_id)
       {
+        $data['no'] = 1;
         $data['wilayahs'] = Wilayah::all();
         $data['bisnis_units'] = Bisnis_unit::all();
         $data['keluhans'] = DB::table('keluhan')
