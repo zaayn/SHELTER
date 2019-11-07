@@ -90,7 +90,7 @@
                                 @foreach($kontraks as $kontrak)
                                 <tr>
                                     <td>{{ $no++  }}</td>
-                                    <td>{{ $kontrak->id_kontrak }}</td>
+                                    <td>{{ $kontrak->nomor_kontrak }}</td>
                                     <td>{{ $kontrak->kode_customer }}</td>
                                     <td>{{ $kontrak->nama_perusahaan }}</td>
                                     <td>{{ $kontrak->periode_kontrak }}</td>

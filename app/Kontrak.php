@@ -8,10 +8,10 @@ class kontrak extends Model
 {
     protected $table = 'kontrak';
     protected $primaryKey = 'id_kontrak';
-    public $incrementing = false;
 
     protected $fillable = [
-        'kode_customer'
+        'nomor_kontrak'
+       ,'kode_customer'
        ,'periode_kontrak'
        ,'akhir_periode'
        ,'srt_pemberitahuan'
