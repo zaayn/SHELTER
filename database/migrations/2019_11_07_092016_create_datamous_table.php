@@ -16,6 +16,7 @@ class CreateDatamousTable extends Migration
         Schema::create('datamou', function (Blueprint $table) {
             $table->increments('no_mou')->unique();
             $table->integer('id_kontrak')->unsigned();
+            $table->string('nomor_kontrak');
             $table->integer('hc');
             $table->integer('invoice');
             $table->integer('mf');
