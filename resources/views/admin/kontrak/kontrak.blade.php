@@ -92,7 +92,7 @@
                                     <td>{{ $no++  }}</td>
                                     <td>{{ $kontrak->nomor_kontrak }}</td>
                                     <td>{{ $kontrak->kode_customer }}</td>
-                                    <td>{{ $kontrak->nama_perusahaan }}</td>
+                                    <td>{{ $kontrak->customer->nama_perusahaan }}</td>
                                     <td>{{ $kontrak->periode_kontrak }}</td>
                                     <td>{{ $kontrak->akhir_periode }}</td>
                                     <td>{{ $kontrak->srt_pemberitahuan }}</td>
@@ -110,7 +110,7 @@
                                         <a onclick="return confirm('Apakah anda yakin akan menutup kontrak ini ?')" href="{{route('putus.kontrak',$kontrak->id_kontrak)}}" class="btn btn-warning btn-sm" data-toggle="tooltip" data-placement="right" title="Close"><span class="fa fa-ban"></span></a>
                                         @endif
                                         @if(!isset($kontrak->datamou->id_kontrak))
-                                            <a href="{{route('insertmou.kontrak',$kontrak->id_kontrak)}}" class="btn btn-default btn-sm"data-toggle="tooltip" data-placement="right" title="Tambah MoU">Tambah MoU</span></a>
+                                            <a href="{{route('insertmou.kontrak',$kontrak->id_kontrak)}}" class="btn btn-default btn-sm"data-toggle="tooltip" data-placement="right" title="Tambah MoU"><span class="fa fa-plus"></span></a>
                                         
                                         @endif
                                     </td>
