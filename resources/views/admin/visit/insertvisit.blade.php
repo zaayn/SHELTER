@@ -8,8 +8,8 @@
                 <h1>Form Insert Visit</h1>
                 <ol class="breadcrumb">
                     <li><a href="{{asset('/admin/home')}}"><i class="fa fa-dashboard"></i> Home</a></li>
-                    <li><a href="{{asset('/admin/visit')}}"></i>Area</a></li>
-                    <li class="active">Insert Area</li>
+                    <li><a href="{{asset('/admin/visit')}}"></i>Visit</a></li>
+                    <li class="active">Insert Visit</li>
                 </ol>
             </div>
         </div>
