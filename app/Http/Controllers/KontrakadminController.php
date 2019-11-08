@@ -31,7 +31,7 @@ class KontrakadminController extends Controller
             $data['wilayahs'] = Wilayah::all();
             $data['bisnis_units'] = Bisnis_unit::all();
             $data['customers'] = Customer::all();
-            // $data['kontraks'] = kontrak::all()
+            $data['kontraks'] = kontrak::all();
             $data['kontraks'] = DB::table('kontrak')
             ->join('customer', 'customer.kode_customer', '=', 'kontrak.kode_customer')
             ->join('wilayah','wilayah.wilayah_id','=','customer.wilayah_id')
@@ -47,6 +47,7 @@ class KontrakadminController extends Controller
             $data['wilayahs'] = Wilayah::all();
             $data['bisnis_units'] = Bisnis_unit::all();
             $data['customers'] = Customer::all();
+            $data['kontraks'] = Kontrak::all();
             $data['kontraks'] = DB::table('kontrak')
             ->join('customer', 'customer.kode_customer', '=', 'kontrak.kode_customer')
             ->join('wilayah','wilayah.wilayah_id','=','customer.wilayah_id')
@@ -77,7 +78,12 @@ class KontrakadminController extends Controller
         $data['wilayahs'] = Wilayah::all();
         $data['bisnis_units'] = Bisnis_unit::all();
         $data['customers'] = Customer::all();  
-        $data['kontraks'] = kontrak::all();      
+        $data['kontraks'] = Kontrak::all();
+        $data['kontraks'] = DB::table('kontrak')
+            ->join('customer', 'customer.kode_customer', '=', 'kontrak.kode_customer')
+            ->join('wilayah','wilayah.wilayah_id','=','customer.wilayah_id')
+            ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
+            ->get();   
 
         return view('admin/kontrak/kontrak', $data);
 
@@ -92,7 +98,8 @@ class KontrakadminController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'id_kontrak' => 'required|unique:kontrak',
+            // 'id_kontrak' => unique:kontrak',
+            'nomor_kontrak' => 'required',
             'kode_customer' => 'required',
             'periode_kontrak' => 'required|date',
             'akhir_periode' => 'required|date',
@@ -107,6 +114,7 @@ class KontrakadminController extends Controller
 
         $kontrak = new Kontrak;
         $kontrak->id_kontrak = $request->id_kontrak;
+        $kontrak->nomor_kontrak = $request->nomor_kontrak;
         $kontrak->kode_customer = $request->kode_customer;
         $kontrak->periode_kontrak = $request->periode_kontrak;
         $kontrak->akhir_periode = $request->akhir_periode;
@@ -168,7 +176,7 @@ class KontrakadminController extends Controller
     {
         $kontrak = Kontrak::findorFail($id_kontrak);
         $request->validate([
-            'id_kontrak' => 'required',
+            'nomor_kontrak' => 'required',
             'kode_customer' => 'required',
             'periode_kontrak' => 'required|date',
             'akhir_periode' => 'required',
@@ -181,7 +189,8 @@ class KontrakadminController extends Controller
             'posisi_pks' => 'required',
         ]);
 
-        $kontrak->id_kontrak = $request->id_kontrak;
+        // $kontrak->id_kontrak = $request->id_kontrak;
+        $kontrak->nomor_kontrak = $request->nomor_kontrak;
         $kontrak->kode_customer = $request->kode_customer;
         $kontrak->periode_kontrak = $request->periode_kontrak;
         $kontrak->akhir_periode = $request->akhir_periode;

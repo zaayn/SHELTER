@@ -41,7 +41,8 @@ class KontrakController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'id_kontrak' => 'required',
+            // 'id_kontrak' => 'required',
+            'nomor_kontrak' => 'required',
             'kode_customer' => 'required',
             'periode_kontrak' => 'required|date',
             'akhir_periode' => 'required',
@@ -56,6 +57,7 @@ class KontrakController extends Controller
 
         $kontrak = new kontrak;
         $kontrak->id_kontrak = $request->id_kontrak;
+        $kontrak->nomor_kontrak = $request->nomor_kontrak;
         $kontrak->kode_customer = $request->kode_customer;
         $kontrak->periode_kontrak = $request->periode_kontrak;
         $kontrak->akhir_periode = $request->akhir_periode;
@@ -88,7 +90,7 @@ class KontrakController extends Controller
     {
         $kontrak = Kontrak::findorFail($id_kontrak);
         $request->validate([
-            'id_kontrak' => 'required',
+            'nomor_kontrak' => 'required',
             'kode_customer' => 'required',
             'periode_kontrak' => 'required|date',
             'akhir_periode' => 'required',
@@ -101,7 +103,8 @@ class KontrakController extends Controller
             'posisi_pks' => 'required',
         ]);
 
-        $kontrak->id_kontrak = $request->id_kontrak;
+        // $kontrak->id_kontrak = $request->id_kontrak;
+        $kontrak->nomor_kontrak = $request->nomor_kontrak;
         $kontrak->kode_customer = $request->kode_customer;
         $kontrak->periode_kontrak = $request->periode_kontrak;
         $kontrak->akhir_periode = $request->akhir_periode;
