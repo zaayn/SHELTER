@@ -92,7 +92,7 @@
                                     <td>{{ $no++  }}</td>
                                     <td>{{ $kontrak->nomor_kontrak }}</td>
                                     <td>{{ $kontrak->kode_customer }}</td>
-                                    <td>{{ $kontrak->customer->nama_perusahaan }}</td>
+                                    <td>{{ $kontrak->nama_perusahaan }}</td>
                                     <td>{{ $kontrak->periode_kontrak }}</td>
                                     <td>{{ $kontrak->akhir_periode }}</td>
                                     <td>{{ $kontrak->srt_pemberitahuan }}</td>

@@ -60,7 +60,7 @@
                                 <tr>
                                 
                                     <td>{{ $no++ }}</td>
-                                    <td>{{ $datamou->nomor_kontrak }}</td>
+                                    <td>{{ $datamou->kontrak->nomor_kontrak }}</td>
                                     <td>Rp {{ number_format($datamou->hc, 2, ',','.') }}</td>
                                     <td>Rp {{ number_format($datamou->invoice, 2, ',','.') }}</td>
                                     <td>{{ $datamou->mf }}</td>
