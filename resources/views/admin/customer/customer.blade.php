@@ -95,7 +95,7 @@
                                         <td>{{ $customer->kode_customer }}</td>
                                         <td>{{ $customer->nama_perusahaan }}</td>
                                         <td>{{ $customer->jenis_usaha }}</td>
-                                        <td>{{ $customer->bisnis_unit->nama_bisnis_unit }}</td>
+                                        <td>{{ $customer->nama_bisnis_unit }}</td>
                                         <td>{{ $customer->jenis_perusahaan }}</td>
                                         <td>{{ $customer->negara }}</td>
                                         <td>{{ $customer->alamat }}</td>
@@ -104,7 +104,7 @@
                                         <td>{{ $customer->telpon }}</td>
                                         <td>{{ $customer->cp }}</td>
                                         <td>{{ $customer->nama_area}}</td>
-                                        <td>{{ $customer->wilayah->nama_wilayah}}</td>
+                                        <td>{{ $customer->nama_wilayah}}</td>
                                         <td>{{ $customer->nama_depan}}</td>
                                         <td>{{ $customer->status}}</td>
                                         <td>
