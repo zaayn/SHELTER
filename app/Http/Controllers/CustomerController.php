@@ -107,7 +107,7 @@ class CustomerController extends Controller
     public function store(Request $request)
     {
       $code = DB::table('customer')->select('kode_customer')->get();
-      //dd($code);
+     
       
       $this->validate($request,[
         'nama_perusahaan'  =>['required', 'string']
@@ -175,8 +175,6 @@ class CustomerController extends Controller
         ,'negara'=>['required', 'string']
       ]);
 
-      //$customer->kode_customer      = $request->kode_customer;
-      //$customer->nama_perusahaan    = $request->nama_perusahaan;
       $customer->jenis_usaha        = $request->jenis_usaha;
       $customer->bu_id              = $request->bu_id;
       $customer->alamat             = $request->alamat;
@@ -213,7 +211,6 @@ class CustomerController extends Controller
     public function aktivasi($id)
     {
       $customer = Customer::findOrFail($id);
-      // dd($customer->status);
       if($customer->status == "Aktif")
       {
         $customer->status = 'Non_aktif';

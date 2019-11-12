@@ -92,7 +92,6 @@ class ManagerController extends Controller
       if($request->wilayah_id)
       {
         $data['wilayahs'] = Wilayah::all();
-        //dd($data['wilayahs']);
         $data['customers'] = DB::table('customer')
         ->join('wilayah', 'customer.wilayah_id', '=', 'wilayah.wilayah_id')
         ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
