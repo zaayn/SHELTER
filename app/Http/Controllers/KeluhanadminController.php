@@ -21,9 +21,7 @@ class KeluhanadminController extends Controller
         $data['no'] = 1;
         $data['wilayahs'] = Wilayah::all();
         $data['bisnis_units'] = Bisnis_unit::all();
-        $data['keluhans'] = DB::table('keluhan')
-        ->join('customer', 'keluhan.kode_customer', '=', 'customer.kode_customer')
-        ->get();
+        $data['keluhans'] = Keluhan::all();
         return view('admin/keluhan/keluhan', $data);
     }
 
