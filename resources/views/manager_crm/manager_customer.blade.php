@@ -22,40 +22,7 @@
             <div class="panel block">
                 <div class="panel-body">
                     {{-- ----------  -------------- filter ------------------------ --}}
-                    {{--<form class="form-horizontal" id="form-filter" method="POST" action="{{route('filter.customer')}}">
-                        @csrf
-                        <div class="form-group">
-                            <label class="control-label col-md-2">Status Customer</label>
-                            <div class="col-md-6">
-                                <select class="form-control" name="status">
-                                        <option value="">--- Select Status ---</option>
-                                        <option value="Aktif">Aktif</option>
-                                        <option value="Non_aktif">Non aktif</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label col-md-2">Wilayah</label>
-                            <div class="col-md-6">
-                                <select class="form-control" name="wilayah_id">
-                                    <option value="">--- Select Wilayah ---</option>
-                                @foreach($wilayahs as $wilayah)
-                                    <option value="{{ $wilayah->wilayah_id }}">{{ $wilayah->nama_wilayah }}</option>
-                                @endforeach
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-md-1 col-md-offset-2">
-                                <a href="/admin/customer">
-                                    <button type="button" class="btn btn-primary"><i class="fa fa-refresh"></i> Reset</button>
-                                </a>    
-                            </div>
-                            <div class="col-md-2">
-                                <button type="submit" class="btn btn-primary" id="btn-filter"><i class="fa fa-filter"></i> Filter</button>
-                            </div>
-                        </div>
-                    </form>--}}
+
                     {{-- ---- end filter ------ --}}  
                             <hr style="border: solid #ddd; border-width: 1px 0 0; clear: both; margin: 22px 0 21px; height: 0;">
                             <table id="mydatatables" class="table table-collapse table-hover table-light table-striped cell-border table-responsive">                                <thead>
