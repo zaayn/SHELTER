@@ -111,7 +111,24 @@ class KontrakadminController extends Controller
         $data['wilayahs'] = Wilayah::all();
         $data['bisnis_units'] = Bisnis_unit::all();
         $data['customers'] = Customer::all();  
-        $data['kontraks'] = Kontrak::all();
+        $data['kontraks'] = DB::table('kontrak')
+            ->join('customer', 'customer.kode_customer', '=', 'kontrak.kode_customer')
+            ->get();
+
+            // ->join('datamou', 'datamou.id_kontrak', '=', 'kontrak.id_kontrak')
+
+            foreach($data['kontraks'] as $key => $kontraa){
+                // dd($data);
+                $awok = DB::table('kontrak')
+                ->join('datamou', 'datamou.id_kontrak', '=', 'kontrak.id_kontrak')
+                ->where('kontrak.id_kontrak', '=', $kontraa->id_kontrak)
+                ->get();
+                
+                $data['kontraks'][$key]->datamou_flag = count($awok);
+
+                // dd($data['kontraks'][$key]);
+
+            }
          
 
         return view('admin/kontrak/kontrak', $data);
