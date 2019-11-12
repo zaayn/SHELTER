@@ -39,6 +39,8 @@ class KontrakadminController extends Controller
             ->where('bisnis_unit.bu_id', '=', $request->bu_id)
             ->where('wilayah.wilayah_id', '=', $request->wilayah_id)
             ->get();
+            // Article::with(['user','category'])->first();
+            //$data['kontraks'] = Kontrak::with(['customer','wilayah','bisnis_unit'])->get();
             return view('admin/kontrak/kontrak', $data);
         }
         if($request->bu_id)
