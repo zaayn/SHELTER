@@ -35,7 +35,7 @@ class MouController extends Controller
         if($check) return redirect('/admin/kontrak')->with('error', 'Kontrak sudah memiliki MoU');
 
         $request->validate([
-            'nomor_kontrak'         => 'required',
+            // 'nomor_kontrak'         => 'required',
             'hc'                    => 'required|integer',
             'invoice'               => 'required|integer',
             'mf'                    => 'required|integer',
@@ -62,7 +62,7 @@ class MouController extends Controller
         $datamou = new Datamou;
         $datamou->no_mou = $request->no_mou;
         $datamou->id_kontrak = $request->id_kontrak;
-        $datamou->nomor_kontrak = $request->nomor_kontrak;
+        // $datamou->nomor_kontrak = $request->nomor_kontrak;
         $datamou->hc = $request->hc;
         $datamou->invoice = $request->invoice;
         $datamou->mf = $request->mf;

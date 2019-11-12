@@ -81,7 +81,7 @@
                                 <tbody>
                                 @foreach($calls as $call)
                                 <tr>
-                                    <td>{{ $no++  }}</td>
+                                    <td>{{ $call->call_id  }}</td>
                                     <td>{{ $call->nama_perusahaan }}</td>
                                     <td>{{ $call->spv_pic }}</td>
                                     <td>{{ $call->tanggal_call }}</td>

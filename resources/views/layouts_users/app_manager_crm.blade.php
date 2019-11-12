@@ -183,7 +183,7 @@
             <ul class="treeview-menu">
               <li class="active"><a href="{{asset('/manager_crm/customer')}}"><i class="fa fa-circle-o"></i> Laporan Customer</a></li>
               <li class="active"><a href="{{asset('/manager_crm/kontrak')}}"><i class="fa fa-circle-o"></i> Laporan Kontrak</a></li>
-              <li class="active"><a href="{{asset('/manager_crm/visit')}}"><i class="fa fa-circle-o"></i> Laporan visit</a></li>
+              <li class="active"><a href="{{asset('/manager_crm/visit')}}"><i class="fa fa-circle-o"></i> Laporan Visit</a></li>
               <li class="active"><a href="{{asset('/manager_crm/call')}}"><i class="fa fa-circle-o"></i> Laporan Call</a></li>
               <li class="active"><a href="{{asset('/manager_crm/keluhan')}}"><i class="fa fa-circle-o"></i> Laporan Keluhan</a></li>
               <li class="active"><a href="{{asset('/manager_crm/mou')}}"><i class="fa fa-circle-o"></i> Laporan Data MOU</a></li>
