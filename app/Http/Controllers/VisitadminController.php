@@ -13,6 +13,7 @@ use App\Exports\VisitExport;
 use App\Customer;
 use App\Bisnis_unit;
 use App\Wilayah;
+use App\User;
 
 class VisitadminController extends Controller
 {
