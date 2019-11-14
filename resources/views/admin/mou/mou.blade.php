@@ -57,17 +57,22 @@
                                 </thead>
                                 <tbody>
                                 @foreach ($datamous as $datamou)
+                                <?php
+                                // function percent($number){
+                                //     return $number . '%';
+                                // }
+                                // ?>
                                 <tr>
                                 
                                     <td>{{ $no++ }}</td>
                                     <td>{{ $datamou->kontrak->nomor_kontrak }}</td>
-                                    <td>Rp {{ number_format($datamou->hc, 2, ',','.') }}</td>
+                                    <td>{{ $datamou->hc }}</td>
                                     <td>Rp {{ number_format($datamou->invoice, 2, ',','.') }}</td>
-                                    <td>{{ $datamou->mf }}</td>
-                                    <td>{{ $datamou->mf_persen }}</td>
+                                    <td>Rp {{ number_format($datamou->mf, 2, ',','.') }}</td>
+                                    <td>{{ $datamou->mf_persen }} </td>
                                     <td>{{ $datamou->bpjs_tk_persen}}</td>
                                     <td>{{ $datamou->bpjs_tenagakerja }}</td>
-                                    <td>{{ $datamou->bpjs_kes_persen}}</td>
+                                    <td>{{ $datamou->bpjs_kes_persen }} </td>
                                     <td>{{ $datamou->bpjs_kesehatan }}</td>
                                     <td>{{ $datamou->jiwasraya }}</td>
                                     <td>{{ $datamou->ramamusa }}</td>

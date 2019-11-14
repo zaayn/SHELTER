@@ -29,6 +29,8 @@ class MouController extends Controller
         return view('admin/mou/insertmou',$data);
     }
 
+    
+
     public function store(Request $request, $id_kontrak)
     {
         $check=Datamou::where('id_kontrak', $id_kontrak)->first();
