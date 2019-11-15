@@ -247,6 +247,7 @@ Route::group(['prefix' => 'manager_non_crm',  'middleware' => 'is_manager_non_cr
     //manager crm
     Route::get('/home', 'ManagerNonCrmController@index')->name('dashboard_officer'); //Dashboard Admin
     Route::get('/kontrak', 'ManagerNonCrmController@kontrak')->name('manager_non_crm_kontrak');
+    Route::post('/filter/kontrak', 'ManagerNonCrmController@filter_kontrak_noncrm')->name('filter.kontrak.noncrm');
     Route::get('/mou', 'ManagerNonCrmController@mou')->name('manager_non_crm_mou');
     Route::get('/customer', 'ManagerNonCrmController@customer')->name('manager_non_crm_customer');
 

@@ -22,7 +22,7 @@
             <div class="panel block">
                 <div class="panel-body">
                     {{-- ----------  -------------- filter ------------------------ --}}
-                    <form class="form-horizontal" id="form-filter" method="POST" action="{{route('kontrak.filter')}}">
+                    <form class="form-horizontal" id="form-filter" method="POST" action="{{route('filter.kontrak.noncrm')}}">
                             @csrf
                             <div class="form-group">
                                 <label class="control-label col-md-2">Bisnis Unit</label>
@@ -82,12 +82,12 @@
                                     <th>Closing</th>
                                 </thead>
                                 <tbody>
-                                @foreach($kontrak as $ko)
+                                @foreach($kontraks as $ko)
                                 <tr>
                                     <td>{{ $ko->id_kontrak }}</td>
                                     <td>{{ $ko->nomor_kontrak }}</td>
                                     <td>{{ $ko->kode_customer }}</td>
-                                    <td>{{ $ko->customer->nama_perusahaan }}</td>
+                                    <td>{{ $ko->nama_perusahaan }}</td>
                                     <td>{{ $ko->periode_kontrak }}</td>
                                     <td>{{ $ko->akhir_periode }}</td>
                                     <td>{{ $ko->srt_pemberitahuan }}</td>

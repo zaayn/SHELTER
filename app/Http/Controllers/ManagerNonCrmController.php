@@ -41,9 +41,61 @@ class ManagerNonCrmController extends Controller
     {  
         $data['wilayahs'] = Wilayah::all();
         $data['bisnis_units'] = bisnis_unit :: all();
-        $data['kontrak'] = kontrak :: all();
+        $data['kontraks'] = DB::table('kontrak')
+        ->join('customer', 'customer.kode_customer', '=', 'kontrak.kode_customer')
+        ->get();
         $data['no'] = 1;
         return view('manager_non_crm/manager_non_crm_kontrak', $data);
+    }
+    public function filter_kontrak_noncrm(Request $request)
+    {
+        if($request->bu_id && $request->wilayah_id)
+        {
+            $data['no'] = 1;
+            $data['wilayahs'] = Wilayah::all();
+            $data['bisnis_units'] = Bisnis_unit::all();
+            $data['customers'] = Customer::all();
+            
+            $data['kontraks'] = DB::table('kontrak')
+            ->join('customer', 'customer.kode_customer', '=', 'kontrak.kode_customer')
+            ->join('wilayah','wilayah.wilayah_id','=','customer.wilayah_id')
+            ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
+            ->where('bisnis_unit.bu_id', '=', $request->bu_id)
+            ->where('wilayah.wilayah_id', '=', $request->wilayah_id)
+            ->orderBy('kontrak.id_kontrak','asc')
+            ->get();
+            return view('manager_non_crm/manager_non_crm_kontrak', $data);
+        }
+        if($request->bu_id)
+        {
+            $data['no'] = 1;
+            $data['wilayahs'] = Wilayah::all();
+            $data['bisnis_units'] = Bisnis_unit::all();
+            $data['customers'] = Customer::all();
+            // $data['kontraks'] = Kontrak::all();
+            $data['kontraks'] = DB::table('kontrak')
+            ->join('customer', 'customer.kode_customer', '=', 'kontrak.kode_customer')
+            ->join('wilayah','wilayah.wilayah_id','=','customer.wilayah_id')
+            ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
+            ->where('bisnis_unit.bu_id', '=', $request->bu_id)
+            ->get();
+            return view('manager_non_crm/manager_non_crm_kontrak', $data);
+        }
+        if($request->wilayah_id)
+        {
+            $data['no'] = 1;
+            $data['wilayahs'] = Wilayah::all();
+            $data['bisnis_units'] = Bisnis_unit::all();
+            $data['customers'] = Customer::all();
+            // $data['kontraks'] = Kontrak::all();
+            $data['kontraks'] = DB::table('kontrak')
+            ->join('customer', 'customer.kode_customer', '=', 'kontrak.kode_customer')
+            ->join('wilayah','wilayah.wilayah_id','=','customer.wilayah_id')
+            ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
+            ->where('wilayah.wilayah_id', '=', $request->wilayah_id)
+            ->get();
+            return view('manager_non_crm/manager_non_crm_kontrak', $data);
+        }
     }
     public function mou()
     {  
