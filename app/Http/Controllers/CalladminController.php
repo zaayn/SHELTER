@@ -38,13 +38,8 @@ class CalladminController extends Controller
     public function insert()
     {
         $data['bisnis_units'] = Bisnis_unit::all();
-        $data['customers'] = DB::table('customer')
-        ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
-        ->where('status', 'Aktif')->get();
-        $data['users'] = DB::table('users')
-        ->join('wilayah', 'users.wilayah_id', '=', 'wilayah.wilayah_id')
-        ->select('wilayah.wilayah_id','users.nama_depan','wilayah.nama_wilayah')
-        ->where('rule', 'officer_crm')->get();
+        $data['customers'] = Customer::where('status', 'Aktif')->get();
+        $data['users'] = User::where('rule', 'officer_crm')->get();
       return view('admin/call/insertcall',$data);
     }
 
@@ -107,10 +102,7 @@ class CalladminController extends Controller
     {
         $data['bisnis_units'] = Bisnis_unit::all();
         $data['customers'] = Customer::all();
-        $data['users'] = DB::table('users')
-        ->join('wilayah', 'users.wilayah_id', '=', 'wilayah.wilayah_id')
-        ->select('wilayah.wilayah_id','users.nama_depan','wilayah.nama_wilayah')
-        ->where('rule', 'officer_crm')->get();
+        $data['users'] = User::where('rule', 'officer_crm')->get();
         $call = Call::findOrFail($call_id);
  
         return view('admin/call/editcall',$data)->with('call', $call);

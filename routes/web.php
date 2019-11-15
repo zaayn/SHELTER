@@ -39,7 +39,7 @@ Route::group(['prefix' => 'officer_crm',  'middleware' => 'is_officer_crm'], fun
     Route::post('/update/visit{visit_id}','VisitController@update')->name('update.visit.officer');
     Route::get('/visit/exportPDF', 'VisitController@exportPDF');
     Route::get('/visit/exportExcel', 'VisitadminController@exportExcel');
-    Route::post('/filter/viist', 'VisitController@filter')->name('visit.filter');
+    Route::post('/filter/visit', 'VisitController@filter')->name('visit.filter');
 
     //------- laporan keluhan
     Route::get('/insertkeluhan', 'KeluhanController@insert')->name('insert.keluhan.officer'); //show form insert
@@ -215,6 +215,7 @@ Route::group(['prefix' => 'manager_crm',  'middleware' => 'is_manager_crm'], fun
     Route::get('/customer/exportPDF', 'CustomerController@exportPDF');
     Route::get('/customer/exportExcel', 'CustomerController@exportExcel');
 
+    Route::post('/filter/customer', 'ManagerController@filter')->name('filter.customer');
 
 });
 

@@ -79,7 +79,7 @@
                                 <tbody>
                                 @foreach($visits as $visit)
                                 <tr>
-                                    <td>{{ $no++  }}</td>
+                                    <td>{{ $visit->visit_id  }}</td>
                                     <td>{{ $visit->nama_perusahaan }}</td>
                                     <td>{{ $visit->spv_pic }}</td>
                                     <td>{{ $visit->tanggal_visit }}</td>

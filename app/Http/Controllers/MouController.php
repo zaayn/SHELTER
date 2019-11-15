@@ -35,17 +35,10 @@ class MouController extends Controller
         if($check) return redirect('/admin/kontrak')->with('error', 'Kontrak sudah memiliki MoU');
 
         $request->validate([
-            // 'nomor_kontrak'         => 'required',
             'hc'                    => 'required|integer',
             'invoice'               => 'required|integer',
             'mf'                    => 'required|integer',
             'mf_persen'             => 'required|integer',
-             //'bpjs_tenagakerja'   =>'nullable',
-            // 'bpjs_kesehatan'     => 'required',
-            // 'jiwasraya'          => 'required',
-            // 'ramamusa'           =>'required',
-            // 'ditagihkan'         => 'required',
-            // 'diprovisasikan'     =>'required',
             'overheadcost'          => 'required',
             'training'              => 'required',
             'tanggal_invoice'       =>'required',
@@ -56,13 +49,10 @@ class MouController extends Controller
             'chemical'              =>'required',
             'pendaftaran_mou'       => 'required',
         ]);
-
-        //setlocale(LC_MONETARY,"id_ID");
-        //$kontrak = Kontrak::findorFail($id_kontrak);
+        
         $datamou = new Datamou;
         $datamou->no_mou = $request->no_mou;
         $datamou->id_kontrak = $request->id_kontrak;
-        // $datamou->nomor_kontrak = $request->nomor_kontrak;
         $datamou->hc = $request->hc;
         $datamou->invoice = $request->invoice;
         $datamou->mf = $request->mf;
@@ -86,7 +76,6 @@ class MouController extends Controller
         $datamou->pendaftaran_mou = $request->pendaftaran_mou;
 
         if ($datamou->save()){
-            //return redirect()->route('insertmou.kontrak')->with('success', 'item berhasil ditambahkan');
             return redirect('/admin/mou')->with('success', 'item berhasil ditambahkan');
         }
         else{
@@ -113,17 +102,10 @@ class MouController extends Controller
     {
         $datamou = Datamou::findorFail($id);
         $request->validate([
-          //  'id_kontrak' => 'required',
             'hc' => 'required',
             'invoice' => 'required',
             'mf' => 'required',
             'mf_persen' => 'required',
-            // 'bpjs_tenagakerja' =>'required',
-            // 'bpjs_kesehatan' => 'required',
-            // 'jiwasraya' => 'required',
-            // 'ramamusa' =>'required',
-            // 'ditagihkan' => 'required',
-            // 'diprovisasikan' =>'required',
             'overheadcost' => 'required',
             'training' => 'required',
             'tanggal_invoice' =>'required',

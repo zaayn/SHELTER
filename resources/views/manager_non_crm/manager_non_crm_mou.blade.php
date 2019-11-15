@@ -33,6 +33,7 @@
                             <table id="mydatatables" class="table table-collapse table-hover table-light table-striped cell-border table-responsive">                                <thead>
                                     <th>No. MoU</th>
                                     <th>ID Kontrak</th>
+                                    <th>Nomor Kontrak</th>
                                     <th>HC</th>
                                     <th>Invoice</th>
                                     <th>MF</th>
@@ -58,6 +59,7 @@
                                 <tr>
                                     <td>{{ $no++ }}</td>
                                     <td>{{ $datamou->id_kontrak }}</td>
+                                    <td>{{ $datamou->nomor_kontrak }}</td>
                                     <td>{{ $datamou->hc }}</td>
                                     <td>{{ $datamou->invoice }}</td>
                                     <td>{{ $datamou->mf }}</td>

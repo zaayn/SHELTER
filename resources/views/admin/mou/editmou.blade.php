@@ -114,19 +114,31 @@
                         </div>
                         <div class="form-group col-md-12">
                 	        <label class="font-weight-bold">Kaporlap</label>
-                	        <input type="text" class="form-control" name="kaporlap" value="{{$datamou->kaporlap}}" required>
+                	        <select class="form-control" name="kaporlap" value="{{$datamou->kaporlap}}" required>
+                                <option value="YA" selected="selected">YA</option>
+                                <option value="TIDAK">TIDAK</option>
+                            </select>
                         </div>
                         <div class="form-group col-md-12">
                 	        <label class="font-weight-bold">Devices</label>
-                	        <input type="text" class="form-control" name="devices" value="{{$datamou->devices}}" required>
+                	        <select class="form-control" name="devices" value="{{$datamou->devices}}" required>
+                                <option value="YA" selected="selected">YA</option>
+                                <option value="TIDAK">TIDAK</option>
+                            </select>
                         </div>
                         <div class="form-group col-md-12">
                 	        <label class="font-weight-bold">Chemical</label>
-                	        <input type="text" class="form-control" name="chemical" value="{{$datamou->chemical}}" required>
+                	        <select class="form-control" name="chemical" value="{{$datamou->chemical}}" required>
+                                <option value="YA" selected="selected">YA</option>
+                                <option value="TIDAK">TIDAK</option>
+                            </select>
                         </div>
                         <div class="form-group col-md-12">
                 	        <label class="font-weight-bold">Pendaftaran MoU</label>
-                	        <input type="text" class="form-control" name="pendaftaran_mou" value="{{$datamou->pendaftaran_mou}}" required>
+                	        <select class="form-control" name="pendaftaran_mou" value="{{$datamou->pendaftaran_mou}}" required>
+                                <option value="YA" selected="selected">YA</option>
+                                <option value="TIDAK">TIDAK</option>
+                            </select>
                         </div>
                         <div class="col-md-12">
                             <button type="submit" class="btn btn-lg btn-info btn-block ">

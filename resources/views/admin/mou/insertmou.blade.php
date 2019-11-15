@@ -42,7 +42,7 @@
                     <div class="form-group">
                         <div class="form-group col-md-12">
                             <label>Kontrak Perusahaan</label>
-                            <input type="text" class="form-control" name="nomor_kontrak" value="{{ $kontrak->nomor_kontrak }}" required>
+                            <input type="text" class="form-control" name="nomor_kontrak" value="{{ $kontrak->nomor_kontrak }}" disabled required>
                         </div>
                         <div class="form-group col-md-12">
                 	        <label class="font-weight-bold">HC</label>
@@ -111,19 +111,31 @@
                         </div>
                         <div class="form-group col-md-12">
                 	        <label class="font-weight-bold">Kaporlap</label>
-                	        <input type="text" class="form-control" name="kaporlap" required>
+                	        <select class="form-control" name="kaporlap">
+                                <option value="YA" selected="selected">YA</option>
+                                <option value="TIDAK">TIDAK</option>
+                            </select>
                         </div>
                         <div class="form-group col-md-12">
                 	        <label class="font-weight-bold">Devices</label>
-                	        <input type="text" class="form-control" name="devices" required>
+                	        <select class="form-control" name="devices">
+                                <option value="YA" selected="selected">YA</option>
+                                <option value="TIDAK">TIDAK</option>
+                            </select>
                         </div>
                         <div class="form-group col-md-12">
                 	        <label class="font-weight-bold">Chemical</label>
-                	        <input type="text" class="form-control" name="chemical" required>
+                	        <select class="form-control" name="chemical">
+                                <option value="YA" selected="selected">YA</option>
+                                <option value="TIDAK">TIDAK</option>
+                            </select>
                         </div>
                         <div class="form-group col-md-12">
                 	        <label class="font-weight-bold">Pendaftaran MoU</label>
-                	        <input type="text" class="form-control" name="pendaftaran_mou" required>
+                	        <select class="form-control" name="pendaftaran_mou">
+                                <option value="YA" selected="selected">YA</option>
+                                <option value="TIDAK">TIDAK</option>
+                            </select>
                         </div>
                         <div class="col-md-12">
                             <button type="submit" class="btn btn-lg btn-info btn-block ">
