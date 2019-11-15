@@ -41,7 +41,49 @@ class ManagerController extends Controller
     }
     public function filter_call(Request $request)
     {
+        if($request->bu_id && $request->wilayah_id)
+      {
+        $data['no'] = 1;
+        $data['wilayahs'] = Wilayah::all();
+        $data['bisnis_units'] = Bisnis_unit::all();
+        $data['calls'] = Call::all();
+        $data['calls'] = DB::table('call')
+        ->join('customer', 'call.kode_customer', '=', 'customer.kode_customer')
+        ->join('wilayah','wilayah.wilayah_id','=','customer.wilayah_id')
+        ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
+        ->where('bisnis_unit.bu_id', '=', $request->bu_id)
+        ->where('wilayah.wilayah_id', '=', $request->wilayah_id)
+        ->get();
 
+        return view('manager_crm/manager_call', $data);
+      }
+      elseif ($request->bu_id) {
+        $data['no'] = 1;
+        $data['wilayahs'] = Wilayah::all();
+        $data['bisnis_units'] = Bisnis_unit::all();
+        $data['calls'] = Call::all();
+        $data['calls'] = DB::table('call')
+        ->join('customer', 'call.kode_customer', '=', 'customer.kode_customer')
+        ->join('wilayah','wilayah.wilayah_id','=','customer.wilayah_id')
+        ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
+        ->where('bisnis_unit.bu_id', '=', $request->bu_id)
+        ->get();
+        return view('manager_crm/manager_call', $data);
+
+      } 
+      elseif ($request->wilayah_id) {
+        $data['no'] = 1;
+        $data['wilayahs'] = Wilayah::all();
+        $data['bisnis_units'] = Bisnis_unit::all();
+        $data['calls'] = Call::all();
+        $data['calls'] = DB::table('call')
+        ->join('customer', 'call.kode_customer', '=', 'customer.kode_customer')
+        ->join('wilayah','wilayah.wilayah_id','=','customer.wilayah_id')
+        ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
+        ->where('wilayah.wilayah_id', '=', $request->wilayah_id)
+        ->get();
+        return view('manager_crm/manager_call', $data);
+      }
     }
     public function keluhan()
     {  

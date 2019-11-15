@@ -171,8 +171,6 @@ class CalladminController extends Controller
         ->join('customer', 'call.kode_customer', '=', 'customer.kode_customer')
         ->join('wilayah','wilayah.wilayah_id','=','customer.wilayah_id')
         ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
-        ->select('wilayah.wilayah_id','bisnis_unit.bu_id','customer.kode_customer','call.kode_customer','call_id','customer.nama_perusahaan','spv_pic','tanggal_call','jam_call',
-        'pembicaraan','pic_called','hal_menonjol','bisnis_unit.nama_bisnis_unit')
         ->where('bisnis_unit.bu_id', '=', $request->bu_id)
         ->where('wilayah.wilayah_id', '=', $request->wilayah_id)
         ->get();
@@ -187,8 +185,6 @@ class CalladminController extends Controller
         ->join('customer', 'call.kode_customer', '=', 'customer.kode_customer')
         ->join('wilayah','wilayah.wilayah_id','=','customer.wilayah_id')
         ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
-        ->select('wilayah.wilayah_id','bisnis_unit.bu_id','customer.kode_customer','call.kode_customer','call_id','customer.nama_perusahaan','spv_pic','tanggal_call','jam_call',
-        'pembicaraan','pic_called','hal_menonjol','bisnis_unit.nama_bisnis_unit')
         ->where('bisnis_unit.bu_id', '=', $request->bu_id)
         ->get();
         return view('admin/call/call', $data);
@@ -202,12 +198,9 @@ class CalladminController extends Controller
         ->join('customer', 'call.kode_customer', '=', 'customer.kode_customer')
         ->join('wilayah','wilayah.wilayah_id','=','customer.wilayah_id')
         ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
-        ->select('wilayah.wilayah_id','bisnis_unit.bu_id','customer.kode_customer','call.kode_customer','call_id','customer.nama_perusahaan','spv_pic','tanggal_call','jam_call',
-        'pembicaraan','pic_called','hal_menonjol','bisnis_unit.nama_bisnis_unit')
         ->where('wilayah.wilayah_id', '=', $request->wilayah_id)
         ->get();
         return view('admin/call/call', $data);
-
       } 
     }
 }

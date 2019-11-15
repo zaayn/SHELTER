@@ -196,6 +196,7 @@ Route::group(['prefix' => 'manager_crm',  'middleware' => 'is_manager_crm'], fun
     //manager crm
     Route::get('/home', 'ManagerController@index')->name('dashboard_officer'); //Dashboard Admin
     Route::get('/call', 'ManagerController@call')->name('manager_call');
+    Route::post('/filter/call', 'ManagerController@filter_call')->name('filter.call.crm');
     Route::get('/keluhan', 'ManagerController@keluhan')->name('manager_keluhan');
     Route::get('/visit', 'ManagerController@visit')->name('manager_visit');
     Route::get('/kontrak', 'ManagerController@kontrak')->name('manager_kontrak');
