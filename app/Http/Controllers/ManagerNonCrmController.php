@@ -11,6 +11,8 @@ use App\Visit;
 use App\Kontrak;
 use App\datamou;
 use App\Customer;
+use App\Bisnis_Unit;
+use App\Wilayah;
 
 class ManagerNonCrmController extends Controller
 {
@@ -29,15 +31,17 @@ class ManagerNonCrmController extends Controller
    
     public function customer()
     {  
+        $data['wilayahs'] = Wilayah::all();
+        $data ['bisnis_units'] = bisnis_unit :: all();
         $data['customers'] = Customer::all();
         $data['no'] = 1;
         return view('manager_non_crm/manager_non_crm_customer', $data);
     }
     public function kontrak()
     {  
-        $data['kontrak'] = DB::table('kontrak')
-        ->join('customer', 'customer.kode_customer', '=', 'kontrak.kode_customer')
-        ->get();
+        $data['wilayahs'] = Wilayah::all();
+        $data['bisnis_units'] = bisnis_unit :: all();
+        $data['kontrak'] = kontrak :: all();
         $data['no'] = 1;
         return view('manager_non_crm/manager_non_crm_kontrak', $data);
     }
