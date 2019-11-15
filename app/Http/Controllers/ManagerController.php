@@ -30,6 +30,8 @@ class ManagerController extends Controller
     }
     public function call()
     {  
+        $data['wilayahs'] = Wilayah::all();
+        $data['bisnis_units'] = Bisnis_unit::all();
         $data['calls'] = DB::table('call')
         ->join('customer', 'call.kode_customer', '=', 'customer.kode_customer')
         ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
@@ -37,14 +39,22 @@ class ManagerController extends Controller
         $data['no'] = 1;
         return view('manager_crm/manager_call', $data);
     }
+    public function filter_call(Request $request)
+    {
+
+    }
     public function keluhan()
     {  
+        $data['wilayahs'] = Wilayah::all();
+        $data['bisnis_units'] = Bisnis_unit::all();
         $data['keluhan'] = Keluhan::all();
         $data['no'] = 1;
         return view('manager_crm/manager_keluhan', $data);
     }
     public function visit()
     {  
+        $data['wilayahs'] = Wilayah::all();
+        $data['bisnis_units'] = Bisnis_unit::all();
         $data['visits'] = DB::table('visit')
         ->join('customer', 'visit.kode_customer', '=', 'customer.kode_customer')
         ->select('customer.kode_customer','visit.kode_customer','visit_id','customer.nama_perusahaan','spv_pic','tanggal_visit','waktu_in','waktu_out','pic_meeted','kegiatan')
@@ -120,6 +130,8 @@ class ManagerController extends Controller
     }
     public function customer()
     {  
+        $data['wilayahs'] = Wilayah::all();
+        $data['bisnis_units'] = Bisnis_unit::all();
         $data['customers'] = Customer::all();
         $data['no'] = 1;
         return view('manager_crm/manager_customer', $data);
