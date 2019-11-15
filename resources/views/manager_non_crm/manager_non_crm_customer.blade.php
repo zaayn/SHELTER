@@ -22,7 +22,7 @@
             <div class="panel block">
                 <div class="panel-body">
                      {{-- ----------  -------------- filter ------------------------ --}}
-                     <form class="form-horizontal" id="form-filter" method="POST" action="{{route('kontrak.filter')}}">
+                     <form class="form-horizontal" id="form-filter" method="POST" action="{{route('filter.customer.noncrm')}}">
                             @csrf
                             <div class="form-group">
                                 <label class="control-label col-md-2">Bisnis Unit</label>
@@ -85,14 +85,14 @@
                                         <td>{{ $customer->kode_customer }}</td>
                                         <td>{{ $customer->nama_perusahaan }}</td>
                                         <td>{{ $customer->jenis_usaha }}</td>
-                                        <td>{{ $customer->bisnis_unit->nama_bisnis_unit }}</td>
+                                        <td>{{ $customer->nama_bisnis_unit }}</td>
                                         <td>{{ $customer->alamat }}</td>
                                         <td>{{ $customer->provinsi }}</td>
                                         <td>{{ $customer->kabupaten }}</td>
                                         <td>{{ $customer->telpon }}</td>
                                         <td>{{ $customer->cp }}</td>
                                         <td>{{ $customer->nama_area}}</td>
-                                        <td>{{ $customer->wilayah->nama_wilayah}}</td>
+                                        <td>{{ $customer->nama_wilayah}}</td>
                                         <td>{{ $customer->nama_depan}}</td>
                                         
                                     </tr>

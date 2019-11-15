@@ -250,6 +250,7 @@ Route::group(['prefix' => 'manager_non_crm',  'middleware' => 'is_manager_non_cr
     Route::post('/filter/kontrak', 'ManagerNonCrmController@filter_kontrak_noncrm')->name('filter.kontrak.noncrm');
     Route::get('/mou', 'ManagerNonCrmController@mou')->name('manager_non_crm_mou');
     Route::get('/customer', 'ManagerNonCrmController@customer')->name('manager_non_crm_customer');
+    Route::post('/filter/customer', 'ManagerNonCrmController@filter')->name('filter.customer.noncrm');
 
     Route::get('/mou/exportPDF', 'MouController@exportPDF');
     Route::get('/mou/exportExcel', 'MouController@exportExcel');
