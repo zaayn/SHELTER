@@ -62,7 +62,7 @@ class KontrakadminController extends Controller
             $data['wilayahs'] = Wilayah::all();
             $data['bisnis_units'] = Bisnis_unit::all();
             $data['customers'] = Customer::all();
-            $data['kontraks'] = Kontrak::all();
+            // $data['kontraks'] = Kontrak::all();
             $data['kontraks'] = DB::table('kontrak')
             ->join('customer', 'customer.kode_customer', '=', 'kontrak.kode_customer')
             ->join('wilayah','wilayah.wilayah_id','=','customer.wilayah_id')
@@ -76,7 +76,7 @@ class KontrakadminController extends Controller
                 ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
                 ->join('datamou', 'datamou.id_kontrak', '=', 'kontrak.id_kontrak')
                 ->where('bisnis_unit.bu_id', '=', $request->bu_id)
-                ->where('wilayah.wilayah_id', '=', $request->wilayah_id)
+                // ->where('wilayah.wilayah_id', '=', $request->wilayah_id)
                 ->where('kontrak.id_kontrak', '=', $kontraa->id_kontrak)
                 ->orderBy('kontrak.id_kontrak','asc')
                 ->get();
@@ -91,7 +91,7 @@ class KontrakadminController extends Controller
             $data['wilayahs'] = Wilayah::all();
             $data['bisnis_units'] = Bisnis_unit::all();
             $data['customers'] = Customer::all();
-            $data['kontraks'] = Kontrak::all();
+            // $data['kontraks'] = Kontrak::all();
             $data['kontraks'] = DB::table('kontrak')
             ->join('customer', 'customer.kode_customer', '=', 'kontrak.kode_customer')
             ->join('wilayah','wilayah.wilayah_id','=','customer.wilayah_id')
@@ -104,7 +104,7 @@ class KontrakadminController extends Controller
                 ->join('wilayah','wilayah.wilayah_id','=','customer.wilayah_id')
                 ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
                 ->join('datamou', 'datamou.id_kontrak', '=', 'kontrak.id_kontrak')
-                ->where('bisnis_unit.bu_id', '=', $request->bu_id)
+                // ->where('bisnis_unit.bu_id', '=', $request->bu_id)
                 ->where('wilayah.wilayah_id', '=', $request->wilayah_id)
                 ->where('kontrak.id_kontrak', '=', $kontraa->id_kontrak)
                 ->orderBy('kontrak.id_kontrak','asc')
