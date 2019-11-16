@@ -58,7 +58,7 @@
                                 </div>
                             </div>
                         </form>
-                                            {{-- ---- end filter ------ --}} 
+                        {{-- ---- end filter ------ --}} 
 
                             <div style="float:right; margin-bottom:10px;">
                                 <a href="{{asset('/admin/insertkontrak')}}" class="btn btn-primary btn-sm">Insert Kontrak</a> 

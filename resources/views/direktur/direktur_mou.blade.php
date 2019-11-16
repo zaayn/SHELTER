@@ -33,13 +33,15 @@
                             <table id="mydatatables" class="table table-collapse table-hover table-light table-striped cell-border table-responsive">
                                 <thead>
                                     <th>No. MoU</th>
-                                    <th>ID Kontrak</th>
+                                    <th>Nomor Kontrak</th>
                                     <th>HC</th>
                                     <th>Invoice</th>
                                     <th>MF</th>
                                     <th>MF (%)</th>
-                                    <th>BPJS Ketenagakerjaan</th>
-                                    <th>BPJS Kesehatan</th>
+                                    <th>Ket. % BPJS Ketenagakerjaan</th>
+                                    <th>Nominal BPJS Ketenagakerjaan</th>
+                                    <th>Ket. % BPJS Kesehatan</th>
+                                    <th>Nominal BPJS Kesehatan</th>
                                     <th>Jiwasraya</th>
                                     <th>Ramamusa</th>
                                     <th>Ditagihkan</th>
@@ -58,12 +60,14 @@
                                 @foreach ($datamous as $datamou)
                                 <tr>
                                     <td>{{ $no++ }}</td>
-                                    <td>{{ $datamou->id_kontrak }}</td>
+                                    <td>{{ $datamou->kontrak->nomor_kontrak }}</td>
                                     <td>{{ $datamou->hc }}</td>
-                                    <td>{{ $datamou->invoice }}</td>
-                                    <td>{{ $datamou->mf }}</td>
-                                    <td>{{ $datamou->mf_persen }}</td>
+                                    <td>Rp {{ number_format($datamou->invoice, 2, ',','.') }}</td>
+                                    <td>Rp {{ number_format($datamou->mf, 2, ',','.') }}</td>
+                                    <td>{{ $datamou->mf_persen ?$datamou->mf_persen.'%':'' }}</td>
+                                    <td>{{ $datamou->bpjs_tk_persen}}</td>
                                     <td>{{ $datamou->bpjs_tenagakerja }}</td>
+                                    <td>{{ $datamou->bpjs_kes_persen ?$datamou->bpjs_kes_persen.'%':'' }}</td>
                                     <td>{{ $datamou->bpjs_kesehatan }}</td>
                                     <td>{{ $datamou->jiwasraya }}</td>
                                     <td>{{ $datamou->ramamusa }}</td>

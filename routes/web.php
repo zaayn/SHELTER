@@ -12,6 +12,7 @@
 */
 Route::get('/', function () {
     return view('auth.login');
+    if(!Auth::check()) return redirect()->route('login');
 });
 Auth::routes();
 
@@ -196,9 +197,11 @@ Route::group(['prefix' => 'manager_crm',  'middleware' => 'is_manager_crm'], fun
     //manager crm
     Route::get('/home', 'ManagerController@index')->name('dashboard_officer'); //Dashboard Admin
     Route::get('/call', 'ManagerController@call')->name('manager_call');
+    Route::post('/filter/call', 'ManagerController@filter_call')->name('filter.call.crm');
     Route::get('/keluhan', 'ManagerController@keluhan')->name('manager_keluhan');
     Route::get('/visit', 'ManagerController@visit')->name('manager_visit');
     Route::get('/kontrak', 'ManagerController@kontrak')->name('manager_kontrak');
+    Route::post('/filter/kontrak', 'ManagerController@filter_kontrak')->name('filter.kontrak.crm');
     Route::get('/mou', 'ManagerController@mou')->name('manager_mou');
     Route::get('/customer', 'ManagerController@customer')->name('manager_customer');
 
@@ -247,8 +250,10 @@ Route::group(['prefix' => 'manager_non_crm',  'middleware' => 'is_manager_non_cr
     //manager crm
     Route::get('/home', 'ManagerNonCrmController@index')->name('dashboard_officer'); //Dashboard Admin
     Route::get('/kontrak', 'ManagerNonCrmController@kontrak')->name('manager_non_crm_kontrak');
+    Route::post('/filter/kontrak', 'ManagerNonCrmController@filter_kontrak_noncrm')->name('filter.kontrak.noncrm');
     Route::get('/mou', 'ManagerNonCrmController@mou')->name('manager_non_crm_mou');
     Route::get('/customer', 'ManagerNonCrmController@customer')->name('manager_non_crm_customer');
+    Route::post('/filter/customer', 'ManagerNonCrmController@filter')->name('filter.customer.noncrm');
 
     Route::get('/mou/exportPDF', 'MouController@exportPDF');
     Route::get('/mou/exportExcel', 'MouController@exportExcel');
