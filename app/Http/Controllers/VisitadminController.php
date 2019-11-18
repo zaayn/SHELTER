@@ -34,7 +34,10 @@ class VisitadminController extends Controller
     {
         $data['bisnis_units'] = Bisnis_unit::all();
         $data['customers'] = Customer::where('status','Aktif')->get();
-        $data['users'] = User::where('rule', 'officer_crm')->get();
+        $data['users'] = DB::table('users')
+        ->join('wilayah','users.wilayah_id','=','wilayah.wilayah_id')
+        ->where('rule', 'officer_crm')
+        ->get();
       return view('admin/visit/insertvisit',$data);
     }
 
@@ -120,6 +123,7 @@ class VisitadminController extends Controller
     {
       if($request->bu_id && $request->wilayah_id)
       {
+        $data['no'] = 1;
         $data['wilayahs'] = Wilayah::all();
         $data['bisnis_units'] = Bisnis_unit::all();
         $data['visits'] = DB::table('visit')
@@ -134,6 +138,7 @@ class VisitadminController extends Controller
       }
       elseif($request->bu_id)
       {
+        $data['no'] = 1;
         $data['wilayahs'] = Wilayah::all();
         $data['bisnis_units'] = Bisnis_unit::all();
         $data['visits'] = DB::table('visit')
@@ -147,6 +152,7 @@ class VisitadminController extends Controller
       }
       elseif($request->wilayah_id)
       {
+        $data['no'] = 1;
         $data['wilayahs'] = Wilayah::all();
         $data['bisnis_units'] = Bisnis_unit::all();
         $data['visits'] = DB::table('visit')

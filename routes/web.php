@@ -201,6 +201,7 @@ Route::group(['prefix' => 'manager_crm',  'middleware' => 'is_manager_crm'], fun
     Route::get('/keluhan', 'ManagerController@keluhan')->name('manager_keluhan');
     Route::post('/filter/keluhan', 'ManagerController@filter_keluhan')->name('filter.keluhan.crm');
     Route::get('/visit', 'ManagerController@visit')->name('manager_visit');
+    Route::post('/filter/visit', 'ManagerController@filter_visit')->name('filter.visit.crm');
     Route::get('/kontrak', 'ManagerController@kontrak')->name('manager_kontrak');
     Route::post('/filter/kontrak', 'ManagerController@filter_kontrak')->name('filter.kontrak.crm');
     Route::get('/mou', 'ManagerController@mou')->name('manager_mou');

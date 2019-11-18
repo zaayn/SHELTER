@@ -146,14 +146,60 @@ class ManagerController extends Controller
     }
     public function visit()
     {  
+        $data['no'] = 1;
         $data['wilayahs'] = Wilayah::all();
         $data['bisnis_units'] = Bisnis_unit::all();
         $data['visits'] = DB::table('visit')
         ->join('customer', 'visit.kode_customer', '=', 'customer.kode_customer')
-        ->select('customer.kode_customer','visit.kode_customer','visit_id','customer.nama_perusahaan','spv_pic','tanggal_visit','waktu_in','waktu_out','pic_meeted','kegiatan')
         ->get();
         $data['no'] = 1;
         return view('manager_crm/manager_visit', $data);
+    }
+    public function filter_visit(Request $request)
+    {
+      if($request->bu_id && $request->wilayah_id)
+      {
+        $data['no'] = 1;
+        $data['wilayahs'] = Wilayah::all();
+        $data['bisnis_units'] = Bisnis_unit::all();
+        $data['visits'] = DB::table('visit')
+        ->join('customer', 'visit.kode_customer', '=', 'customer.kode_customer')
+        ->join('wilayah','wilayah.wilayah_id','=','customer.wilayah_id')
+        ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
+        ->where('bisnis_unit.bu_id', '=', $request->bu_id)
+        ->where('wilayah.wilayah_id', '=', $request->wilayah_id)
+        ->get();
+
+        return view('manager_crm/manager_visit', $data);
+      }
+      elseif($request->bu_id)
+      {
+        $data['no'] = 1;
+        $data['wilayahs'] = Wilayah::all();
+        $data['bisnis_units'] = Bisnis_unit::all();
+        $data['visits'] = DB::table('visit')
+        ->join('customer', 'visit.kode_customer', '=', 'customer.kode_customer')
+        ->join('wilayah','wilayah.wilayah_id','=','customer.wilayah_id')
+        ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
+        ->where('bisnis_unit.bu_id', '=', $request->bu_id)
+        ->get();
+
+        return view('manager_crm/manager_visit', $data);
+      }
+      elseif($request->wilayah_id)
+      {
+        $data['no'] = 1;
+        $data['wilayahs'] = Wilayah::all();
+        $data['bisnis_units'] = Bisnis_unit::all();
+        $data['visits'] = DB::table('visit')
+        ->join('customer', 'visit.kode_customer', '=', 'customer.kode_customer')
+        ->join('wilayah','wilayah.wilayah_id','=','customer.wilayah_id')
+        ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
+        ->where('wilayah.wilayah_id', '=', $request->wilayah_id)
+        ->get();
+
+        return view('manager_crm/manager_visit', $data);
+      }
     }
     public function kontrak()
     {  

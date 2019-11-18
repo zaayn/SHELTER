@@ -27,8 +27,6 @@ class CalladminController extends Controller
         $data['calls'] = DB::table('call')
         ->join('customer', 'call.kode_customer', '=', 'customer.kode_customer')
         ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
-        ->select('customer.kode_customer','call.kode_customer','call_id','customer.nama_perusahaan','spv_pic','tanggal_call','jam_call',
-        'pembicaraan','pic_called','hal_menonjol')
         ->get();
 
         return view('admin/call/call', $data);
@@ -39,7 +37,11 @@ class CalladminController extends Controller
     {
         $data['bisnis_units'] = Bisnis_unit::all();
         $data['customers'] = Customer::where('status', 'Aktif')->get();
-        $data['users'] = User::where('rule', 'officer_crm')->get();
+        // $data['users'] = User::where('rule', 'officer_crm')->get();
+        $data['users'] = DB::table('users')
+        ->join('wilayah','users.wilayah_id','=','wilayah.wilayah_id')
+        ->where('rule', 'officer_crm')
+        ->get();
       return view('admin/call/insertcall',$data);
     }
 
