@@ -85,9 +85,20 @@
         <div class="panel panel-default">
             <div class="panel-heading"><h3>User Terakhir Login :</h3></div>
             <div class="panel-body">
-                @foreach($lastUser as $last)
-                <h5><strong>{{$last->username}}</strong> - {{ \Carbon\Carbon::parse($last->current_login_at)->diffForHumans()}}</h5>
-                @endforeach
+                <table>
+                    <thead>
+                        <th>Nama User</th>
+                        <th>Terakhir Login</th>
+                    </thead>
+                    <tbody>
+                    @foreach($lastUser as $last)
+                    <tr>
+                        <td>{{$last->username}}</td>
+                        <td>{{ \Carbon\Carbon::parse($last->current_login_at)->diffForHumans()}}</td>
+                    </tr>
+                    @endforeach
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
