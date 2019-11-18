@@ -206,6 +206,7 @@ Route::group(['prefix' => 'manager_crm',  'middleware' => 'is_manager_crm'], fun
     Route::post('/filter/kontrak', 'ManagerController@filter_kontrak')->name('filter.kontrak.crm');
     Route::get('/mou', 'ManagerController@mou')->name('manager_mou');
     Route::get('/customer', 'ManagerController@customer')->name('manager_customer');
+    Route::post('/filter/customer', 'ManagerController@filter_customer')->name('filter.customer.crm');
 
     Route::get('/call/exportPDF', 'callController@exportPDF');
     Route::get('/call/exportExcel', 'CalladminController@exportExcel');
@@ -219,8 +220,6 @@ Route::group(['prefix' => 'manager_crm',  'middleware' => 'is_manager_crm'], fun
     Route::get('/mou/exportExcel', 'MouController@exportExcel');
     Route::get('/customer/exportPDF', 'CustomerController@exportPDF');
     Route::get('/customer/exportExcel', 'CustomerController@exportExcel');
-
-    Route::post('/filter/customer', 'ManagerController@filter')->name('filter.customer');
 
 });
 

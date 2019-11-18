@@ -271,35 +271,52 @@ class ManagerController extends Controller
     {  
         $data['wilayahs'] = Wilayah::all();
         $data['bisnis_units'] = Bisnis_unit::all();
-        $data['customers'] = Customer::all();
+        $data['customers'] = DB::table('customer')
+        ->join('wilayah', 'customer.wilayah_id', '=', 'wilayah.wilayah_id')
+        ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
+        ->get();
         $data['no'] = 1;
         return view('manager_crm/manager_customer', $data);
     }
-    public function filter(Request $request)
+    public function filter_customer(Request $request)
     {
-      if($request->status && $request->wilayah_id)
+      if($request->bu_id && $request->wilayah_id)
       {
+        $data['bisnis_units'] = bisnis_unit :: all();
         $data['wilayahs'] = Wilayah::all();
         $data['customers'] = DB::table('customer')
         ->join('wilayah', 'customer.wilayah_id', '=', 'wilayah.wilayah_id')
         ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
-        ->select('customer.kode_customer','customer.nama_perusahaan','customer.jenis_usaha','nama_bisnis_unit','customer.alamat','customer.provinsi','customer.kabupaten','customer.telpon','customer.cp','customer.nama_area','wilayah.nama_wilayah','customer.nama_depan','status','jenis_perusahaan','negara')
-        ->where('customer.status', '=', $request->status)
+        ->where('bisnis_unit.bu_id', '=', $request->bu_id)
         ->where('wilayah.wilayah_id', '=', $request->wilayah_id)->get();  
         $data['no'] = 1;
+
         return view('manager_crm/manager_customer', $data);
       }
       if($request->wilayah_id)
       {
+        $data['bisnis_units'] = bisnis_unit :: all();
         $data['wilayahs'] = Wilayah::all();
         $data['customers'] = DB::table('customer')
         ->join('wilayah', 'customer.wilayah_id', '=', 'wilayah.wilayah_id')
         ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
-        ->select('customer.kode_customer','customer.nama_perusahaan','customer.jenis_usaha','nama_bisnis_unit','customer.alamat','customer.provinsi','customer.kabupaten','customer.telpon','customer.cp','customer.nama_area','wilayah.nama_wilayah','customer.nama_depan','status','jenis_perusahaan','negara')
         ->where('wilayah.wilayah_id', '=', $request->wilayah_id)->get();  
         $data['no'] = 1;
+
         return view('manager_crm/manager_customer', $data);
       }
-      
+      if($request->bu_id)
+      {
+        $data['bisnis_units'] = bisnis_unit :: all();
+        $data['wilayahs'] = Wilayah::all();
+        $data['customers'] = DB::table('customer')
+        ->join('wilayah', 'customer.wilayah_id', '=', 'wilayah.wilayah_id')
+        ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
+        ->where('bisnis_unit.bu_id', '=', $request->bu_id)
+        ->get();
+        $data['no'] = 1;
+
+        return view('manager_crm/manager_customer', $data);
+      }
     }
 }
