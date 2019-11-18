@@ -232,6 +232,11 @@ Route::group(['prefix' => 'direktur',  'middleware' => 'is_direktur'], function(
     Route::get('/kontrak', 'DirekturController@kontrak')->name('direktur_kontrak');
     Route::get('/mou', 'DirekturController@mou')->name('direktur_mou');
     Route::get('/customer', 'DirekturController@customer')->name('direktur_customer');
+    Route::post('/filter/call', 'DirekturController@filter_call')->name('filter.call.direktur');
+    Route::post('/filter/keluhan', 'DirekturController@filter_keluhan')->name('filter.keluhan.direktur');
+    Route::post('/filter/visit', 'DirekturController@filter_visit')->name('filter.visit.direktur');
+    Route::post('/filter/kontrak', 'DirekturController@filter_kontrak')->name('filter.kontrak.direktur');
+    Route::post('/filter/customer', 'DirekturController@filter_customer')->name('filter.customer.direktur');
 
     Route::get('/call/exportPDF', 'callController@exportPDF');
     Route::get('/call/exportExcel', 'CalladminController@exportExcel');
