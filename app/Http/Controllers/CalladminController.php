@@ -104,7 +104,10 @@ class CalladminController extends Controller
     {
         $data['bisnis_units'] = Bisnis_unit::all();
         $data['customers'] = Customer::all();
-        $data['users'] = User::where('rule', 'officer_crm')->get();
+        $data['users'] = DB::table('users')
+        ->join('wilayah','users.wilayah_id','=','wilayah.wilayah_id')
+        ->where('rule', 'officer_crm')
+        ->get();
         $call = Call::findOrFail($call_id);
  
         return view('admin/call/editcall',$data)->with('call', $call);

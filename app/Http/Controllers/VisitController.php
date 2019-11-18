@@ -90,7 +90,6 @@ class VisitController extends Controller
         $data['customers'] = Customer::all();
         $data['users'] = DB::table('users')
         ->join('wilayah', 'users.wilayah_id', '=', 'wilayah.wilayah_id')
-        ->select('wilayah.wilayah_id','users.nama_depan','wilayah.nama_wilayah')
         ->where('rule', 'officer_crm')->get();
         $where = array('visit_id' => $visit_id);
         $visit  = Visit::where($where)->first();
