@@ -190,7 +190,7 @@
                                 <tbody>
                                 @foreach($keluhans as $keluhan)
                                 <tr>
-                                    <td>{{ $keluhan->id_keluhan  }}</td>
+                                    <td>{{ $no++  }}</td>
                                     <td>{{ $keluhan->customer->nama_perusahaan }}</td>
                                     <td>{{ $keluhan->departemen }}</td>
                                     <td>{{ $keluhan->tanggal_keluhan }}</td>

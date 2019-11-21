@@ -63,6 +63,7 @@ class AdminController extends Controller
 
     public function superadmin()
     {
+        $data['no'] = 1;
         $data['bisnis_unit'] = DB::table('bisnis_unit')->count();
         $data['wilayah'] = DB::table('wilayah')->count();
         $data['area'] = DB::table('area')->count();
@@ -77,6 +78,7 @@ class AdminController extends Controller
     }
     public function data_customer(Request $request)
     {
+        $data['no'] = 1;
         $data['datamous'] = DB::table('datamou')
         ->join('kontrak','datamou.id_kontrak','=','kontrak.id_kontrak')
         ->join('customer', 'kontrak.kode_customer', '=', 'customer.kode_customer')
