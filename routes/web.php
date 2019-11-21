@@ -191,6 +191,7 @@ Route::group(['prefix' => 'admin',  'middleware' => 'is_admin'], function(){
         Route::post('/update/datamou{no_mou}','MouController@update')->name('update.datamou');
         Route::get('/mou/exportPDF', 'MouController@exportPDF');
         Route::get('/mou/exportExcel', 'MouController@exportExcel');
+        Route::post('/filter/mou', 'MouController@filter_mou')->name('filter.mou');
 });
  
 Route::group(['prefix' => 'manager_crm',  'middleware' => 'is_manager_crm'], function(){
