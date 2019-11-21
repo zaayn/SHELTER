@@ -31,7 +31,10 @@ class KeluhanController extends Controller
     {
         $data['bisnis_units'] = Bisnis_unit::all();
         $data['customers'] = Customer::where('status','Aktif')->get();
-        $data['users'] = User::where('rule', 'officer_crm')->get();
+        $data['users'] = DB::table('users')
+        ->join('wilayah','users.wilayah_id','=','wilayah.wilayah_id')
+        ->where('rule', 'officer_crm')
+        ->get();
         return view('officer/insertkeluhan',$data);
     }
 
@@ -76,7 +79,10 @@ class KeluhanController extends Controller
     {
         $data['bisnis_units'] = Bisnis_unit::all();
         $data['customers'] = Customer::all();
-        $data['users'] = User::where('rule', 'officer_crm')->get();
+        $data['users'] = DB::table('users')
+        ->join('wilayah','users.wilayah_id','=','wilayah.wilayah_id')
+        ->where('rule', 'officer_crm')
+        ->get();
         $where = array('id_keluhan' => $id_keluhan);
         $keluhan  = Keluhan::where($where)->first();
 

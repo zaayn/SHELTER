@@ -57,7 +57,7 @@
                                 </div>
                             </div>
                         </form>
-{{-- ---- end filter ------ --}}
+                        {{-- ---- end filter ------ --}}
                     <div style="float:right; margin-bottom:10px;">
                         <a href="{{asset('/admin/insertvisit')}}" class="btn btn-primary btn-sm">Insert Visit</a>
                         <a href="{{asset('/admin/visit/exportExcel')}}" class="btn btn-default btn-sm" target="_blank">Download Excel</a>
@@ -81,7 +81,7 @@
                                 <tbody>
                                 @foreach($visits as $visit)
                                 <tr>
-                                    <td>{{ $visit->visit_id  }}</td>
+                                    <td>{{ $no++  }}</td>
                                     <td>{{ $visit->nama_perusahaan }}</td>
                                     <td>{{ $visit->spv_pic }}</td>
                                     <td>{{ $visit->tanggal_visit }}</td>
