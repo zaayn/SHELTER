@@ -57,7 +57,7 @@
                                     </div>
                                 </div>
                             </form>
-                                                {{-- ---- end filter ------ --}} 
+                            {{-- ---- end filter ------ --}} 
                     <div style="float:right; margin-bottom:10px;">
                         <a href="/officer_crm/insertkontrak" class="btn btn-primary btn-sm">Insert Kontrak</a>
                         <a href="/officer_crm/kontrak/exportExcel" class="btn btn-default btn-sm" target="_blank">Download Excel</a>

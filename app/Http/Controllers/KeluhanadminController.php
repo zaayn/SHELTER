@@ -33,7 +33,6 @@ class KeluhanadminController extends Controller
         $data['customers'] = Customer::where('status','Aktif')->get();
         $data['users'] = DB::table('users')
         ->join('wilayah', 'users.wilayah_id', '=', 'wilayah.wilayah_id')
-        ->select('wilayah.wilayah_id','users.nama_depan','wilayah.nama_wilayah')
         ->where('rule', 'officer_crm')->get();
       return view('admin/keluhan/insertkeluhan',$data);
     }
@@ -81,7 +80,6 @@ class KeluhanadminController extends Controller
         $data['customers'] = Customer::all();
         $data['users'] = DB::table('users')
         ->join('wilayah', 'users.wilayah_id', '=', 'wilayah.wilayah_id')
-        ->select('wilayah.wilayah_id','users.nama_depan','wilayah.nama_wilayah')
         ->where('rule', 'officer_crm')->get();
         $where = array('id_keluhan' => $id_keluhan);
         $keluhan  = Keluhan::where($where)->first();
@@ -156,9 +154,6 @@ class KeluhanadminController extends Controller
         ->join('customer', 'keluhan.kode_customer', '=', 'customer.kode_customer')
         ->join('wilayah','wilayah.wilayah_id','=','customer.wilayah_id')
         ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
-        ->select('wilayah.wilayah_id','wilayah.nama_wilayah','id_keluhan','customer.kode_customer','customer.nama_perusahaan','keluhan.kode_customer','departemen','tanggal_keluhan',
-        'topik_masalah','saran_penyelesaian','time_target','confirm_pic','case','actual_case','uraian_penyelesaian',
-        'keluhan.status','bisnis_unit.bu_id','bisnis_unit.nama_bisnis_unit')
         ->where('bisnis_unit.bu_id', '=', $request->bu_id)
         ->where('wilayah.wilayah_id', '=', $request->wilayah_id)
         ->get();
@@ -175,9 +170,6 @@ class KeluhanadminController extends Controller
         ->join('customer', 'keluhan.kode_customer', '=', 'customer.kode_customer')
         ->join('wilayah','wilayah.wilayah_id','=','customer.wilayah_id')
         ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
-        ->select('wilayah.wilayah_id','wilayah.nama_wilayah','id_keluhan','customer.kode_customer','customer.nama_perusahaan','keluhan.kode_customer','departemen','tanggal_keluhan',
-        'topik_masalah','saran_penyelesaian','time_target','confirm_pic','case','actual_case','uraian_penyelesaian',
-        'keluhan.status','bisnis_unit.bu_id','bisnis_unit.nama_bisnis_unit')
         ->where('bisnis_unit.bu_id', '=', $request->bu_id)
         ->get();
 
@@ -193,9 +185,6 @@ class KeluhanadminController extends Controller
         ->join('customer', 'keluhan.kode_customer', '=', 'customer.kode_customer')
         ->join('wilayah','wilayah.wilayah_id','=','customer.wilayah_id')
         ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
-        ->select('wilayah.wilayah_id','wilayah.nama_wilayah','id_keluhan','customer.kode_customer','customer.nama_perusahaan','keluhan.kode_customer','departemen','tanggal_keluhan',
-        'topik_masalah','saran_penyelesaian','time_target','confirm_pic','case','actual_case','uraian_penyelesaian',
-        'keluhan.status','bisnis_unit.bu_id','bisnis_unit.nama_bisnis_unit')
         ->where('wilayah.wilayah_id', '=', $request->wilayah_id)
         ->get();
 

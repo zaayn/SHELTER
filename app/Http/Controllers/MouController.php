@@ -11,14 +11,66 @@ use App\Kontrak;
 use App\Customer;
 use Excel;
 use App\Exports\MouExport;
+use App\Bisnis_unit;
+use App\Wilayah;
 
 class MouController extends Controller
 {
     public function index()
     {
+        $data['wilayahs'] = Wilayah::all();
+        $data['bisnis_units'] = Bisnis_unit::all();
         $data['no'] = 1;
-        $data['datamous'] = Datamou::all();
+        $data['datamous'] = DB::table('datamou')
+        ->join('kontrak', 'datamou.id_kontrak', '=', 'kontrak.id_kontrak')
+        ->get();
         return view('admin/mou/mou', $data);
+    }
+    public function filter_mou(Request $request)
+    {
+        if($request->bu_id && $request->wilayah_id)
+        {
+            $data['no'] = 1;
+            $data['wilayahs'] = Wilayah::all();
+            $data['bisnis_units'] = Bisnis_unit::all();
+            $data['datamous'] = DB::table('datamou')
+            ->join('kontrak', 'datamou.id_kontrak', '=', 'kontrak.id_kontrak')
+            ->join('customer', 'customer.kode_customer', '=', 'kontrak.kode_customer')
+            ->join('wilayah','wilayah.wilayah_id','=','customer.wilayah_id')
+            ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
+            ->where('bisnis_unit.bu_id', '=', $request->bu_id)
+            ->where('wilayah.wilayah_id', '=', $request->wilayah_id)
+            ->get();
+            return view('admin/mou/mou', $data);
+        }
+        if($request->bu_id)
+        {
+            $data['no'] = 1;
+            $data['wilayahs'] = Wilayah::all();
+            $data['bisnis_units'] = Bisnis_unit::all();
+            $data['datamous'] = DB::table('datamou')
+            ->join('kontrak', 'datamou.id_kontrak', '=', 'kontrak.id_kontrak')
+            ->join('customer', 'customer.kode_customer', '=', 'kontrak.kode_customer')
+            ->join('wilayah','wilayah.wilayah_id','=','customer.wilayah_id')
+            ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
+            ->where('bisnis_unit.bu_id', '=', $request->bu_id)
+            ->get();
+            return view('admin/mou/mou', $data);
+        }
+        if($request->wilayah_id)
+        {
+            $data['no'] = 1;
+            $data['wilayahs'] = Wilayah::all();
+            $data['bisnis_units'] = Bisnis_unit::all();
+            $data['datamous'] = DB::table('datamou')
+            ->join('kontrak', 'datamou.id_kontrak', '=', 'kontrak.id_kontrak')
+            ->join('customer', 'customer.kode_customer', '=', 'kontrak.kode_customer')
+            ->join('wilayah','wilayah.wilayah_id','=','customer.wilayah_id')
+            ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
+            ->where('wilayah.wilayah_id', '=', $request->wilayah_id)
+            ->get();
+            return view('admin/mou/mou', $data);
+        }
     }
     
 

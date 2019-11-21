@@ -21,6 +21,43 @@
         <div class="col-md-12">
             <div class="panel block">
                 <div class="panel-body">
+                    {{-- ----------  -------------- filter ------------------------ --}}
+                    <form class="form-horizontal" id="form-filter" method="POST" action="{{route('filter.mou.manager')}}">
+                            @csrf
+                            <div class="form-group">
+                                <label class="control-label col-md-2">Bisnis Unit</label>
+                                <div class="col-md-6">
+                                    <select class="form-control" name="bu_id">
+                                        <option value="">--- SELECT BISNIS UNIT ---</option>
+                                    @foreach($bisnis_units as $bisnis_unit)
+                                        <option value="{{ $bisnis_unit->bu_id }}">{{ $bisnis_unit->nama_bisnis_unit }}</option>
+                                    @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                                <div class="form-group">
+                                        <label class="control-label col-md-2">Wilayah</label>
+                                        <div class="col-md-6">
+                                            <select class="form-control" name="wilayah_id">
+                                                <option value="">--- SELECT WILAYAH ---</option>
+                                            @foreach($wilayahs as $wilayah)
+                                                <option value="{{ $wilayah->wilayah_id }}">{{ $wilayah->nama_wilayah }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-1 col-md-offset-2">
+                                        <a href="{{asset('/manager_crm/mou')}}">
+                                            <button type="button" class="btn btn-primary btn-sm"><i class="fa fa-refresh"></i> Reset</button>
+                                        </a>    
+                                    </div>
+                                    <div class="col-md-2">
+                                        <button type="submit" class="btn btn-primary btn-sm" id="btn-filter"><i class="fa fa-filter"></i> Filter</button>
+                                    </div>
+                                </div>
+                            </form>
+                            {{-- ---- end filter ------ --}}
                     <div style="float:right; margin-bottom:10px;">
                         <a href="/manager_crm/mou/exportExcel" class="btn btn-default btn-sm" target="_blank">Download Excel</a>
                         <a href="/manager_crm/mou/exportPDF" class="btn btn-default btn-sm" target="_blank">Download PDF</a>
@@ -57,7 +94,7 @@
                                 @foreach ($datamous as $datamou)
                                 <tr>
                                     <td>{{ $no++ }}</td>
-                                    <td>{{ $datamou->kontrak->nomor_kontrak }}</td>
+                                    <td>{{ $datamou->nomor_kontrak }}</td>
                                     <td>{{ $datamou->hc }}</td>
                                     <td>Rp {{ number_format($datamou->invoice, 2, ',','.') }}</td>
                                     <td>Rp {{ number_format($datamou->mf, 2, ',','.') }}</td>

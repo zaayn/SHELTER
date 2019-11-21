@@ -1,7 +1,5 @@
 @extends('layouts_users.app_admin')
 
-
-
 @section('content_header')
 <div class="row">
     <div class="col-md-12">
@@ -85,9 +83,20 @@
         <div class="panel panel-default">
             <div class="panel-heading"><h3>User Terakhir Login :</h3></div>
             <div class="panel-body">
-                @foreach($lastUser as $last)
-                <h5><strong>{{$last->username}}</strong> - {{ \Carbon\Carbon::parse($last->current_login_at)->diffForHumans()}}</h5>
-                @endforeach
+                <table>
+                    <thead>
+                        <th>Nama User</th>
+                        <th>Terakhir Login</th>
+                    </thead>
+                    <tbody>
+                    @foreach($lastUser as $last)
+                    <tr>
+                        <td>{{$last->username}}</td>
+                        <td>{{\Carbon\Carbon::parse($last->current_login_at)->diffForHumans()}}</td>
+                    </tr>
+                    @endforeach
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
@@ -103,6 +112,7 @@
                         <div style="overflow-x:auto;">
                         <table id="mydatatables" class="table table-responsive table-hover table-light table-striped">
                             <thead>
+                                <th>No</th>
                                 <th>Nomor Kontrak</th>
                                 <th>Nama Perusahaan</th>
                                 <th>Periode Kontrak</th>
@@ -120,7 +130,8 @@
                             <tbody>
                             @foreach($kontraks as $kontrak)
                             <tr>
-                                <td>{{ $kontrak->id_kontrak }}</td>
+                                <td>{{ $no++ }}</td>
+                                <td>{{ $kontrak->nomor_kontrak }}</td>
                                 <td>{{ $kontrak->nama_perusahaan }}</td>
                                 <td>{{ $kontrak->periode_kontrak }}</td>
                                 <td>{{ $kontrak->akhir_periode }}</td>
@@ -133,13 +144,13 @@
                                 <td>{{ $kontrak->posisi_pks }}</td>
                                 <td>{{ $kontrak->closing }}</td>
                                 <td>
-                                    <a href="{{route('edit.kontrak',$kontrak->id_kontrak)}}" class="btn btn-info btn-sm"><span class="fa fa-pencil"></span></a>
-                                    <a onclick="return confirm('Apakah anda yakin akan menghapus data ini ?')" href="{{route('destroy.kontrak',$kontrak->id_kontrak)}}" class="btn btn-danger btn-sm"><span class="fa fa-trash"></span></a>
+                                    <a href="{{route('edit.kontrak',$kontrak->id_kontrak)}}" class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="right" title="Edit"><span class="fa fa-pencil"></span></a>
+                                    <a onclick="return confirm('Apakah anda yakin akan menghapus data ini ?')" href="{{route('destroy.kontrak',$kontrak->id_kontrak)}}" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="right" title="Delete"><span class="fa fa-trash"></span></a>
                                     @if($kontrak->closing == 'Aktif')
-                                        <a onclick="return confirm('Apakah anda yakin akan menutup kontrak ini ?')" href="{{route('putus.kontrak',$kontrak->id_kontrak)}}" class="btn btn-warning btn-sm">Close</a>
+                                    <a onclick="return confirm('Apakah anda yakin akan menutup kontrak ini ?')" href="{{route('putus.kontrak',$kontrak->id_kontrak)}}" class="btn btn-warning btn-sm" data-toggle="tooltip" data-placement="right" title="Close"><span class="fa fa-ban"></span></a>
                                     @endif
-                                    @if(!isset($kontrak->datamou))
-                                        <a href="{{route('insertmou.kontrak',$kontrak->id_kontrak)}}" class="btn btn-default btn-sm">Tambah MoU</span></a>
+                                    @if($kontrak->datamou_flag == 0)
+                                        <a href="{{route('insertmou.kontrak',$kontrak->id_kontrak)}}" class="btn btn-default btn-sm"data-toggle="tooltip" data-placement="right" title="Tambah MoU"><span class="fa fa-plus"></span></a>    
                                     @endif
                                 </td>
                             </tr>
@@ -160,7 +171,7 @@
                     <hr style="border: solid #ddd; border-width: 1px 0 0; clear: both; margin: 22px 0 21px; height: 0;">
                         @include('admin.shared.components.alert')
                         <div style="overflow-x:auto;">    
-                        <table id="mydatatables2" class="table table-collapse table-hover table-light table-striped">
+                        <table id="mydatatables3" class="table table-collapse table-hover table-light table-striped">
                                 <thead>
                                     <th>No</th>
                                     <th>Nama Customer</th>
