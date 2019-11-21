@@ -263,9 +263,11 @@ class ManagerController extends Controller
     }
     public function mou()
     {  
-        $data['datamous'] = Datamou::all();
-        $data['no'] = 1;
-        return view('manager_crm/manager_mou', $data);
+      $data['wilayahs'] = Wilayah::all();
+      $data['bisnis_units'] = Bisnis_unit::all();
+      $data['datamous'] = Datamou::all();
+      $data['no'] = 1;
+      return view('manager_crm/manager_mou', $data);
     }
     public function customer()
     {  
