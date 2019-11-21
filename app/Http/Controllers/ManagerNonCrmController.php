@@ -140,7 +140,9 @@ class ManagerNonCrmController extends Controller
     }
     public function mou()
     {  
-        $data['datamous'] = Datamou::all();
+        $data['datamous'] = DB::table('datamou')
+        ->join('kontrak', 'datamou.id_kontrak', '=', 'kontrak.id_kontrak')
+        ->get();
         $data['no'] = 1;
         return view('manager_non_crm/manager_non_crm_mou', $data);
     }
