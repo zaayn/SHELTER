@@ -61,7 +61,7 @@
                       <div class="form-group">
                         <label>Password :</label>
                         <div>
-                          <input type="text" class="form-control" name="password" value="{{ $user->password}}">
+                          <input type="password" class="form-control" name="password" value="{{ $user->password}}">
                         </div>
                       </div>
                       <div class="form-group">
