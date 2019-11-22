@@ -1,8 +1,8 @@
 <?php
 
 Route::get('/', function () {
-    return view('auth.login');
     if(!Auth::check()) return redirect()->route('login');
+    else return redirect('/admin/home');
 });
 Auth::routes();
 

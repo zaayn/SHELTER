@@ -95,7 +95,10 @@
                         </div>
                         <div class="form-group col-md-12">
                 	        <label class="font-weight-bold">Training</label>
-                	        <input type="text" class="form-control" name="training" required>
+                	        <select class="form-control" name="training">
+                                <option value="YA" selected="selected">YA</option>
+                                <option value="TIDAK">TIDAK</option>
+                            </select>
                         </div>
                         <div class="form-group col-md-12">
                 	        <label class="font-weight-bold">Tanggal Invoice</label>

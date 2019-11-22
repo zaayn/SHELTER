@@ -49,10 +49,7 @@ class UserController extends Controller
         $data['areas'] = Area::all();
         $data['wilayahs'] = Wilayah::all();
         $data['no'] = 1;
-        $data['users'] = DB::table('users')
-        ->join('wilayah', 'users.wilayah_id', '=', 'wilayah.wilayah_id')
-        ->join('area', 'wilayah.area_id', '=', 'area.area_id')
-        ->get();
+        $data['users'] = User::all();
         return view('admin/user/user', $data);
 
     }

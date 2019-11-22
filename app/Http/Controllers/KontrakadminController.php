@@ -149,7 +149,7 @@ class KontrakadminController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nomor_kontrak' => 'required',
+            'nomor_kontrak' => 'required|unique',
             'kode_customer' => 'required',
             'periode_kontrak' => 'required|date',
             'akhir_periode' => 'required|date',

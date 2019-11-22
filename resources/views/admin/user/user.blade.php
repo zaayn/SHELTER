@@ -34,7 +34,7 @@
                                     <th>Area/Cabang</th>
                                     <th>Wilayah Supervisi</th>
                                     <th>Role</th>
-                                    <th>aksi</th>
+                                    <th>Aksi</th>
                                 </thead>
                                 <tbody>
                                     @foreach($users as $user)

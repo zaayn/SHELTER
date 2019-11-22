@@ -19,36 +19,37 @@ class LoginController extends Controller
     */
 
     use AuthenticatesUsers;
-    protected function authenticated(Request $request, $user)
-    {
-        if ( $user->isAdmin() ) 
-        {
-            return redirect('/admin/home');
-        }
-        if ( $user->issuperadmin() ) 
-        {
-            return redirect('/superadmin/home');
-        }
-        if ( $user->isofficercrm() ) 
-        {
-            return redirect('/officer_crm/home');
-        }
-        if ( $user->ismanagercrm() ) 
-        {
-            return redirect('/manager_crm/home');
-        }
-        if ( $user->isdirektur() ) 
-        {
-            return redirect('/direktur/home');
-        }
-        if ( $user->ismanagernoncrm() ) 
-        {
-            return redirect('/manager_non_crm/home');
-        }
-        // else {
-        //     return redirect('/');
-        // }
-    }
+
+    // protected function authenticated(Request $request, $user)
+    // {
+    //     if ( $user->isAdmin() ) 
+    //     {
+    //         return redirect('/admin/home');
+    //     }
+    //     if ( $user->issuperadmin() ) 
+    //     {
+    //         return redirect('/superadmin/home');
+    //     }
+    //     if ( $user->isofficercrm() ) 
+    //     {
+    //         return redirect('/officer_crm/home');
+    //     }
+    //     if ( $user->ismanagercrm() ) 
+    //     {
+    //         return redirect('/manager_crm/home');
+    //     }
+    //     if ( $user->isdirektur() ) 
+    //     {
+    //         return redirect('/direktur/home');
+    //     }
+    //     if ( $user->ismanagernoncrm() ) 
+    //     {
+    //         return redirect('/manager_non_crm/home');
+    //     }
+    //     // else {
+    //     //     return redirect('/');
+    //     // }
+    // }
     
 
     /**
@@ -77,6 +78,5 @@ class LoginController extends Controller
         $request->session()->regenerate();
  
         return redirect('/login');
-            
     }
 }
