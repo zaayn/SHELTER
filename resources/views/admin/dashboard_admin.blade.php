@@ -171,7 +171,7 @@
                     <hr style="border: solid #ddd; border-width: 1px 0 0; clear: both; margin: 22px 0 21px; height: 0;">
                         @include('admin.shared.components.alert')
                         <div style="overflow-x:auto;">    
-                        <table id="mydatatables2" class="table table-collapse table-hover table-light table-striped">
+                        <table id="mydatatables3" class="table table-collapse table-hover table-light table-striped">
                                 <thead>
                                     <th>No</th>
                                     <th>Nama Customer</th>
@@ -190,7 +190,7 @@
                                 <tbody>
                                 @foreach($keluhans as $keluhan)
                                 <tr>
-                                    <td>{{ $keluhan->id_keluhan  }}</td>
+                                    <td>{{ $no++  }}</td>
                                     <td>{{ $keluhan->customer->nama_perusahaan }}</td>
                                     <td>{{ $keluhan->departemen }}</td>
                                     <td>{{ $keluhan->tanggal_keluhan }}</td>
