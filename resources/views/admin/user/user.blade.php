@@ -45,8 +45,8 @@
                                         <td>{{ $user->nama_belakang }}</td>
                                         <td>{{ $user->email }}</td>
                                         <td>{{ $user->no_hp }}</td>
-                                        <td>{{ $user->nama_area }}</td>
-                                        <td>{{ $user->nama_wilayah }}</td>
+                                        <td>{{ $user->area->nama_area }}</td>
+                                        <td>{{ $user->wilayah->nama_wilayah }}</td>
                                         <td>{{ $user->rule }}</td>
                                         <td>
                                             <a href="{{route('edit.user',$user->email)}}" class="btn btn-info btn-sm">
