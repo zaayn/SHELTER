@@ -45,9 +45,7 @@ class KeluhanadminController extends Controller
             'topik_masalah' => 'required',
             'saran_penyelesaian' => 'required',
             'time_target' => 'required',
-            'confirm_pic' => 'required',
             'case' =>'required',
-            'actual_case' => 'required',
             'uraian_penyelesaian' => 'required',
             'status' =>'required',
         ]);
@@ -96,9 +94,7 @@ class KeluhanadminController extends Controller
             'topik_masalah' => 'required',
             'saran_penyelesaian' => 'required',
             'time_target' => 'required',
-            'confirm_pic' => 'required',
             'case' =>'required',
-            'actual_case' => 'required',
             'uraian_penyelesaian' => 'required',
             'status' =>'required',
         ]);
