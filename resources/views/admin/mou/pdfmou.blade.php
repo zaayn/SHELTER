@@ -18,15 +18,16 @@
 	<table class='table table-bordered'>
 		<thead>
 			<tr>
-                <th>No</th>
-                <th>No. MoU</th>
-                <th>Nomor Kontrak</th>
-                <th>HC</th>
-                <th>Invoice</th>
-                <th>MF</th>
-                <th>MF (%)</th>
-                <th>BPJS Ketenagakerjaan</th>
-                <th>BPJS Kesehatan</th>
+            <th>No. MoU</th>
+                                    <th>Nomor Kontrak</th>
+                                    <th>HC</th>
+                                    <th>Invoice</th>
+                                    <th>MF</th>
+                                    <th>MF (%)</th>
+                                    <th>Ket. % BPJS Ketenagakerjaan</th>
+                                    <th>Nominal BPJS Ketenagakerjaan</th>
+                                    <th>Ket. % BPJS Kesehatan</th>
+                                    <th>Nominal BPJS Kesehatan</th>
                 <th>Jiwasraya</th>
                 <th>Ramamusa</th>
                 <th>Ditagihkan</th>
@@ -47,14 +48,14 @@
 			@foreach($datamou as $datamou)
 			<tr>
 			<td>{{ $i++ }}</td>
-            <td>{{ $datamou->no_mou }}</td>
-                                    <td>{{ $datamou->id_kontrak }}</td>
+                                    <td>{{ $datamou->nomor_kontrak }}</td>
                                     <td>{{ $datamou->hc }}</td>
-                                    <td>{{ $datamou->invoice }}</td>
-                                    <td>{{ $datamou->mf }}</td>
-                                    <td>{{ $datamou->mf_persen }}</td>
+                                    <td>Rp {{ number_format($datamou->invoice, 2, ',','.') }}</td>
+                                    <td>Rp {{ number_format($datamou->mf, 2, ',','.') }}</td>
+                                    <td>{{ $datamou->mf_persen ?$datamou->mf_persen.'%':'' }} </td>
+                                    <td>{{ $datamou->bpjs_tk_persen ?$datamou->bpjs_tk_persen.'%':''}}</td>
                                     <td>{{ $datamou->bpjs_tenagakerja }}</td>
-                                    <td>{{ $datamou->bpjs_kesehatan }}</td>
+                                    <td>{{ $datamou->bpjs_kes_persen ?$datamou->bpjs_kes_persen.'%':''}}  </td>
                                     <td>{{ $datamou->jiwasraya }}</td>
                                     <td>{{ $datamou->ramamusa }}</td>
                                     <td>{{ $datamou->ditagihkan }}</td>

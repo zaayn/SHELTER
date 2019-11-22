@@ -104,8 +104,8 @@
                                     <td>Rp {{ number_format($datamou->invoice, 2, ',','.') }}</td>
                                     <td>Rp {{ number_format($datamou->mf, 2, ',','.') }}</td>
                                     <td>{{ $datamou->mf_persen ?$datamou->mf_persen.'%':'' }} </td>
-                                    <td>{{ $datamou->bpjs_tk_persen}}</td>
-                                    <td>{{ $datamou->bpjs_tenagakerja }}</td>
+                                    <td>{{ $datamou->bpjs_tk_persen ?$datamou->bpjs_tk_persen.'%':''}}</td>
+                                <td>{{ $datamou->bpjs_tenagakerja }}</td>
                                     <td>{{ $datamou->bpjs_kes_persen ?$datamou->bpjs_kes_persen.'%':''}}  </td>
                                     <td>{{ $datamou->bpjs_kesehatan }}</td>
                                     <td>{{ $datamou->jiwasraya }}</td>
