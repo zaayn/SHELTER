@@ -1,15 +1,5 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
 Route::get('/', function () {
     if(!Auth::check()) return redirect()->route('login');
     else return redirect('/admin/home');
@@ -70,8 +60,6 @@ Route::group(['prefix' => 'officer_crm',  'middleware' => 'is_officer_crm'], fun
 
 });
 
-// email superadmin :superadmin@gmail.com
-// pass             :12345678
 Route::group(['prefix' => 'superadmin',  'middleware' => 'is_superadmin'], function(){
     Route::get('/home', 'AdminController@superadmin')->name('home'); //Dashboard super admin
 
@@ -207,6 +195,7 @@ Route::group(['prefix' => 'manager_crm',  'middleware' => 'is_manager_crm'], fun
     Route::get('/kontrak', 'ManagerController@kontrak')->name('manager_kontrak');
     Route::post('/filter/kontrak', 'ManagerController@filter_kontrak')->name('filter.kontrak.crm');
     Route::get('/mou', 'ManagerController@mou')->name('manager_mou');
+    Route::post('/filter/mou', 'ManagerController@filter_mou')->name('filter.mou.manager');
     Route::get('/customer', 'ManagerController@customer')->name('manager_customer');
     Route::post('/filter/customer', 'ManagerController@filter_customer')->name('filter.customer.crm');
 
@@ -233,6 +222,7 @@ Route::group(['prefix' => 'direktur',  'middleware' => 'is_direktur'], function(
     Route::get('/visit', 'DirekturController@visit')->name('direktur_visit');
     Route::get('/kontrak', 'DirekturController@kontrak')->name('direktur_kontrak');
     Route::get('/mou', 'DirekturController@mou')->name('direktur_mou');
+    Route::post('/filter/mou', 'DirekturController@filter_mou')->name('filter.mou.direktur');
     Route::get('/customer', 'DirekturController@customer')->name('direktur_customer');
     Route::post('/filter/call', 'DirekturController@filter_call')->name('filter.call.direktur');
     Route::post('/filter/keluhan', 'DirekturController@filter_keluhan')->name('filter.keluhan.direktur');
@@ -260,6 +250,7 @@ Route::group(['prefix' => 'manager_non_crm',  'middleware' => 'is_manager_non_cr
     Route::get('/kontrak', 'ManagerNonCrmController@kontrak')->name('manager_non_crm_kontrak');
     Route::post('/filter/kontrak', 'ManagerNonCrmController@filter_kontrak_noncrm')->name('filter.kontrak.noncrm');
     Route::get('/mou', 'ManagerNonCrmController@mou')->name('manager_non_crm_mou');
+    Route::post('/filter/mou', 'ManagerNonCrmController@filter_mou')->name('filter.mou.noncrm');
     Route::get('/customer', 'ManagerNonCrmController@customer')->name('manager_non_crm_customer');
     Route::post('/filter/customer', 'ManagerNonCrmController@filter')->name('filter.customer.noncrm');
 

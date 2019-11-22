@@ -114,6 +114,7 @@
                             <thead>
                                 <th>No</th>
                                 <th>Nomor Kontrak</th>
+                                <th>Closing/MoU</th>
                                 <th>Nama Perusahaan</th>
                                 <th>Periode Kontrak</th>
                                 <th>Akhir Periode</th>
@@ -132,6 +133,12 @@
                             <tr>
                                 <td>{{ $no++ }}</td>
                                 <td>{{ $kontrak->nomor_kontrak }}</td>
+                                <td>@if($kontrak->closing == 'Aktif')
+                                    <a onclick="return confirm('Apakah anda yakin akan menutup kontrak ini ?')" href="{{route('putus.kontrak',$kontrak->id_kontrak)}}" class="btn btn-warning btn-sm" data-toggle="tooltip" data-placement="right" title="Close"><span class="fa fa-ban"></span></a>
+                                    @endif
+                                    @if($kontrak->datamou_flag == 0)
+                                        <a href="{{route('insertmou.kontrak',$kontrak->id_kontrak)}}" class="btn btn-default btn-sm"data-toggle="tooltip" data-placement="right" title="Tambah MoU"><span class="fa fa-plus"></span></a>    
+                                    @endif</td>
                                 <td>{{ $kontrak->nama_perusahaan }}</td>
                                 <td>{{ $kontrak->periode_kontrak }}</td>
                                 <td>{{ $kontrak->akhir_periode }}</td>
@@ -146,12 +153,7 @@
                                 <td>
                                     <a href="{{route('edit.kontrak',$kontrak->id_kontrak)}}" class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="right" title="Edit"><span class="fa fa-pencil"></span></a>
                                     <a onclick="return confirm('Apakah anda yakin akan menghapus data ini ?')" href="{{route('destroy.kontrak',$kontrak->id_kontrak)}}" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="right" title="Delete"><span class="fa fa-trash"></span></a>
-                                    @if($kontrak->closing == 'Aktif')
-                                    <a onclick="return confirm('Apakah anda yakin akan menutup kontrak ini ?')" href="{{route('putus.kontrak',$kontrak->id_kontrak)}}" class="btn btn-warning btn-sm" data-toggle="tooltip" data-placement="right" title="Close"><span class="fa fa-ban"></span></a>
-                                    @endif
-                                    @if($kontrak->datamou_flag == 0)
-                                        <a href="{{route('insertmou.kontrak',$kontrak->id_kontrak)}}" class="btn btn-default btn-sm"data-toggle="tooltip" data-placement="right" title="Tambah MoU"><span class="fa fa-plus"></span></a>    
-                                    @endif
+                                    
                                 </td>
                             </tr>
                             @endforeach  
@@ -171,7 +173,7 @@
                     <hr style="border: solid #ddd; border-width: 1px 0 0; clear: both; margin: 22px 0 21px; height: 0;">
                         @include('admin.shared.components.alert')
                         <div style="overflow-x:auto;">    
-                        <table id="mydatatables2" class="table table-collapse table-hover table-light table-striped">
+                        <table id="mydatatables3" class="table table-collapse table-hover table-light table-striped">
                                 <thead>
                                     <th>No</th>
                                     <th>Nama Customer</th>
@@ -190,7 +192,7 @@
                                 <tbody>
                                 @foreach($keluhans as $keluhan)
                                 <tr>
-                                    <td>{{ $keluhan->id_keluhan  }}</td>
+                                    <td>{{ $no++  }}</td>
                                     <td>{{ $keluhan->customer->nama_perusahaan }}</td>
                                     <td>{{ $keluhan->departemen }}</td>
                                     <td>{{ $keluhan->tanggal_keluhan }}</td>

@@ -22,7 +22,7 @@
             <div class="panel block">
                 <div class="panel-body">
                     {{-- ----------  -------------- filter ------------------------ --}}
-                    <form class="form-horizontal" id="form-filter" method="POST" action="{{route('filter.mou')}}">
+                    <form class="form-horizontal" id="form-filter" method="POST" action="{{route('filter.mou.manager')}}">
                             @csrf
                             <div class="form-group">
                                 <label class="control-label col-md-2">Bisnis Unit</label>
@@ -96,15 +96,15 @@
                                     <td>{{ $no++ }}</td>
                                     <td>{{ $datamou->nomor_kontrak }}</td>
                                     <td>{{ $datamou->hc }}</td>
-                                    <td>Rp {{ number_format($datamou->invoice, 2, ',','.') }}</td>
-                                    <td>Rp {{ number_format($datamou->mf, 2, ',','.') }}</td>
-                                    <td>{{ $datamou->mf_persen ?$datamou->mf_persen.'%':'' }}</td>
-                                    <td>{{ $datamou->bpjs_tk_persen}}</td>
-                                    <td>{{ $datamou->bpjs_tenagakerja }}</td>
+                                    <td>{{ 'Rp'.number_format($datamou->invoice, 2, ',','.') }}</td>
+                                    <td>{{ 'Rp'.number_format($datamou->mf, 2, ',','.') }}</td>
+                                    <td>{{ $datamou->mf_persen ?$datamou->mf_persen.'%':'' }} </td>
+                                    <td>{{ $datamou->bpjs_tk_persen ?$datamou->bpjs_tk_persen.'%':''}}</td>
+                                    <td>{{ $datamou->bpjs_tenagakerja ?'Rp'.number_format($datamou->bpjs_tenagakerja, 2, ',','.'):'' }}</td>
                                     <td>{{ $datamou->bpjs_kes_persen ?$datamou->bpjs_kes_persen.'%':'' }}</td>
-                                    <td>{{ $datamou->bpjs_kesehatan }}</td>
-                                    <td>{{ $datamou->jiwasraya }}</td>
-                                    <td>{{ $datamou->ramamusa }}</td>
+                                    <td>{{ $datamou->bpjs_kesehatan ?'Rp'.number_format($datamou->bpjs_kesehatan, 2, ',','.'):'' }}</td>
+                                    <td>{{ $datamou->jiwasraya ?number_format($datamou->jiwasraya, 2, ',','.'):'' }}</td>
+                                    <td>{{ $datamou->ramamusa ?number_format($datamou->ramamusa, 2, ',','.'):'' }}</td>
                                     <td>{{ $datamou->ditagihkan }}</td>
                                     <td>{{ $datamou->diprovisasikan }}</td>
                                     <td>{{ $datamou->overheadcost }}</td>
