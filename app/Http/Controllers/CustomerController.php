@@ -22,9 +22,8 @@ class CustomerController extends Controller
     public function index()
     {  
       $data['wilayahs'] = Wilayah::all();
-      $data['customers'] = Customer::all();
+      //$data['customers'] = Customer::all();
       $data['customers'] = DB::table('customer')
-      ->join('wilayah','customer.wilayah_id','=','wilayah.wilayah_id')
       ->join('bisnis_unit','customer.bu_id','=','bisnis_unit.bu_id')
       ->get();
         $data['no'] = 1;
