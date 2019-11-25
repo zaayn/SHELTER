@@ -22,11 +22,11 @@ class CustomerController extends Controller
     public function index()
     {  
       $data['wilayahs'] = Wilayah::all();
-      $data['customers'] = Customer::all();
-      // $data['customers'] = DB::table('customer')
-      // ->join('wilayah','customer.wilayah_id','=','wilayah.wilayah_id')
-      // ->join('bisnis_unit','customer.bu_id','=','bisnis_unit.bu_id')
-      // ->get();
+      // $data['customers'] = Customer::all();
+      $data['customers'] = DB::table('customer')
+      ->join('area','customer.area_id','=','area.area_id')
+      ->join('bisnis_unit','customer.bu_id','=','bisnis_unit.bu_id')
+      ->get();
         $data['no'] = 1;
         return view('admin/customer/customer', $data);
     }
@@ -144,8 +144,7 @@ class CustomerController extends Controller
       $customer->telpon             = $request->telpon;
       $customer->fax                = $request->fax;
       $customer->cp                 = $request->cp;
-      $customer->nama_area          = $request->nama_area;
-      $customer->wilayah_id         = $request->wilayah_id;
+      $customer->area_id            = $request->area_id;
       $customer->nama_depan         = $request->nama_depan;
       $customer->status             = $request->status;
       $customer->jenis_perusahaan   = $request->jenis_perusahaan;
@@ -193,12 +192,12 @@ class CustomerController extends Controller
       $customer->telpon             = $request->telpon;
       $customer->fax                = $request->fax;
       $customer->cp                 = $request->cp;
-      $customer->nama_area          = $request->nama_area;
-      $customer->wilayah_id         = $request->wilayah_id;
+      $customer->area_id            = $request->area_id;
       $customer->nama_depan         = $request->nama_depan;
       $customer->status             = $request->status;
       $customer->jenis_perusahaan   = $request->jenis_perusahaan;
       $customer->negara             = $request->negara;
+      $customer->putus_kontrak      = $request->putus_kontrak;
       
 
       if ($customer->save()){
@@ -218,19 +217,30 @@ class CustomerController extends Controller
     public function exportExcel(){
 		    return Excel::download(new CustomerExport, 'Laporan-Customer-CRM.xlsx');
     }
+
+    public function update_putus(Request $request, $kode_customer)
+    {
+        $customer = Customer::findorFail($kode_customer);
+        $request->validate([
+            'putus_kontrak' => 'required',
+        ]);
+        $customer->putus_kontrak = $request->putus_kontrak;
+        if($customer->status == "Aktif")
+        {
+          $customer->status = 'Non_aktif';
+        }
+        elseif($customer->status == "Non_aktif")
+        {
+          $customer->status = 'Aktif';
+        }
+        if ($customer->save())
+          return redirect()->route('index.customer')->with(['success'=>'Putus Kontrak sukses']);
+    }
+
     public function aktivasi($id)
     {
       $customer = Customer::findOrFail($id);
-      if($customer->status == "Aktif")
-      {
-        $customer->status = 'Non_aktif';
-      }
-      elseif($customer->status == "Non_aktif")
-      {
-        $customer->status = 'Aktif';
-      }
-      if ($customer->save())
-          return redirect()->route('index.customer')->with(['success'=>'reset aktifasi sukses']);
+      return view('admin/customer/putus')->with('customer', $customer);
     }
     public function cust_type()
     {

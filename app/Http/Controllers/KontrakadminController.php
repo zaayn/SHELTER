@@ -149,7 +149,7 @@ class KontrakadminController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nomor_kontrak' => 'required|unique',
+            'nomor_kontrak' => 'required',
             'kode_customer' => 'required',
             'periode_kontrak' => 'required|date',
             'akhir_periode' => 'required|date',
@@ -176,7 +176,6 @@ class KontrakadminController extends Controller
         $kontrak->tgl_dealing = $request->tgl_dealing;
         $kontrak->posisi_pks = $request->posisi_pks;
         $kontrak->closing = "Aktif";
-        $kontrak->putus_kontrak = $request->putus_kontrak;
 
         $customer = Customer::findOrFail($request->kode_customer);
         $to = \Carbon\Carbon::createFromFormat('Y-m-d',$kontrak->periode_kontrak);
@@ -200,20 +199,17 @@ class KontrakadminController extends Controller
  
         return view('admin/kontrak/editkontrak')->with('kontrak', $kontrak);
     }
-    public function putus_kontrak($id_kontrak)
-    {
-        $where = array('id_kontrak' => $id_kontrak);
-        $kontrak  = Kontrak::where($where)->first();
+    // public function putus($id_kontrak)
+    // {
+    //     $where = array('id_kontrak' => $id_kontrak);
+    //     $kontrak  = Kontrak::where($where)->first();
  
-        return view('admin/kontrak/putus_kontrak')->with('kontrak', $kontrak);
-    }
-    public function update_putus(Request $request, $id_kontrak)
+    //     return view('admin/kontrak/putus_kontrak')->with('kontrak', $kontrak);
+    // }
+    public function closing(Request $request, $id_kontrak)
     {
         $kontrak = Kontrak::findorFail($id_kontrak);
-        $request->validate([
-            'putus_kontrak' => 'required',
-        ]);
-        $kontrak->putus_kontrak = $request->putus_kontrak;
+
         $kontrak->dealing = "Sudah Deal";
         $kontrak->posisi_pks = "di Shelter";
         $kontrak->closing = "Closed";
@@ -251,7 +247,7 @@ class KontrakadminController extends Controller
         $kontrak->tgl_dealing = $request->tgl_dealing;
         $kontrak->posisi_pks = $request->posisi_pks;
         $kontrak->closing = "Aktif";
-        $kontrak->putus_kontrak = $request->putus_kontrak;
+        // $kontrak->putus_kontrak = $request->putus_kontrak;
         
         if ($kontrak->save())
           return redirect()->route('index.kontrak')->with(['success'=>'edit sukses']);
