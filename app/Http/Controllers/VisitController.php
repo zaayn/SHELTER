@@ -36,7 +36,7 @@ class VisitController extends Controller
         $data['bisnis_units'] = Bisnis_unit::all();
         $data['customers'] = Customer::where('status','Aktif')->get();
         $data['users'] = DB::table('users')
-        ->join('wilayah', 'users.wilayah_id', '=', 'wilayah.wilayah_id')
+        ->join('area','users.area_id','=','area.area_id')
         ->where('rule', 'officer_crm')
         ->get();
       return view('officer/insertvisit',$data);
@@ -89,7 +89,7 @@ class VisitController extends Controller
         $data['bisnis_units'] = Bisnis_unit::all();
         $data['customers'] = Customer::all();
         $data['users'] = DB::table('users')
-        ->join('wilayah', 'users.wilayah_id', '=', 'wilayah.wilayah_id')
+        ->join('area','users.area_id','=','area.area_id')
         ->where('rule', 'officer_crm')->get();
         $where = array('visit_id' => $visit_id);
         $visit  = Visit::where($where)->first();
