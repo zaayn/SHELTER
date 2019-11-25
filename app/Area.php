@@ -13,10 +13,16 @@ class area extends Model
        ,'created_at'
        ,'updated_at'
     ];
-    public function wilayah()
+    public function user()
     {
 
-        return $this->hasMany(wilayah::class);
+        return $this->hasMany(User::class);
+
+    }
+    public function customer()
+    {
+
+        return $this->hasMany(\App\customer::class);
 
     }
 }

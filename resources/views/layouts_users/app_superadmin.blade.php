@@ -194,7 +194,6 @@
               <ul class="treeview-menu">
                 <li class="active"><a href="{{asset('/superadmin/bisnis_unit')}}"><i class="fa fa-circle-o"></i> Daftar Bisnis Unit</a></li>
                 <li class="active"><a href="{{asset('/superadmin/area')}}"><i class="fa fa-circle-o"></i> Daftar area</a></li>
-                <li class="active"><a href="{{asset('/superadmin/wilayah')}}"><i class="fa fa-circle-o"></i> Daftar Wilayah</a></li>
               </ul>
           </li>
 

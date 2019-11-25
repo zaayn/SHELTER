@@ -83,7 +83,6 @@
                                     <th>Telpon</th>
                                     <th>CP</th>
                                     <th>Area</th>
-                                    <th>Wilayah</th>
                                     <th>Area Supervisor</th>
                                     <th>Status</th>
                                     <th>Aksi</th>
@@ -104,7 +103,6 @@
                                         <td>{{ $customer->telpon }}</td>
                                         <td>{{ $customer->cp }}</td>
                                         <td>{{ $customer->nama_area}}</td>
-                                        <td>{{ $customer->nama_wilayah}}</td>
                                         <td>{{ $customer->nama_depan}}</td>
                                         <td>{{ $customer->status}}</td>
                                         <td>

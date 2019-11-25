@@ -20,7 +20,7 @@
 <div class="row">
     
     <a href="{{asset('/superadmin/user')}}">
-        <div class="col-md-3 col-sm-6 col-xs-12">
+        <div class="col-md-4 col-sm-6 col-xs-12">
             <div class="info-box">
             <span class="info-box-icon bg-yellow"><i class="fa fa-user"></i></span>
             <div class="info-box-content">
@@ -31,7 +31,7 @@
         </div>
     </a>
     <a href="{{asset('/superadmin/bisnis_unit')}}">
-        <div class="col-md-3 col-sm-6 col-xs-12">
+        <div class="col-md-4 col-sm-6 col-xs-12">
             <div class="info-box">
             <span class="info-box-icon bg-blue"><i class="fa fa-envelope-o"></i></span>
             <div class="info-box-content">
@@ -41,19 +41,8 @@
             </div>
         </div>
     </a>
-    <a href="{{asset('/superadmin/wilayah')}}">
-        <div class="col-md-3 col-sm-6 col-xs-12">
-            <div class="info-box">
-            <span class="info-box-icon bg-green"><i class="fa fa-map-o"></i></span>
-            <div class="info-box-content">
-                <span class="info-box-text">Wilayah</span>
-                <span class="info-box-number">{{$wilayah}}</span>
-            </div>
-            </div>
-        </div>
-    </a>
     <a href="{{asset('/superadmin/area')}}">
-        <div class="col-md-3 col-sm-6 col-xs-12">
+        <div class="col-md-4 col-sm-6 col-xs-12">
             <div class="info-box">
             <span class="info-box-icon bg-red"><i class="fa fa-envelope-o"></i></span>
             <div class="info-box-content">
@@ -65,7 +54,7 @@
     </a>
 </div>
 <div class="row">
-    <div class="col-md-9">
+    <div class="col-md-12">
         <div class="nav-tabs-custom">
             <!-- Tabs within a box -->
                 <ul class="nav nav-tabs pull-right">

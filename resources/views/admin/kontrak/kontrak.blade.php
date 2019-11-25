@@ -92,7 +92,7 @@
                                 <tr>
                                     <td>{{ $no++  }}</td>
                                     <td>@if($kontrak->closing == 'Aktif')
-                                        <a onclick="return confirm('Apakah anda yakin akan menutup kontrak ini ?')" href="{{route('putus.kontrak',$kontrak->id_kontrak)}}" class="btn btn-warning btn-sm" data-toggle="tooltip" data-placement="right" title="Close"><span class="fa fa-ban"></span></a>
+                                        <a onclick="return confirm('Apakah anda yakin akan Closing kontrak ini ?')" href="{{route('update.closing',$kontrak->id_kontrak)}}" class="btn btn-warning btn-sm" data-toggle="tooltip" data-placement="right" title="Close"><span class="fa fa-ban"></span></a>
                                         @endif
                                         @if($kontrak->datamou_flag == 0)
                                             <a href="{{route('insertmou.kontrak',$kontrak->id_kontrak)}}" class="btn btn-default btn-sm"data-toggle="tooltip" data-placement="right" title="Tambah MoU"><span class="fa fa-plus"></span></a>

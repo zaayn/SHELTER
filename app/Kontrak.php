@@ -22,7 +22,7 @@ class kontrak extends Model
        ,'tgl_dealing'
        ,'posisi_pks'
        ,'closing'
-       ,'putus_kontrak'
+
     ];
 
     public function customer()

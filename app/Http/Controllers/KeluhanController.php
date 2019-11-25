@@ -80,7 +80,7 @@ class KeluhanController extends Controller
         $data['bisnis_units'] = Bisnis_unit::all();
         $data['customers'] = Customer::all();
         $data['users'] = DB::table('users')
-        ->join('wilayah','users.wilayah_id','=','wilayah.wilayah_id')
+        ->join('area','users.area_id','=','area.area_id')
         ->where('rule', 'officer_crm')
         ->get();
         $where = array('id_keluhan' => $id_keluhan);

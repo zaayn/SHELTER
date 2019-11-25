@@ -18,19 +18,20 @@ class CreateUsersTable extends Migration
             $table->string('nama_depan');
             $table->string('nama_belakang');
             $table->string('email')->unique();
-            $table->integer('wilayah_id')->unsigned();
+            $table->integer('area_id')->unsigned();
             $table->string('no_hp');
             $table->string('password');
-            // $table->string('nama_area');
             $table->string('rule');
+            $table->timestamp('last_login_at')->nullable();
+            $table->timestamp('current_login_at')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
         Schema::table('users', function($table)
         {
-            $table->foreign('wilayah_id')
-                ->references('wilayah_id')
-                ->on('wilayah')
+            $table->foreign('area_id')
+                ->references('area_id')
+                ->on('area')
                 ->onDelete('cascade');
         });
     }

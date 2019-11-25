@@ -72,7 +72,7 @@ class UserController extends Controller
       $users->nama_belakang  = $request->nama_belakang;
       $users->password       = $request->password;
       $users->email          = $request->email;
-      $users->wilayah_id     = $request->wilayah_id;
+      $users->area_id        = $request->area_id;
       $users->no_hp          = $request->no_hp;
       $users->rule           = $request->rule;
 
@@ -99,7 +99,7 @@ class UserController extends Controller
             $user->nama_belakang  = $request->nama_belakang;
             $user->password       = $request->password;
             $user->email          = $request->email;
-            $user->wilayah_id     = $request->wilayah_id;
+            $user->area_id        = $request->area_id;
             $user->no_hp          = $request->no_hp;
             $user->rule           = $request->rule;
   
