@@ -27,9 +27,7 @@ class UserController extends Controller
             $data['areas'] = Area::all();
             $data['no'] = 1;
             $data['users'] = DB::table('users')
-            ->join('wilayah', 'users.wilayah_id', '=', 'wilayah.wilayah_id')
-            ->join('area', 'wilayah.area_id', '=', 'area.area_id')
-            ->select('users.*','wilayah.wilayah_id')
+            ->join('area', 'users.area_id', '=', 'area.area_id')
             ->where('users.rule', '=', $request->rule)
             ->get();
                 return view('admin/user/user', $data);
@@ -49,7 +47,8 @@ class UserController extends Controller
         $data['areas'] = Area::all();
         $data['wilayahs'] = Wilayah::all();
         $data['no'] = 1;
-        $data['users'] = User::all();
+        $data['users'] = DB::table('users')
+        ->join('area', 'users.area_id', '=', 'area.area_id')->get();
         return view('admin/user/user', $data);
 
     }
