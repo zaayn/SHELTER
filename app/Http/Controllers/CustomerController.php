@@ -9,7 +9,6 @@ use Illuminate\Support\Facades\DB;
 use App\Customer;
 use App\Bisnis_unit;
 use App\Area;
-use App\Wilayah;
 use App\User;
 use PDF;
 use Excel;
@@ -21,7 +20,6 @@ class CustomerController extends Controller
 {
     public function index()
     {  
-      $data['wilayahs'] = Wilayah::all();
       // $data['customers'] = Customer::all();
       $data['customers'] = DB::table('customer')
       ->join('area','customer.area_id','=','area.area_id')
@@ -32,47 +30,22 @@ class CustomerController extends Controller
     }
     public function filter(Request $request)
     {
-      if($request->status && $request->wilayah_id)
-      {
-        $data['wilayahs'] = Wilayah::all();
-        $data['customers'] = DB::table('customer')
-        ->join('wilayah', 'customer.wilayah_id', '=', 'wilayah.wilayah_id')
-        ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
-        ->select('customer.kode_customer','customer.nama_perusahaan','customer.jenis_usaha','nama_bisnis_unit','customer.alamat','customer.provinsi','customer.kabupaten','customer.telpon','customer.cp','customer.nama_area','wilayah.nama_wilayah','customer.nama_depan','status','jenis_perusahaan','negara')
-        ->where('customer.status', '=', $request->status)
-        ->where('wilayah.wilayah_id', '=', $request->wilayah_id)->get();  
-        $data['no'] = 1;
-        return view('admin/customer/customer', $data);
-      }
-      if($request->wilayah_id)
-      {
-        $data['wilayahs'] = Wilayah::all();
-        $data['customers'] = DB::table('customer')
-        ->join('wilayah', 'customer.wilayah_id', '=', 'wilayah.wilayah_id')
-        ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
-        ->select('customer.kode_customer','customer.nama_perusahaan','customer.jenis_usaha','nama_bisnis_unit','customer.alamat','customer.provinsi','customer.kabupaten','customer.telpon','customer.cp','customer.nama_area','wilayah.nama_wilayah','customer.nama_depan','status','jenis_perusahaan','negara')
-        ->where('wilayah.wilayah_id', '=', $request->wilayah_id)->get();  
-        $data['no'] = 1;
-        return view('admin/customer/customer', $data);
-      }
       if($request->status)
       {
-        $data['wilayahs'] = Wilayah::all();
         $data['customers'] = DB::table('customer')
-        ->join('wilayah', 'customer.wilayah_id', '=', 'wilayah.wilayah_id')
         ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
         ->select('customer.kode_customer','customer.nama_perusahaan','customer.jenis_usaha','nama_bisnis_unit','customer.alamat','customer.provinsi','customer.kabupaten','customer.telpon','customer.cp','customer.nama_area','wilayah.nama_wilayah','customer.nama_depan','status','jenis_perusahaan','negara')
-        ->where('customer.status', '=', $request->status)->get();
+        ->where('customer.status', '=', $request->status)->get();  
         $data['no'] = 1;
         return view('admin/customer/customer', $data);
       }
+      
       
     }
     public function insert()
     {
         $data['bisnis_units'] = Bisnis_unit::all();
         $data['areas'] = Area::all();
-        $data['wilayahs'] = Wilayah::all();
         $data['users'] = User::where('rule', 'officer_crm')->get();
         return view('/admin/customer/insert_customer',$data);
     }
@@ -165,7 +138,6 @@ class CustomerController extends Controller
     public function edit($kode_customer){
         $data['bisnis_units'] = Bisnis_unit::all();
         $data['areas'] = Area::all();
-        $data['wilayahs'] = Wilayah::all();
         $data['users'] = DB::table('users')->where('rule', 'officer_crm')->get();
         $customer = Customer::findOrFail($kode_customer);
         return view('admin/customer/edit_customer',$data)->with('customer', $customer);
@@ -264,7 +236,6 @@ class CustomerController extends Controller
       ->where('customer.kode_customer', '=', $request->kode_customer)
       ->get();
       $data['customers'] = DB::table('customer')
-      ->join('wilayah', 'customer.wilayah_id', '=', 'wilayah.wilayah_id')
       ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
       ->select('customer.kode_customer','customer.nama_perusahaan','customer.jenis_usaha','nama_bisnis_unit','customer.alamat','customer.provinsi','customer.kabupaten','customer.telpon','customer.cp','customer.nama_area','wilayah.nama_wilayah','customer.nama_depan','status','jenis_perusahaan','negara')
       ->where('customer.kode_customer', '=', $request->kode_customer)->get();  

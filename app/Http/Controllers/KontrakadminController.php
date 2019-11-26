@@ -16,63 +16,26 @@ use PDF;
 use Excel;
 Use App\Exports\KontrakExport;
 use App\Bisnis_unit;
-use App\Wilayah;
 
 class KontrakadminController extends Controller
 {
     public function filter(Request $request)
     {
-        if($request->bu_id && $request->wilayah_id)
-        {
-            $data['no'] = 1;
-            $data['wilayahs'] = Wilayah::all();
-            $data['bisnis_units'] = Bisnis_unit::all();
-            $data['customers'] = Customer::all();
-            
-            $data['kontraks'] = DB::table('kontrak')
-            ->join('customer', 'customer.kode_customer', '=', 'kontrak.kode_customer')
-            ->join('wilayah','wilayah.wilayah_id','=','customer.wilayah_id')
-            ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
-            ->where('bisnis_unit.bu_id', '=', $request->bu_id)
-            ->where('wilayah.wilayah_id', '=', $request->wilayah_id)
-            ->orderBy('kontrak.id_kontrak','asc')
-            ->get();
-
-            foreach($data['kontraks'] as $key => $kontraa){
-                $awok = DB::table('kontrak')
-                ->join('customer', 'customer.kode_customer', '=', 'kontrak.kode_customer')
-                ->join('wilayah','wilayah.wilayah_id','=','customer.wilayah_id')
-                ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
-                ->join('datamou', 'datamou.id_kontrak', '=', 'kontrak.id_kontrak')
-                ->where('bisnis_unit.bu_id', '=', $request->bu_id)
-                ->where('wilayah.wilayah_id', '=', $request->wilayah_id)
-                ->where('kontrak.id_kontrak', '=', $kontraa->id_kontrak)
-                ->orderBy('kontrak.id_kontrak','asc')
-                ->get();
-                
-                $data['kontraks'][$key]->datamou_flag = count($awok);
-            }
-            
-            return view('admin/kontrak/kontrak', $data);
-        }
     
         if($request->bu_id)
         {
             $data['no'] = 1;
-            $data['wilayahs'] = Wilayah::all();
             $data['bisnis_units'] = Bisnis_unit::all();
             $data['customers'] = Customer::all();
             // $data['kontraks'] = Kontrak::all();
             $data['kontraks'] = DB::table('kontrak')
             ->join('customer', 'customer.kode_customer', '=', 'kontrak.kode_customer')
-            ->join('wilayah','wilayah.wilayah_id','=','customer.wilayah_id')
             ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
             ->where('bisnis_unit.bu_id', '=', $request->bu_id)
             ->get();
             foreach($data['kontraks'] as $key => $kontraa){
                 $awok = DB::table('kontrak')
                 ->join('customer', 'customer.kode_customer', '=', 'kontrak.kode_customer')
-                ->join('wilayah','wilayah.wilayah_id','=','customer.wilayah_id')
                 ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
                 ->join('datamou', 'datamou.id_kontrak', '=', 'kontrak.id_kontrak')
                 ->where('bisnis_unit.bu_id', '=', $request->bu_id)
@@ -85,40 +48,11 @@ class KontrakadminController extends Controller
             }
             return view('admin/kontrak/kontrak', $data);
         }
-        if($request->wilayah_id)
-        {
-            $data['no'] = 1;
-            $data['wilayahs'] = Wilayah::all();
-            $data['bisnis_units'] = Bisnis_unit::all();
-            $data['customers'] = Customer::all();
-            // $data['kontraks'] = Kontrak::all();
-            $data['kontraks'] = DB::table('kontrak')
-            ->join('customer', 'customer.kode_customer', '=', 'kontrak.kode_customer')
-            ->join('wilayah','wilayah.wilayah_id','=','customer.wilayah_id')
-            ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
-            ->where('wilayah.wilayah_id', '=', $request->wilayah_id)
-            ->get();
-            foreach($data['kontraks'] as $key => $kontraa){
-                $awok = DB::table('kontrak')
-                ->join('customer', 'customer.kode_customer', '=', 'kontrak.kode_customer')
-                ->join('wilayah','wilayah.wilayah_id','=','customer.wilayah_id')
-                ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
-                ->join('datamou', 'datamou.id_kontrak', '=', 'kontrak.id_kontrak')
-                // ->where('bisnis_unit.bu_id', '=', $request->bu_id)
-                ->where('wilayah.wilayah_id', '=', $request->wilayah_id)
-                ->where('kontrak.id_kontrak', '=', $kontraa->id_kontrak)
-                ->orderBy('kontrak.id_kontrak','asc')
-                ->get();
-                
-                $data['kontraks'][$key]->datamou_flag = count($awok);
-            }
-            return view('admin/kontrak/kontrak', $data);
-        }
+        
     }
     public function index()
     {
         $data['no'] = 1;
-        $data['wilayahs'] = Wilayah::all();
         $data['bisnis_units'] = Bisnis_unit::all();
         $data['customers'] = Customer::all();  
         $data['kontraks'] = DB::table('kontrak')
@@ -199,13 +133,7 @@ class KontrakadminController extends Controller
  
         return view('admin/kontrak/editkontrak')->with('kontrak', $kontrak);
     }
-    // public function putus($id_kontrak)
-    // {
-    //     $where = array('id_kontrak' => $id_kontrak);
-    //     $kontrak  = Kontrak::where($where)->first();
- 
-    //     return view('admin/kontrak/putus_kontrak')->with('kontrak', $kontrak);
-    // }
+  
     public function closing(Request $request, $id_kontrak)
     {
         $kontrak = Kontrak::findorFail($id_kontrak);

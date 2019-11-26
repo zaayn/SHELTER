@@ -36,12 +36,12 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-md-2">Wilayah</label>
+                                <label class="control-label col-md-2">Area</label>
                                 <div class="col-md-6">
-                                    <select class="form-control" name="wilayah_id">
-                                        <option value="">--- SELECT WILAYAH ---</option>
-                                    @foreach($wilayahs as $wilayah)
-                                        <option value="{{ $wilayah->wilayah_id }}">{{ $wilayah->nama_wilayah }}</option>
+                                    <select class="form-control" name="area_id">
+                                        <option value="">--- SELECT AREA ---</option>
+                                    @foreach($areas as $area)
+                                        <option value="{{ $area->area_id }}">{{ $area->nama_area }}</option>
                                     @endforeach
                                     </select>
                                 </div>
@@ -76,7 +76,7 @@
                                     <th>telpon</th>
                                     <th>cp</th>
                                     <th>Area</th>
-                                    <th>Wilayah</th>
+                                    <th>area</th>
                                     <th>Area Supervisor</th>
                                 </thead>
                                 <tbody>
@@ -93,7 +93,7 @@
                                         <td>{{ $customer->telpon }}</td>
                                         <td>{{ $customer->cp }}</td>
                                         <td>{{ $customer->nama_area}}</td>
-                                        <td>{{ $customer->nama_wilayah}}</td>
+                                        <td>{{ $customer->nama_area}}</td>
                                         <td>{{ $customer->nama_depan}}</td>
                                         
                                     </tr>

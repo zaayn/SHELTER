@@ -9,7 +9,7 @@ use App\Datamou;
 use PDF;
 use Auth;
 use App\Bisnis_unit;
-use App\Wilayah;
+use App\Area;
 
 class OfficerController extends Controller
 {
@@ -24,9 +24,9 @@ class OfficerController extends Controller
 
         $amount = DB::table('customer')
                     ->select(
-                    DB::raw('nama_area as area'),
+                    DB::raw('area_id as area'),
                     DB::raw('count(*) as jumlah'))
-                    ->groupBy('nama_area')
+                    ->groupBy('area')
                     ->get();
         $cat[] = ['area','jumlah'];
         foreach($amount as $key => $value){
@@ -36,7 +36,7 @@ class OfficerController extends Controller
         return view('/officer/dashboard_officer')->with($data)->with('cat',$cat);
     }
     public function mou(){
-        $data['wilayahs'] = Wilayah::all();
+        $data['areas'] = Area::all();
         $data['bisnis_units'] = Bisnis_unit::all();
         $data['no'] = 1;
         $data['datamous'] = DB::table('datamou')
@@ -46,46 +46,46 @@ class OfficerController extends Controller
     }
     public function filter_mou(Request $request)
     {
-        if($request->bu_id && $request->wilayah_id)
+        if($request->bu_id && $request->area_id)
         {
             $data['no'] = 1;
-            $data['wilayahs'] = Wilayah::all();
+            $data['areas'] = Area::all();
             $data['bisnis_units'] = Bisnis_unit::all();
             $data['datamous'] = DB::table('datamou')
             ->join('kontrak', 'datamou.id_kontrak', '=', 'kontrak.id_kontrak')
             ->join('customer', 'customer.kode_customer', '=', 'kontrak.kode_customer')
-            ->join('wilayah','wilayah.wilayah_id','=','customer.wilayah_id')
+            ->join('area','area.area_id','=','customer.area_id')
             ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
             ->where('bisnis_unit.bu_id', '=', $request->bu_id)
-            ->where('wilayah.wilayah_id', '=', $request->wilayah_id)
+            ->where('area.area_id', '=', $request->area_id)
             ->get();
             return view('officer/mou', $data);
         }
         if($request->bu_id)
         {
             $data['no'] = 1;
-            $data['wilayahs'] = Wilayah::all();
+            $data['areas'] = Area::all();
             $data['bisnis_units'] = Bisnis_unit::all();
             $data['datamous'] = DB::table('datamou')
             ->join('kontrak', 'datamou.id_kontrak', '=', 'kontrak.id_kontrak')
             ->join('customer', 'customer.kode_customer', '=', 'kontrak.kode_customer')
-            ->join('wilayah','wilayah.wilayah_id','=','customer.wilayah_id')
+            ->join('area','area.area_id','=','customer.area_id')
             ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
             ->where('bisnis_unit.bu_id', '=', $request->bu_id)
             ->get();
             return view('officer/mou', $data);
         }
-        if($request->wilayah_id)
+        if($request->area_id)
         {
             $data['no'] = 1;
-            $data['wilayahs'] = Wilayah::all();
+            $data['areas'] = Area::all();
             $data['bisnis_units'] = Bisnis_unit::all();
             $data['datamous'] = DB::table('datamou')
             ->join('kontrak', 'datamou.id_kontrak', '=', 'kontrak.id_kontrak')
             ->join('customer', 'customer.kode_customer', '=', 'kontrak.kode_customer')
-            ->join('wilayah','wilayah.wilayah_id','=','customer.wilayah_id')
+            ->join('area','area.area_id','=','customer.area_id')
             ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
-            ->where('wilayah.wilayah_id', '=', $request->wilayah_id)
+            ->where('area.area_id', '=', $request->area_id)
             ->get();
             return view('officer/mou', $data);
         }

@@ -84,18 +84,14 @@
             <div class="panel-heading"><h3>User Terakhir Login :</h3></div>
             <div class="panel-body">
                 <table>
-                    <thead>
-                        <th>Nama User</th>
-                        <th>Terakhir Login</th>
-                    </thead>
-                    <tbody>
+                    
+                    
                     @foreach($lastUser as $last)
-                    <tr>
-                        <td>{{$last->username}}</td>
-                        <td>{{\Carbon\Carbon::parse($last->current_login_at)->diffForHumans()}}</td>
-                    </tr>
+                    
+                    <h5><strong>{{$last->username}}</strong> - {{\Carbon\Carbon::parse($last->current_login_at)->diffForHumans()}}</h5>
+                    
                     @endforeach
-                    </tbody>
+                    
                 </table>
             </div>
         </div>
@@ -193,7 +189,7 @@
                                 @foreach($keluhans as $keluhan)
                                 <tr>
                                     <td>{{ $no++  }}</td>
-                                    <td>{{ $keluhan->customer->nama_perusahaan }}</td>
+                                    <td>{{ $keluhan->nama_perusahaan }}</td>
                                     <td>{{ $keluhan->departemen }}</td>
                                     <td>{{ $keluhan->tanggal_keluhan }}</td>
                                     <td>{{ $keluhan->topik_masalah }}</td>

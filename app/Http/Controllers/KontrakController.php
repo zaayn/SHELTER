@@ -11,14 +11,14 @@ use Illuminate\Support\Facades\DB;
 use App\Kontrak;
 use App\Customer;
 use App\Bisnis_unit;
-use App\Wilayah;
+use App\Area;
 use PDF;
 
 class KontrakController extends Controller
 {
     public function index()
     {
-        $data['wilayahs'] = Wilayah::all();
+        $data['areas'] = Area::all();
         $data['bisnis_units'] = Bisnis_unit::all();
         $data['customers'] = Customer::all();        
         $data['kontraks'] = DB::table('kontrak')
@@ -135,46 +135,46 @@ class KontrakController extends Controller
     }
     public function filter(Request $request)
     {
-        if($request->bu_id && $request->wilayah_id)
+        if($request->bu_id && $request->area_id)
         {
-            $data['wilayahs'] = wilayah::all();
+            $data['areas'] = area::all();
             $data['bisnis_units'] = bisnis_unit::all();
             $data['customers'] = customer::all();
             $data['kontraks'] = DB::table('kontrak')
             ->join('customer', 'customer.kode_customer', '=', 'kontrak.kode_customer')
-            ->join('wilayah','wilayah.wilayah_id','=','customer.wilayah_id')
+            ->join('area','area.area_id','=','customer.area_id')
             ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
-            ->select('wilayah.wilayah_id','bisnis_unit.nama_bisnis_unit','bisnis_unit.bu_id','kontrak.id_kontrak','kontrak.nomor_kontrak','customer.kode_customer','customer.nama_perusahaan','kontrak.periode_kontrak','kontrak.akhir_periode','kontrak.srt_pemberitahuan','kontrak.tgl_srt_pemberitahuan','kontrak.srt_penawaran','kontrak.tgl_srt_penawaran','kontrak.dealing','kontrak.tgl_dealing','kontrak.posisi_pks','kontrak.closing')
+            ->select('area.area_id','bisnis_unit.nama_bisnis_unit','bisnis_unit.bu_id','kontrak.id_kontrak','kontrak.nomor_kontrak','customer.kode_customer','customer.nama_perusahaan','kontrak.periode_kontrak','kontrak.akhir_periode','kontrak.srt_pemberitahuan','kontrak.tgl_srt_pemberitahuan','kontrak.srt_penawaran','kontrak.tgl_srt_penawaran','kontrak.dealing','kontrak.tgl_dealing','kontrak.posisi_pks','kontrak.closing')
             ->where('bisnis_unit.bu_id', '=', $request->bu_id)
-            ->where('wilayah.wilayah_id', '=', $request->wilayah_id)
+            ->where('area.area_id', '=', $request->area_id)
             ->get();
             return view('officer/kontrak', $data);
         }
         elseif($request->bu_id)
         {
-            $data['wilayahs'] = wilayah::all();
+            $data['areas'] = area::all();
             $data['bisnis_units'] = bisnis_unit::all();
             $data['customers'] = customer::all();
             $data['kontraks'] = DB::table('kontrak')
             ->join('customer', 'customer.kode_customer', '=', 'kontrak.kode_customer')
-            ->join('wilayah','wilayah.wilayah_id','=','customer.wilayah_id')
+            ->join('area','area.area_id','=','customer.area_id')
             ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
-            ->select('wilayah.wilayah_id','bisnis_unit.nama_bisnis_unit','bisnis_unit.bu_id','kontrak.nomor_kontrak','kontrak.id_kontrak','customer.kode_customer','customer.nama_perusahaan','kontrak.periode_kontrak','kontrak.akhir_periode','kontrak.srt_pemberitahuan','kontrak.tgl_srt_pemberitahuan','kontrak.srt_penawaran','kontrak.tgl_srt_penawaran','kontrak.dealing','kontrak.tgl_dealing','kontrak.posisi_pks','kontrak.closing')
+            ->select('area.area_id','bisnis_unit.nama_bisnis_unit','bisnis_unit.bu_id','kontrak.nomor_kontrak','kontrak.id_kontrak','customer.kode_customer','customer.nama_perusahaan','kontrak.periode_kontrak','kontrak.akhir_periode','kontrak.srt_pemberitahuan','kontrak.tgl_srt_pemberitahuan','kontrak.srt_penawaran','kontrak.tgl_srt_penawaran','kontrak.dealing','kontrak.tgl_dealing','kontrak.posisi_pks','kontrak.closing')
             ->where('bisnis_unit.bu_id', '=', $request->bu_id)
             ->get();
             return view('officer/kontrak', $data);
         }
-        if($request->wilayah_id)
+        if($request->area_id)
         {
-            $data['wilayahs'] = wilayah::all();
+            $data['areas'] = area::all();
             $data['bisnis_units'] = bisnis_unit::all();
             $data['customers'] = customer::all();
             $data['kontraks'] = DB::table('kontrak')
             ->join('customer', 'customer.kode_customer', '=', 'kontrak.kode_customer')
-            ->join('wilayah','wilayah.wilayah_id','=','customer.wilayah_id')
+            ->join('area','area.area_id','=','customer.area_id')
             ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
-            ->select('wilayah.wilayah_id','bisnis_unit.nama_bisnis_unit','bisnis_unit.bu_id','kontrak.id_kontrak','kontrak.nomor_kontrak','customer.kode_customer','customer.nama_perusahaan','kontrak.periode_kontrak','kontrak.akhir_periode','kontrak.srt_pemberitahuan','kontrak.tgl_srt_pemberitahuan','kontrak.srt_penawaran','kontrak.tgl_srt_penawaran','kontrak.dealing','kontrak.tgl_dealing','kontrak.posisi_pks','kontrak.closing')
-            ->where('wilayah.wilayah_id', '=', $request->wilayah_id)
+            ->select('area.area_id','bisnis_unit.nama_bisnis_unit','bisnis_unit.bu_id','kontrak.id_kontrak','kontrak.nomor_kontrak','customer.kode_customer','customer.nama_perusahaan','kontrak.periode_kontrak','kontrak.akhir_periode','kontrak.srt_pemberitahuan','kontrak.tgl_srt_pemberitahuan','kontrak.srt_penawaran','kontrak.tgl_srt_penawaran','kontrak.dealing','kontrak.tgl_dealing','kontrak.posisi_pks','kontrak.closing')
+            ->where('area.area_id', '=', $request->area_id)
             ->get();
             return view('officer/kontrak', $data);
         }
