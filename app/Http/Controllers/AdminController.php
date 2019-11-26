@@ -49,10 +49,10 @@ class AdminController extends Controller
 
         $amount = DB::table('customer')
                     ->select(
-                    DB::raw('nama_area as area'),
+                    DB::raw('area_id as area'),
                     DB::raw('count(*) as jumlah'))
                     ->where('status', 'aktif')
-                    ->groupBy('nama_area')
+                    ->groupBy('area')
                     ->get();
         $cat[] = ['area','jumlah'];
         foreach($amount as $key => $value){
@@ -65,7 +65,6 @@ class AdminController extends Controller
     {
         $data['no'] = 1;
         $data['bisnis_unit'] = DB::table('bisnis_unit')->count();
-        $data['wilayah'] = DB::table('wilayah')->count();
         $data['area'] = DB::table('area')->count();
         $data['users'] = DB::table('users')->count();
 

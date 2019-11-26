@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
-use App\Wilayah;
 use App\Area;
 use App\User;
 
@@ -16,14 +15,12 @@ class UserController extends Controller
     public function insert()
     {
         $data['areas'] = Area::all();
-        $data['wilayahs'] = Wilayah::all();
         return view('admin/user/insert_user',$data);
     }
     public function filter(Request $request)
     {   
         if($request->rule)
         {
-            $data['wilayahs'] = Wilayah::all();
             $data['areas'] = Area::all();
             $data['no'] = 1;
             $data['users'] = DB::table('users')
@@ -35,7 +32,6 @@ class UserController extends Controller
         else {
             $data['users'] = User::all();
             $data['areas'] = Area::all();
-            $data['wilayahs'] = Wilayah::all();
             $data['no'] = 1;
             return view('admin/user/user', $data);
         }
@@ -45,7 +41,6 @@ class UserController extends Controller
     {   
         // $data['users'] = user::all();
         $data['areas'] = Area::all();
-        $data['wilayahs'] = Wilayah::all();
         $data['no'] = 1;
         $data['users'] = DB::table('users')
         ->join('area', 'users.area_id', '=', 'area.area_id')->get();
@@ -113,7 +108,6 @@ class UserController extends Controller
         
         $user = User::findOrFail($email);
         $data['areas'] = Area::all();
-        $data['wilayahs'] = Wilayah::all();
         return view('admin/user/edit_user',$data)->with('user', $user);
     }
     
