@@ -49,9 +49,9 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
     public $incrementing = false;
-    public function wilayah()
+    public function area()
     {
-        return $this->belongsTo(\App\Wilayah::class,'wilayah_id','wilayah_id');
+        return $this->belongsTo(\App\Area::class,'area_id');
     }
 
     const ADMIN_TYPE = 'admin';
