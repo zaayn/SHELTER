@@ -8,6 +8,7 @@ class call extends Model
 {
     protected $table = 'call';
     protected $primaryKey = 'call_id';
+    public $incrementing = true;
     protected $fillable = [
         'nama_customer'
        ,'spv_pic'

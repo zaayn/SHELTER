@@ -19,48 +19,49 @@ class Customer extends Model
        ,'fax'
        ,'cp'
        ,'nama_area'
-       ,'wilayah_id'
+       ,'area_id'
        ,'nama_depan'
        ,'status'
        ,'month_kontrak'
        ,'jenis_perusahaan'
        ,'negara'
+       ,'putus_kontrak'
        
     ];
     public $incrementing = false;
     protected $appends = ['customer_type'];
 
-    public function wilayah()
-    {
-
-        return $this->belongsTo(\App\Wilayah::class,'wilayah_id','wilayah_id');
-
-    }
     public function bisnis_unit()
     {
 
-        return $this->belongsTo(\App\bisnis_unit::class,'bu_id','bu_id');
+        return $this->belongsTo(\App\Bisnis_unit::class,'bu_id','bu_id');
+
+    }
+    public function area()
+    {
+
+        return $this->belongsTo(\App\Area::class,'area_id','area_id');
 
     }
     public function kontrak()
     {
 
-        return $this->hasMany(kontrak::class);
+        return $this->hasMany(\App\Kontrak::class);
 
     }
     public function call()
     {
 
-        return $this->hasMany(call::class);
+        return $this->hasMany(\App\Call::class);
 
     }
     public function visit()
     {
-        return $this->hasMany(visit::class);
+        return $this->hasMany(\App\Visit::class);
     }
     public function keluhan()
     {
-        return $this->hasMany(keluhan::class);
+        return $this->hasMany(\App\Keluhan::class);
     }
     
     public function getCustomerTypeAttribute()

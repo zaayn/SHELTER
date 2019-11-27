@@ -19,6 +19,7 @@ class LoginController extends Controller
     */
 
     use AuthenticatesUsers;
+
     protected function authenticated(Request $request, $user)
     {
         if ( $user->isAdmin() ) 
@@ -77,6 +78,5 @@ class LoginController extends Controller
         $request->session()->regenerate();
  
         return redirect('/login');
-            
     }
 }

@@ -50,7 +50,7 @@
                             <hr style="border: solid #ddd; border-width: 1px 0 0; clear: both; margin: 22px 0 21px; height: 0;">
                            
                             @include('admin.shared.components.alert')
-                            <table id="mydatatables" class="table table-collapse table-hover table-light table-striped  table-responsive">
+                            <table id="mydatatables2" class="table table-collapse table-hover table-light table-striped  table-responsive">
                                     <tr>
                                         <th>No</th>
                                         <td>{{ $no++ }}</td>
@@ -119,128 +119,81 @@
                     </div>
                 </div>
             </div>
-<div class="row">
-    <div class="col-md-12">
-        <div class="panel block">
-            <div class="panel-body">
-                <div class="panel-heading"><h3>Daftar Riwayat Kontrak</h3></div>
-                <table id="mydatatables2" class="table table-responsive table-hover table-light table-striped">
-                    <thead>
-                        <th>Nomor Kontrak</th>
-                        <th>Kode Customer</th>
-                        <th>Nama Perusahaan</th>
-                        <th>Periode Kontrak</th>
-                        <th>Akhir Periode</th>
-                        <th>Surat Pemberitahuan</th>
-                        <th>Tgl_Surat Pemberitahuan</th>
-                        <th>Surat Penawaran</th>
-                        <th>Tgl_Surat Penawaran</th>
-                        <th>Dealing</th>
-                        <th>Tgl_Dealing</th>
-                        <th>Posisi Pks</th>
-                        <th>Status</th>
-                        <th>Aksi</th>
-                    </thead>
-                    <tbody>
-                    @foreach($kontraks as $kontrak)
-                    <tr>
-                        <td>{{ $kontrak->id_kontrak }}</td>
-                        <td>{{ $kontrak->kode_customer }}</td>
-                        <td>{{ $kontrak->nama_perusahaan }}</td>
-                        <td>{{ $kontrak->periode_kontrak }}</td>
-                        <td>{{ $kontrak->akhir_periode }}</td>
-                        <td>{{ $kontrak->srt_pemberitahuan }}</td>
-                        <td>{{ $kontrak->tgl_srt_pemberitahuan }}</td>
-                        <td>{{ $kontrak->srt_penawaran }}</td>
-                        <td>{{ $kontrak->tgl_srt_penawaran }}</td>
-                        <td>{{ $kontrak->dealing }}</td>
-                        <td>{{ $kontrak->tgl_dealing }}</td>
-                        <td>{{ $kontrak->posisi_pks }}</td>
-                        <td>{{ $kontrak->closing }}</td>
-                        <td>
-                            <a href="{{route('edit.kontrak',$kontrak->id_kontrak)}}" class="btn btn-info btn-sm"><span class="fa fa-pencil"></span></a>
-                            <a onclick="return confirm('Apakah anda yakin akan menghapus data ini ?')" href="{{route('destroy.kontrak',$kontrak->id_kontrak)}}" class="btn btn-danger btn-sm"><span class="fa fa-trash"></span></a>
-                            <a onclick="return confirm('Apakah anda yakin akan menutup kontrak ini ?')" href="{{route('closed.kontrak',$kontrak->id_kontrak)}}" class="btn btn-warning btn-sm">Closed</a>
-                        </td>
-                    </tr>
-                    @endforeach
-                    </tbody>
-                </table> 
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="row">
-        <div class="col-md-12">
-            <div class="panel block">
-                <div class="panel-body">
-                    <div class="panel-heading"><h3>Daftar MoU perusahaan</h3></div>
-                        <hr style="border: solid #ddd; border-width: 1px 0 0; clear: both; margin: 22px 0 21px; height: 0;">
-                            @include('admin.shared.components.alert')
-                            <table id="mydatatables2" class="table table-responsive table-hover table-light table-striped">
-                                <thead>
-                                    <th>No. MoU</th>
-                                    <th>Nomor Kontrak</th>
-                                    <th>HC</th>
-                                    <th>Invoice</th>
-                                    <th>MF</th>
-                                    <th>MF (%)</th>
-                                    <th>Ket. % BPJS Ketenagakerjaan<th>
-                                    <th>Nominal BPJS Ketenagakerjaan</th>
-                                    <th>Ket. % BPJS Kesehatan</th>
-                                    <th>Nominal BPJS Kesehatan</th>
-                                    <th>Jiwasraya</th>
-                                    <th>Ramamusa</th>
-                                    <th>Ditagihkan</th>
-                                    <th>Diprovisasikan</th>
-                                    <th>Overheadcost</th>
-                                    <th>Training</th>
-                                    <th>Tanggal Invoice</th>
-                                    <th>Time of Payment</th>
-                                    <th>Cut of Date</th>
-                                    <th>Kaporlap</th>
-                                    <th>Devices</th>
-                                    <th>Chemical</th>
-                                    <th>Pendaftaran MoU</th>
-                                    <th>Aksi</th>
-                                </thead>
-                                <tbody>
-                                @foreach ($datamous as $datamou)
-                                <tr>
-                                    <td>{{ $no++ }}</td>
-                                    <td>{{ $datamou->id_kontrak }}</td>
-                                    <td>Rp {{ number_format($datamou->hc, 2, ',','.') }}</td>
-                                    <td>Rp {{ number_format($datamou->invoice, 2, ',','.') }}</td>
-                                    <td>{{ $datamou->mf }}</td>
-                                    <td>{{ $datamou->mf_persen }}</td>
-                                    <td>{{ $datamou->bpjs_tk_persen}}</td>
-                                    <td>{{ $datamou->bpjs_tenagakerja }}</td>
-                                    <td>{{ $datamou->bpjs_kes_persen}}</td>
-                                    <td>{{ $datamou->bpjs_kesehatan }}</td>
-                                    <td>{{ $datamou->jiwasraya }}</td>
-                                    <td>{{ $datamou->ramamusa }}</td>
-                                    <td>{{ $datamou->ditagihkan }}</td>
-                                    <td>{{ $datamou->diprovisasikan }}</td>
-                                    <td>{{ $datamou->overheadcost }}</td>
-                                    <td>{{ $datamou->training }}</td>
-                                    <td>{{ $datamou->tanggal_invoice }}</td>
-                                    <td>{{ $datamou->time_of_payment }}</td>
-                                    <td>{{ $datamou->cut_of_date }}</td>
-                                    <td>{{ $datamou->kaporlap }}</td>
-                                    <td>{{ $datamou->devices }}</td>
-                                    <td>{{ $datamou->chemical }}</td>
-                                    <td>{{ $datamou->pendaftaran_mou }}</td>
-                                    <td>
-                                        <a href="{{route('edit.datamou',$datamou->no_mou)}}" class="btn btn-info btn-sm"><span class="fa fa-pencil"></span></a>
-                                        <a onclick="return confirm('Apakah anda yakin akan menghapus data ini ?')" href="{{route('destroy.datamou',$datamou->no_mou)}}" class="btn btn-danger btn-sm"><span class="fa fa-trash"></span></a>
-                                    </td>
-                                </tr> 
-                                @endforeach
-                                </tbody>
-                            </table>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="panel block">
+                        <div class="panel-body">
+                        <div class="panel-heading"><h3>Kontrak Perusahaan</h3></div>
+                        <div style="float:right; margin-bottom:10px;">
+                            <a href="{{asset('/admin/cust_type')}}" class="btn btn-primary btn-sm" >Customer Type</a>
+                            <a href="/admin/datacustomer/exportPDF" class="btn btn-default btn-sm" target="_blank">Download PDF</a>
+                        </div>
+                                <hr style="border: solid #ddd; border-width: 1px 0 0; clear: both; margin: 22px 0 21px; height: 0;">
+                                    @include('admin.shared.components.alert')
+                                    <div style="overflow-x:auto;">
+                                        <table id="mydatatables" class="table table-collapse table-hover table-light table-striped cell-border table-responsive">
+                                        <thead>
+                                            <th>Nomor</th>
+                                            <th>Nomor Kontrak</th>
+                                            <th>Periode Kontrak</th>
+                                            <th>Akhir Periode Kontrak</th>
+                                            <th>HC</th>
+                                            <th>Invoice</th>
+                                            <th>MF</th>
+                                            <th>MF (%)</th>
+                                            <th>BPJS ketenagakerjaan %</th>
+                                            <th>BPJS Ketenagakerjaan</th>
+                                            <th>BPJS kesehatan %</th>
+                                            <th>BPJS Kesehatan</th>
+                                            <th>Jiwasraya</th>
+                                            <th>Ramamusa</th>
+                                            <th>Ditagihkan</th>
+                                            <th>Diprovisasikan</th>
+                                            <th>Overheadcost</th>
+                                            <th>Training</th>
+                                            <th>Tanggal Invoice</th>
+                                            <th>Time of Payment</th>
+                                            <th>Cut of Date</th>
+                                            <th>Kaporlap</th>
+                                            <th>Devices</th>
+                                            <th>Chemical</th>
+                                            <th>Pendaftaran MoU</th>
+                                        </thead>
+                                        <tbody>
+                                        @foreach ($datamous as $datamou)
+                                        <tr>
+                                            <td>{{ $no++ }}</td>
+                                            <td>{{ $datamou->id_kontrak }}</td>
+                                            <td>{{ $datamou->periode_kontrak }}</td>
+                                            <td>{{ $datamou->akhir_periode }}</td>
+                                            <td>{{ $datamou->hc }}</td>
+                                            <td>{{ $datamou->invoice }}</td>
+                                            <td>{{ $datamou->mf }}</td>
+                                            <td>{{ $datamou->mf_persen }}</td>
+                                            <td>{{ $datamou->bpjs_tk_persen }}</td>
+                                            <td>{{ $datamou->bpjs_tenagakerja }}</td>
+                                            <td>{{ $datamou->bpjs_kes_persen }}</td>
+                                            <td>{{ $datamou->bpjs_kesehatan }}</td>
+                                            <td>{{ $datamou->jiwasraya }}</td>
+                                            <td>{{ $datamou->ramamusa }}</td>
+                                            <td>{{ $datamou->ditagihkan }}</td>
+                                            <td>{{ $datamou->diprovisasikan }}</td>
+                                            <td>{{ $datamou->overheadcost }}</td>
+                                            <td>{{ $datamou->training }}</td>
+                                            <td>{{ $datamou->tanggal_invoice }}</td>
+                                            <td>{{ $datamou->time_of_payment }}</td>
+                                            <td>{{ $datamou->cut_of_date }}</td>
+                                            <td>{{ $datamou->kaporlap }}</td>
+                                            <td>{{ $datamou->devices }}</td>
+                                            <td>{{ $datamou->chemical }}</td>
+                                            <td>{{ $datamou->pendaftaran_mou }}</td>
+                                        </tr> 
+                                        @endforeach
+                                        </tbody>
+                                    </table>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
 @endsection

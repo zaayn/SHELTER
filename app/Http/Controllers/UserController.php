@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
-use App\Wilayah;
 use App\Area;
 use App\User;
 
@@ -15,29 +14,24 @@ class UserController extends Controller
 {
     public function insert()
     {
-        $data['areas'] = area::all();
-        $data['wilayahs'] = wilayah::all();
+        $data['areas'] = Area::all();
         return view('admin/user/insert_user',$data);
     }
     public function filter(Request $request)
     {   
         if($request->rule)
         {
-            $data['wilayahs'] = wilayah::all();
-            $data['areas'] = area::all();
+            $data['areas'] = Area::all();
             $data['no'] = 1;
             $data['users'] = DB::table('users')
-            ->join('wilayah', 'users.wilayah_id', '=', 'wilayah.wilayah_id')
-            ->join('area', 'wilayah.area_id', '=', 'area.area_id')
-            ->select('users.*','wilayah.wilayah_id')
+            ->join('area', 'users.area_id', '=', 'area.area_id')
             ->where('users.rule', '=', $request->rule)
             ->get();
                 return view('admin/user/user', $data);
         }
         else {
-            $data['users'] = user::all();
-            $data['areas'] = area::all();
-            $data['wilayahs'] = wilayah::all();
+            $data['users'] = User::all();
+            $data['areas'] = Area::all();
             $data['no'] = 1;
             return view('admin/user/user', $data);
         }
@@ -46,12 +40,10 @@ class UserController extends Controller
     public function index(Request $request)
     {   
         // $data['users'] = user::all();
-        $data['areas'] = area::all();
-        $data['wilayahs'] = wilayah::all();
+        $data['areas'] = Area::all();
         $data['no'] = 1;
         $data['users'] = DB::table('users')
-        ->join('wilayah', 'users.wilayah_id', '=', 'wilayah.wilayah_id')
-        ->join('area', 'wilayah.area_id', '=', 'area.area_id')
+        ->join('area', 'users.area_id', '=', 'area.area_id')
         ->get();
         return view('admin/user/user', $data);
 
@@ -75,7 +67,7 @@ class UserController extends Controller
       $users->nama_belakang  = $request->nama_belakang;
       $users->password       = $request->password;
       $users->email          = $request->email;
-      $users->wilayah_id     = $request->wilayah_id;
+      $users->area_id        = $request->area_id;
       $users->no_hp          = $request->no_hp;
       $users->rule           = $request->rule;
 
@@ -87,7 +79,7 @@ class UserController extends Controller
       }
     }
     public function update(Request $request, $id){
-        $user = user::findorFail($id);
+        $user = User::findorFail($id);
         $this->validate($request,[
             'username'      =>['required', 'string'],
             'nama_depan'    =>['required', 'string'],
@@ -102,7 +94,7 @@ class UserController extends Controller
             $user->nama_belakang  = $request->nama_belakang;
             $user->password       = $request->password;
             $user->email          = $request->email;
-            $user->wilayah_id     = $request->wilayah_id;
+            $user->area_id        = $request->area_id;
             $user->no_hp          = $request->no_hp;
             $user->rule           = $request->rule;
   
@@ -110,14 +102,13 @@ class UserController extends Controller
           return redirect()->route('index.user')->with(['success'=>'edit sukses']);
     }
     public function delete($email){
-        $user = user::findOrFail($email)->delete();
+        $user = User::findOrFail($email)->delete();
         return redirect()->route('index.user')->with('success', 'delete sukses');
     }
     public function edit($email){
         
-        $user = user::findOrFail($email);
-        $data['areas'] = area::all();
-        $data['wilayahs'] = wilayah::all();
+        $user = User::findOrFail($email);
+        $data['areas'] = Area::all();
         return view('admin/user/edit_user',$data)->with('user', $user);
     }
     

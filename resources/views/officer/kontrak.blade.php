@@ -36,12 +36,12 @@
                                 </div>
                             </div>
                                 <div class="form-group">
-                                        <label class="control-label col-md-2">Wilayah</label>
+                                        <label class="control-label col-md-2">Area</label>
                                         <div class="col-md-6">
-                                            <select class="form-control" name="wilayah_id">
-                                                <option value="">--- SELECT WILAYAH ---</option>
-                                            @foreach($wilayahs as $wilayah)
-                                                <option value="{{ $wilayah->wilayah_id }}">{{ $wilayah->nama_wilayah }}</option>
+                                            <select class="form-control" name="area_id">
+                                                <option value="">--- SELECT AREA ---</option>
+                                            @foreach($areas as $area)
+                                                <option value="{{ $area->area_id }}">{{ $area->nama_area }}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -57,7 +57,7 @@
                                     </div>
                                 </div>
                             </form>
-                                                {{-- ---- end filter ------ --}} 
+                            {{-- ---- end filter ------ --}} 
                     <div style="float:right; margin-bottom:10px;">
                         <a href="/officer_crm/insertkontrak" class="btn btn-primary btn-sm">Insert Kontrak</a>
                         <a href="/officer_crm/kontrak/exportExcel" class="btn btn-default btn-sm" target="_blank">Download Excel</a>
@@ -86,7 +86,7 @@
                                 <tbody>
                                 @foreach($kontraks as $kontrak)
                                 <tr>
-                                    <td>{{ $kontrak->id_kontrak }}</td>
+                                    <td>{{ $kontrak->nomor_kontrak }}</td>
                                     <td>{{ $kontrak->kode_customer }}</td>
                                     <td>{{ $kontrak->nama_perusahaan }}</td>
                                     <td>{{ $kontrak->periode_kontrak }}</td>

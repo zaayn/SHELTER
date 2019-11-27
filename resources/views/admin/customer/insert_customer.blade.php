@@ -39,7 +39,7 @@
                   <div class="form-group">
                     
                     <div class="form-group col-md-12">
-                      <label>Nama Perusahaan :</label>
+                      <label>Nama Customer :</label>
                       <div><input type="text" class="form-control"  name="nama_perusahaan" required></div>
                     </div>
                     <div class="form-group col-md-12">
@@ -60,8 +60,8 @@
                       <label>Jenis Perusahaan :</label>
                       <div>
                           <select class="form-control" name="jenis_perusahaan">
-                              <option value="pma">PMA</option>
-                              <option value="pmn">PMN</option>
+                              <option value="PMA">PMA</option>
+                              <option value="PMN">PMN</option>
                           </select>
                       </div>
                   </div>
@@ -96,19 +96,9 @@
                     <div class="form-group col-md-12">
                         <label>Area :</label>
                         <div>
-                            <select class="form-control" name="nama_area">
+                            <select class="form-control" name="area_id">
                             @foreach($areas as $area)
-                                <option value="{{ $area->nama_area }}">{{ $area->nama_area }}</option>
-                            @endforeach
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group col-md-12">
-                        <label>Wilayah :</label>
-                        <div>
-                            <select class="form-control" name="wilayah_id">
-                            @foreach($wilayahs as $wilayah)
-                                <option value="{{ $wilayah->wilayah_id }}">{{ $wilayah->nama_wilayah }}</option>
+                                <option value="{{ $area->area_id }}">{{ $area->nama_area }}</option>
                             @endforeach
                             </select>
                         </div>
@@ -118,7 +108,7 @@
                         <div>
                             <select class="form-control" name="nama_depan">
                             @foreach($users as $users)
-                                <option value="{{ $users->nama_depan }}">{{ $users->nama_depan }} - {{ $users->nama_wilayah }}</option>
+                                <option value="{{ $users->nama_depan }}">{{ $users->nama_depan }} - {{ $users->nama_area }}</option>
                             @endforeach
                             </select>
                         </div>
@@ -127,8 +117,8 @@
                         <label>Status :</label>
                         <div>
                             <select class="form-control" name="status">
-                                <option value="aktif">Aktif</option>
-                                <option value="non_aktif" selected="selected">Non Aktif</option>
+                                <option value="Aktif">Aktif</option>
+                                <option value="Non_aktif" selected="selected">Non Aktif</option>
                             </select>
                         </div>
                     </div>

@@ -24,17 +24,20 @@ class CreateCustomerTable extends Migration
             $table->string('telpon');
             $table->string('fax');
             $table->string('cp');
-            $table->string('nama_area');
-            $table->integer('wilayah_id')->unsigned();
+            $table->integer('area_id')->unsigned();
             $table->string('nama_depan');
             $table->string('status');
+            $table->integer('month_kontrak')->default(0);
+            $table->string('jenis_perusahaan');
+            $table->string('negara');
+            $table->string('putus_kontrak')->nullable();
             $table->timestamps();
         });
         Schema::table('customer', function($table)
         {
-            $table->foreign('wilayah_id')
-                ->references('wilayah_id')
-                ->on('wilayah')
+            $table->foreign('area_id')
+                ->references('area_id')
+                ->on('area')
                 ->onDelete('cascade');
         });
         Schema::table('customer', function($table)

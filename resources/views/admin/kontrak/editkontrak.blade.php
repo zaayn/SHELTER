@@ -8,7 +8,7 @@
                 <h1>Form Edit Kontrak</h1>
                 <ol class="breadcrumb">
                     <li><a href="{{asset('/admin/home')}}"><i class="fa fa-dashboard"></i> Home</a></li>
-                    <li><a href="area"></i>Kontrak</a></li>
+                    <li><a href="{{asset('/admin/kontrak')}}"></i>Kontrak</a></li>
                     <li class="active">Edit Kontrak</li>
                 </ol>
             </div>
@@ -42,7 +42,7 @@
                     <div class="form-group">
                         <div class="form-group col-md-12">
                 	        <label class="font-weight-bold">Nomor Kontrak</label>
-                	        <input type="text" class="form-control" name="id_kontrak" value="{{$kontrak->id_kontrak}}" required>
+                	        <input type="text" class="form-control" name="nomor_kontrak" value="{{$kontrak->nomor_kontrak}}" required>
                         </div>
                         <div class="form-group col-md-12">
                 	        <label class="font-weight-bold">Kode Customer</label>
@@ -98,17 +98,6 @@
                           </select>
                         </div>
 
-
-                        <div class="form-group col-md-12">
-
-                	        <label class="font-weight-bold">Via</label>
-                	        <select class ="form-control" name="via" value="{{ $kontrak->via }}" required>
-                            <option value="-">-</option>
-                            <option value="Langsung">Langsung</option>
-                            <option value="Email">Email</option>
-                            <option value="Post Kurir">Post Kurir</option>
-                          </select>
-                        </div>
                         <div class="col-md-12">
                             <button type="submit" class="btn btn-lg btn-info btn-block ">
                                 Save

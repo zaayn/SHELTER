@@ -1,7 +1,5 @@
 @extends('layouts_users.app_admin')
 
-
-
 @section('content_header')
 <div class="row">
     <div class="col-md-12">
@@ -83,11 +81,18 @@
     </div>
     <div class="col-md-3" id="lastseen">
         <div class="panel panel-default">
-            <div class="panel-heading">
-                <h5>User Terakhir Login :</h5>
-                @foreach($lastUser as $last)
-                <h5><strong>{{$last->username}}</strong> - {{ \Carbon\Carbon::parse($last->current_login_at)->diffForHumans()}}</h5>
-                @endforeach
+            <div class="panel-heading"><h3>User Terakhir Login :</h3></div>
+            <div class="panel-body">
+                <table>
+                    
+                    
+                    @foreach($lastUser as $last)
+                    
+                    <h5><strong>{{$last->username}}</strong> - {{\Carbon\Carbon::parse($last->current_login_at)->diffForHumans()}}</h5>
+                    
+                    @endforeach
+                    
+                </table>
             </div>
         </div>
     </div>
@@ -103,7 +108,9 @@
                         <div style="overflow-x:auto;">
                         <table id="mydatatables" class="table table-responsive table-hover table-light table-striped">
                             <thead>
+                                <th>No</th>
                                 <th>Nomor Kontrak</th>
+                                <th>Closing/MoU</th>
                                 <th>Nama Perusahaan</th>
                                 <th>Periode Kontrak</th>
                                 <th>Akhir Periode</th>
@@ -120,7 +127,14 @@
                             <tbody>
                             @foreach($kontraks as $kontrak)
                             <tr>
-                                <td>{{ $kontrak->id_kontrak }}</td>
+                                <td>{{ $no++ }}</td>
+                                <td>{{ $kontrak->nomor_kontrak }}</td>
+                                <td>@if($kontrak->closing == 'Aktif')
+                                    <a onclick="return confirm('Apakah anda yakin akan menutup kontrak ini ?')" href="{{route('putus.kontrak',$kontrak->id_kontrak)}}" class="btn btn-warning btn-sm" data-toggle="tooltip" data-placement="right" title="Close"><span class="fa fa-ban"></span></a>
+                                    @endif
+                                    @if($kontrak->datamou_flag == 0)
+                                        <a href="{{route('insertmou.kontrak',$kontrak->id_kontrak)}}" class="btn btn-default btn-sm"data-toggle="tooltip" data-placement="right" title="Tambah MoU"><span class="fa fa-plus"></span></a>    
+                                    @endif</td>
                                 <td>{{ $kontrak->nama_perusahaan }}</td>
                                 <td>{{ $kontrak->periode_kontrak }}</td>
                                 <td>{{ $kontrak->akhir_periode }}</td>
@@ -133,8 +147,9 @@
                                 <td>{{ $kontrak->posisi_pks }}</td>
                                 <td>{{ $kontrak->closing }}</td>
                                 <td>
-                                    <a href="{{route('edit.kontrak',$kontrak->id_kontrak)}}" class="btn btn-info btn-sm"><span class="fa fa-pencil"></span></a>
-                                    <a onclick="return confirm('Apakah anda yakin akan menghapus data ini ?')" href="{{route('destroy.kontrak',$kontrak->id_kontrak)}}" class="btn btn-danger btn-sm"><span class="fa fa-trash"></span></a>
+                                    <a href="{{route('edit.kontrak',$kontrak->id_kontrak)}}" class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="right" title="Edit"><span class="fa fa-pencil"></span></a>
+                                    <a onclick="return confirm('Apakah anda yakin akan menghapus data ini ?')" href="{{route('destroy.kontrak',$kontrak->id_kontrak)}}" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="right" title="Delete"><span class="fa fa-trash"></span></a>
+                                    
                                 </td>
                             </tr>
                             @endforeach  
@@ -154,36 +169,36 @@
                     <hr style="border: solid #ddd; border-width: 1px 0 0; clear: both; margin: 22px 0 21px; height: 0;">
                         @include('admin.shared.components.alert')
                         <div style="overflow-x:auto;">    
-                        <table id="mydatatables2" class="table table-collapse table-hover table-light table-striped">
+                        <table id="mydatatables3" class="table table-collapse table-hover table-light table-striped">
                                 <thead>
                                     <th>No</th>
                                     <th>Nama Customer</th>
-                                    <th>SPV_PIC</th>
+                                    <th>Departemen</th>
                                     <th>Tanggal</th>
-                                    <th>Waktu Keluhan</th>
-                                    <th>Keluhan</th>
-                                    <th>PIC Keluhan</th>
-                                    <th>Waktu Follow</th>
-                                    <th>Follow Up</th>
-                                    <th>Closing Case</th>
-                                    <th>Via</th>
+                                    <th>Topik Permasalahan</th>
+                                    <th>Saran Penyelesaian</th>
+                                    <th>Time Target</th>
+                                    <th>Confirm Closed PIC</th>
+                                    <th>Case</th>
+                                    <th>Actual Case</th>
+                                    <th>Uraian Penyelesaian</th>
                                     <th>Status</th>
                                     <th>Aksi</th>
                                 </thead>
                                 <tbody>
                                 @foreach($keluhans as $keluhan)
                                 <tr>
-                                    <td>{{ $keluhan->id_keluhan  }}</td>
+                                    <td>{{ $no++  }}</td>
                                     <td>{{ $keluhan->nama_perusahaan }}</td>
-                                    <td>{{ $keluhan->spv_pic }}</td>
+                                    <td>{{ $keluhan->departemen }}</td>
                                     <td>{{ $keluhan->tanggal_keluhan }}</td>
-                                    <td>{{ $keluhan->jam_keluhan }}</td>
-                                    <td>{{ $keluhan->keluhan }}</td>
-                                    <td>{{ $keluhan->pic }}</td>
-                                    <td>{{ $keluhan->jam_follow }}</td>
-                                    <td>{{ $keluhan->follow_up }}</td>
-                                    <td>{{ $keluhan->closing_case }}</td>
-                                    <td>{{ $keluhan->via }}</td>
+                                    <td>{{ $keluhan->topik_masalah }}</td>
+                                    <td>{{ $keluhan->saran_penyelesaian }}</td>
+                                    <td>{{ $keluhan->time_target }}</td>
+                                    <td>{{ $keluhan->confirm_pic }}</td>
+                                    <td>{{ $keluhan->case }}</td>
+                                    <td>{{ $keluhan->actual_case }}</td>
+                                    <td>{{ $keluhan->uraian_penyelesaian }}</td>
                                     <td>{{ $keluhan->status }}</td>
                                     <td>
                                         <a href="{{route('edit.keluhan',$keluhan->id_keluhan)}}" class="btn btn-info btn-sm"><span class="fa fa-pencil"></span></a>

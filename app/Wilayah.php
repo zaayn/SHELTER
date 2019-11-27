@@ -22,13 +22,13 @@ class wilayah extends Model
     public function user()
     {
 
-        return $this->hasMany(user::class);
+        return $this->hasMany(\App\User::class);
 
     }
     public function customer()
     {
 
-        return $this->hasMany(customer::class);
+        return $this->hasMany(\App\customer::class);
 
     }
 }

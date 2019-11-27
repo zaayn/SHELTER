@@ -83,7 +83,6 @@
                                     <th>Telpon</th>
                                     <th>CP</th>
                                     <th>Area</th>
-                                    <th>Wilayah</th>
                                     <th>Area Supervisor</th>
                                     <th>Status</th>
                                     <th>Aksi</th>
@@ -103,10 +102,7 @@
                                         <td>{{ $customer->kabupaten }}</td>
                                         <td>{{ $customer->telpon }}</td>
                                         <td>{{ $customer->cp }}</td>
-                                        {{-- <td>{{ $customer->nama_area}}</td> --}}
-                                        {{-- <td>{{ $customer->wilayah->nama_wilayah}}</td> --}}
                                         <td>{{ $customer->nama_area}}</td>
-                                        <td>{{ $customer->nama_wilayah}}</td>
                                         <td>{{ $customer->nama_depan}}</td>
                                         <td>{{ $customer->status}}</td>
                                         <td>
@@ -116,11 +112,11 @@
                                             <a onclick="return confirm('Apakah anda yakin akan menghapus data ini ?')" href="{{route('delete.customer',$customer->kode_customer)}}" class="btn btn-danger btn-sm">
                                                 <span class="fa fa-trash"></span>
                                             </a>
-                                            @if($customer->status == 'aktif')
+                                            @if($customer->status == 'Aktif')
                                             <a onclick="return confirm('Apakah anda yakin ingin menonaktifkan customer ini ?')" href="{{route('reset.customer',$customer->kode_customer)}}" class="btn btn-warning btn-sm">
                                                 Non-aktifkan
                                             </a>
-                                            @elseif($customer->status == 'non_aktif')
+                                            @elseif($customer->status == 'Non_aktif')
                                             <a onclick="return confirm('Apakah anda yakin ingin mengaktifkan customer ini ?')" href="{{route('reset.customer',$customer->kode_customer)}}" class="btn btn-warning btn-sm">
                                                 Aktifkan
                                             </a>

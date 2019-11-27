@@ -8,8 +8,8 @@
                 <h1>Form Insert Visit</h1>
                 <ol class="breadcrumb">
                     <li><a href="{{asset('/admin/home')}}"><i class="fa fa-dashboard"></i> Home</a></li>
-                    <li><a href="{{asset('/admin/visit')}}"></i>Area</a></li>
-                    <li class="active">Insert Area</li>
+                    <li><a href="{{asset('/admin/visit')}}"></i>Visit</a></li>
+                    <li class="active">Insert Visit</li>
                 </ol>
             </div>
         </div>
@@ -43,11 +43,12 @@
                         <div class="form-group col-md-12">
                             <label>Nama Customer :</label>
                             <div>
-                                <select class="form-control" name="kode_customer">
+                                <input list="browsers" class="form-control" name="kode_customer">
+                                <datalist id="browsers">
                                 @foreach($customers as $customer)
                                     <option value="{{ $customer->kode_customer }}">{{ $customer->kode_customer }} - {{ $customer->nama_perusahaan }} - {{ $customer->bisnis_unit->nama_bisnis_unit }}</option>
                                 @endforeach
-                                </select>
+                                </datalist>
                             </div>
                         </div>
                         <div class="form-group col-md-12">

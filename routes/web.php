@@ -1,17 +1,9 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
 Route::get('/', function () {
     return view('auth.login');
+    if(!Auth::check()) return redirect()->route('login');
+    // else return redirect('/admin/home');
 });
 Auth::routes();
 
@@ -39,7 +31,7 @@ Route::group(['prefix' => 'officer_crm',  'middleware' => 'is_officer_crm'], fun
     Route::post('/update/visit{visit_id}','VisitController@update')->name('update.visit.officer');
     Route::get('/visit/exportPDF', 'VisitController@exportPDF');
     Route::get('/visit/exportExcel', 'VisitadminController@exportExcel');
-    Route::post('/filter/viist', 'VisitController@filter')->name('visit.filter');
+    Route::post('/filter/visit', 'VisitController@filter')->name('visit.filter');
 
     //------- laporan keluhan
     Route::get('/insertkeluhan', 'KeluhanController@insert')->name('insert.keluhan.officer'); //show form insert
@@ -60,6 +52,7 @@ Route::group(['prefix' => 'officer_crm',  'middleware' => 'is_officer_crm'], fun
     Route::get('/edit/editkontrak{id_kontrak}','KontrakController@edit')->name('edit.kontrak.officer');
     Route::post('/update/kontrak{id_kontrak}','KontrakController@update')->name('update.kontrak.officer');
     Route::get('/mou', 'OfficerController@mou')->name('mou.officer');
+    Route::post('/filter/mou', 'OfficerController@filter_mou')->name('filter.mou.officer');
     Route::get('/kontrak/exportPDF', 'KontrakController@exportPDF');
     Route::get('/kontrak/exportExcel', 'KontrakadminController@exportExcel');
     Route::post('/filter/kontrak', 'KontrakController@filter')->name('kontrak.filter');
@@ -68,8 +61,6 @@ Route::group(['prefix' => 'officer_crm',  'middleware' => 'is_officer_crm'], fun
 
 });
 
-// email superadmin :superadmin@gmail.com
-// pass             :12345678
 Route::group(['prefix' => 'superadmin',  'middleware' => 'is_superadmin'], function(){
     Route::get('/home', 'AdminController@superadmin')->name('home'); //Dashboard super admin
 
@@ -89,14 +80,14 @@ Route::group(['prefix' => 'superadmin',  'middleware' => 'is_superadmin'], funct
     Route::get('/edit/area{id}','AreaController@edit')->name('edit.area');
     Route::put('/update/area{id}','AreaController@update')->name('update.area');
 
-    // --------- wilayah
-    Route::get('/insert_wilayah', 'WilayahController@insert')->name('insert.wilayah'); //show form insert
-    Route::get('/wilayah', 'WilayahController@index')->name('index.wilayah');
-    Route::post('/store/wilayah', 'WilayahController@store')->name('store.wilayah');
-    Route::get('/delete/wilayah{id}','WilayahController@delete')->name('delete.wilayah');
-    Route::get('/edit/wilayah{id}','WilayahController@edit')->name('edit.wilayah');
-    Route::put('/update/wilayah{id}','WilayahController@update')->name('update.wilayah');
-    Route::post('/filter/wilayah', 'WilayahController@filter')->name('filter.wilayah');
+    // // --------- wilayah
+    // Route::get('/insert_wilayah', 'WilayahController@insert')->name('insert.wilayah'); //show form insert
+    // Route::get('/wilayah', 'WilayahController@index')->name('index.wilayah');
+    // Route::post('/store/wilayah', 'WilayahController@store')->name('store.wilayah');
+    // Route::get('/delete/wilayah{id}','WilayahController@delete')->name('delete.wilayah');
+    // Route::get('/edit/wilayah{id}','WilayahController@edit')->name('edit.wilayah');
+    // Route::put('/update/wilayah{id}','WilayahController@update')->name('update.wilayah');
+    // Route::post('/filter/wilayah', 'WilayahController@filter')->name('filter.wilayah');
 
     // user
     Route::get('/insert_user', 'UserController@insert')->name('insert.user'); //show form insert
@@ -129,6 +120,7 @@ Route::group(['prefix' => 'admin',  'middleware' => 'is_admin'], function(){
     Route::get('/cust_type', 'CustomerController@cust_type')->name('cust.type');
     Route::get('/profile', 'CustomerController@profile')->name('cust.profile');
     Route::post('/filter/profile', 'CustomerController@filter_profile')->name('filter.profile');
+    Route::post('/update/putus{kode_customer}','CustomerController@update_putus')->name('update.putus');
 
     //------- laporan call
     Route::get('/insertcall', 'CalladminController@insert')->name('insert.call'); //show form insert
@@ -175,8 +167,10 @@ Route::group(['prefix' => 'admin',  'middleware' => 'is_admin'], function(){
         Route::get('/kontrak/exportPDF', 'KontrakadminController@exportPDF');
         Route::get('/kontrak/exportExcel', 'KontrakadminController@exportExcel');
         Route::get('/reminder', 'KontrakadminController@reminder')->name('index.reminder.kontrak');
-        Route::get('/closed/kontrak{id_kontrak}', 'KontrakadminController@closed')->name('closed.kontrak');
+        // Route::get('/closed/kontrak{id_kontrak}', 'KontrakadminController@closed')->name('closed.kontrak');
         Route::get('/insert/mou{id_kontrak}','KontrakadminController@insertmou')->name('insertmou.kontrak');
+         Route::get('/edit/putus_kontrak{id_kontrak}','KontrakadminController@putus_kontrak')->name('putus.kontrak');
+        Route::get('/update/closing{id_kontrak}','KontrakadminController@closing')->name('update.closing');
 
 
         //------- laporan mou
@@ -188,17 +182,24 @@ Route::group(['prefix' => 'admin',  'middleware' => 'is_admin'], function(){
         Route::post('/update/datamou{no_mou}','MouController@update')->name('update.datamou');
         Route::get('/mou/exportPDF', 'MouController@exportPDF');
         Route::get('/mou/exportExcel', 'MouController@exportExcel');
+        Route::post('/filter/mou', 'MouController@filter_mou')->name('filter.mou');
 });
  
 Route::group(['prefix' => 'manager_crm',  'middleware' => 'is_manager_crm'], function(){
     //manager crm
     Route::get('/home', 'ManagerController@index')->name('dashboard_officer'); //Dashboard Admin
     Route::get('/call', 'ManagerController@call')->name('manager_call');
+    Route::post('/filter/call', 'ManagerController@filter_call')->name('filter.call.crm');
     Route::get('/keluhan', 'ManagerController@keluhan')->name('manager_keluhan');
+    Route::post('/filter/keluhan', 'ManagerController@filter_keluhan')->name('filter.keluhan.crm');
     Route::get('/visit', 'ManagerController@visit')->name('manager_visit');
+    Route::post('/filter/visit', 'ManagerController@filter_visit')->name('filter.visit.crm');
     Route::get('/kontrak', 'ManagerController@kontrak')->name('manager_kontrak');
+    Route::post('/filter/kontrak', 'ManagerController@filter_kontrak')->name('filter.kontrak.crm');
     Route::get('/mou', 'ManagerController@mou')->name('manager_mou');
+    Route::post('/filter/mou', 'ManagerController@filter_mou')->name('filter.mou.manager');
     Route::get('/customer', 'ManagerController@customer')->name('manager_customer');
+    Route::post('/filter/customer', 'ManagerController@filter_customer')->name('filter.customer.crm');
 
     Route::get('/call/exportPDF', 'callController@exportPDF');
     Route::get('/call/exportExcel', 'CalladminController@exportExcel');
@@ -213,7 +214,6 @@ Route::group(['prefix' => 'manager_crm',  'middleware' => 'is_manager_crm'], fun
     Route::get('/customer/exportPDF', 'CustomerController@exportPDF');
     Route::get('/customer/exportExcel', 'CustomerController@exportExcel');
 
-
 });
 
 Route::group(['prefix' => 'direktur',  'middleware' => 'is_direktur'], function(){
@@ -224,7 +224,13 @@ Route::group(['prefix' => 'direktur',  'middleware' => 'is_direktur'], function(
     Route::get('/visit', 'DirekturController@visit')->name('direktur_visit');
     Route::get('/kontrak', 'DirekturController@kontrak')->name('direktur_kontrak');
     Route::get('/mou', 'DirekturController@mou')->name('direktur_mou');
+    Route::post('/filter/mou', 'DirekturController@filter_mou')->name('filter.mou.direktur');
     Route::get('/customer', 'DirekturController@customer')->name('direktur_customer');
+    Route::post('/filter/call', 'DirekturController@filter_call')->name('filter.call.direktur');
+    Route::post('/filter/keluhan', 'DirekturController@filter_keluhan')->name('filter.keluhan.direktur');
+    Route::post('/filter/visit', 'DirekturController@filter_visit')->name('filter.visit.direktur');
+    Route::post('/filter/kontrak', 'DirekturController@filter_kontrak')->name('filter.kontrak.direktur');
+    Route::post('/filter/customer', 'DirekturController@filter_customer')->name('filter.customer.direktur');
 
     Route::get('/call/exportPDF', 'callController@exportPDF');
     Route::get('/call/exportExcel', 'CalladminController@exportExcel');
@@ -244,8 +250,11 @@ Route::group(['prefix' => 'manager_non_crm',  'middleware' => 'is_manager_non_cr
     //manager crm
     Route::get('/home', 'ManagerNonCrmController@index')->name('dashboard_officer'); //Dashboard Admin
     Route::get('/kontrak', 'ManagerNonCrmController@kontrak')->name('manager_non_crm_kontrak');
+    Route::post('/filter/kontrak', 'ManagerNonCrmController@filter_kontrak_noncrm')->name('filter.kontrak.noncrm');
     Route::get('/mou', 'ManagerNonCrmController@mou')->name('manager_non_crm_mou');
+    Route::post('/filter/mou', 'ManagerNonCrmController@filter_mou')->name('filter.mou.noncrm');
     Route::get('/customer', 'ManagerNonCrmController@customer')->name('manager_non_crm_customer');
+    Route::post('/filter/customer', 'ManagerNonCrmController@filter')->name('filter.customer.noncrm');
 
     Route::get('/mou/exportPDF', 'MouController@exportPDF');
     Route::get('/mou/exportExcel', 'MouController@exportExcel');

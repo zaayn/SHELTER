@@ -21,6 +21,43 @@
         <div class="col-md-12">
             <div class="panel block">
                 <div class="panel-body">
+                    {{-- ----------  -------------- filter ------------------------ --}}
+                    <form class="form-horizontal" id="form-filter" method="POST" action="{{route('filter.keluhan.crm')}}">
+                            @csrf
+                            <div class="form-group">
+                                <label class="control-label col-md-2">Bisnis Unit</label>
+                                <div class="col-md-6">
+                                    <select class="form-control" name="bu_id">
+                                        <option value="">--- SELECT BISNIS UNIT ---</option>
+                                    @foreach($bisnis_units as $bisnis_unit)
+                                        <option value="{{ $bisnis_unit->bu_id }}">{{ $bisnis_unit->nama_bisnis_unit }}</option>
+                                    @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                                <div class="form-group">
+                                        <label class="control-label col-md-2">Area</label>
+                                        <div class="col-md-6">
+                                            <select class="form-control" name="area_id">
+                                                <option value="">--- SELECT AREA ---</option>
+                                            @foreach($areas as $area)
+                                                <option value="{{ $area->area_id }}">{{ $area->nama_area }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-1 col-md-offset-2">
+                                        <a href="{{asset('/manager_crm/keluhan')}}">
+                                            <button type="button" class="btn btn-primary btn-sm"><i class="fa fa-refresh"></i> Reset</button>
+                                        </a>    
+                                    </div>
+                                    <div class="col-md-2">
+                                        <button type="submit" class="btn btn-primary btn-sm" id="btn-filter"><i class="fa fa-filter"></i> Filter</button>
+                                    </div>
+                                </div>
+                            </form>
+                            {{-- ---- end filter ------ --}}
                     <div style="float:right; margin-bottom:10px;">
                         <a href="/manager_crm/keluhan/exportExcel" class="btn btn-default btn-sm" target="_blank">Download Excel</a>
                         <a href="/manager_crm/keluhan/exportPDF" class="btn btn-default btn-sm" target="_blank">Download PDF</a>
@@ -28,33 +65,33 @@
                             <hr style="border: solid #ddd; border-width: 1px 0 0; clear: both; margin: 22px 0 21px; height: 0;">
                             <div style="overflow-x:auto;">
                                 <table id="mydatatables" class="table table-collapse table-hover table-light table-striped cell-border table-responsive">                                <thead>
-                                    <th style="width:10%">ID Keluhan</th>
-                                    <th style="width:75%">Nama Customer</th>
-                                    <th style="width:15%">SPV_PIC</th>
-                                    <th style="width:10%">Tanggal</th>
-                                    <th style="width:75%">Waktu Keluhan</th>
-                                    <th style="width:10%">Keluhan</th>
-                                    <th style="width:75%">PIC Keluhan</th>
-                                    <th style="width:15%">Waktu Follow</th>
-                                    <th style="width:75%">Follow Up</th>
-                                    <th style="width:10%">Closing Case</th>
-                                    <th style="width:75%">Via</th>
-                                    <th style="width:15%">Status</th>
+                                    <th>ID Keluhan</th>
+                                    <th>Nama Customer</th>
+                                    <th>Departemen Tertuju</th>
+                                    <th>Tanggal</th>
+                                    <th>Topik Permasalahan</th>
+                                    <th>Saran Penyelesaian</th>
+                                    <th>Time Target (Tgl)</th>
+                                    <th>Confirm closed PIC</th>
+                                    <th>Case</th>
+                                    <th>Actual Closed</th>
+                                    <th>Uraian Penyelesaian</th>
+                                    <th>Status</th>
                                 </thead>
                                 <tbody>
-                                @foreach($keluhan as $ke)
+                                @foreach($keluhans as $ke)
                                 <tr>
                                     <td>{{ $no++  }}</td>
                                     <td>{{ $ke->nama_perusahaan }}</td>
-                                    <td>{{ $ke->spv_pic }}</td>
+                                    <td>{{ $ke->departemen }}</td>
                                     <td>{{ $ke->tanggal_keluhan }}</td>
-                                    <td>{{ $ke->jam_keluhan }}</td>
-                                    <td>{{ $ke->keluhan }}</td>
-                                    <td>{{ $ke->pic }}</td>
-                                    <td>{{ $ke->jam_follow }}</td>
-                                    <td>{{ $ke->follow_up }}</td>
-                                    <td>{{ $ke->closing_case }}</td>
-                                    <td>{{ $ke->via }}</td>
+                                    <td>{{ $ke->topik_masalah }}</td>
+                                    <td>{{ $ke->saran_penyelesaian }}</td>
+                                    <td>{{ $ke->time_target }}</td>
+                                    <td>{{ $ke->confirm_pic }}</td>
+                                    <td>{{ $ke->case }}</td>
+                                    <td>{{ $ke->actual_case }}</td>
+                                    <td>{{ $ke->uraian_penyelesaian }}</td>
                                     <td>{{ $ke->status }}</td>
                                 </tr>
                                 @endforeach 

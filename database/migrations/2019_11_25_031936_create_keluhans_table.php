@@ -16,15 +16,15 @@ class CreateKeluhansTable extends Migration
         Schema::create('keluhan', function (Blueprint $table) {
             $table->increments('id_keluhan')->unique();
             $table->string('kode_customer');
-            $table->string('spv_pic');
+            $table->string('departemen');
             $table->date('tanggal_keluhan');
-            $table->time('jam_keluhan');
-            $table->string('keluhan');
-            $table->string('pic');
-            $table->time('jam_follow');
-            $table->string('follow_up');
-            $table->string('closing_case');
-            $table->string('via');
+            $table->string('topik_masalah');
+            $table->string('saran_penyelesaian');
+            $table->date('time_target');
+            $table->date('confirm_pic');
+            $table->string('case');
+            $table->date('actual_case');
+            $table->string('uraian_penyelesaian');
             $table->string('status');
             $table->timestamps();
         });

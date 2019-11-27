@@ -21,6 +21,43 @@
         <div class="col-md-12">
             <div class="panel block">
                 <div class="panel-body">
+                    {{-- ----------  -------------- filter ------------------------ --}}
+                    <form class="form-horizontal" id="form-filter" method="POST" action="{{route('filter.keluhan.direktur')}}">
+                            @csrf
+                            <div class="form-group">
+                                <label class="control-label col-md-2">Bisnis Unit</label>
+                                <div class="col-md-6">
+                                    <select class="form-control" name="bu_id">
+                                        <option value="">--- SELECT BISNIS UNIT ---</option>
+                                    @foreach($bisnis_units as $bisnis_unit)
+                                        <option value="{{ $bisnis_unit->bu_id }}">{{ $bisnis_unit->nama_bisnis_unit }}</option>
+                                    @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-2">Area</label>
+                                <div class="col-md-6">
+                                    <select class="form-control" name="area_id">
+                                        <option value="">--- SELECT AREA ---</option>
+                                    @foreach($areas as $area)
+                                        <option value="{{ $area->area_id }}">{{ $area->nama_area }}</option>
+                                    @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-1 col-md-offset-2">
+                                    <a href="{{asset('/direktur/keluhan')}}">
+                                        <button type="button" class="btn btn-primary"><i class="fa fa-refresh"></i> Reset</button>
+                                    </a>    
+                                </div>
+                                <div class="col-md-2">
+                                    <button type="submit" class="btn btn-primary" id="btn-filter"><i class="fa fa-filter"></i> Filter</button>
+                                </div>
+                            </div>
+                        </form>
+                        {{-- ---- end filter ------ --}}
                     <div style="float:right; margin-bottom:10px;">
                         <a href="{{asset('/direktur/keluhan/exportExcel')}}" class="btn btn-default btn-sm" target="_blank">Download Excel</a>
                         <a href="{{asset('/direktur/keluhan/exportPDF')}}" class="btn btn-default btn-sm" target="_blank">Download PDF</a>
@@ -31,31 +68,31 @@
                                     <thead>
                                     <th>ID Keluhan</th>
                                     <th>Nama Customer</th>
-                                    <th>SPV_PIC</th>
+                                    <th>Departemen Tertuju</th>
                                     <th>Tanggal</th>
-                                    <th>Waktu Keluhan</th>
-                                    <th>Keluhan</th>
-                                    <th>PIC Keluhan</th>
-                                    <th>Waktu Follow</th>
-                                    <th>Follow Up</th>
-                                    <th>Closing Case</th>
-                                    <th>Via</th>
+                                    <th>Topik Permasalahan</th>
+                                    <th>Saran Penyelesaian</th>
+                                    <th>Time Target (Tgl)</th>
+                                    <th>Confirm closed PIC</th>
+                                    <th>Case</th>
+                                    <th>Actual Closed</th>
+                                    <th>Uraian Penyelesaian</th>
                                     <th>Status</th>
                                 </thead>
                                 <tbody>
-                                @foreach($keluhan as $ke)
+                                @foreach($keluhans as $ke)
                                 <tr>
                                     <td>{{ $no++  }}</td>
                                     <td>{{ $ke->nama_perusahaan }}</td>
-                                    <td>{{ $ke->spv_pic }}</td>
+                                    <td>{{ $ke->departemen }}</td>
                                     <td>{{ $ke->tanggal_keluhan }}</td>
-                                    <td>{{ $ke->jam_keluhan }}</td>
-                                    <td>{{ $ke->keluhan }}</td>
-                                    <td>{{ $ke->pic }}</td>
-                                    <td>{{ $ke->jam_follow }}</td>
-                                    <td>{{ $ke->follow_up }}</td>
-                                    <td>{{ $ke->closing_case }}</td>
-                                    <td>{{ $ke->via }}</td>
+                                    <td>{{ $ke->topik_masalah }}</td>
+                                    <td>{{ $ke->saran_penyelesaian }}</td>
+                                    <td>{{ $ke->time_target }}</td>
+                                    <td>{{ $ke->confirm_pic }}</td>
+                                    <td>{{ $ke->case }}</td>
+                                    <td>{{ $ke->actual_case }}</td>
+                                    <td>{{ $ke->uraian_penyelesaian }}</td>
                                     <td>{{ $ke->status }}</td>
                                 </tr>
                                 @endforeach 

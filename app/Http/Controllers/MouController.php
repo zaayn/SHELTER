@@ -6,48 +6,91 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Support\Facades\DB;
 use PDF;
-use App\datamou;
+use App\Datamou;
 use App\Kontrak;
 use App\Customer;
 use Excel;
 use App\Exports\MouExport;
+use App\Bisnis_unit;
+use App\Area;
 
 class MouController extends Controller
 {
     public function index()
     {
+        $data['areas'] = Area::all();
+        $data['bisnis_units'] = Bisnis_unit::all();
         $data['no'] = 1;
-        $data['datamous'] = datamou::all();
+        $data['datamous'] = DB::table('datamou')
+        ->join('kontrak', 'datamou.id_kontrak', '=', 'kontrak.id_kontrak')
+        ->get();
         return view('admin/mou/mou', $data);
+    }
+    public function filter_mou(Request $request)
+    {
+        if($request->bu_id && $request->area_id)
+        {
+            $data['no'] = 1;
+            $data['areas'] = Area::all();
+            $data['bisnis_units'] = Bisnis_unit::all();
+            $data['datamous'] = DB::table('datamou')
+            ->join('kontrak', 'datamou.id_kontrak', '=', 'kontrak.id_kontrak')
+            ->join('customer', 'customer.kode_customer', '=', 'kontrak.kode_customer')
+            ->join('area','area.area_id','=','customer.area_id')
+            ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
+            ->where('bisnis_unit.bu_id', '=', $request->bu_id)
+            ->where('area.area_id', '=', $request->area_id)
+            ->get();
+            return view('admin/mou/mou', $data);
+        }
+        if($request->bu_id)
+        {
+            $data['no'] = 1;
+            $data['areas'] = Area::all();
+            $data['bisnis_units'] = Bisnis_unit::all();
+            $data['datamous'] = DB::table('datamou')
+            ->join('kontrak', 'datamou.id_kontrak', '=', 'kontrak.id_kontrak')
+            ->join('customer', 'customer.kode_customer', '=', 'kontrak.kode_customer')
+            ->join('area','area.area_id','=','customer.area_id')
+            ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
+            ->where('bisnis_unit.bu_id', '=', $request->bu_id)
+            ->get();
+            return view('admin/mou/mou', $data);
+        }
+        if($request->area_id)
+        {
+            $data['no'] = 1;
+            $data['areas'] = Area::all();
+            $data['bisnis_units'] = Bisnis_unit::all();
+            $data['datamous'] = DB::table('datamou')
+            ->join('kontrak', 'datamou.id_kontrak', '=', 'kontrak.id_kontrak')
+            ->join('customer', 'customer.kode_customer', '=', 'kontrak.kode_customer')
+            ->join('area','area.area_id','=','customer.area_id')
+            ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
+            ->where('area.area_id', '=', $request->area_id)
+            ->get();
+            return view('admin/mou/mou', $data);
+        }
     }
     
 
     public function insert()
     {
-        $data['kontraks'] = DB::table('kontrak')
-        ->join('customer', 'customer.kode_customer', '=', 'kontrak.kode_customer')
-        ->select('kontrak.id_kontrak','customer.kode_customer','customer.nama_perusahaan','kontrak.periode_kontrak','kontrak.akhir_periode','kontrak.srt_pemberitahuan','kontrak.tgl_srt_pemberitahuan','kontrak.srt_penawaran','kontrak.tgl_srt_penawaran','kontrak.dealing','kontrak.tgl_dealing','kontrak.posisi_pks','kontrak.closing')
-        ->get();
-        $data['customers'] = customer::all();
+        $data['kontraks'] = Kontrak::where('status','Aktif')->get();
+        $data['customers'] = Customer::all();
         return view('admin/mou/insertmou',$data);
     }
 
     public function store(Request $request, $id_kontrak)
     {
-        $check=datamou::where('id_kontrak', $id_kontrak);
-        if($check) abort(404);
+        $check=Datamou::where('id_kontrak', $id_kontrak)->first();
+        if($check) return redirect('/admin/kontrak')->with('error', 'Kontrak sudah memiliki MoU');
 
         $request->validate([
             'hc'                    => 'required|integer',
             'invoice'               => 'required|integer',
             'mf'                    => 'required|integer',
             'mf_persen'             => 'required|integer',
-             //'bpjs_tenagakerja'   =>'nullable',
-            // 'bpjs_kesehatan'     => 'required',
-            // 'jiwasraya'          => 'required',
-            // 'ramamusa'           =>'required',
-            // 'ditagihkan'         => 'required',
-            // 'diprovisasikan'     =>'required',
             'overheadcost'          => 'required',
             'training'              => 'required',
             'tanggal_invoice'       =>'required',
@@ -58,12 +101,10 @@ class MouController extends Controller
             'chemical'              =>'required',
             'pendaftaran_mou'       => 'required',
         ]);
-
-        //setlocale(LC_MONETARY,"id_ID");
-        //$kontrak = Kontrak::findorFail($id_kontrak);
-        $datamou = new datamou;
+        
+        $datamou = new Datamou;
         $datamou->no_mou = $request->no_mou;
-        $datamou->id_kontrak = $id_kontrak;
+        $datamou->id_kontrak = $request->id_kontrak;
         $datamou->hc = $request->hc;
         $datamou->invoice = $request->invoice;
         $datamou->mf = $request->mf;
@@ -87,7 +128,6 @@ class MouController extends Controller
         $datamou->pendaftaran_mou = $request->pendaftaran_mou;
 
         if ($datamou->save()){
-            //return redirect()->route('insertmou.kontrak')->with('success', 'item berhasil ditambahkan');
             return redirect('/admin/mou')->with('success', 'item berhasil ditambahkan');
         }
         else{
@@ -98,7 +138,7 @@ class MouController extends Controller
     public function edit($no_mou)
     {
         $where = array('no_mou' => $no_mou);
-        $datamou  = datamou::where($where)->first();
+        $datamou  = Datamou::where($where)->first();
  
         return view('admin/mou/editmou')->with('datamou', $datamou);
     }
@@ -112,19 +152,12 @@ class MouController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $datamou = datamou::findorFail($id);
+        $datamou = Datamou::findorFail($id);
         $request->validate([
-          //  'id_kontrak' => 'required',
             'hc' => 'required',
             'invoice' => 'required',
             'mf' => 'required',
             'mf_persen' => 'required',
-            // 'bpjs_tenagakerja' =>'required',
-            // 'bpjs_kesehatan' => 'required',
-            // 'jiwasraya' => 'required',
-            // 'ramamusa' =>'required',
-            // 'ditagihkan' => 'required',
-            // 'diprovisasikan' =>'required',
             'overheadcost' => 'required',
             'training' => 'required',
             'tanggal_invoice' =>'required',
@@ -170,11 +203,11 @@ class MouController extends Controller
      */
     public function destroy($no_mou)
     {
-        $datamou = datamou::where('no_mou',$no_mou)->delete();
+        $datamou = Datamou::where('no_mou',$no_mou)->delete();
         return redirect()->route('index.datamou')->with('success', 'delete sukses');
     }
     public function exportPDF(){
-        $mou = datamou::all();
+        $mou = Datamou::all();
         $pdf = PDF::loadview('admin/mou/pdfmou',['datamou'=>$mou]);
         $pdf->setPaper('A4','landscape');
         return $pdf->download('Laporan-Mou-CRM.pdf');

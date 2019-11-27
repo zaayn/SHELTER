@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
-use App\area;
+use App\Area;
 
 class AreaController extends Controller
 {
@@ -13,7 +13,7 @@ class AreaController extends Controller
     }
     public function index()
     {  
-        $data['areas'] = area::all();
+        $data['areas'] = Area::all();
         $data['no'] = 1;
         return view('admin/area/area', $data);
     }
@@ -23,7 +23,7 @@ class AreaController extends Controller
         'nama_area'=>['required', 'string']
       ]);
 
-      $area = new area;
+      $area = new Area;
       $area->area_id   = $request->area_id;
       $area->nama_area = $request->nama_area;
       
@@ -36,15 +36,15 @@ class AreaController extends Controller
       }
     }
     public function delete($area_id){
-        $area = area::findOrFail($area_id)->delete();
+        $area = Area::findOrFail($area_id)->delete();
         return redirect()->route('index.area')->with('success', 'delete sukses');
     }
     public function edit($bu_id){
-        $area = area::findOrFail($bu_id);
+        $area = Area::findOrFail($bu_id);
         return view('admin/area/edit_area')->with('area', $area);
     }
     public function update(Request $request, $id){
-        $area = area::findorFail($id);
+        $area = Area::findorFail($id);
         $this->validate($request,[
           'nama_area'=>['required', 'string']
         ]);

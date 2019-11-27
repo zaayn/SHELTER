@@ -8,10 +8,10 @@ class kontrak extends Model
 {
     protected $table = 'kontrak';
     protected $primaryKey = 'id_kontrak';
-    public $incrementing = false;
 
     protected $fillable = [
-        'kode_customer'
+        'nomor_kontrak'
+       ,'kode_customer'
        ,'periode_kontrak'
        ,'akhir_periode'
        ,'srt_pemberitahuan'
@@ -22,6 +22,7 @@ class kontrak extends Model
        ,'tgl_dealing'
        ,'posisi_pks'
        ,'closing'
+
     ];
 
     public function customer()
@@ -31,6 +32,6 @@ class kontrak extends Model
 
     public function datamou()
     {
-        return $this->hasOne(\App\datamou::class, 'id_kontrak');
+        return $this->hasOne(\App\Datamou::class,'id_kontrak','id_kontrak');
     }
 }

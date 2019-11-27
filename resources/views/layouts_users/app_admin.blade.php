@@ -125,9 +125,7 @@
               </li> --}}
               <!-- Menu Footer-->
               <li class="user-footer">
-                <div class="pull-left">
-                  <a href="" class="btn btn-default btn-flat">Profile</a>
-                </div>
+                
                 {{-- <div class="pull-right">
                   <a href="{{ route('logout') }}" class="btn btn-default btn-flat">Sign out</a>
                   <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -336,7 +334,7 @@
  
 <!-- ./wrapper -->
 <!-- jQuery 3 -->
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="{{asset('admin_lte/bower_components/jquery/dist/jquery.min.js')}}"></script>
 <script src="{{asset('https://code.jquery.com/jquery-3.4.0.min.js')}}"></script>
 <script src="{{asset('https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js')}}"></script>

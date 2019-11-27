@@ -32,9 +32,8 @@
                                     <th>Email</th>
                                     <th>Nomor HP</th>
                                     <th>Area/Cabang</th>
-                                    <th>Wilayah Supervisi</th>
                                     <th>Role</th>
-                                    <th>aksi</th>
+                                    <th>Aksi</th>
                                 </thead>
                                 <tbody>
                                     @foreach($users as $user)
@@ -46,7 +45,6 @@
                                         <td>{{ $user->email }}</td>
                                         <td>{{ $user->no_hp }}</td>
                                         <td>{{ $user->nama_area }}</td>
-                                        <td>{{ $user->nama_wilayah }}</td>
                                         <td>{{ $user->rule }}</td>
                                         <td>
                                             <a href="{{route('edit.user',$user->email)}}" class="btn btn-info btn-sm">
