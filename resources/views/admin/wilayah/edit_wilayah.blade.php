@@ -43,7 +43,7 @@
                       <div class="form-group">
                         <label>Nama wilayah:</label>
                         <div>
-                          <input type="text" class="form-control" name="nama_wilayah" value="{{ $wilayah->nama_wilayah}}">
+                          <input type="text" class="form-control" name="nama_wilayah" value="{{ $area->nama_area}}">
                         </div>
                       </div>
 

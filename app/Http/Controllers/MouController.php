@@ -11,14 +11,66 @@ use App\Kontrak;
 use App\Customer;
 use Excel;
 use App\Exports\MouExport;
+use App\Bisnis_unit;
+use App\Area;
 
 class MouController extends Controller
 {
     public function index()
     {
+        $data['areas'] = Area::all();
+        $data['bisnis_units'] = Bisnis_unit::all();
         $data['no'] = 1;
-        $data['datamous'] = Datamou::all();
+        $data['datamous'] = DB::table('datamou')
+        ->join('kontrak', 'datamou.id_kontrak', '=', 'kontrak.id_kontrak')
+        ->get();
         return view('admin/mou/mou', $data);
+    }
+    public function filter_mou(Request $request)
+    {
+        if($request->bu_id && $request->area_id)
+        {
+            $data['no'] = 1;
+            $data['areas'] = Area::all();
+            $data['bisnis_units'] = Bisnis_unit::all();
+            $data['datamous'] = DB::table('datamou')
+            ->join('kontrak', 'datamou.id_kontrak', '=', 'kontrak.id_kontrak')
+            ->join('customer', 'customer.kode_customer', '=', 'kontrak.kode_customer')
+            ->join('area','area.area_id','=','customer.area_id')
+            ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
+            ->where('bisnis_unit.bu_id', '=', $request->bu_id)
+            ->where('area.area_id', '=', $request->area_id)
+            ->get();
+            return view('admin/mou/mou', $data);
+        }
+        if($request->bu_id)
+        {
+            $data['no'] = 1;
+            $data['areas'] = Area::all();
+            $data['bisnis_units'] = Bisnis_unit::all();
+            $data['datamous'] = DB::table('datamou')
+            ->join('kontrak', 'datamou.id_kontrak', '=', 'kontrak.id_kontrak')
+            ->join('customer', 'customer.kode_customer', '=', 'kontrak.kode_customer')
+            ->join('area','area.area_id','=','customer.area_id')
+            ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
+            ->where('bisnis_unit.bu_id', '=', $request->bu_id)
+            ->get();
+            return view('admin/mou/mou', $data);
+        }
+        if($request->area_id)
+        {
+            $data['no'] = 1;
+            $data['areas'] = Area::all();
+            $data['bisnis_units'] = Bisnis_unit::all();
+            $data['datamous'] = DB::table('datamou')
+            ->join('kontrak', 'datamou.id_kontrak', '=', 'kontrak.id_kontrak')
+            ->join('customer', 'customer.kode_customer', '=', 'kontrak.kode_customer')
+            ->join('area','area.area_id','=','customer.area_id')
+            ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
+            ->where('area.area_id', '=', $request->area_id)
+            ->get();
+            return view('admin/mou/mou', $data);
+        }
     }
     
 

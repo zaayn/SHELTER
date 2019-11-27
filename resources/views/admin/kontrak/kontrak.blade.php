@@ -37,12 +37,12 @@
                             </div>
                         </div>
                             <div class="form-group">
-                                    <label class="control-label col-md-2">Wilayah</label>
+                                    <label class="control-label col-md-2">Area</label>
                                     <div class="col-md-6">
-                                        <select class="form-control" name="wilayah_id">
-                                            <option value="">--- SELECT WILAYAH ---</option>
-                                        @foreach($wilayahs as $wilayah)
-                                            <option value="{{ $wilayah->wilayah_id }}">{{ $wilayah->nama_wilayah }}</option>
+                                        <select class="form-control" name="area_id">
+                                            <option value="">--- SELECT AREA ---</option>
+                                        @foreach($areas as $area)
+                                            <option value="{{ $area->area_id }}">{{ $area->nama_area }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -71,6 +71,7 @@
                             <table id="mydatatables" class="table table-collapse table-hover table-light table-striped cell-border table-responsive">
                                 <thead>
                                     <th>Nomor </th>
+                                    <th>Closing/MoU</th>
                                     <th>Nomor Kontrak</th>
                                     <th>Kode Customer</th>
                                     <th>Nama Perusahaan</th>
@@ -90,6 +91,13 @@
                                 @foreach($kontraks as $kontrak)
                                 <tr>
                                     <td>{{ $no++  }}</td>
+                                    <td>@if($kontrak->closing == 'Aktif')
+                                        <a onclick="return confirm('Apakah anda yakin akan Closing kontrak ini ?')" href="{{route('update.closing',$kontrak->id_kontrak)}}" class="btn btn-warning btn-sm" data-toggle="tooltip" data-placement="right" title="Close"><span class="fa fa-ban"></span></a>
+                                        @endif
+                                        @if($kontrak->datamou_flag == 0)
+                                            <a href="{{route('insertmou.kontrak',$kontrak->id_kontrak)}}" class="btn btn-default btn-sm"data-toggle="tooltip" data-placement="right" title="Tambah MoU"><span class="fa fa-plus"></span></a>
+                                        
+                                        @endif</td>
                                     <td>{{ $kontrak->nomor_kontrak }}</td>
                                     <td>{{ $kontrak->kode_customer }}</td>
                                     <td>{{ $kontrak->nama_perusahaan }}</td>
@@ -106,13 +114,7 @@
                                     <td>
                                         <a href="{{route('edit.kontrak',$kontrak->id_kontrak)}}" class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="right" title="Edit"><span class="fa fa-pencil"></span></a>
                                         <a onclick="return confirm('Apakah anda yakin akan menghapus data ini ?')" href="{{route('destroy.kontrak',$kontrak->id_kontrak)}}" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="right" title="Delete"><span class="fa fa-trash"></span></a>
-                                        @if($kontrak->closing == 'Aktif')
-                                        <a onclick="return confirm('Apakah anda yakin akan menutup kontrak ini ?')" href="{{route('putus.kontrak',$kontrak->id_kontrak)}}" class="btn btn-warning btn-sm" data-toggle="tooltip" data-placement="right" title="Close"><span class="fa fa-ban"></span></a>
-                                        @endif
-                                        @if($kontrak->datamou_flag == 0)
-                                            <a href="{{route('insertmou.kontrak',$kontrak->id_kontrak)}}" class="btn btn-default btn-sm"data-toggle="tooltip" data-placement="right" title="Tambah MoU"><span class="fa fa-plus"></span></a>
                                         
-                                        @endif
                                     </td>
                                 </tr>
                                 @endforeach  

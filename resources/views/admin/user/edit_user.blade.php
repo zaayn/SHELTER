@@ -61,7 +61,7 @@
                       <div class="form-group">
                         <label>Password :</label>
                         <div>
-                          <input type="text" class="form-control" name="password" value="{{ $user->password}}">
+                          <input type="password" class="form-control" name="password" value="{{ $user->password}}">
                         </div>
                       </div>
                       <div class="form-group">
@@ -71,14 +71,14 @@
                         </div>
                       </div>
                       <div class="form-group">
-                        <label>Wilayah Supervisi :</label>
+                        <label>Area Supervisi :</label>
                         <div>
-                          <input type="text" class="form-control" name="wilayah_id" value="{{ $user->wilayah_id}}">
+                          <input type="text" class="form-control" name="area_id" value="{{ $user->area_id}}">
                         </div>
                         {{-- <div>
-                          <select class="form-control" name="wilayah_id">
-                          @foreach($wilayahs as $wilayah)
-                              <option value="{{ $wilayah->wilayah_id }}">{{ $wilayah->nama_wilayah }}</option>
+                          <select class="form-control" name="area_id">
+                          @foreach($areas as $area)
+                              <option value="{{ $area->area_id }}">{{ $area->nama_area }}</option>
                           @endforeach
                           </select>
                       </div> --}}

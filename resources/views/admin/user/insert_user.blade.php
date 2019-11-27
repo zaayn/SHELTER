@@ -62,13 +62,13 @@
                     </div>
 
                     <div class="form-group">
-                      <label>Wilayah Supervisi :</label>
-                      {{-- <div><input type="text" class="form-control"  name="wilayah_id" required></div> --}}
+                      <label>Area :</label>
+                      {{-- <div><input type="text" class="form-control"  name="area_id" required></div> --}}
                       <div>
-                          <select class="form-control" name="wilayah_id">
-                              <option value="">pilih wilayah</option>
-                          @foreach($wilayahs as $wilayah)
-                              <option value="{{ $wilayah->wilayah_id }}">{{ $wilayah->nama_wilayah }}</option>
+                          <select class="form-control" name="area_id">
+                              <option value="">pilih Area</option>
+                          @foreach($areas as $area)
+                              <option value="{{ $area->area_id }}">{{ $area->nama_area }}</option>
                           @endforeach
                           </select>
                       </div>

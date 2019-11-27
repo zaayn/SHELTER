@@ -36,12 +36,12 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-md-2">Wilayah</label>
+                                <label class="control-label col-md-2">Area</label>
                                 <div class="col-md-6">
-                                    <select class="form-control" name="wilayah_id">
-                                        <option value="">--- SELECT WILAYAH ---</option>
-                                    @foreach($wilayahs as $wilayah)
-                                        <option value="{{ $wilayah->wilayah_id }}">{{ $wilayah->nama_wilayah }}</option>
+                                    <select class="form-control" name="area_id">
+                                        <option value="">--- SELECT AREA ---</option>
+                                    @foreach($areas as $area)
+                                        <option value="{{ $area->area_id }}">{{ $area->nama_area }}</option>
                                     @endforeach
                                     </select>
                                 </div>
@@ -57,7 +57,7 @@
                                 </div>
                             </div>
                         </form>
-{{-- ---- end filter ------ --}}
+                        {{-- ---- end filter ------ --}}
                     <div style="float:right; margin-bottom:10px;">
                         <a href="{{asset('/admin/insertvisit')}}" class="btn btn-primary btn-sm">Insert Visit</a>
                         <a href="{{asset('/admin/visit/exportExcel')}}" class="btn btn-default btn-sm" target="_blank">Download Excel</a>
@@ -81,7 +81,7 @@
                                 <tbody>
                                 @foreach($visits as $visit)
                                 <tr>
-                                    <td>{{ $visit->visit_id  }}</td>
+                                    <td>{{ $no++  }}</td>
                                     <td>{{ $visit->nama_perusahaan }}</td>
                                     <td>{{ $visit->spv_pic }}</td>
                                     <td>{{ $visit->tanggal_visit }}</td>

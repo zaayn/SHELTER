@@ -22,7 +22,7 @@
             <div class="panel block">
                 <div class="panel-body">
                     {{-- ----------  -------------- filter ------------------------ --}}
-                    <form class="form-horizontal" id="form-filter" method="POST" action="{{route('filter.kontrak.crm')}}">
+                    <form class="form-horizontal" id="form-filter" method="POST" action="{{route('filter.keluhan.crm')}}">
                             @csrf
                             <div class="form-group">
                                 <label class="control-label col-md-2">Bisnis Unit</label>
@@ -36,19 +36,19 @@
                                 </div>
                             </div>
                                 <div class="form-group">
-                                        <label class="control-label col-md-2">Wilayah</label>
+                                        <label class="control-label col-md-2">Area</label>
                                         <div class="col-md-6">
-                                            <select class="form-control" name="wilayah_id">
-                                                <option value="">--- SELECT WILAYAH ---</option>
-                                            @foreach($wilayahs as $wilayah)
-                                                <option value="{{ $wilayah->wilayah_id }}">{{ $wilayah->nama_wilayah }}</option>
+                                            <select class="form-control" name="area_id">
+                                                <option value="">--- SELECT AREA ---</option>
+                                            @foreach($areas as $area)
+                                                <option value="{{ $area->area_id }}">{{ $area->nama_area }}</option>
                                             @endforeach
                                         </select>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <div class="col-md-1 col-md-offset-2">
-                                        <a href="{{asset('/manager_crm/kontrak')}}">
+                                        <a href="{{asset('/manager_crm/keluhan')}}">
                                             <button type="button" class="btn btn-primary btn-sm"><i class="fa fa-refresh"></i> Reset</button>
                                         </a>    
                                     </div>
@@ -79,10 +79,10 @@
                                     <th>Status</th>
                                 </thead>
                                 <tbody>
-                                @foreach($keluhan as $ke)
+                                @foreach($keluhans as $ke)
                                 <tr>
                                     <td>{{ $no++  }}</td>
-                                    <td>{{ $ke->customer->nama_perusahaan }}</td>
+                                    <td>{{ $ke->nama_perusahaan }}</td>
                                     <td>{{ $ke->departemen }}</td>
                                     <td>{{ $ke->tanggal_keluhan }}</td>
                                     <td>{{ $ke->topik_masalah }}</td>

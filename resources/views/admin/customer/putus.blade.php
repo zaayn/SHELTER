@@ -8,7 +8,7 @@
                 <h1>Form Sebab Putus Kontrak</h1>
                 <ol class="breadcrumb">
                     <li><a href="{{asset('/admin/home')}}"><i class="fa fa-dashboard"></i> Home</a></li>
-                    <li><a href="{{asset('/admin/kontrak')}}"></i>Kontrak</a></li>
+                    <li><a href="{{asset('/admin/customer')}}"></i>Kontrak</a></li>
                     <li class="active">Sebab Putus Kontrak</li>
                 </ol>
             </div>
@@ -35,13 +35,13 @@
 
                   <br>
 
-                  <form action="{{route('update.putus', $kontrak->id_kontrak)}}" method="post">
+                  <form action="{{route('update.putus', $customer->kode_customer)}}" method="post">
                     {{ csrf_field() }}
                     
 
                     <div class="form-group">
                         <div class="form-group col-md-12">
-                	        <label class="font-weight-bold">Sebab Putus Kontrak</label>
+                	        <label class="font-weight-bold">Sebab Putus</label>
                 	        <input type="text" class="form-control" name="putus_kontrak" required>
                         </div>
 

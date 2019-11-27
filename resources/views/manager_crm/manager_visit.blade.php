@@ -22,7 +22,7 @@
             <div class="panel block">
                 <div class="panel-body">
                     {{-- ----------  -------------- filter ------------------------ --}}
-                    <form class="form-horizontal" id="form-filter" method="POST" action="{{route('filter.kontrak.crm')}}">
+                    <form class="form-horizontal" id="form-filter" method="POST" action="{{route('filter.visit.crm')}}">
                             @csrf
                             <div class="form-group">
                                 <label class="control-label col-md-2">Bisnis Unit</label>
@@ -36,12 +36,12 @@
                                 </div>
                             </div>
                                 <div class="form-group">
-                                        <label class="control-label col-md-2">Wilayah</label>
+                                        <label class="control-label col-md-2">Area</label>
                                         <div class="col-md-6">
-                                            <select class="form-control" name="wilayah_id">
-                                                <option value="">--- SELECT WILAYAH ---</option>
-                                            @foreach($wilayahs as $wilayah)
-                                                <option value="{{ $wilayah->wilayah_id }}">{{ $wilayah->nama_wilayah }}</option>
+                                            <select class="form-control" name="area_id">
+                                                <option value="">--- SELECT AREA ---</option>
+                                            @foreach($areas as $area)
+                                                <option value="{{ $area->area_id }}">{{ $area->nama_area }}</option>
                                             @endforeach
                                         </select>
                                     </div>

@@ -11,14 +11,14 @@ use App\User;
 use PDF;
 use App\Customer;
 use App\Bisnis_unit;
-use App\Wilayah;
+use App\Area;
 
 class KeluhanController extends Controller
 {
     public function index()
     {
         $data['no'] = 1;
-        $data['wilayahs'] = Wilayah::all();
+        $data['areas'] = Area::all();
         $data['bisnis_units'] = Bisnis_unit::all();
         $data['keluhans'] = DB::table('keluhan')
         ->join('customer', 'keluhan.kode_customer', '=', 'customer.kode_customer')
@@ -31,7 +31,10 @@ class KeluhanController extends Controller
     {
         $data['bisnis_units'] = Bisnis_unit::all();
         $data['customers'] = Customer::where('status','Aktif')->get();
-        $data['users'] = User::where('rule', 'officer_crm')->get();
+        $data['users'] = DB::table('users')
+        ->join('area','users.area_id','=','area.area_id')
+        ->where('rule', 'officer_crm')
+        ->get();
         return view('officer/insertkeluhan',$data);
     }
 
@@ -76,7 +79,10 @@ class KeluhanController extends Controller
     {
         $data['bisnis_units'] = Bisnis_unit::all();
         $data['customers'] = Customer::all();
-        $data['users'] = User::where('rule', 'officer_crm')->get();
+        $data['users'] = DB::table('users')
+        ->join('area','users.area_id','=','area.area_id')
+        ->where('rule', 'officer_crm')
+        ->get();
         $where = array('id_keluhan' => $id_keluhan);
         $keluhan  = Keluhan::where($where)->first();
 
@@ -127,20 +133,20 @@ class KeluhanController extends Controller
     }
     public function filter(Request $request)
     {
-      if($request->bu_id && $request->wilayah_id)
+      if($request->bu_id && $request->area_id)
       {
         $data['no'] = 1;
-        $data['wilayahs'] = Wilayah::all();
+        $data['areas'] = area::all();
         $data['bisnis_units'] = Bisnis_unit::all();
         $data['keluhans'] = DB::table('keluhan')
         ->join('customer', 'keluhan.kode_customer', '=', 'customer.kode_customer')
-        ->join('wilayah','wilayah.wilayah_id','=','customer.wilayah_id')
+        ->join('area','area.area_id','=','customer.area_id')
         ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
-        ->select('wilayah.wilayah_id','wilayah.nama_wilayah','id_keluhan','customer.kode_customer','customer.nama_perusahaan','keluhan.kode_customer','departemen','tanggal_keluhan',
+        ->select('area.area_id','area.nama_area','id_keluhan','customer.kode_customer','customer.nama_perusahaan','keluhan.kode_customer','departemen','tanggal_keluhan',
         'topik_masalah','saran_penyelesaian','time_target','confirm_pic','case','actual_case','uraian_penyelesaian',
         'keluhan.status','bisnis_unit.bu_id','bisnis_unit.nama_bisnis_unit')
         ->where('bisnis_unit.bu_id', '=', $request->bu_id)
-        ->where('wilayah.wilayah_id', '=', $request->wilayah_id)
+        ->where('area.area_id', '=', $request->area_id)
         ->get();
 
         return view('officer/keluhan', $data);
@@ -149,13 +155,13 @@ class KeluhanController extends Controller
       elseif($request->bu_id)
       {
         $data['no'] = 1;
-        $data['wilayahs'] = Wilayah::all();
+        $data['areas'] = area::all();
         $data['bisnis_units'] = Bisnis_unit::all();
         $data['keluhans'] = DB::table('keluhan')
         ->join('customer', 'keluhan.kode_customer', '=', 'customer.kode_customer')
-        ->join('wilayah','wilayah.wilayah_id','=','customer.wilayah_id')
+        ->join('area','area.area_id','=','customer.area_id')
         ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
-        ->select('wilayah.wilayah_id','wilayah.nama_wilayah','id_keluhan','customer.kode_customer','customer.nama_perusahaan','keluhan.kode_customer','departemen','tanggal_keluhan',
+        ->select('area.area_id','area.nama_area','id_keluhan','customer.kode_customer','customer.nama_perusahaan','keluhan.kode_customer','departemen','tanggal_keluhan',
         'topik_masalah','saran_penyelesaian','time_target','confirm_pic','case','actual_case','uraian_penyelesaian',
         'keluhan.status','bisnis_unit.bu_id','bisnis_unit.nama_bisnis_unit')
         ->where('bisnis_unit.bu_id', '=', $request->bu_id)
@@ -164,19 +170,19 @@ class KeluhanController extends Controller
         return view('officer/keluhan', $data);
         
       }
-      elseif($request->wilayah_id)
+      elseif($request->area_id)
       {
         $data['no'] = 1;
-        $data['wilayahs'] = Wilayah::all();
+        $data['areas'] = area::all();
         $data['bisnis_units'] = Bisnis_unit::all();
         $data['keluhans'] = DB::table('keluhan')
         ->join('customer', 'keluhan.kode_customer', '=', 'customer.kode_customer')
-        ->join('wilayah','wilayah.wilayah_id','=','customer.wilayah_id')
+        ->join('area','area.area_id','=','customer.area_id')
         ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
-        ->select('wilayah.wilayah_id','wilayah.nama_wilayah','id_keluhan','customer.kode_customer','customer.nama_perusahaan','keluhan.kode_customer','departemen','tanggal_keluhan',
+        ->select('area.area_id','area.nama_area','id_keluhan','customer.kode_customer','customer.nama_perusahaan','keluhan.kode_customer','departemen','tanggal_keluhan',
         'topik_masalah','saran_penyelesaian','time_target','confirm_pic','case','actual_case','uraian_penyelesaian',
         'keluhan.status','bisnis_unit.bu_id','bisnis_unit.nama_bisnis_unit')
-        ->where('wilayah.wilayah_id', '=', $request->wilayah_id)
+        ->where('area.area_id', '=', $request->area_id)
         ->get();
 
         return view('officer/keluhan', $data);

@@ -22,7 +22,7 @@
             <div class="panel block">
                 <div class="panel-body">
                     {{-- ----------  -------------- filter ------------------------ --}}
-                    <form class="form-horizontal" id="form-filter" method="POST" action="{{route('filter.kontrak.crm')}}">
+                    <form class="form-horizontal" id="form-filter" method="POST" action="{{route('filter.customer.crm')}}">
                             @csrf
                             <div class="form-group">
                                 <label class="control-label col-md-2">Bisnis Unit</label>
@@ -36,19 +36,19 @@
                                 </div>
                             </div>
                                 <div class="form-group">
-                                        <label class="control-label col-md-2">Wilayah</label>
+                                        <label class="control-label col-md-2">Area</label>
                                         <div class="col-md-6">
-                                            <select class="form-control" name="wilayah_id">
-                                                <option value="">--- SELECT WILAYAH ---</option>
-                                            @foreach($wilayahs as $wilayah)
-                                                <option value="{{ $wilayah->wilayah_id }}">{{ $wilayah->nama_wilayah }}</option>
+                                            <select class="form-control" name="area_id">
+                                                <option value="">--- SELECT AREA ---</option>
+                                            @foreach($areas as $area)
+                                                <option value="{{ $area->area_id }}">{{ $area->nama_area }}</option>
                                             @endforeach
                                         </select>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <div class="col-md-1 col-md-offset-2">
-                                        <a href="{{asset('/manager_crm/kontrak')}}">
+                                        <a href="{{asset('/manager_crm/customer')}}">
                                             <button type="button" class="btn btn-primary btn-sm"><i class="fa fa-refresh"></i> Reset</button>
                                         </a>    
                                     </div>
@@ -71,7 +71,6 @@
                                     <th>telpon</th>
                                     <th>cp</th>
                                     <th>Area</th>
-                                    <th>Wilayah</th>
                                     <th>Area Supervisor</th>
                                 </thead>
                                 <tbody>
@@ -81,14 +80,13 @@
                                         <td>{{ $customer->kode_customer }}</td>
                                         <td>{{ $customer->nama_perusahaan }}</td>
                                         <td>{{ $customer->jenis_usaha }}</td>
-                                        <td>{{ $customer->bisnis_unit->nama_bisnis_unit }}</td>
+                                        <td>{{ $customer->nama_bisnis_unit }}</td>
                                         <td>{{ $customer->alamat }}</td>
                                         <td>{{ $customer->provinsi }}</td>
                                         <td>{{ $customer->kabupaten }}</td>
                                         <td>{{ $customer->telpon }}</td>
                                         <td>{{ $customer->cp }}</td>
                                         <td>{{ $customer->nama_area}}</td>
-                                        <td>{{ $customer->wilayah->nama_wilayah}}</td>
                                         <td>{{ $customer->nama_depan}}</td>
                                         
                                     </tr>

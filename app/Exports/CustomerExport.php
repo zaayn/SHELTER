@@ -32,7 +32,7 @@ class CustomerExport implements FromCollection, WithHeadings, ShouldAutoSize, Wi
             'Fax',
             'CP',
             'Nama Area',
-            'Wilayah',
+            'Area',
             'Area Supervisor',
             'Status',
             'Created_at',

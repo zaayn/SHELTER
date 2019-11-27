@@ -15,20 +15,18 @@ use App\Exports\CallExport;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Customer;
 use App\Bisnis_unit;
-use App\Wilayah;
+use App\Area;
 
 class CalladminController extends Controller
 {
     public function index()
     {
         $data['no'] = 1;
-        $data['wilayahs'] = Wilayah::all();
+        $data['areas'] = Area::all();
         $data['bisnis_units'] = Bisnis_unit::all();
         $data['calls'] = DB::table('call')
         ->join('customer', 'call.kode_customer', '=', 'customer.kode_customer')
         ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
-        ->select('customer.kode_customer','call.kode_customer','call_id','customer.nama_perusahaan','spv_pic','tanggal_call','jam_call',
-        'pembicaraan','pic_called','hal_menonjol')
         ->get();
 
         return view('admin/call/call', $data);
@@ -39,7 +37,11 @@ class CalladminController extends Controller
     {
         $data['bisnis_units'] = Bisnis_unit::all();
         $data['customers'] = Customer::where('status', 'Aktif')->get();
-        $data['users'] = User::where('rule', 'officer_crm')->get();
+        // $data['users'] = User::where('rule', 'officer_crm')->get();
+        $data['users'] = DB::table('users')
+        ->join('area','users.area_id','=','area.area_id')
+        ->where('rule', 'officer_crm')
+        ->get();
       return view('admin/call/insertcall',$data);
     }
 
@@ -102,7 +104,10 @@ class CalladminController extends Controller
     {
         $data['bisnis_units'] = Bisnis_unit::all();
         $data['customers'] = Customer::all();
-        $data['users'] = User::where('rule', 'officer_crm')->get();
+        $data['users'] = DB::table('users')
+        ->join('area','users.area_id','=','area.area_id')
+        ->where('rule', 'officer_crm')
+        ->get();
         $call = Call::findOrFail($call_id);
  
         return view('admin/call/editcall',$data)->with('call', $call);
@@ -162,43 +167,43 @@ class CalladminController extends Controller
     }
     public function filter(Request $request)
     {
-      if($request->bu_id && $request->wilayah_id)
+      if($request->bu_id && $request->area_id)
       {
-        $data['wilayahs'] = Wilayah::all();
+        $data['areas'] = Area::all();
         $data['bisnis_units'] = Bisnis_unit::all();
         $data['calls'] = Call::all();
         $data['calls'] = DB::table('call')
         ->join('customer', 'call.kode_customer', '=', 'customer.kode_customer')
-        ->join('wilayah','wilayah.wilayah_id','=','customer.wilayah_id')
+        ->join('area','area.area_id','=','customer.area_id')
         ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
         ->where('bisnis_unit.bu_id', '=', $request->bu_id)
-        ->where('wilayah.wilayah_id', '=', $request->wilayah_id)
+        ->where('area.area_id', '=', $request->area_id)
         ->get();
 
         return view('admin/call/call', $data);
       }
       elseif ($request->bu_id) {
-        $data['wilayahs'] = Wilayah::all();
+        $data['areas'] = Area::all();
         $data['bisnis_units'] = Bisnis_unit::all();
         $data['calls'] = Call::all();
         $data['calls'] = DB::table('call')
         ->join('customer', 'call.kode_customer', '=', 'customer.kode_customer')
-        ->join('wilayah','wilayah.wilayah_id','=','customer.wilayah_id')
+        ->join('area','area.area_id','=','customer.area_id')
         ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
         ->where('bisnis_unit.bu_id', '=', $request->bu_id)
         ->get();
         return view('admin/call/call', $data);
 
       } 
-      elseif ($request->wilayah_id) {
-        $data['wilayahs'] = Wilayah::all();
+      elseif ($request->area_id) {
+        $data['areas'] = Area::all();
         $data['bisnis_units'] = Bisnis_unit::all();
         $data['calls'] = Call::all();
         $data['calls'] = DB::table('call')
         ->join('customer', 'call.kode_customer', '=', 'customer.kode_customer')
-        ->join('wilayah','wilayah.wilayah_id','=','customer.wilayah_id')
+        ->join('area','area.area_id','=','customer.area_id')
         ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
-        ->where('wilayah.wilayah_id', '=', $request->wilayah_id)
+        ->where('area.area_id', '=', $request->area_id)
         ->get();
         return view('admin/call/call', $data);
       } 

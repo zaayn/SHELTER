@@ -11,7 +11,7 @@ use Excel;
 use App\Exports\KeluhanExport;
 use App\Customer;
 use App\Bisnis_unit;
-use App\Wilayah;
+use App\Area;
 
 
 class KeluhanadminController extends Controller
@@ -19,7 +19,7 @@ class KeluhanadminController extends Controller
     public function index()
     {
         $data['no'] = 1;
-        $data['wilayahs'] = Wilayah::all();
+        $data['areas'] = Area::all();
         $data['bisnis_units'] = Bisnis_unit::all();
         $data['keluhans'] = DB::table('keluhan')
         ->join('customer', 'keluhan.kode_customer', '=', 'customer.kode_customer')
@@ -32,8 +32,7 @@ class KeluhanadminController extends Controller
         $data['bisnis_units'] = Bisnis_unit::all();
         $data['customers'] = Customer::where('status','Aktif')->get();
         $data['users'] = DB::table('users')
-        ->join('wilayah', 'users.wilayah_id', '=', 'wilayah.wilayah_id')
-        ->select('wilayah.wilayah_id','users.nama_depan','wilayah.nama_wilayah')
+        ->join('area','users.area_id','=','area.area_id')
         ->where('rule', 'officer_crm')->get();
       return view('admin/keluhan/insertkeluhan',$data);
     }
@@ -46,9 +45,7 @@ class KeluhanadminController extends Controller
             'topik_masalah' => 'required',
             'saran_penyelesaian' => 'required',
             'time_target' => 'required',
-            'confirm_pic' => 'required',
             'case' =>'required',
-            'actual_case' => 'required',
             'uraian_penyelesaian' => 'required',
             'status' =>'required',
         ]);
@@ -80,8 +77,7 @@ class KeluhanadminController extends Controller
         $data['bisnis_units'] = Bisnis_unit::all();
         $data['customers'] = Customer::all();
         $data['users'] = DB::table('users')
-        ->join('wilayah', 'users.wilayah_id', '=', 'wilayah.wilayah_id')
-        ->select('wilayah.wilayah_id','users.nama_depan','wilayah.nama_wilayah')
+        ->join('area','users.area_id','=','area.area_id')
         ->where('rule', 'officer_crm')->get();
         $where = array('id_keluhan' => $id_keluhan);
         $keluhan  = Keluhan::where($where)->first();
@@ -98,9 +94,7 @@ class KeluhanadminController extends Controller
             'topik_masalah' => 'required',
             'saran_penyelesaian' => 'required',
             'time_target' => 'required',
-            'confirm_pic' => 'required',
             'case' =>'required',
-            'actual_case' => 'required',
             'uraian_penyelesaian' => 'required',
             'status' =>'required',
         ]);
@@ -147,20 +141,17 @@ class KeluhanadminController extends Controller
     }
     public function filter(Request $request)
     {
-      if($request->bu_id && $request->wilayah_id)
+      if($request->bu_id && $request->area_id)
       {
         $data['no'] = 1;
-        $data['wilayahs'] = Wilayah::all();
+        $data['areas'] = Area::all();
         $data['bisnis_units'] = Bisnis_unit::all();
         $data['keluhans'] = DB::table('keluhan')
         ->join('customer', 'keluhan.kode_customer', '=', 'customer.kode_customer')
-        ->join('wilayah','wilayah.wilayah_id','=','customer.wilayah_id')
+        ->join('area','area.area_id','=','customer.area_id')
         ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
-        ->select('wilayah.wilayah_id','wilayah.nama_wilayah','id_keluhan','customer.kode_customer','customer.nama_perusahaan','keluhan.kode_customer','departemen','tanggal_keluhan',
-        'topik_masalah','saran_penyelesaian','time_target','confirm_pic','case','actual_case','uraian_penyelesaian',
-        'keluhan.status','bisnis_unit.bu_id','bisnis_unit.nama_bisnis_unit')
         ->where('bisnis_unit.bu_id', '=', $request->bu_id)
-        ->where('wilayah.wilayah_id', '=', $request->wilayah_id)
+        ->where('area.area_id', '=', $request->area_id)
         ->get();
 
         return view('admin/keluhan/keluhan', $data);
@@ -169,34 +160,28 @@ class KeluhanadminController extends Controller
       elseif($request->bu_id)
       {
         $data['no'] = 1;
-        $data['wilayahs'] = Wilayah::all();
+        $data['areas'] = Area::all();
         $data['bisnis_units'] = Bisnis_unit::all();
         $data['keluhans'] = DB::table('keluhan')
         ->join('customer', 'keluhan.kode_customer', '=', 'customer.kode_customer')
-        ->join('wilayah','wilayah.wilayah_id','=','customer.wilayah_id')
+        ->join('area','area.area_id','=','customer.area_id')
         ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
-        ->select('wilayah.wilayah_id','wilayah.nama_wilayah','id_keluhan','customer.kode_customer','customer.nama_perusahaan','keluhan.kode_customer','departemen','tanggal_keluhan',
-        'topik_masalah','saran_penyelesaian','time_target','confirm_pic','case','actual_case','uraian_penyelesaian',
-        'keluhan.status','bisnis_unit.bu_id','bisnis_unit.nama_bisnis_unit')
         ->where('bisnis_unit.bu_id', '=', $request->bu_id)
         ->get();
 
         return view('admin/keluhan/keluhan', $data);
         
       }
-      elseif($request->wilayah_id)
+      elseif($request->area_id)
       {
         $data['no'] = 1;
-        $data['wilayahs'] = Wilayah::all();
+        $data['areas'] = Area::all();
         $data['bisnis_units'] = Bisnis_unit::all();
         $data['keluhans'] = DB::table('keluhan')
         ->join('customer', 'keluhan.kode_customer', '=', 'customer.kode_customer')
-        ->join('wilayah','wilayah.wilayah_id','=','customer.wilayah_id')
+        ->join('area','area.area_id','=','customer.area_id')
         ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
-        ->select('wilayah.wilayah_id','wilayah.nama_wilayah','id_keluhan','customer.kode_customer','customer.nama_perusahaan','keluhan.kode_customer','departemen','tanggal_keluhan',
-        'topik_masalah','saran_penyelesaian','time_target','confirm_pic','case','actual_case','uraian_penyelesaian',
-        'keluhan.status','bisnis_unit.bu_id','bisnis_unit.nama_bisnis_unit')
-        ->where('wilayah.wilayah_id', '=', $request->wilayah_id)
+        ->where('area.area_id', '=', $request->area_id)
         ->get();
 
         return view('admin/keluhan/keluhan', $data);

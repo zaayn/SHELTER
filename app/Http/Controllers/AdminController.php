@@ -19,18 +19,25 @@ class AdminController extends Controller
 {
     public function index()
     {
+        $data['no'] = 1;
         $data['customer'] = DB::table('customer')->count();
         $data['kontrak'] = DB::table('kontrak')->count();   
         $data['datamou'] = DB::table('datamou')->count();   
         $data['customers'] = Customer::all();
         $data['kontraks'] = DB::table('kontrak')
         ->join('customer', 'customer.kode_customer', '=', 'kontrak.kode_customer')
-        ->select('kontrak.id_kontrak','customer.kode_customer','customer.nama_perusahaan',
-        'kontrak.periode_kontrak','kontrak.akhir_periode','kontrak.srt_pemberitahuan',
-        'kontrak.tgl_srt_pemberitahuan','kontrak.srt_penawaran','kontrak.tgl_srt_penawaran',
-        'kontrak.dealing','kontrak.tgl_dealing','kontrak.posisi_pks','kontrak.closing')
         ->whereRaw('akhir_periode < NOW() + INTERVAL 60 DAY') 
         ->get();    
+        foreach($data['kontraks'] as $key => $kontraa){
+            $awok = DB::table('kontrak')
+            ->join('datamou', 'datamou.id_kontrak', '=', 'kontrak.id_kontrak')
+            ->where('kontrak.id_kontrak', '=', $kontraa->id_kontrak)
+            ->get();
+            
+            $data['kontraks'][$key]->datamou_flag = count($awok);
+
+
+        }
         $data['keluhans'] = Keluhan::where('status', 'Belum ditangani')->get();
 
         $lastUser = User::whereNotNull('current_login_at')
@@ -42,10 +49,10 @@ class AdminController extends Controller
 
         $amount = DB::table('customer')
                     ->select(
-                    DB::raw('nama_area as area'),
+                    DB::raw('area_id as area'),
                     DB::raw('count(*) as jumlah'))
                     ->where('status', 'aktif')
-                    ->groupBy('nama_area')
+                    ->groupBy('area')
                     ->get();
         $cat[] = ['area','jumlah'];
         foreach($amount as $key => $value){
@@ -56,8 +63,8 @@ class AdminController extends Controller
 
     public function superadmin()
     {
+        $data['no'] = 1;
         $data['bisnis_unit'] = DB::table('bisnis_unit')->count();
-        $data['wilayah'] = DB::table('wilayah')->count();
         $data['area'] = DB::table('area')->count();
         $data['users'] = DB::table('users')->count();
 
@@ -70,18 +77,11 @@ class AdminController extends Controller
     }
     public function data_customer(Request $request)
     {
+        $data['no'] = 1;
         $data['datamous'] = DB::table('datamou')
         ->join('kontrak','datamou.id_kontrak','=','kontrak.id_kontrak')
         ->join('customer', 'kontrak.kode_customer', '=', 'customer.kode_customer')
         ->join('bisnis_unit','customer.bu_id','=','bisnis_unit.bu_id')
-        ->select('bpjs_tk_persen','bpjs_kes_persen','kontrak.id_kontrak','customer.kode_customer','customer.nama_perusahaan',
-        'kontrak.periode_kontrak','kontrak.akhir_periode','kontrak.srt_pemberitahuan',
-        'kontrak.tgl_srt_pemberitahuan','kontrak.srt_penawaran','kontrak.tgl_srt_penawaran',
-        'kontrak.dealing','kontrak.tgl_dealing','kontrak.posisi_pks','kontrak.closing',
-        'nama_bisnis_unit','provinsi','alamat','jenis_usaha','periode_kontrak','hc','invoice','mf',
-        'mf_persen','bpjs_tenagakerja','bpjs_kesehatan','jiwasraya','ramamusa','ditagihkan','diprovisasikan',
-        'overheadcost','training','tanggal_invoice','time_of_payment','cut_of_date','kaporlap','devices',
-        'chemical','pendaftaran_mou')
         ->get();
         $data['no'] = 1;
         // dd($data['datamous']);
