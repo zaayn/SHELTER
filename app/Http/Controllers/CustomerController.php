@@ -20,7 +20,7 @@ class CustomerController extends Controller
 {
     public function index()
     {  
-      // $data['customers'] = Customer::all();
+      $data['areas'] = Area::all();
       $data['customers'] = DB::table('customer')
       ->join('area','customer.area_id','=','area.area_id')
       ->join('bisnis_unit','customer.bu_id','=','bisnis_unit.bu_id')
