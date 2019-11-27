@@ -103,8 +103,8 @@
                                         <td>{{ $customer->nama_area}}</td>
                                     </tr>
                                     <tr>
-                                        <th>Wilayah</th>
-                                        <td>{{ $customer->nama_wilayah}}</td>
+                                        <th>Area</th>
+                                        <td>{{ $customer->nama_area}}</td>
                                     </tr>
                                     <tr>
                                         <th>Area Supervisor</th>

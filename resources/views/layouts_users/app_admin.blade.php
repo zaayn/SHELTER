@@ -222,7 +222,7 @@
 
         {{-- <li class="treeview">
             <a href="">
-              <i class="fa fa-database"></i> <span>Wilayah dan Bisnis Unit</span>
+              <i class="fa fa-database"></i> <span>Area dan Bisnis Unit</span>
               <span class="pull-right-container">
                 <i class="fa fa-angle-left pull-right"></i>
               </span>
@@ -230,7 +230,6 @@
               <ul class="treeview-menu">
                 <li class="active"><a href="{{asset('/admin/bisnis_unit')}}"><i class="fa fa-circle-o"></i> Daftar Bisnis Unit</a></li>
                 <li class="active"><a href="{{asset('/admin/area')}}"><i class="fa fa-circle-o"></i> Daftar Area</a></li>
-                <li class="active"><a href="{{asset('/admin/wilayah')}}"><i class="fa fa-circle-o"></i> Daftar Wilayah</a></li>
               </ul>
           </li> --}}
 

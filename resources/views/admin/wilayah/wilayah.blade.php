@@ -60,7 +60,7 @@
                                     @foreach($wilayahs as $wilayah)
                                     <tr>
                                         <td>{{ $no++}}</td>
-                                        <td>{{ $wilayah->nama_wilayah }}</td>
+                                        <td>{{ $area->nama_area }}</td>
                                         <td>
                                             <a href="{{route('edit.wilayah',$wilayah->wilayah_id)}}" class="btn btn-info btn-sm">
                                                 <span class="fa fa-pencil"></span>
