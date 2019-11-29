@@ -55,7 +55,7 @@
                             <div>
                                 <select class="form-control" name="spv_pic">
                                 @foreach($users as $users)
-                                    <option value="{{ $users->nama_depan }}">{{ $users->nama_depan }} - {{ $users->nama_wilayah }}</option>
+                                    <option value="{{ $users->nama_depan }}">{{ $users->nama_depan }} - {{ $users->nama_area }}</option>
                                 @endforeach
                                 </select>
                             </div>

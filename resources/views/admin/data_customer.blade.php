@@ -33,7 +33,7 @@
                                     <th>Nomor</th>
                                     <th>Nama Perusahaan</th>
                                     <th>Bisnis Unit</th>
-                                    <th>Wilayah</th>
+                                    <th>Area</th>
                                     <th>Alamat Perusahaan</th>
                                     {{--    
                                         <th>PIC</th>

@@ -164,7 +164,7 @@ class KontrakController extends Controller
             ->get();
             return view('officer/kontrak', $data);
         }
-        if($request->area_id)
+        elseif($request->area_id)
         {
             $data['areas'] = area::all();
             $data['bisnis_units'] = bisnis_unit::all();

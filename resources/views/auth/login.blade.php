@@ -27,7 +27,7 @@
                 {{ csrf_field() }}
 
                 <div class="form-group">
-                    <label for="email" class="text-normal text-dark">Username / E-mail</label>
+                    <label for="email" class="text-normal text-dark">E-mail</label>
                     <input id="email" type="text" name="email" class="form-control" placeholder="Username / E-mail" value="{{ old('email') }}" required autofocus>
                 </div>
                 <div class="form-group">

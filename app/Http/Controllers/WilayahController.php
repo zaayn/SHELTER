@@ -50,7 +50,7 @@ class WilayahController extends Controller
 
       $wilayah = new Wilayah;
       $wilayah->area_id   = $request->area_id;
-      $wilayah->nama_wilayah = $request->nama_wilayah;
+      $area->nama_area = $request->nama_wilayah;
       
 
       if ($wilayah->save()){
@@ -73,7 +73,7 @@ class WilayahController extends Controller
         $this->validate($request,[
           'nama_wilayah'=>['required', 'string']
         ]);
-        $wilayah->nama_wilayah = $request->nama_wilayah;
+        $area->nama_area = $request->nama_wilayah;
   
         if ($wilayah->save())
           return redirect()->route('index.wilayah')->with(['success'=>'edit sukses']);

@@ -63,7 +63,7 @@
 
                     <div class="form-group">
                       <label>Area :</label>
-                      {{-- <div><input type="text" class="form-control"  name="wilayah_id" required></div> --}}
+                      {{-- <div><input type="text" class="form-control"  name="area_id" required></div> --}}
                       <div>
                           <select class="form-control" name="area_id">
                               <option value="">pilih Area</option>
