@@ -106,11 +106,14 @@
                     <div class="form-group col-md-12">
                         <label>Area Supervisor :</label>
                         <div>
-                            <select class="form-control" name="nama_depan">
+                            {{-- <select class="form-control" name="nama_depan" id="usernya"> --}}
+                            <input list="browsers" class="form-control" name="kode_customer">
+                            <datalist id="browsers">
                             @foreach($users as $users)
                                 <option value="{{ $users->nama_depan }}">{{ $users->nama_depan }} - {{ $users->nama_area }}</option>
                             @endforeach
-                            </select>
+                            </datalist>
+                            {{-- </select> --}}
                         </div>
                     </div>
                     <div class="form-group col-md-12">
