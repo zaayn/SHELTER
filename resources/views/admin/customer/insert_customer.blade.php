@@ -107,7 +107,7 @@
                         <label>Area Supervisor :</label>
                         <div>
                             {{-- <select class="form-control" name="nama_depan" id="usernya"> --}}
-                            <input list="browsers" class="form-control" name="kode_customer">
+                            <input list="browsers" class="form-control" name="nama_depan">
                             <datalist id="browsers">
                             @foreach($users as $users)
                                 <option value="{{ $users->nama_depan }}">{{ $users->nama_depan }} - {{ $users->nama_area }}</option>
