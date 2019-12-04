@@ -44,7 +44,7 @@
                                 <input list="browsers" class="form-control" name="kode_customer">
                                 <datalist id="browsers">
                                 @foreach($customers as $customer)
-                                    <option value="{{ $customer->kode_customer }}">{{ $customer->kode_customer }} - {{ $customer->nama_perusahaan }} - {{ $customer->bisnis_unit->nama_bisnis_unit }}</option>
+                                    <option value="{{ $customer->kode_customer }}">{{ $customer->kode_customer }} - {{ $customer->nama_perusahaan }} - {{ $customer->bisnis_unit->nama_bisnis_unit }} - {{ $customer->area->nama_area }}</option>
                                 @endforeach
                                 </datalist>
                             </div>
@@ -54,7 +54,7 @@
                             <div>
                                 {{--<select class="form-control" name="departemen">
                                 @foreach($users as $users)
-                                    <option value="{{ $users->nama_depan }}">{{ $users->nama_depan }} - {{ $users->nama_wilayah }}</option>
+                                    <option value="{{ $users->nama_depan }}">{{ $users->nama_depan }} - {{ $users->nama_area }}</option>
                                 @endforeach
                                 </select>--}}
                                 <input type="text" class="form-control" name="departemen" required>
