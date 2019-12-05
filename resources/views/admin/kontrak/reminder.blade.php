@@ -31,7 +31,9 @@
                             
                             <table id="mydatatables" class="table table-responsive table-hover table-light table-striped">
                                 <thead>
+                                    <th>Nomor</th>
                                     <th>Nomor Kontrak</th>
+                                    <th>Masa Tenggat</th>
                                     <th>Nama Perusahaan</th>
                                     <th>Periode Kontrak</th>
                                     <th>Akhir Periode</th>
@@ -46,9 +48,14 @@
                                     <th>Aksi</th>
                                 </thead>
                                 <tbody>
+                                    @php
+                                        $i=0;
+                                    @endphp
                                 @foreach($kontraks as $kontrak)
                                 <tr>
                                     <td>{{ $kontrak->id_kontrak }}</td>
+                                    <td>{{ $kontrak->nomor_kontrak}}</td>
+                                    <td>{{ $sisa[$i++] }} Hari</td>
                                     <td>{{ $kontrak->nama_perusahaan }}</td>
                                     <td>{{ $kontrak->periode_kontrak }}</td>
                                     <td>{{ $kontrak->akhir_periode }}</td>
