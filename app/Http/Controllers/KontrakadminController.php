@@ -258,8 +258,21 @@ class KontrakadminController extends Controller
             $data['customers'] = Customer::all();
             $data['kontraks'] = DB::table('kontrak')
             ->join('customer', 'customer.kode_customer', '=', 'kontrak.kode_customer')
-            ->whereRaw('akhir_periode < NOW() + INTERVAL 60 DAY') 
+            ->whereRaw('akhir_periode - INTERVAL 60 DAY <= NOW()')
+            ->whereRaw('NOW() < akhir_periode')
             ->get();
+
+            $now = Carbon\Carbon::now();
+            $data['sisa'] = array();
+            foreach ($data['kontraks'] as $key => $value) {
+                $sisa = $now->diffInDays($value->akhir_periode);
+                array_push($data['sisa'],$sisa);
+                // dd($value->akhir_periode);
+                // dd($sisa);
+            }
+            // dd($now);
+            // dd($data['kontraks']);
+            // $tenggat = $akhir_periode - $now;
             return view('admin/kontrak/reminder', $data);
     }
 
