@@ -24,9 +24,9 @@ class KontrakadminController extends Controller
     {
         if($request->bu_id && $request->area_id)
         {
-            $data['areas'] = area::all();
-            $data['bisnis_units'] = bisnis_unit::all();
-            $data['customers'] = customer::all();
+            $data['areas'] = Area::all();
+            $data['bisnis_units'] = Bisnis_unit::all();
+            $data['customers'] = Customer::all();
             $data['kontraks'] = DB::table('kontrak')
             ->join('customer', 'customer.kode_customer', '=', 'kontrak.kode_customer')
             ->join('area','area.area_id','=','customer.area_id')
@@ -80,9 +80,9 @@ class KontrakadminController extends Controller
         }
         elseif($request->area_id)
         {
-            $data['areas'] = area::all();
-            $data['bisnis_units'] = bisnis_unit::all();
-            $data['customers'] = customer::all();
+            $data['areas'] = Area::all();
+            $data['bisnis_units'] = Bisnis_unit::all();
+            $data['customers'] = Customer::all();
             $data['kontraks'] = DB::table('kontrak')
             ->join('customer', 'customer.kode_customer', '=', 'kontrak.kode_customer')
             ->join('area','area.area_id','=','customer.area_id')
@@ -258,8 +258,21 @@ class KontrakadminController extends Controller
             $data['customers'] = Customer::all();
             $data['kontraks'] = DB::table('kontrak')
             ->join('customer', 'customer.kode_customer', '=', 'kontrak.kode_customer')
-            ->whereRaw('akhir_periode < NOW() + INTERVAL 60 DAY') 
+            ->whereRaw('akhir_periode - INTERVAL 60 DAY <= NOW()')
+            ->whereRaw('NOW() < akhir_periode')
             ->get();
+
+            $now = Carbon\Carbon::now();
+            $data['sisa'] = array();
+            foreach ($data['kontraks'] as $key => $value) {
+                $sisa = $now->diffInDays($value->akhir_periode);
+                array_push($data['sisa'],$sisa);
+                // dd($value->akhir_periode);
+                // dd($sisa);
+            }
+            // dd($now);
+            // dd($data['kontraks']);
+            // $tenggat = $akhir_periode - $now;
             return view('admin/kontrak/reminder', $data);
     }
 

@@ -103,7 +103,7 @@
                                         <td>{{ $customer->nama_area}}</td>
                                     </tr>
                                     <tr>
-                                        <th>Wilayah</th>
+                                        <th>Area</th>
                                         <td>{{ $customer->nama_wilayah}}</td>
                                     </tr>
                                     <tr>

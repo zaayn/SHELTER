@@ -51,7 +51,7 @@
                                 <input list="browsers" class="form-control" name="kode_customer">
                                 <datalist id="browsers">
                             @foreach($customers as $customer)
-                                    <option value="{{ $customer->kode_customer }}">{{ $customer->kode_customer }} - {{ $customer->nama_perusahaan }}</option>
+                                    <option value="{{ $customer->kode_customer }}">{{ $customer->kode_customer }} - {{ $customer->nama_perusahaan }} - {{$customer->bisnis_unit->nama_bisnis_unit}} - {{$customer->area->nama_area}}</option>
                                 @endforeach
                             </datalist>
                                 <!-- </select> -->
@@ -105,19 +105,6 @@
                 	        <select class ="form-control" name="posisi_pks" required>
                             <option value="di Shelter">di Shelter</option>
                             <option value="di Client">di Client</option>
-                          </select>
-                        </div>
-
-                        
-
-                        <div class="form-group col-md-12">
-
-                	        <label class="font-weight-bold">Via</label>
-                	        <select class ="form-control" name="via" required>
-                            <option value="-">-</option>
-                            <option value="Langsung">Langsung</option>
-                            <option value="Email">Email</option>
-                            <option value="Post Kurir">Post Kurir</option>
                           </select>
                         </div>
                         <div class="col-md-12">

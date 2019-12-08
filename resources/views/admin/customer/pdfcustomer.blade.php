@@ -29,7 +29,7 @@
             <th>telpon</th>
             <th>cp</th>
             <th>Area</th>
-            <th>Wilayah</th>
+            <th>Area</th>
             <th>Area Supervisor</th>
 			</tr>
 		</thead>
@@ -48,9 +48,9 @@
             <td>{{ $customer->telpon }}</td>
             <td>{{ $customer->cp }}</td>
             {{-- <td>{{ $customer->nama_area}}</td> --}}
-            {{-- <td>{{ $customer->wilayah->nama_wilayah}}</td> --}}
+            {{-- <td>{{ $customer->area->nama_area}}</td> --}}
             <td>{{ $customer->nama_area}}</td>
-            <td>{{ $customer->wilayah->nama_wilayah}}</td>
+            <td>{{ $customer->area->nama_area}}</td>
             <td>{{ $customer->nama_depan}}</td>
 			</tr>
 			@endforeach

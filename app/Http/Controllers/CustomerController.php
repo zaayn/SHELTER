@@ -34,7 +34,7 @@ class CustomerController extends Controller
       {
         $data['customers'] = DB::table('customer')
         ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
-        ->select('customer.kode_customer','customer.nama_perusahaan','customer.jenis_usaha','nama_bisnis_unit','customer.alamat','customer.provinsi','customer.kabupaten','customer.telpon','customer.cp','customer.nama_area','wilayah.nama_wilayah','customer.nama_depan','status','jenis_perusahaan','negara')
+        ->select('customer.kode_customer','customer.nama_perusahaan','customer.jenis_usaha','nama_bisnis_unit','customer.alamat','customer.provinsi','customer.kabupaten','customer.telpon','customer.cp','customer.nama_area','area.nama_area','customer.nama_depan','status','jenis_perusahaan','negara')
         ->where('customer.status', '=', $request->status)->get();  
         $data['no'] = 1;
         return view('admin/customer/customer', $data);
@@ -46,7 +46,10 @@ class CustomerController extends Controller
     {
         $data['bisnis_units'] = Bisnis_unit::all();
         $data['areas'] = Area::all();
-        $data['users'] = User::where('rule', 'officer_crm')->get();
+        $data['users'] = DB::table('users')
+        ->join('area', 'users.area_id', '=', 'area.area_id')
+        ->where('users.rule', '=', 'officer_crm') 
+        ->get();
         return view('/admin/customer/insert_customer',$data);
     }
     public function customerCode($str, $as_space = array('-'))
@@ -237,7 +240,7 @@ class CustomerController extends Controller
       ->get();
       $data['customers'] = DB::table('customer')
       ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
-      ->select('customer.kode_customer','customer.nama_perusahaan','customer.jenis_usaha','nama_bisnis_unit','customer.alamat','customer.provinsi','customer.kabupaten','customer.telpon','customer.cp','customer.nama_area','wilayah.nama_wilayah','customer.nama_depan','status','jenis_perusahaan','negara')
+      ->select('customer.kode_customer','customer.nama_perusahaan','customer.jenis_usaha','nama_bisnis_unit','customer.alamat','customer.provinsi','customer.kabupaten','customer.telpon','customer.cp','customer.nama_area','area.nama_area','customer.nama_depan','status','jenis_perusahaan','negara')
       ->where('customer.kode_customer', '=', $request->kode_customer)->get();  
       $data['kontraks'] = DB::table('kontrak')
       ->join('customer', 'customer.kode_customer', '=', 'kontrak.kode_customer')

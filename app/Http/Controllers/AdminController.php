@@ -28,25 +28,22 @@ class AdminController extends Controller
         ->join('customer', 'customer.kode_customer', '=', 'kontrak.kode_customer')
         ->whereRaw('akhir_periode < NOW() + INTERVAL 60 DAY') 
         ->get();    
-        foreach($data['kontraks'] as $key => $kontraa){
-            $awok = DB::table('kontrak')
-            ->join('datamou', 'datamou.id_kontrak', '=', 'kontrak.id_kontrak')
-            ->where('kontrak.id_kontrak', '=', $kontraa->id_kontrak)
+            foreach($data['kontraks'] as $key => $kontraa){
+                $awok = DB::table('kontrak')
+                ->join('datamou', 'datamou.id_kontrak', '=', 'kontrak.id_kontrak')
+                ->where('kontrak.id_kontrak', '=', $kontraa->id_kontrak)
+                ->get();
+                
+                $data['kontraks'][$key]->datamou_flag = count($awok);
+            }
+        $data['keluhans'] = DB::table('keluhan')
+            ->join('customer', 'keluhan.kode_customer', '=', 'customer.kode_customer')
+            ->where('keluhan.status','=','Belum ditangani')
             ->get();
-            
-            $data['kontraks'][$key]->datamou_flag = count($awok);
-
-
-        }
-        $data['keluhans'] = Keluhan::where('status', 'Belum ditangani')->get();
-
         $lastUser = User::whereNotNull('current_login_at')
                     ->orderBy('current_login_at','desc')
                     ->get();
       
-        
-        
-
         $amount = DB::table('customer')
                     ->select(
                     DB::raw('area_id as area'),
@@ -84,7 +81,7 @@ class AdminController extends Controller
         ->join('bisnis_unit','customer.bu_id','=','bisnis_unit.bu_id')
         ->get();
         $data['no'] = 1;
-        // dd($data['datamous']);
+
         foreach ($data['datamous'] as $datas) {
             $to = \Carbon\Carbon::createFromFormat('Y-m-d',$datas->periode_kontrak);
             $from = \Carbon\Carbon::createFromFormat('Y-m-d',$datas->akhir_periode);
@@ -105,13 +102,6 @@ class AdminController extends Controller
             }
             
         }
-        // $fdate = $request->periode_kontrak;
-        // $tdate = $request->akhir_periode;
-        // $datetime1 = new DateTime($fdate);
-        // $datetime2 = new DateTime($tdate);
-        // $interval = $datetime1->diff($datetime2);
-        // $days = $interval->format('%a');
-        // dd($days);
         
         return view('admin/data_customer', $data);
     }
@@ -121,23 +111,11 @@ class AdminController extends Controller
         ->join('kontrak','datamou.id_kontrak','=','kontrak.id_kontrak')
         ->join('customer', 'kontrak.kode_customer', '=', 'customer.kode_customer')
         ->join('bisnis_unit','customer.bu_id','=','bisnis_unit.bu_id')
-        ->select('kontrak.id_kontrak','customer.kode_customer','customer.nama_perusahaan',
-        'kontrak.periode_kontrak','kontrak.akhir_periode','kontrak.srt_pemberitahuan',
-        'kontrak.tgl_srt_pemberitahuan','kontrak.srt_penawaran','kontrak.tgl_srt_penawaran',
-        'kontrak.dealing','kontrak.tgl_dealing','kontrak.posisi_pks','kontrak.closing',
-        'nama_bisnis_unit','provinsi','alamat','jenis_usaha','periode_kontrak','hc','invoice','mf',
-        'mf_persen','bpjs_tenagakerja','bpjs_kesehatan','jiwasraya','ramamusa','ditagihkan','diprovisasikan',
-        'overheadcost','training','tanggal_invoice','time_of_payment','cut_of_date','kaporlap','devices',
-        'chemical','pendaftaran_mou')
         ->first();
         
         $pdf = PDF::loadview('admin/customer/pdfdatacustomer',['datamous'=>$data]);
         $pdf->setPaper('A4','landscape');
         return $pdf->download('Laporan-Data-CustomerAll-CRM.pdf');
     }
-    public function keluhanBelum(){
-        $data['keluhans'] = Keluhan::where('status','Belum ditangani')
-        ->get();
-        return view('admin/dashboard_admin', $data);
-    }
+   
 }

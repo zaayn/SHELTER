@@ -54,7 +54,7 @@
                             <div>
                                 {{--<select class="form-control" name="departemen">
                                 @foreach($users as $users)
-                                    <option value="{{ $users->nama_depan }}">{{ $users->nama_depan }} - {{ $users->nama_wilayah }}</option>
+                                    <option value="{{ $users->nama_depan }}">{{ $users->nama_depan }} - {{ $users->nama_area }}</option>
                                 @endforeach
                                 </select>--}}
                                 <input type="text" class="form-control" name="departemen" required>

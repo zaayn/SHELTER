@@ -54,11 +54,12 @@
                         <div class="form-group col-md-12">
                             <label>SPV PIC :</label>
                             <div>
-                                <select class="form-control" name="spv_pic">
+                                <input list="mybrowsers" class="form-control" name="spv_pic">
+                                <datalist id="mybrowsers">
                                 @foreach($users as $users)
-                                    <option value="{{ $users->nama_depan }}">{{ $users->nama_depan }} - {{ $users->nama_wilayah }}</option>
+                                    <option value="{{ $users->nama_depan }}">{{ $users->nama_depan }} - {{ $users->nama_area }}</option>
                                 @endforeach
-                                </select>
+                                </datalist>
                             </div>
                         </div>
                         <div class="form-group col-md-12">

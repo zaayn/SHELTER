@@ -97,18 +97,6 @@
                             <option value="di Client">di Client</option>
                           </select>
                         </div>
-
-
-                        <div class="form-group col-md-12">
-
-                	        <label class="font-weight-bold">Via</label>
-                	        <select class ="form-control" name="via" value="{{ $kontrak->via }}" required>
-                            <option value="-">-</option>
-                            <option value="Langsung">Langsung</option>
-                            <option value="Email">Email</option>
-                            <option value="Post Kurir">Post Kurir</option>
-                          </select>
-                        </div>
                         <div class="col-md-12">
                             <button type="submit" class="btn btn-lg btn-info btn-block ">
                                 Save

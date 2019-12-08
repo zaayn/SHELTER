@@ -101,9 +101,7 @@
                                     @if($keluhan->status == 'Belum ditangani')
                                     <a onclick="return confirm('Apakah anda yakin keluhan ini sudah ditangani?')" href="{{route('reset.keluhan',$keluhan->id_keluhan)}}" class="btn btn-warning btn-sm">Tangani</a>
                                     @endif
-                                   
                                     </td>
-                                    
                                 </tr>
                                 @endforeach 
                                 </tbody>

@@ -43,7 +43,7 @@
                             <div>
                                 <select class="form-control" name="kode_customer">
                                 @foreach($customers as $customer)
-                                    <option value="{{ $customer->kode_customer }}">{{ $customer->kode_customer }} - {{ $customer->nama_perusahaan }} - {{ $customer->bisnis_unit->nama_bisnis_unit }}</option>
+                                    <option value="{{ $customer->kode_customer }}">{{ $customer->kode_customer }} - {{ $customer->nama_perusahaan }} - {{ $customer->bisnis_unit->nama_bisnis_unit }} - {{ $customer->area->nama_area }}</option>
                                 @endforeach
                                 </select>
                             </div>
@@ -53,7 +53,7 @@
                             <div>
                                 <select class="form-control" name="spv_pic">
                                 @foreach($users as $users)
-                                    <option value="{{ $users->nama_depan }}">{{ $users->nama_depan }} - {{ $users->nama_wilayah }}</option>
+                                    <option value="{{ $users->nama_depan }}">{{ $users->nama_depan }} - {{ $users->nama_area }}</option>
                                 @endforeach
                                 </select>
                             </div>
