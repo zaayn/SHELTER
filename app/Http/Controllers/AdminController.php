@@ -28,25 +28,22 @@ class AdminController extends Controller
         ->join('customer', 'customer.kode_customer', '=', 'kontrak.kode_customer')
         ->whereRaw('akhir_periode < NOW() + INTERVAL 60 DAY') 
         ->get();    
-        foreach($data['kontraks'] as $key => $kontraa){
-            $awok = DB::table('kontrak')
-            ->join('datamou', 'datamou.id_kontrak', '=', 'kontrak.id_kontrak')
-            ->where('kontrak.id_kontrak', '=', $kontraa->id_kontrak)
+            foreach($data['kontraks'] as $key => $kontraa){
+                $awok = DB::table('kontrak')
+                ->join('datamou', 'datamou.id_kontrak', '=', 'kontrak.id_kontrak')
+                ->where('kontrak.id_kontrak', '=', $kontraa->id_kontrak)
+                ->get();
+                
+                $data['kontraks'][$key]->datamou_flag = count($awok);
+            }
+        $data['keluhans'] = DB::table('keluhan')
+            ->join('customer', 'keluhan.kode_customer', '=', 'customer.kode_customer')
+            ->where('keluhan.status','=','Belum ditangani')
             ->get();
-            
-            $data['kontraks'][$key]->datamou_flag = count($awok);
-
-
-        }
-        $data['keluhans'] = Keluhan::where('status', 'Belum ditangani')->get();
-
         $lastUser = User::whereNotNull('current_login_at')
                     ->orderBy('current_login_at','desc')
                     ->get();
       
-        
-        
-
         $amount = DB::table('customer')
                     ->select(
                     DB::raw('area_id as area'),
@@ -120,9 +117,5 @@ class AdminController extends Controller
         $pdf->setPaper('A4','landscape');
         return $pdf->download('Laporan-Data-CustomerAll-CRM.pdf');
     }
-    public function keluhanBelum(){
-        $data['keluhans'] = Keluhan::where('status','Belum ditangani')
-        ->get();
-        return view('admin/dashboard_admin', $data);
-    }
+   
 }
