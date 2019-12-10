@@ -50,16 +50,17 @@
                                 <tbody>
                                     @php
                                         $i=0;
+                                        $a=1;
                                         
                                     @endphp
                                 @foreach($kontraks as $kontrak)
                                 <tr>
-                                    <td>{{ $kontrak->id_kontrak }}</td>
+                                    <td>{{ $a++ }}</td>
                                     
                                     <td>{{ $kontrak->nomor_kontrak}}</td>
-                                    @if($sisa <= 30)
+                                    @if($sisa[$i] <= 30)
                                     <td>{{ $sisa[$i++] }} Hari <i class="fa fa-warning" style="font-size:20px;color:red"></i></td>
-                                    @elseif($sisa > 30)
+                                    @elseif($sisa[$i] > 30)
                                     <td>{{ $sisa[$i++] }} Hari <i class="fa fa-warning" style="font-size:20px;color:yellow"></i></td>
                                     @endif
                                     <td>{{ $kontrak->nama_perusahaan }}</td>
