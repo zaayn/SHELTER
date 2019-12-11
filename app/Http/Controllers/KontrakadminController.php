@@ -24,6 +24,7 @@ class KontrakadminController extends Controller
     {
         if($request->bu_id && $request->area_id)
         {
+            $data['no'] = 1;
             $data['areas'] = Area::all();
             $data['bisnis_units'] = Bisnis_unit::all();
             $data['customers'] = Customer::all();
@@ -31,15 +32,14 @@ class KontrakadminController extends Controller
             ->join('customer', 'customer.kode_customer', '=', 'kontrak.kode_customer')
             ->join('area','area.area_id','=','customer.area_id')
             ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
-            ->select('area.area_id','bisnis_unit.nama_bisnis_unit','bisnis_unit.bu_id','kontrak.id_kontrak','kontrak.nomor_kontrak','customer.kode_customer','customer.nama_perusahaan','kontrak.periode_kontrak','kontrak.akhir_periode','kontrak.srt_pemberitahuan','kontrak.tgl_srt_pemberitahuan','kontrak.srt_penawaran','kontrak.tgl_srt_penawaran','kontrak.dealing','kontrak.tgl_dealing','kontrak.posisi_pks','kontrak.closing')
             ->where('bisnis_unit.bu_id', '=', $request->bu_id)
             ->where('area.area_id', '=', $request->area_id)
             ->get();
             foreach($data['kontraks'] as $key => $kontraa){
                 $awok = DB::table('kontrak')
                 ->join('customer', 'customer.kode_customer', '=', 'kontrak.kode_customer')
+                ->join('area','area.area_id','=','customer.area_id')
                 ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
-                ->join('datamou', 'datamou.id_kontrak', '=', 'kontrak.id_kontrak')
                 ->where('bisnis_unit.bu_id', '=', $request->bu_id)
                 ->where('area.area_id', '=', $request->area_id)
                 ->where('kontrak.id_kontrak', '=', $kontraa->id_kontrak)
@@ -66,10 +66,9 @@ class KontrakadminController extends Controller
             foreach($data['kontraks'] as $key => $kontraa){
                 $awok = DB::table('kontrak')
                 ->join('customer', 'customer.kode_customer', '=', 'kontrak.kode_customer')
+                ->join('area','area.area_id','=','customer.area_id')
                 ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
-                ->join('datamou', 'datamou.id_kontrak', '=', 'kontrak.id_kontrak')
                 ->where('bisnis_unit.bu_id', '=', $request->bu_id)
-                // ->where('area.area_id', '=', $request->area_id)
                 ->where('kontrak.id_kontrak', '=', $kontraa->id_kontrak)
                 ->orderBy('kontrak.id_kontrak','asc')
                 ->get();
@@ -80,6 +79,7 @@ class KontrakadminController extends Controller
         }
         elseif($request->area_id)
         {
+            $data['no'] = 1;
             $data['areas'] = Area::all();
             $data['bisnis_units'] = Bisnis_unit::all();
             $data['customers'] = Customer::all();
@@ -93,9 +93,8 @@ class KontrakadminController extends Controller
             foreach($data['kontraks'] as $key => $kontraa){
                 $awok = DB::table('kontrak')
                 ->join('customer', 'customer.kode_customer', '=', 'kontrak.kode_customer')
+                ->join('area','area.area_id','=','customer.area_id')
                 ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
-                ->join('datamou', 'datamou.id_kontrak', '=', 'kontrak.id_kontrak')
-                //->where('bisnis_unit.bu_id', '=', $request->bu_id)
                 ->where('area.area_id', '=', $request->area_id)
                 ->where('kontrak.id_kontrak', '=', $kontraa->id_kontrak)
                 ->orderBy('kontrak.id_kontrak','asc')
