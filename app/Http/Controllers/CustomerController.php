@@ -32,6 +32,7 @@ class CustomerController extends Controller
     {
       if($request->status)
       {
+        $data['areas'] = Area::all();
         $data['customers'] = DB::table('customer')
         ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
         ->where('customer.status', '=', $request->status)->get();  
