@@ -34,7 +34,6 @@ class CustomerController extends Controller
       {
         $data['customers'] = DB::table('customer')
         ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
-        ->select('customer.kode_customer','customer.nama_perusahaan','customer.jenis_usaha','nama_bisnis_unit','customer.alamat','customer.provinsi','customer.kabupaten','customer.telpon','customer.cp','customer.nama_area','area.nama_area','customer.nama_depan','status','jenis_perusahaan','negara')
         ->where('customer.status', '=', $request->status)->get();  
         $data['no'] = 1;
         return view('admin/customer/customer', $data);
