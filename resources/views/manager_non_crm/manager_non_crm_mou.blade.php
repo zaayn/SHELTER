@@ -68,7 +68,7 @@
                             {{-- <a href="/kontrak/exportExcel" class="btn btn-success btn-sm" target="_blank">EXPORT EXCEL</a> --}}
                             {{-- <a href="/insertkontrak" class="btn btn-primary btn-sm">Input Kontrak</a> --}}
                             <table id="mydatatables" class="table table-collapse table-hover table-light table-striped cell-border table-responsive">                                <thead>
-                                    <th>No. MoU</th>
+                                    <th>No. </th>
                                     <th>Nomor Kontrak</th>
                                     <th>HC</th>
                                     <th>Invoice</th>

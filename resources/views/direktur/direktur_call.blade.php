@@ -66,7 +66,7 @@
                             <div style="overflow-x:auto;">
                                 <table id="mydatatables" class="table table-collapse table-hover table-light table-striped cell-border table-responsive">
                                     <thead>
-                                    <th>ID Call</th>
+                                    <th>No. </th>
                                     <th>Nama Customer</th>
                                     <th>SPV_PIC</th>
                                     <th>Tanggal</th>

@@ -68,7 +68,7 @@
                            
                             <table id="mydatatables" class="table table-collapse table-hover table-light table-striped cell-border table-responsive">
                                 <thead>
-                                    <th>ID Call</th>
+                                    <th>No.</th>
                                     <th>Nama Customer</th>
                                     <th>SPV_PIC</th>
                                     <th>Tanggal</th>
@@ -81,7 +81,7 @@
                                 <tbody>
                                 @foreach($calls as $call)
                                 <tr>
-                                    <td>{{ $call->call_id  }}</td>
+                                    <td>{{ $no++  }}</td>
                                     <td>{{ $call->nama_perusahaan }}</td>
                                     <td>{{ $call->spv_pic }}</td>
                                     <td>{{ $call->tanggal_call }}</td>

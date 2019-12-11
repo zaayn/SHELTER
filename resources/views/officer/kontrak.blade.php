@@ -68,6 +68,7 @@
                             <div style="overflow-x:auto;">
                             
                                 <table id="mydatatables" class="table table-collapse table-hover table-light table-striped cell-border table-responsive">                                <thead>
+                                    <th>No.</th>
                                     <th>Nomor Kontrak</th>
                                     <th>Kode Customer</th>
                                     <th>Nama Perusahaan</th>
@@ -84,8 +85,12 @@
                                     <th>Aksi</th>
                                 </thead>
                                 <tbody>
+                                @php
+                                    $no=1;
+                                @endphp
                                 @foreach($kontraks as $kontrak)
                                 <tr>
+                                    <td>{{ $no++ }}</td>
                                     <td>{{ $kontrak->nomor_kontrak }}</td>
                                     <td>{{ $kontrak->kode_customer }}</td>
                                     <td>{{ $kontrak->nama_perusahaan }}</td>

@@ -66,7 +66,7 @@
                             @include('admin.shared.components.alert')
                             <div style="overflow-x:auto;">
                                 <table id="mydatatables" class="table table-collapse table-hover table-light table-striped cell-border table-responsive">                                <thead>
-                                    <th>No. MoU</th>
+                                    <th>No. </th>
                                     <th>Nomor Kontrak</th>
                                     <th>HC</th>
                                     <th>Invoice</th>
