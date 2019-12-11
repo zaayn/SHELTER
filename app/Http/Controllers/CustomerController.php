@@ -21,10 +21,11 @@ class CustomerController extends Controller
     public function index()
     {  
       $data['areas'] = Area::all();
-      $data['customers'] = DB::table('customer')
-      ->join('bisnis_unit','customer.bu_id','=','bisnis_unit.bu_id')
-      ->join('area','customer.area_id','=','area.area_id')
-      ->get();
+      // $data['customers'] = DB::table('customer')
+      // ->join('bisnis_unit','customer.bu_id','=','bisnis_unit.bu_id')
+      // ->join('area','customer.area_id','=','area.area_id')
+      // ->get();
+      $data['customer'] = Customer::all();
         $data['no'] = 1;
         return view('admin/customer/customer', $data);
     }
