@@ -29,8 +29,8 @@
                             <div class="col-md-6">
                                 <select class="form-control" name="status">
                                         <option value="">--- Select Status ---</option>
-                                        <option value="aktif">aktif</option>
-                                        <option value="non_aktif">Non aktif</option>
+                                        <option value="Aktif">Aktif</option>
+                                        <option value="Non_aktif">Non aktif</option>
                                 </select>
                             </div>
                         </div>

@@ -169,6 +169,7 @@ class CalladminController extends Controller
     {
       if($request->bu_id && $request->area_id)
       {
+        $data['no'] = 1;
         $data['areas'] = Area::all();
         $data['bisnis_units'] = Bisnis_unit::all();
         $data['calls'] = Call::all();
@@ -182,7 +183,9 @@ class CalladminController extends Controller
 
         return view('admin/call/call', $data);
       }
-      elseif ($request->bu_id) {
+      elseif ($request->bu_id) 
+      {
+        $data['no'] = 1;
         $data['areas'] = Area::all();
         $data['bisnis_units'] = Bisnis_unit::all();
         $data['calls'] = Call::all();
@@ -195,7 +198,9 @@ class CalladminController extends Controller
         return view('admin/call/call', $data);
 
       } 
-      elseif ($request->area_id) {
+      elseif ($request->area_id) 
+      {
+        $data['no'] = 1;
         $data['areas'] = Area::all();
         $data['bisnis_units'] = Bisnis_unit::all();
         $data['calls'] = Call::all();

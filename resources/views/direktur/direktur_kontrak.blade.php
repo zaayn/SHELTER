@@ -67,7 +67,7 @@
                             <div style="overflow-x:auto;">
                                 <table id="mydatatables" class="table table-collapse table-hover table-light table-striped cell-border table-responsive">
                                     <thead>
-                                    <th>ID Kontrak</th>
+                                    <th>No. </th>
                                     <th>Nomor Kontrak</th>
                                     <th>Kode Customer</th>
                                     <th>Nama Perusahaan</th>

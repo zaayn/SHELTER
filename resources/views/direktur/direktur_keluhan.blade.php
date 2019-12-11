@@ -66,7 +66,7 @@
                             <div style="overflow-x:auto;">
                                 <table id="mydatatables" class="table table-collapse table-hover table-light table-striped cell-border table-responsive">
                                     <thead>
-                                    <th>ID Keluhan</th>
+                                    <th>No. </th>
                                     <th>Nama Customer</th>
                                     <th>Departemen Tertuju</th>
                                     <th>Tanggal</th>
@@ -80,7 +80,7 @@
                                     <th>Status</th>
                                 </thead>
                                 <tbody>
-                                @foreach($keluhans as $ke)
+                                @foreach($keluhan as $ke)
                                 <tr>
                                     <td>{{ $no++  }}</td>
                                     <td>{{ $ke->nama_perusahaan }}</td>
