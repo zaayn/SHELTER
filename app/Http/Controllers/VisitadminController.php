@@ -33,7 +33,10 @@ class VisitadminController extends Controller
     public function insert()
     {
         $data['bisnis_units'] = Bisnis_unit::all();
-        $data['customers'] = Customer::where('status','Aktif')->get();
+        // $data['customers'] = Customer::where('status','Aktif')->get();
+        $data['customers'] = DB::table('customer')
+        ->where('status', 'Aktif')
+        ->get();
         $data['users'] = DB::table('users')
         ->join('area','users.area_id','=','area.area_id')
         ->where('rule', 'officer_crm')
