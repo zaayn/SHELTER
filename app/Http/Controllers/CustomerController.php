@@ -30,16 +30,40 @@ class CustomerController extends Controller
     }
     public function filter(Request $request)
     {
-      if($request->status)
+      if($request->status && $request->area_id)
       {
+        $data['areas'] = Area::all();
         $data['customers'] = DB::table('customer')
+        ->join('area','area.area_id','=','customer.area_id')
         ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
-        ->select('customer.kode_customer','customer.nama_perusahaan','customer.jenis_usaha','nama_bisnis_unit','customer.alamat','customer.provinsi','customer.kabupaten','customer.telpon','customer.cp','customer.nama_area','area.nama_area','customer.nama_depan','status','jenis_perusahaan','negara')
-        ->where('customer.status', '=', $request->status)->get();  
+        ->where('customer.status', '=', $request->status)
+        ->where('area.area_id', '=', $request->area_id)
+        ->get();  
         $data['no'] = 1;
         return view('admin/customer/customer', $data);
       }
-      
+      elseif($request->status)
+      {
+        $data['areas'] = Area::all();
+        $data['customers'] = DB::table('customer')
+        ->join('area','area.area_id','=','customer.area_id')
+        ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
+        ->where('customer.status', '=', $request->status)
+        ->get();  
+        $data['no'] = 1;
+        return view('admin/customer/customer', $data);
+      }
+      elseif($request->area_id)
+      {
+        $data['areas'] = Area::all();
+        $data['customers'] = DB::table('customer')
+        ->join('area','area.area_id','=','customer.area_id')
+        ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
+        ->where('area.area_id', '=', $request->area_id)
+        ->get();  
+        $data['no'] = 1;
+        return view('admin/customer/customer', $data);
+      }
       
     }
     public function insert()

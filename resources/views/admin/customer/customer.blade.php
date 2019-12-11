@@ -29,7 +29,7 @@
                             <div class="col-md-6">
                                 <select class="form-control" name="status">
                                         <option value="">--- Select Status ---</option>
-                                        <option value="Aktif">aktif</option>
+                                        <option value="Aktif">Aktif</option>
                                         <option value="Non_aktif">Non aktif</option>
                                 </select>
                             </div>
