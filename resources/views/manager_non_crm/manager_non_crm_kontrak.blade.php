@@ -66,7 +66,7 @@
                             @include('admin.shared.components.alert')
                             <div style="overflow-x:auto;">
                                 <table id="mydatatables" class="table table-collapse table-hover table-light table-striped cell-border table-responsive">                                <thead>
-                                    <th>ID Kontrak</th>
+                                    <th>No. </th>
                                     <th>Nomor kontrak</th>
                                     <th>Kode Customer</th>
                                     <th>Nama Perusahaan</th>
@@ -84,7 +84,7 @@
                                 <tbody>
                                 @foreach($kontraks as $ko)
                                 <tr>
-                                    <td>{{ $ko->id_kontrak }}</td>
+                                    <td>{{ $no++ }}</td>
                                     <td>{{ $ko->nomor_kontrak }}</td>
                                     <td>{{ $ko->kode_customer }}</td>
                                     <td>{{ $ko->nama_perusahaan }}</td>

@@ -29,8 +29,8 @@
                             <div class="col-md-6">
                                 <select class="form-control" name="status">
                                         <option value="">--- Select Status ---</option>
-                                        <option value="aktif">aktif</option>
-                                        <option value="non_aktif">Non aktif</option>
+                                        <option value="Aktif">Aktif</option>
+                                        <option value="Non_aktif">Non aktif</option>
                                 </select>
                             </div>
                         </div>
@@ -94,7 +94,7 @@
                                         <td>{{ $customer->kode_customer }}</td>
                                         <td>{{ $customer->nama_perusahaan }}</td>
                                         <td>{{ $customer->jenis_usaha }}</td>
-                                        <td>{{ $customer->nama_bisnis_unit }}</td>
+                                        <td>{{ $customer->bisnis_unit->nama_bisnis_unit }}</td>
                                         <td>{{ $customer->jenis_perusahaan }}</td>
                                         <td>{{ $customer->negara }}</td>
                                         <td>{{ $customer->alamat }}</td>
@@ -102,7 +102,7 @@
                                         <td>{{ $customer->kabupaten }}</td>
                                         <td>{{ $customer->telpon }}</td>
                                         <td>{{ $customer->cp }}</td>
-                                        <td>{{ $customer->nama_area}}</td>
+                                        <td>{{ $customer->area->nama_area}}</td>
                                         <td>{{ $customer->nama_depan}}</td>
                                         <td>{{ $customer->status}}</td>
                                         <td>

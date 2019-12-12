@@ -31,7 +31,7 @@
                             
                             <table id="mydatatables" class="table table-responsive table-hover table-light table-striped">
                                 <thead>
-                                    <th>Nomor</th>
+                                    <th>No.</th>
                                     <th>Nomor Kontrak</th>
                                     <th>Masa Tenggat</th>
                                     <th>Nama Perusahaan</th>
@@ -50,12 +50,19 @@
                                 <tbody>
                                     @php
                                         $i=0;
+                                        $a=1;
+                                        
                                     @endphp
                                 @foreach($kontraks as $kontrak)
                                 <tr>
-                                    <td>{{ $kontrak->id_kontrak }}</td>
+                                    <td>{{ $a++ }}</td>
+                                    
                                     <td>{{ $kontrak->nomor_kontrak}}</td>
-                                    <td>{{ $sisa[$i++] }} Hari</td>
+                                    @if($sisa[$i] <= 30)
+                                    <td>{{ $sisa[$i++] }} Hari <i class="fa fa-warning" style="font-size:20px;color:red"></i></td>
+                                    @elseif($sisa[$i] > 30)
+                                    <td>{{ $sisa[$i++] }} Hari <i class="fa fa-warning" style="font-size:20px;color:yellow"></i></td>
+                                    @endif
                                     <td>{{ $kontrak->nama_perusahaan }}</td>
                                     <td>{{ $kontrak->periode_kontrak }}</td>
                                     <td>{{ $kontrak->akhir_periode }}</td>

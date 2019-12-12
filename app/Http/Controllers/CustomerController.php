@@ -21,26 +21,21 @@ class CustomerController extends Controller
     public function index()
     {  
       $data['areas'] = Area::all();
-      $data['customers'] = DB::table('customer')
-      ->join('area','customer.area_id','=','area.area_id')
-      ->join('bisnis_unit','customer.bu_id','=','bisnis_unit.bu_id')
-      ->get();
+      $data['customers'] = Customer::all();
         $data['no'] = 1;
         return view('admin/customer/customer', $data);
     }
     public function filter(Request $request)
     {
-      if($request->status)
-      {
-        $data['customers'] = DB::table('customer')
-        ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
-        ->select('customer.kode_customer','customer.nama_perusahaan','customer.jenis_usaha','nama_bisnis_unit','customer.alamat','customer.provinsi','customer.kabupaten','customer.telpon','customer.cp','customer.nama_area','area.nama_area','customer.nama_depan','status','jenis_perusahaan','negara')
-        ->where('customer.status', '=', $request->status)->get();  
+        $data['areas'] = Area::all();
+        $customers = Customer::all();
+        if($request->status)
+            $customers = $customers->where('status', $request->status);
+        if($request->area_id)
+            $customers = $customers->where('area_id', $request->area_id);
+        $data['customers'] = $customers;
         $data['no'] = 1;
         return view('admin/customer/customer', $data);
-      }
-      
-      
     }
     public function insert()
     {
