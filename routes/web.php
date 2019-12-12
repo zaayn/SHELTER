@@ -61,7 +61,7 @@ Route::group(['prefix' => 'officer_crm',  'middleware' => 'is_officer_crm'], fun
 
 });
 
-Route::group(['prefix' => 'superadmin',  'middleware' => 'is_superadmin'], function(){
+// Route::group(['prefix' => 'superadmin',  'middleware' => 'is_superadmin'], function(){
     Route::get('/home', 'AdminController@superadmin')->name('home'); //Dashboard super admin
 
     //--------- bisnis unit
@@ -98,7 +98,7 @@ Route::group(['prefix' => 'superadmin',  'middleware' => 'is_superadmin'], funct
     Route::put('/update/user{id}','UserController@update')->name('update.user');
     Route::post('/filter/user', 'UserController@filter')->name('filter.user');
 
-});
+// });
 
 Route::group(['prefix' => 'admin',  'middleware' => 'is_admin'], function(){
 
