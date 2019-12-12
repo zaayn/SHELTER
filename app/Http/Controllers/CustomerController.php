@@ -25,7 +25,11 @@ class CustomerController extends Controller
       // ->join('bisnis_unit','customer.bu_id','=','bisnis_unit.bu_id')
       // ->join('area','customer.area_id','=','area.area_id')
       // ->get();
-      $data['customers'] = Customer::all();
+      // $data['customers'] = Customer::all();
+      // $data['customers'] = DB::table('area')
+      // ->join('customer','customer.area_id','=','area.area_id')
+      // ->join('bisnis_unit','bisnis_unit.bu_id','=','customer.bu_id')
+      // ->get();
         $data['no'] = 1;
         return view('admin/customer/customer', $data);
     }
