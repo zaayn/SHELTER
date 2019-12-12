@@ -28,17 +28,12 @@ class CustomerController extends Controller
     public function filter(Request $request)
     {
         $data['areas'] = Area::all();
-
         $customers = Customer::all();
-        
         if($request->status)
             $customers = $customers->where('status', $request->status);
-
         if($request->area_id)
             $customers = $customers->where('area_id', $request->area_id);
-
         $data['customers'] = $customers;
-                              
         $data['no'] = 1;
         return view('admin/customer/customer', $data);
     }

@@ -134,11 +134,6 @@ class KontrakadminController extends Controller
     public function insert()
     {
         $data['customers'] = Customer::where('status','Aktif')->get();
-        // $data['customers'] = DB::table('customer')
-        // ->join('area', 'area.area_id', '=', 'customer.area_id')
-        // ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
-        // ->where('status', '=', 'Aktif')
-        // ->get();
         return view('admin/kontrak/insertkontrak',$data);
     }
 
