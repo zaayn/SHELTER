@@ -136,7 +136,7 @@ class KeluhanController extends Controller
       if($request->bu_id && $request->area_id)
       {
         $data['no'] = 1;
-        $data['areas'] = area::all();
+        $data['areas'] = Area::all();
         $data['bisnis_units'] = Bisnis_unit::all();
         $data['keluhans'] = DB::table('keluhan')
         ->join('customer', 'keluhan.kode_customer', '=', 'customer.kode_customer')
@@ -155,7 +155,7 @@ class KeluhanController extends Controller
       elseif($request->bu_id)
       {
         $data['no'] = 1;
-        $data['areas'] = area::all();
+        $data['areas'] = Area::all();
         $data['bisnis_units'] = Bisnis_unit::all();
         $data['keluhans'] = DB::table('keluhan')
         ->join('customer', 'keluhan.kode_customer', '=', 'customer.kode_customer')
@@ -173,7 +173,7 @@ class KeluhanController extends Controller
       elseif($request->area_id)
       {
         $data['no'] = 1;
-        $data['areas'] = area::all();
+        $data['areas'] = Area::all();
         $data['bisnis_units'] = Bisnis_unit::all();
         $data['keluhans'] = DB::table('keluhan')
         ->join('customer', 'keluhan.kode_customer', '=', 'customer.kode_customer')
