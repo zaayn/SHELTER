@@ -160,6 +160,60 @@
                 </div>
             </div>
         </div>
+        <!-- table keluhan -->
+<div class="row">
+        <div class="col-md-12">
+            <div class="panel block">
+                <div class="panel-body"> 
+                    <div class="panel-heading"><h3>Daftar Keluhan yang Belum Ditangani</h3></div>
+                    <hr style="border: solid #ddd; border-width: 1px 0 0; clear: both; margin: 22px 0 21px; height: 0;">
+                        @include('admin.shared.components.alert')
+                        <div style="overflow-x:auto;">    
+                        <table id="mydatatables3" class="table table-collapse table-hover table-light table-striped">
+                                <thead>
+                                    <th>No</th>
+                                    <th>Nama Customer</th>
+                                    <th>Departemen</th>
+                                    <th>Tanggal</th>
+                                    <th>Topik Permasalahan</th>
+                                    <th>Saran Penyelesaian</th>
+                                    <th>Time Target</th>
+                                    <th>Confirm Closed PIC</th>
+                                    <th>Case</th>
+                                    <th>Actual Case</th>
+                                    <th>Uraian Penyelesaian</th>
+                                    <th>Status</th>
+                                    <th>Aksi</th>
+                                </thead>
+                                <tbody>
+                                @foreach($keluhans as $keluhan)
+                                <tr>
+                                    <td>{{ $no++  }}</td>
+                                    <td>{{ $keluhan->nama_perusahaan }}</td>
+                                    <td>{{ $keluhan->departemen }}</td>
+                                    <td>{{ $keluhan->tanggal_keluhan }}</td>
+                                    <td>{{ $keluhan->topik_masalah }}</td>
+                                    <td>{{ $keluhan->saran_penyelesaian }}</td>
+                                    <td>{{ $keluhan->time_target }}</td>
+                                    <td>{{ $keluhan->confirm_pic }}</td>
+                                    <td>{{ $keluhan->case }}</td>
+                                    <td>{{ $keluhan->actual_case }}</td>
+                                    <td>{{ $keluhan->uraian_penyelesaian }}</td>
+                                    <td>{{ $keluhan->status }}</td>
+                                    <td>
+                                        <a href="{{route('edit.keluhan',$keluhan->id_keluhan)}}" class="btn btn-info btn-sm"><span class="fa fa-pencil"></span></a>
+                                        <a onclick="return confirm('Apakah anda yakin akan menghapus data ini ?')" href="{{route('destroy.keluhan',$keluhan->id_keluhan)}}" class="btn btn-danger btn-sm"><span class="fa fa-trash"></span></a>
+                                        <a onclick="return confirm('Apakah anda yakin keluhan ini sudah ditangani?')" href="{{route('reset.keluhan',$keluhan->id_keluhan)}}" class="btn btn-warning btn-sm"><span class="fa fa-check"></span></a>
+                                    </td>
+                                </tr>
+                            @endforeach 
+                        </tbody>
+                    </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
 
 @section('js')

@@ -28,7 +28,6 @@ class callController extends Controller
         $data['no'] = 1;
         $data['areas'] = Area::all();
         $data['bisnis_units'] = Bisnis_unit::all();
-        $data['calls'] = Call::all();
         $data['calls'] = DB::table('call')
         ->join('customer', 'call.kode_customer', '=', 'customer.kode_customer')
         ->select('customer.kode_customer','call.kode_customer','call_id','customer.nama_perusahaan','spv_pic','tanggal_call','jam_call','pembicaraan','pic_called','hal_menonjol')
@@ -39,9 +38,7 @@ class callController extends Controller
     public function insert()
     {
         $data['bisnis_units'] = Bisnis_unit::all();
-        $data['customers'] = DB::table('customer')
-        ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
-        ->where('status', 'Aktif')->get();
+        $data['customers'] = Customer::where('status', 'Aktif')->get();
         $data['users'] = DB::table('users')
         ->join('area','users.area_id','=','area.area_id')
         ->where('rule', 'officer_crm')->get();
@@ -146,9 +143,9 @@ class callController extends Controller
     {
       if($request->bu_id && $request->area_id)
       {
-        $data['areas'] = area::all();
-        $data['bisnis_units'] = bisnis_unit::all();
-        $data['calls'] = call::all();
+        $data['areas'] = Area::all();
+        $data['bisnis_units'] = Bisnis_unit::all();
+        $data['calls'] = Call::all();
         $data['calls'] = DB::table('call')
         ->join('customer', 'call.kode_customer', '=', 'customer.kode_customer')
         ->join('area','area.area_id','=','customer.area_id')
@@ -162,9 +159,9 @@ class callController extends Controller
         return view('officer/call', $data);
       }
       elseif ($request->bu_id) {
-        $data['areas'] = area::all();
-        $data['bisnis_units'] = bisnis_unit::all();
-        $data['calls'] = call::all();
+        $data['areas'] = Area::all();
+        $data['bisnis_units'] = Bisnis_unit::all();
+        $data['calls'] = Call::all();
         $data['calls'] = DB::table('call')
         ->join('customer', 'call.kode_customer', '=', 'customer.kode_customer')
         ->join('area','area.area_id','=','customer.area_id')
@@ -177,9 +174,9 @@ class callController extends Controller
 
       } 
       elseif ($request->area_id) {
-        $data['areas'] = area::all();
-        $data['bisnis_units'] = bisnis_unit::all();
-        $data['calls'] = call::all();
+        $data['areas'] = Area::all();
+        $data['bisnis_units'] = Bisnis_unit::all();
+        $data['calls'] = Call::all();
         $data['calls'] = DB::table('call')
         ->join('customer', 'call.kode_customer', '=', 'customer.kode_customer')
         ->join('area','area.area_id','=','customer.area_id')
