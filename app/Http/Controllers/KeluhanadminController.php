@@ -26,6 +26,17 @@ class KeluhanadminController extends Controller
         ->get();
         return view('admin/keluhan/keluhan', $data);
     }
+    public function keluhan_belum_ditangani()
+    {
+        $data['no'] = 1;
+        $data['areas'] = Area::all();
+        $data['bisnis_units'] = Bisnis_unit::all();
+        $data['keluhans'] = Keluhan::where('status','Belum ditangani');
+        // $data['keluhans'] = DB::table('keluhan')
+        // ->join('customer', 'keluhan.kode_customer', '=', 'customer.kode_customer')
+        // ->get();
+        return view('admin/keluhan/keluhan_belum_ditangani', $data);
+    }
 
     public function insert()
     {

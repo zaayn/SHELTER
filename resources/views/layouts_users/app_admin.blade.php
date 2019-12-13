@@ -108,30 +108,8 @@
                   <small></small>
                 </p>
               </li>
-              <!-- Menu Body -->
-              {{-- <li class="user-body">
-                <div class="row">
-                  <div class="col-xs-4 text-center">
-                    <a href="">Followers</a>
-                  </div>
-                  <div class="col-xs-4 text-center">
-                    <a href="">Sales</a>
-                  </div>
-                  <div class="col-xs-4 text-center">
-                    <a href="">Friends</a>
-                  </div>
-                </div>
-                <!-- /.row -->
-              </li> --}}
-              <!-- Menu Footer-->
+
               <li class="user-footer">
-                
-                {{-- <div class="pull-right">
-                  <a href="{{ route('logout') }}" class="btn btn-default btn-flat">Sign out</a>
-                  <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                      @csrf
-                  </form>
-                </div> --}}
                 <div class="pull-right" >
                     <a class="btn btn-default btn-flat" href="{{ route('logout') }}" onclick="event.preventDefault();
                                      document.getElementById('logout-form').submit();">
@@ -166,19 +144,7 @@
           {{ Auth::user()->nama_depan }} {{ Auth::user()->nama_belakang }}
         </div>
       </div>
-      <!-- search form -->
-      {{-- <form action="" method="get" class="sidebar-form">
-        <div class="input-group">
-          <input type="text" name="q" class="form-control" placeholder="Search...">
-          <span class="input-group-btn">
-                <button type="submit" name="search" id="search-btn" class="btn btn-flat">
-                  <i class="fa fa-search"></i>
-                </button>
-              </span>
-        </div>
-      </form> --}}
-      <!-- /.search form -->
-      <!-- sidebar menu: : style can be found in sidebar.less -->
+
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">MAIN NAVIGATION</li>
 
@@ -220,19 +186,6 @@
             </ul>
         </li>
 
-        {{-- <li class="treeview">
-            <a href="">
-              <i class="fa fa-database"></i> <span>Area dan Bisnis Unit</span>
-              <span class="pull-right-container">
-                <i class="fa fa-angle-left pull-right"></i>
-              </span>
-            </a>
-              <ul class="treeview-menu">
-                <li class="active"><a href="{{asset('/admin/bisnis_unit')}}"><i class="fa fa-circle-o"></i> Daftar Bisnis Unit</a></li>
-                <li class="active"><a href="{{asset('/admin/area')}}"><i class="fa fa-circle-o"></i> Daftar Area</a></li>
-              </ul>
-          </li> --}}
-
         <li class="treeview">
           <a href="">
             <i class="fa fa-database"></i> <span>Daftar Laporan</span>
@@ -263,42 +216,6 @@
             <li class="active"><a href="{{asset('/admin/profile')}}"><i class="fa fa-circle-o"></i> Profile Customer</a></li>
           </ul>
         </li>
-
-        
-        
-        {{-- <li class="treeview">
-          <a href="">
-            <i class="fa fa-share"></i> <span>Multilevel</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href=""><i class="fa fa-circle-o"></i> Level One</a></li>
-            <li class="treeview">
-              <a href=""><i class="fa fa-circle-o"></i> Level One
-                <span class="pull-right-container">
-                  <i class="fa fa-angle-left pull-right"></i>
-                </span>
-              </a>
-              <ul class="treeview-menu">
-                <li><a href=""><i class="fa fa-circle-o"></i> Level Two</a></li>
-                <li class="treeview">
-                  <a href=""><i class="fa fa-circle-o"></i> Level Two
-                    <span class="pull-right-container">
-                      <i class="fa fa-angle-left pull-right"></i>
-                    </span>
-                  </a>
-                  <ul class="treeview-menu">
-                    <li><a href=""><i class="fa fa-circle-o"></i> Level Three</a></li>
-                    <li><a href=""><i class="fa fa-circle-o"></i> Level Three</a></li>
-                  </ul>
-                </li>
-              </ul>
-            </li>
-            <li><a href=""><i class="fa fa-circle-o"></i> Level One</a></li>
-          </ul>
-        </li> --}}
 
       </ul>
     </section>
