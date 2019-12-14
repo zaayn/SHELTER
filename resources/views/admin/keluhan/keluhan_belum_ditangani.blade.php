@@ -5,7 +5,7 @@
     <div class="col-md-12">
         <div class="panel block">
             <div class="panel-body">
-                <h1>Laporan Keluhan</h1>
+                <h1>Laporan Keluhan belum ditangani</h1>
                 <ol class="breadcrumb">
                     <li><a href="{{asset('/admin/home')}}"><i class="fa fa-dashboard"></i> Home</a></li>
                     <li class="active">Daftar Laporan</li>
@@ -43,16 +43,6 @@
                                         @foreach($areas as $area)
                                             <option value="{{ $area->area_id }}">{{ $area->nama_area }}</option>
                                         @endforeach
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                    <label class="control-label col-md-2">Status</label>
-                                    <div class="col-md-6">
-                                        <select class="form-control" name="status">
-                                            <option value="">--- SELECT STATUS ---</option>
-                                            <option value="Belum ditangani">Belum ditangani</option>
-                                            <option value="Sudah ditangani">Sudah ditangani</option>
                                     </select>
                                 </div>
                             </div>
