@@ -37,10 +37,6 @@ class AdminController extends Controller
                 
                 $data['kontraks'][$key]->datamou_flag = count($awok);
             }
-        // $data['keluhans'] = DB::table('keluhan')
-        //     ->join('customer', 'keluhan.kode_customer', '=', 'customer.kode_customer')
-        //     ->where('keluhan.status','=','Belum ditangani')
-        //     ->get();
         $lastUser = User::whereNotNull('current_login_at')
                     ->orderBy('current_login_at','desc')
                     ->get();

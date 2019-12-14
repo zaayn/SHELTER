@@ -12,6 +12,7 @@ use App\Exports\KeluhanExport;
 use App\Customer;
 use App\Bisnis_unit;
 use App\Area;
+use App\User;
 
 
 class KeluhanadminController extends Controller
@@ -56,9 +57,7 @@ class KeluhanadminController extends Controller
         $data['areas'] = Area::all();
         $data['bisnis_units'] = Bisnis_unit::all();
         $data['keluhans'] = Keluhan::where('status','Belum ditangani')->get();
-        // $data['keluhans'] = DB::table('keluhan')
-        // ->join('customer', 'keluhan.kode_customer', '=', 'customer.kode_customer')
-        // ->get();
+
         return view('admin/keluhan/keluhan_belum_ditangani', $data);
     }
 
@@ -66,9 +65,7 @@ class KeluhanadminController extends Controller
     {
         $data['bisnis_units'] = Bisnis_unit::all();
         $data['customers'] = Customer::where('status','Aktif')->get();
-        $data['users'] = DB::table('users')
-        ->join('area','users.area_id','=','area.area_id')
-        ->where('rule', 'officer_crm')->get();
+        $data['users'] = User::where('rule', 'officer_crm')->get();
       return view('admin/keluhan/insertkeluhan',$data);
     }
 
@@ -111,9 +108,7 @@ class KeluhanadminController extends Controller
     {
         $data['bisnis_units'] = Bisnis_unit::all();
         $data['customers'] = Customer::all();
-        $data['users'] = DB::table('users')
-        ->join('area','users.area_id','=','area.area_id')
-        ->where('rule', 'officer_crm')->get();
+        $data['users'] = User::where('rule', 'officer_crm')->get();
         $where = array('id_keluhan' => $id_keluhan);
         $keluhan  = Keluhan::where($where)->first();
  
