@@ -5,7 +5,7 @@
     <div class="col-md-12">
         <div class="panel block">
             <div class="panel-body">
-                <h1>Laporan Keluhan</h1>
+                <h1>Laporan Keluhan belum ditangani</h1>
                 <ol class="breadcrumb">
                     <li><a href="{{asset('/admin/home')}}"><i class="fa fa-dashboard"></i> Home</a></li>
                     <li class="active">Daftar Laporan</li>
@@ -85,7 +85,7 @@
                                 @foreach($keluhans as $keluhan)
                                 <tr>
                                     <td>{{ $no++  }}</td>
-                                    <td>{{ $keluhan->nama_perusahaan }}</td>
+                                    <td>{{ $keluhan->customer->nama_perusahaan }}</td>
                                     <td>{{ $keluhan->departemen }}</td>
                                     <td>{{ $keluhan->tanggal_keluhan }}</td>
                                     <td>{{ $keluhan->topik_masalah }}</td>

@@ -52,12 +52,13 @@
             </div>
         </div>
     </a>
-    <a href="{{asset('/admin/keluhan/keluhan_belum_ditangani')}}">
+    <a href="{{route('keluhan.belum.ditangani')}}">
         <div class="col-md-3 col-sm-6 col-xs-12">
             <div class="info-box">
             <span class="info-box-icon bg-yellow"><i class="fa fa-flag"></i></span>
             <div class="info-box-content">
-                <span class="info-box-text">Keluhan belum ditangani</span>
+                <span class="info-box-text">Keluhan belum</span>
+                <span class="info-box-text">ditangani</span>
                 <span class="info-box-number">{{$keluhans}}</span>
             </div>
             </div>

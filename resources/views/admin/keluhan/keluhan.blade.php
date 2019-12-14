@@ -47,6 +47,16 @@
                                 </div>
                             </div>
                             <div class="form-group">
+                                    <label class="control-label col-md-2">Status</label>
+                                    <div class="col-md-6">
+                                        <select class="form-control" name="status">
+                                            <option value="">--- SELECT STATUS ---</option>
+                                            <option value="Belum ditangani">Belum ditangani</option>
+                                            <option value="Sudah ditangani">Sudah ditangani</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
                                 <div class="col-md-1 col-md-offset-2">
                                     <a href="{{asset('/admin/keluhan')}}">
                                         <button type="button" class="btn btn-primary"><i class="fa fa-refresh"></i> Reset</button>
@@ -85,7 +95,7 @@
                                 @foreach($keluhans as $keluhan)
                                 <tr>
                                     <td>{{ $no++  }}</td>
-                                    <td>{{ $keluhan->nama_perusahaan }}</td>
+                                    <td>{{ $keluhan->customer->nama_perusahaan }}</td>
                                     <td>{{ $keluhan->departemen }}</td>
                                     <td>{{ $keluhan->tanggal_keluhan }}</td>
                                     <td>{{ $keluhan->topik_masalah }}</td>
