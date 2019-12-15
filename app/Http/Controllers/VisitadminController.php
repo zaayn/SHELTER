@@ -26,7 +26,24 @@ class VisitadminController extends Controller
 
         return view('/admin/visit/visit', $data);
     }
+    public function filter(Request $request)
+    {
+      $data['no'] = 1;
+      $data['areas'] = Area::all();
+      $data['bisnis_units'] = Bisnis_unit::all();
+      
+      if($request->bu_id || $request->area_id){
+        $visits = Visit::whereHas('customer', function($query) use($request){
+          if($request->bu_id)
+            $query->where('bu_id',$request->bu_id);
 
+          if($request->area_id)
+            $query->where('area_id',$request->area_id);
+        });
+      }
+      $data['visits'] = $visits->get();
+      return view('admin/visit/visit', $data);
+    }
     public function insert()
     {
         $data['bisnis_units'] = Bisnis_unit::all();
@@ -113,23 +130,5 @@ class VisitadminController extends Controller
     }
     public function exportExcel(){
         return Excel::download(new VisitExport, 'Laporan-Visit-CRM.xlsx');
-    }
-    public function filter(Request $request)
-    {
-      $data['no'] = 1;
-      $data['areas'] = Area::all();
-      $data['bisnis_units'] = Bisnis_unit::all();
-      
-      if($request->bu_id || $request->area_id){
-        $visits = Visit::whereHas('customer', function($query) use($request){
-          if($request->bu_id)
-            $query->where('bu_id',$request->bu_id);
-
-          if($request->area_id)
-            $query->where('area_id',$request->area_id);
-        });
-      }
-      $data['visits'] = $visits->get();
-      return view('admin/visit/visit', $data);
     }
 }
