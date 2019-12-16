@@ -22,7 +22,7 @@
             <div class="panel block">
                 <div class="panel-body">
                     {{-- ----------  -------------- filter ------------------------ --}}
-                    <form class="form-horizontal" id="form-filter" method="POST" action="{{route('filter.customer')}}">
+                    {{--<form class="form-horizontal" id="form-filter" method="POST" action="{{route('filter.customer')}}">
                         @csrf
                         <div class="form-group">
                             <label class="control-label col-md-2">Status Customer</label>
@@ -55,14 +55,14 @@
                                 <button type="submit" class="btn btn-primary" id="btn-filter"><i class="fa fa-filter"></i> Filter</button>
                             </div>
                         </div>
-                    </form>
+                    </form>--}}
 {{-- ---- end filter ------ --}}  
 {{-- ----------  -------------- button download ------------------------ --}}
-                    <div style="float:right; margin-bottom:10px;">
+                    {{--<div style="float:right; margin-bottom:10px;">
                         <a href="{{asset('/admin/insert_customer')}}" class="btn btn-primary btn-sm">Insert Customer</a>
                         <a href="{{asset('/admin/customer/exportExcel')}}" class="btn btn-default btn-sm" target="_blank">Download Excel</a>
                         <a href="{{asset('/admin/customer/exportPDF')}}" class="btn btn-default btn-sm" target="_blank">Download PDF</a>
-                    </div>
+                    </div>--}}
                     {{-- ---- end  ------ --}}  
                             <hr style="border: solid #ddd; border-width: 1px 0 0; clear: both; margin: 22px 0 21px; height: 0;">
                            
