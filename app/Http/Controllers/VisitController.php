@@ -11,6 +11,7 @@ use PDF;
 use App\Customer;
 use App\Bisnis_unit;
 use App\Area;
+use App\User;
 
 class VisitController extends Controller
 {
