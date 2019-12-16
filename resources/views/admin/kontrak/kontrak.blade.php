@@ -97,14 +97,14 @@
                                             <i class="btn btn-success" data-toggle="tooltip" data-placement="right" title="Closing telah dilakukan">Close Sukses</i>
                                         @endif
 
-                                        @if($kontrak->datamou_flag == 0)
+                                        @if(!$kontrak->datamou)
                                             <a href="{{route('insertmou.kontrak',$kontrak->id_kontrak)}}" class="btn btn-default btn-sm" data-toggle="tooltip" data-placement="right" title="Tambah MoU"><span class="fa fa-plus"></span></a>
                                         @else
                                             <i class="btn btn-success"data-toggle="tooltip" data-placement="right" title="MoU telah ditambahkan">MoU Sukses</i>
                                         @endif</td>
                                     <td>{{ $kontrak->nomor_kontrak }}</td>
                                     <td>{{ $kontrak->kode_customer }}</td>
-                                    <td>{{ $kontrak->nama_perusahaan }}</td>
+                                    <td>{{ $kontrak->customer->nama_perusahaan }}</td>
                                     <td>{{ $kontrak->periode_kontrak }}</td>
                                     <td>{{ $kontrak->akhir_periode }}</td>
                                     <td>{{ $kontrak->srt_pemberitahuan }}</td>
