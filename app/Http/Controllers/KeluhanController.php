@@ -20,21 +20,42 @@ class KeluhanController extends Controller
         $data['no'] = 1;
         $data['areas'] = Area::all();
         $data['bisnis_units'] = Bisnis_unit::all();
-        $data['keluhans'] = DB::table('keluhan')
-        ->join('customer', 'keluhan.kode_customer', '=', 'customer.kode_customer')
-        ->get();
-        return view('officer/keluhan', $data);
+        $data['keluhans'] = Keluhan::all();
         
+        return view('officer/keluhan', $data);
     }
+    public function filter(Request $request)
+    {
+      $data['no'] = 1;
+      $data['areas'] = Area::all();
+      $data['bisnis_units'] = Bisnis_unit::all();
+      
+      if($request->bu_id || $request->area_id){
+        $keluhans = Keluhan::whereHas('customer', function($query) use($request){
+          if($request->bu_id)
+            $query->where('bu_id',$request->bu_id);
 
+          if($request->area_id)
+            $query->where('area_id',$request->area_id);
+        });
+      }
+
+      if($request->status)
+        if(@$keluhans)
+          $keluhans = $keluhans->where('status', $request->status);
+        else
+          $keluhans = Keluhan::where('status', $request->status);
+
+      $data['keluhans'] = $keluhans->get();
+       
+      return view('officer/keluhan', $data);
+    }
     public function insert()
     {
         $data['bisnis_units'] = Bisnis_unit::all();
         $data['customers'] = Customer::where('status','Aktif')->get();
-        $data['users'] = DB::table('users')
-        ->join('area','users.area_id','=','area.area_id')
-        ->where('rule', 'officer_crm')
-        ->get();
+        $data['users'] = User::where('rule', 'officer_crm')->get();
+        
         return view('officer/insertkeluhan',$data);
     }
 
@@ -79,10 +100,7 @@ class KeluhanController extends Controller
     {
         $data['bisnis_units'] = Bisnis_unit::all();
         $data['customers'] = Customer::all();
-        $data['users'] = DB::table('users')
-        ->join('area','users.area_id','=','area.area_id')
-        ->where('rule', 'officer_crm')
-        ->get();
+        $data['users'] = User::where('rule', 'officer_crm')->get();
         $where = array('id_keluhan' => $id_keluhan);
         $keluhan  = Keluhan::where($where)->first();
 
@@ -130,63 +148,5 @@ class KeluhanController extends Controller
       $pdf = PDF::loadview('officer/pdfkeluhan',['keluhan'=>$keluhan]);
       $pdf->setPaper('A4','landscape');
       return $pdf->download('Laporan-Keluhan-CRM.pdf');
-    }
-    public function filter(Request $request)
-    {
-      if($request->bu_id && $request->area_id)
-      {
-        $data['no'] = 1;
-        $data['areas'] = Area::all();
-        $data['bisnis_units'] = Bisnis_unit::all();
-        $data['keluhans'] = DB::table('keluhan')
-        ->join('customer', 'keluhan.kode_customer', '=', 'customer.kode_customer')
-        ->join('area','area.area_id','=','customer.area_id')
-        ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
-        ->select('area.area_id','area.nama_area','id_keluhan','customer.kode_customer','customer.nama_perusahaan','keluhan.kode_customer','departemen','tanggal_keluhan',
-        'topik_masalah','saran_penyelesaian','time_target','confirm_pic','case','actual_case','uraian_penyelesaian',
-        'keluhan.status','bisnis_unit.bu_id','bisnis_unit.nama_bisnis_unit')
-        ->where('bisnis_unit.bu_id', '=', $request->bu_id)
-        ->where('area.area_id', '=', $request->area_id)
-        ->get();
-
-        return view('officer/keluhan', $data);
-        
-      }
-      elseif($request->bu_id)
-      {
-        $data['no'] = 1;
-        $data['areas'] = Area::all();
-        $data['bisnis_units'] = Bisnis_unit::all();
-        $data['keluhans'] = DB::table('keluhan')
-        ->join('customer', 'keluhan.kode_customer', '=', 'customer.kode_customer')
-        ->join('area','area.area_id','=','customer.area_id')
-        ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
-        ->select('area.area_id','area.nama_area','id_keluhan','customer.kode_customer','customer.nama_perusahaan','keluhan.kode_customer','departemen','tanggal_keluhan',
-        'topik_masalah','saran_penyelesaian','time_target','confirm_pic','case','actual_case','uraian_penyelesaian',
-        'keluhan.status','bisnis_unit.bu_id','bisnis_unit.nama_bisnis_unit')
-        ->where('bisnis_unit.bu_id', '=', $request->bu_id)
-        ->get();
-
-        return view('officer/keluhan', $data);
-        
-      }
-      elseif($request->area_id)
-      {
-        $data['no'] = 1;
-        $data['areas'] = Area::all();
-        $data['bisnis_units'] = Bisnis_unit::all();
-        $data['keluhans'] = DB::table('keluhan')
-        ->join('customer', 'keluhan.kode_customer', '=', 'customer.kode_customer')
-        ->join('area','area.area_id','=','customer.area_id')
-        ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
-        ->select('area.area_id','area.nama_area','id_keluhan','customer.kode_customer','customer.nama_perusahaan','keluhan.kode_customer','departemen','tanggal_keluhan',
-        'topik_masalah','saran_penyelesaian','time_target','confirm_pic','case','actual_case','uraian_penyelesaian',
-        'keluhan.status','bisnis_unit.bu_id','bisnis_unit.nama_bisnis_unit')
-        ->where('area.area_id', '=', $request->area_id)
-        ->get();
-
-        return view('officer/keluhan', $data);
-        
-      }
     }
 }

@@ -6,7 +6,6 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Foundation\Auth\User;
 use App\Call;
 use PDF;
 use Validator;
@@ -15,33 +14,44 @@ use Maatwebsite\Excel\Facades\Excel;
 use App\Customer;
 use App\Bisnis_unit;
 use App\Area;
+use App\User;
 
 class callController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
         $data['no'] = 1;
         $data['areas'] = Area::all();
         $data['bisnis_units'] = Bisnis_unit::all();
-        $data['calls'] = DB::table('call')
-        ->join('customer', 'call.kode_customer', '=', 'customer.kode_customer')
-        ->select('customer.kode_customer','call.kode_customer','call_id','customer.nama_perusahaan','spv_pic','tanggal_call','jam_call','pembicaraan','pic_called','hal_menonjol')
-        ->get();
-        return view('officer/call', $data);
-        
+        $data['calls'] = Call::all();
+
+        return view('officer/call', $data);  
+    }
+    public function filter(Request $request)
+    {
+      $data['no'] = 1;
+      $data['areas'] = Area::all();
+      $data['bisnis_units'] = Bisnis_unit::all();
+      
+      if($request->bu_id || $request->area_id){
+        $calls = Call::whereHas('customer', function($query) use($request){
+          if($request->bu_id)
+            $query->where('bu_id',$request->bu_id);
+
+          if($request->area_id)
+            $query->where('area_id',$request->area_id);
+        });
+      }
+      $data['calls'] = $calls->get();
+      return view('officer/call', $data);
     }
     public function insert()
     {
         $data['bisnis_units'] = Bisnis_unit::all();
         $data['customers'] = Customer::where('status', 'Aktif')->get();
-        $data['users'] = DB::table('users')
-        ->join('area','users.area_id','=','area.area_id')
-        ->where('rule', 'officer_crm')->get();
+        $data['users'] = User::where('rule', 'officer_crm')->get();
+
       return view('officer/insertcall',$data);
     }
 
@@ -78,9 +88,7 @@ class callController extends Controller
     {
         $data['bisnis_units'] = Bisnis_unit::all();
         $data['customers'] = Customer::all();
-        $data['users'] = DB::table('users')
-        ->join('area','users.area_id','=','area.area_id')
-        ->where('rule', 'officer_crm')->get();
+        $data['users'] = User::where('rule', 'officer_crm')->get();
         $call = Call::findOrFail($call_id);
  
         return view('officer/editcall',$data)->with('call', $call);
@@ -138,55 +146,5 @@ class callController extends Controller
     public function exportExcel()
 	{
 		return Excel::download(new CallExport, 'Laporan-Call-CRM.xlsx');
-    }
-    public function filter(Request $request)
-    {
-      if($request->bu_id && $request->area_id)
-      {
-        $data['areas'] = Area::all();
-        $data['bisnis_units'] = Bisnis_unit::all();
-        $data['calls'] = Call::all();
-        $data['calls'] = DB::table('call')
-        ->join('customer', 'call.kode_customer', '=', 'customer.kode_customer')
-        ->join('area','area.area_id','=','customer.area_id')
-        ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
-        ->select('area.area_id','bisnis_unit.bu_id','customer.kode_customer','call.kode_customer','call_id','customer.nama_perusahaan','spv_pic','tanggal_call','jam_call',
-        'pembicaraan','pic_called','hal_menonjol','bisnis_unit.nama_bisnis_unit')
-        ->where('bisnis_unit.bu_id', '=', $request->bu_id)
-        ->where('area.area_id', '=', $request->area_id)
-        ->get();
-
-        return view('officer/call', $data);
-      }
-      elseif ($request->bu_id) {
-        $data['areas'] = Area::all();
-        $data['bisnis_units'] = Bisnis_unit::all();
-        $data['calls'] = Call::all();
-        $data['calls'] = DB::table('call')
-        ->join('customer', 'call.kode_customer', '=', 'customer.kode_customer')
-        ->join('area','area.area_id','=','customer.area_id')
-        ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
-        ->select('area.area_id','bisnis_unit.bu_id','customer.kode_customer','call.kode_customer','call_id','customer.nama_perusahaan','spv_pic','tanggal_call','jam_call',
-        'pembicaraan','pic_called','hal_menonjol','bisnis_unit.nama_bisnis_unit')
-        ->where('bisnis_unit.bu_id', '=', $request->bu_id)
-        ->get();
-        return view('officer/call', $data);
-
-      } 
-      elseif ($request->area_id) {
-        $data['areas'] = Area::all();
-        $data['bisnis_units'] = Bisnis_unit::all();
-        $data['calls'] = Call::all();
-        $data['calls'] = DB::table('call')
-        ->join('customer', 'call.kode_customer', '=', 'customer.kode_customer')
-        ->join('area','area.area_id','=','customer.area_id')
-        ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
-        ->select('area.area_id','bisnis_unit.bu_id','customer.kode_customer','call.kode_customer','call_id','customer.nama_perusahaan','spv_pic','tanggal_call','jam_call',
-        'pembicaraan','pic_called','hal_menonjol','bisnis_unit.nama_bisnis_unit')
-        ->where('area.area_id', '=', $request->area_id)
-        ->get();
-        return view('officer/call', $data);
-
-      } 
     }
 }

@@ -14,51 +14,42 @@ use App\Area;
 
 class VisitController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $data['no'] = 1;
         $data['areas'] = Area::all();
         $data['bisnis_units'] = Bisnis_unit::all();
-        $data['visits'] = DB::table('visit')
-        ->join('customer', 'visit.kode_customer', '=', 'customer.kode_customer')
-        ->get();
+        $data['visits'] = Visit::all();
 
         return view('officer/visit', $data);
     }
+    public function filter(Request $request)
+    {
+      $data['no'] = 1;
+      $data['areas'] = Area::all();
+      $data['bisnis_units'] = Bisnis_unit::all();
+      
+      if($request->bu_id || $request->area_id){
+        $visits = Visit::whereHas('customer', function($query) use($request){
+          if($request->bu_id)
+            $query->where('bu_id',$request->bu_id);
 
+          if($request->area_id)
+            $query->where('area_id',$request->area_id);
+        });
+      }
+      $data['visits'] = $visits->get();
+      return view('officer/visit', $data);
+    }
     public function insert()
     {
         $data['bisnis_units'] = Bisnis_unit::all();
-        $data['customers'] = DB::table('customer')
-        ->join('area','customer.area_id','=','area.area_id')
-        ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
-        ->where('status', 'Aktif')
-        ->get();
-        $data['users'] = DB::table('users')
-        ->join('area','users.area_id','=','area.area_id')
-        ->where('rule', 'officer_crm')
-        ->get();
+        $data['customers'] = Customer::where('status', 'Aktif')->get();
+        $data['users'] = User::where('rule', 'officer_crm')->get();
+
       return view('officer/insertvisit',$data);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    
     public function store(Request $request)
     {
         $request->validate([
@@ -92,9 +83,7 @@ class VisitController extends Controller
     {
         $data['bisnis_units'] = Bisnis_unit::all();
         $data['customers'] = Customer::all();
-        $data['users'] = DB::table('users')
-        ->join('area','users.area_id','=','area.area_id')
-        ->where('rule', 'officer_crm')->get();
+        $data['users'] = User::where('rule', 'officer_crm')->get();
         $where = array('visit_id' => $visit_id);
         $visit  = Visit::where($where)->first();
  
@@ -135,54 +124,5 @@ class VisitController extends Controller
         $pdf = PDF::loadview('officer/pdfvisit',['visit'=>$visit]);
         $pdf->setPaper('A4','landscape');
     	return $pdf->download('Laporan-Visit-CRM.pdf');
-    }
-    public function filter(Request $request)
-    {
-      if($request->bu_id && $request->area_id)
-      {
-        $data['areas'] = Area::all();
-        $data['bisnis_units'] = Bisnis_unit::all();
-        $data['visits'] = DB::table('visit')
-        ->join('customer', 'visit.kode_customer', '=', 'customer.kode_customer')
-        ->join('area','area.area_id','=','customer.area_id')
-        ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
-        ->select('area.area_id','bisnis_unit.bu_id','bisnis_unit.nama_bisnis_unit','customer.kode_customer','visit.kode_customer','visit_id','customer.nama_perusahaan','spv_pic',
-        'tanggal_visit','waktu_in','waktu_out','pic_meeted','kegiatan')
-        ->where('bisnis_unit.bu_id', '=', $request->bu_id)
-        ->where('area.area_id', '=', $request->area_id)
-        ->get();
-
-        return view('officer/visit', $data);
-      }
-      elseif($request->bu_id)
-      {
-        $data['areas'] = area::all();
-        $data['bisnis_units'] = Bisnis_unit::all();
-        $data['visits'] = DB::table('visit')
-        ->join('customer', 'visit.kode_customer', '=', 'customer.kode_customer')
-        ->join('area','area.area_id','=','customer.area_id')
-        ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
-        ->select('area.area_id','bisnis_unit.bu_id','bisnis_unit.nama_bisnis_unit','customer.kode_customer','visit.kode_customer','visit_id','customer.nama_perusahaan','spv_pic',
-        'tanggal_visit','waktu_in','waktu_out','pic_meeted','kegiatan')
-        ->where('bisnis_unit.bu_id', '=', $request->bu_id)
-        ->get();
-
-        return view('officer/visit', $data);
-      }
-      elseif($request->area_id)
-      {
-        $data['areas'] = Area::all();
-        $data['bisnis_units'] = Bisnis_unit::all();
-        $data['visits'] = DB::table('visit')
-        ->join('customer', 'visit.kode_customer', '=', 'customer.kode_customer')
-        ->join('area','area.area_id','=','customer.area_id')
-        ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
-        ->select('area.area_id','bisnis_unit.bu_id','bisnis_unit.nama_bisnis_unit','customer.kode_customer','visit.kode_customer','visit_id','customer.nama_perusahaan','spv_pic',
-        'tanggal_visit','waktu_in','waktu_out','pic_meeted','kegiatan')
-        ->where('area.area_id', '=', $request->area_id)
-        ->get();
-
-        return view('officer/visit', $data);
-      }
     }
 }
