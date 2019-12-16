@@ -23,6 +23,7 @@ class AdminController extends Controller
         $data['customer'] = DB::table('customer')->count();
         $data['kontrak'] = DB::table('kontrak')->count();   
         $data['datamou'] = DB::table('datamou')->count();   
+        $data['keluhans'] = Keluhan::where('status','Belum ditangani')->count();
         $data['customers'] = Customer::all();
         $data['kontraks'] = DB::table('kontrak')
         ->join('customer', 'customer.kode_customer', '=', 'kontrak.kode_customer')
@@ -36,10 +37,6 @@ class AdminController extends Controller
                 
                 $data['kontraks'][$key]->datamou_flag = count($awok);
             }
-        $data['keluhans'] = DB::table('keluhan')
-            ->join('customer', 'keluhan.kode_customer', '=', 'customer.kode_customer')
-            ->where('keluhan.status','=','Belum ditangani')
-            ->get();
         $lastUser = User::whereNotNull('current_login_at')
                     ->orderBy('current_login_at','desc')
                     ->get();

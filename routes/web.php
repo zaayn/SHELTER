@@ -1,10 +1,6 @@
 <?php
 
-Route::get('/', function () {
-    return view('auth.login');
-    if(!Auth::check()) return redirect()->route('login');
-    // else return redirect('/admin/home');
-});
+Route::get('/', 'Auth\LoginController@authenticated');
 Auth::routes();
 
 Route::group(['prefix' => 'officer_crm',  'middleware' => 'is_officer_crm'], function(){
@@ -155,6 +151,7 @@ Route::group(['prefix' => 'admin',  'middleware' => 'is_admin'], function(){
         Route::get('/keluhan/exportExcel', 'KeluhanadminController@exportExcel');
         Route::get('/reset/keluhan{id}', 'KeluhanadminController@aktivasi')->name('reset.keluhan');
         Route::post('/filter/keluhan', 'KeluhanadminController@filter')->name('filter.keluhan');
+        Route::get('/keluhan_belum_ditangani', 'KeluhanadminController@keluhan_belum_ditangani')->name('keluhan.belum.ditangani');
     
         //------- laporan kontrak
         Route::get('/insertkontrak', 'KontrakadminController@insert')->name('insert.kontrak'); //show form insert
