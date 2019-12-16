@@ -46,7 +46,7 @@
                                 <input list="browsers" class="form-control" name="kode_customer">
                                 <datalist id="browsers">
                                 @foreach($customers as $customer)
-                                    <option value="{{ $customer->kode_customer }}">{{ $customer->kode_customer }} - {{ $customer->nama_perusahaan }} - {{ $customer->nama_bisnis_unit }} - {{$customer->nama_area}}</option>
+                                    <option value="{{ $customer->kode_customer }}">{{ $customer->kode_customer }} - {{ $customer->nama_perusahaan }} - {{ $customer->bisnis_unit->nama_bisnis_unit }} - {{$customer->area->nama_area}}</option>
                                 @endforeach
                                 </datalist>
                             </div>
@@ -57,7 +57,7 @@
                                 <input list="mybrowsers" class="form-control" name="spv_pic">
                                 <datalist id="mybrowsers">
                                 @foreach($users as $users)
-                                    <option value="{{ $users->nama_depan }}">{{ $users->nama_depan }} - {{ $users->nama_area }}</option>
+                                    <option value="{{ $users->nama_depan }}">{{ $users->nama_depan }} - {{ $users->area->nama_area }}</option>
                                 @endforeach
                                 </datalist>
                             </div>

@@ -1,10 +1,6 @@
 <?php
 
-Route::get('/', function () {
-    return view('auth.login');
-    if(!Auth::check()) return redirect()->route('login');
-    // else return redirect('/admin/home');
-});
+Route::get('/', 'Auth\LoginController@authenticated');
 Auth::routes();
 
 Route::group(['prefix' => 'officer_crm',  'middleware' => 'is_officer_crm'], function(){
@@ -80,15 +76,6 @@ Route::group(['prefix' => 'superadmin',  'middleware' => 'is_superadmin'], funct
     Route::get('/edit/area{id}','AreaController@edit')->name('edit.area');
     Route::put('/update/area{id}','AreaController@update')->name('update.area');
 
-    // // --------- wilayah
-    // Route::get('/insert_wilayah', 'WilayahController@insert')->name('insert.wilayah'); //show form insert
-    // Route::get('/wilayah', 'WilayahController@index')->name('index.wilayah');
-    // Route::post('/store/wilayah', 'WilayahController@store')->name('store.wilayah');
-    // Route::get('/delete/wilayah{id}','WilayahController@delete')->name('delete.wilayah');
-    // Route::get('/edit/wilayah{id}','WilayahController@edit')->name('edit.wilayah');
-    // Route::put('/update/wilayah{id}','WilayahController@update')->name('update.wilayah');
-    // Route::post('/filter/wilayah', 'WilayahController@filter')->name('filter.wilayah');
-
     // user
     Route::get('/insert_user', 'UserController@insert')->name('insert.user'); //show form insert
     Route::get('/user', 'UserController@index')->name('index.user');
@@ -121,6 +108,7 @@ Route::group(['prefix' => 'admin',  'middleware' => 'is_admin'], function(){
     Route::get('/profile', 'CustomerController@profile')->name('cust.profile');
     Route::post('/filter/profile', 'CustomerController@filter_profile')->name('filter.profile');
     Route::post('/update/putus{kode_customer}','CustomerController@update_putus')->name('update.putus');
+    Route::get('/customer/non-aktif','CustomerController@listputus')->name('listputus.customer');
 
     //------- laporan call
     Route::get('/insertcall', 'CalladminController@insert')->name('insert.call'); //show form insert
@@ -155,6 +143,7 @@ Route::group(['prefix' => 'admin',  'middleware' => 'is_admin'], function(){
         Route::get('/keluhan/exportExcel', 'KeluhanadminController@exportExcel');
         Route::get('/reset/keluhan{id}', 'KeluhanadminController@aktivasi')->name('reset.keluhan');
         Route::post('/filter/keluhan', 'KeluhanadminController@filter')->name('filter.keluhan');
+        Route::get('/keluhan_belum_ditangani', 'KeluhanadminController@keluhan_belum_ditangani')->name('keluhan.belum.ditangani');
     
         //------- laporan kontrak
         Route::get('/insertkontrak', 'KontrakadminController@insert')->name('insert.kontrak'); //show form insert

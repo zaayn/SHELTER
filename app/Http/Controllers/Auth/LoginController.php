@@ -20,35 +20,36 @@ class LoginController extends Controller
 
     use AuthenticatesUsers;
 
-    protected function authenticated(Request $request, $user)
+    public function authenticated()
     {
+        $user = \Auth::user();
         if ( $user->isAdmin() ) 
         {
             return redirect('/admin/home');
         }
-        if ( $user->issuperadmin() ) 
+        else if ( $user->issuperadmin() ) 
         {
             return redirect('/superadmin/home');
         }
-        if ( $user->isofficercrm() ) 
+        else if ( $user->isofficercrm() ) 
         {
             return redirect('/officer_crm/home');
         }
-        if ( $user->ismanagercrm() ) 
+        else if ( $user->ismanagercrm() ) 
         {
             return redirect('/manager_crm/home');
         }
-        if ( $user->isdirektur() ) 
+        else if ( $user->isdirektur() ) 
         {
             return redirect('/direktur/home');
         }
-        if ( $user->ismanagernoncrm() ) 
+        else if ( $user->ismanagernoncrm() ) 
         {
             return redirect('/manager_non_crm/home');
         }
-        // else {
-        //     return redirect('/');
-        // }
+        else if(\Auth::check()){
+            return redirect()->route('login');
+        }
     }
     
 

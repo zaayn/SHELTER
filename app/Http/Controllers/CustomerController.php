@@ -21,51 +21,21 @@ class CustomerController extends Controller
     public function index()
     {  
       $data['areas'] = Area::all();
-      // $data['customers'] = DB::table('customer')
-      // ->join('bisnis_unit','customer.bu_id','=','bisnis_unit.bu_id')
-      // ->join('area','customer.area_id','=','area.area_id')
-      // ->get();
       $data['customers'] = Customer::all();
         $data['no'] = 1;
         return view('admin/customer/customer', $data);
     }
     public function filter(Request $request)
     {
-      if($request->status && $request->area_id)
-      {
         $data['areas'] = Area::all();
-        $data['customers'] = DB::table('customer')
-        ->join('area','area.area_id','=','customer.area_id')
-        ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
-        ->where('customer.status', '=', $request->status)
-        ->where('area.area_id', '=', $request->area_id)
-        ->get();  
+        $customers = Customer::all();
+        if($request->status)
+            $customers = $customers->where('status', $request->status);
+        if($request->area_id)
+            $customers = $customers->where('area_id', $request->area_id);
+        $data['customers'] = $customers;
         $data['no'] = 1;
         return view('admin/customer/customer', $data);
-      }
-      elseif($request->status)
-      {
-        $data['areas'] = Area::all();
-        $data['customers'] = DB::table('customer')
-        ->join('area','area.area_id','=','customer.area_id')
-        ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
-        ->where('customer.status', '=', $request->status)
-        ->get();  
-        $data['no'] = 1;
-        return view('admin/customer/customer', $data);
-      }
-      elseif($request->area_id)
-      {
-        $data['areas'] = Area::all();
-        $data['customers'] = DB::table('customer')
-        ->join('area','area.area_id','=','customer.area_id')
-        ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
-        ->where('area.area_id', '=', $request->area_id)
-        ->get();  
-        $data['no'] = 1;
-        return view('admin/customer/customer', $data);
-      }
-      
     }
     public function insert()
     {
@@ -273,6 +243,12 @@ class CustomerController extends Controller
       ->where('customer.kode_customer', '=', $request->kode_customer)->get();
       $data['no'] = 1;
       return view('admin/customer/profile2', $data);
+    }
+    public function listputus(){
+      $data['no'] = 1;
+      $data['customers'] = Customer::where('status','Non_aktif')->get();
+
+      return view('admin/customer/listputus',$data);
     }
 
 }

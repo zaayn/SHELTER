@@ -57,7 +57,7 @@
                                 <input list="mybrowsers" class="form-control" name="spv_pic">
                                 <datalist id="mybrowsers">
                                 @foreach($users as $users)
-                                    <option value="{{ $users->nama_depan }}">{{ $users->nama_depan }} - {{ $users->nama_area }}</option>
+                                    <option value="{{ $users->nama_depan }}">{{ $users->nama_depan }} - {{ $users->area->nama_area }}</option>
                                 @endforeach
                                 </datalist>
                             </div>
