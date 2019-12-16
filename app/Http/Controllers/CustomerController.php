@@ -247,5 +247,6 @@ class CustomerController extends Controller
     public function listputus(){
       $data['no'] = 1;
       $data['customers'] = Customer::where('status','Non_aktif')->get();
+    }
 
 }
