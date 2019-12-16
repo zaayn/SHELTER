@@ -244,5 +244,8 @@ class CustomerController extends Controller
       $data['no'] = 1;
       return view('admin/customer/profile2', $data);
     }
+    public function listputus(){
+      $data['no'] = 1;
+      $data['customers'] = Customer::where('status','Non_aktif')->get();
 
 }
