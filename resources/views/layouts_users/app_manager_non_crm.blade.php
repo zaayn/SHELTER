@@ -1,16 +1,12 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <!-- DataTables -->
-    
-      
       {{-- <script type="text/javascript" src="{{asset('https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js')}}"></script> --}}
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>CRM Shelter</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-  <link rel="icon" href="{{asset('/img/logo_lsp_its.jpg')}}">
   <!-- Bootstrap 3.3.7 -->
   <link rel="stylesheet" href="{{asset('admin_lte/bower_components/bootstrap/dist/css/bootstrap.min.css')}}">
   <!-- Font Awesome -->
@@ -32,14 +28,6 @@
 
 	<link rel="stylesheet" type="text/css" href="{{asset('assets/css/bootstrap.css')}}">
 
-  {{-- manual style css --}}
-  
-  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-  <!--[if lt IE 9]>
-  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-  <![endif]-->
   <link rel="stylesheet" type="text/css" href="{{asset('https://cdnjs.cloudflare.com/ajax/libs/bootstrap-sweetalert/1.0.1/sweetalert.css')}}">
   <!-- Google Font -->
   <link rel="stylesheet"
@@ -52,7 +40,7 @@
   <header class="main-header">
 
     <!-- Logo -->
-    <a href="{{asset('#')}}" class="logo">
+    <a href="{{asset('/manager_non_crm/home')}}" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>C</b>RM</span>
       <!-- logo for regular state and mobile devices -->
@@ -87,30 +75,8 @@
                   <small></small>
                 </p>
               </li>
-              <!-- Menu Body -->
-              {{-- <li class="user-body">
-                <div class="row">
-                  <div class="col-xs-4 text-center">
-                    <a href="">Followers</a>
-                  </div>
-                  <div class="col-xs-4 text-center">
-                    <a href="">Sales</a>
-                  </div>
-                  <div class="col-xs-4 text-center">
-                    <a href="">Friends</a>
-                  </div>
-                </div>
-                <!-- /.row -->
-              </li> --}}
-              <!-- Menu Footer-->
+
               <li class="user-footer">
-                
-                {{-- <div class="pull-right">
-                  <a href="{{ route('logout') }}" class="btn btn-default btn-flat">Sign out</a>
-                  <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                      @csrf
-                  </form>
-                </div> --}}
                 <div class="pull-right" >
                     <a class="btn btn-default btn-flat" href="{{ route('logout') }}" onclick="event.preventDefault();
                                      document.getElementById('logout-form').submit();">
@@ -145,18 +111,6 @@
           {{ Auth::user()->nama_depan }} {{ Auth::user()->nama_belakang }}
         </div>
       </div>
-      <!-- search form -->
-      {{-- <form action="" method="get" class="sidebar-form">
-        <div class="input-group">
-          <input type="text" name="q" class="form-control" placeholder="Search...">
-          <span class="input-group-btn">
-                <button type="submit" name="search" id="search-btn" class="btn btn-flat">
-                  <i class="fa fa-search"></i>
-                </button>
-              </span>
-        </div>
-      </form> --}}
-      <!-- /.search form -->
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">MAIN NAVIGATION</li>
@@ -204,21 +158,6 @@
     <section class="content">
     @yield('content')
     </section>
- 
-   
-
-
-
-    {{-- <footer class="main-footer">
-      <div class="pull-right hidden-xs">
-        <b>Version</b> 2.4.0
-      </div>
-      <strong>Copyright &copy; 2014-2016 <a href="https://adminlte.io">Almsaeed Studio</a>.</strong> All rights
-      reserved.
-    </footer> --}}
-  
- 
-<!-- ./wrapper -->
 
 <script src="https://code.jquery.com/jquery-3.4.0.min.js" integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg="crossorigin="anonymous"></script>
 <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
