@@ -60,7 +60,6 @@
 {{-- ----------  -------------- button download ------------------------ --}}
                     <div style="float:right; margin-bottom:10px;">
                         <a href="{{asset('/admin/insert_customer')}}" class="btn btn-primary btn-sm">Insert Customer</a>
-                        <a href="{{asset('/admin/customer/non-aktif')}}" class="btn btn-primary btn-sm">Customer Non-Aktif</a>
                         <a href="{{asset('/admin/customer/exportExcel')}}" class="btn btn-default btn-sm" target="_blank">Download Excel</a>
                         <a href="{{asset('/admin/customer/exportPDF')}}" class="btn btn-default btn-sm" target="_blank">Download PDF</a>
                     </div>
@@ -72,6 +71,7 @@
                                 <thead>
                                 
                                     <th>No</th>
+                                    <th>Sebab Putus</th>
                                     <th>Kode Customer</th>
                                     <th>Nama Perusahaan</th>
                                     <th>Jenis Usaha</th>
@@ -86,12 +86,12 @@
                                     <th>Area</th>
                                     <th>Area Supervisor</th>
                                     <th>Status</th>
-                                    <th>Aksi</th>
                                 </thead>
                                 <tbody>
                                     @foreach($customers as $customer)
                                     <tr>
                                         <td>{{ $no++ }}</td>
+                                        <td>{{ $customer->putus_kontrak }}</td>
                                         <td>{{ $customer->kode_customer }}</td>
                                         <td>{{ $customer->nama_perusahaan }}</td>
                                         <td>{{ $customer->jenis_usaha }}</td>
@@ -106,23 +106,7 @@
                                         <td>{{ $customer->area->nama_area}}</td>
                                         <td>{{ $customer->nama_depan}}</td>
                                         <td>{{ $customer->status}}</td>
-                                        <td>
-                                            <a href="{{route('edit.customer',$customer->kode_customer)}}" class="btn btn-info btn-sm">
-                                                <span class="fa fa-pencil"></span>
-                                            </a>
-                                            <a onclick="return confirm('Apakah anda yakin akan menghapus data ini ?')" href="{{route('delete.customer',$customer->kode_customer)}}" class="btn btn-danger btn-sm">
-                                                <span class="fa fa-trash"></span>
-                                            </a>
-                                            @if($customer->status == 'Aktif')
-                                            <a onclick="return confirm('Apakah anda yakin ingin menonaktifkan customer ini ?')" href="{{route('reset.customer',$customer->kode_customer)}}" class="btn btn-warning btn-sm">
-                                                Non-aktifkan
-                                            </a>
-                                            @elseif($customer->status == 'Non_aktif')
-                                            <a onclick="return confirm('Apakah anda yakin ingin mengaktifkan customer ini ?')" href="{{route('reset.customer',$customer->kode_customer)}}" class="btn btn-warning btn-sm">
-                                                Aktifkan
-                                            </a>
-                                            @endif
-                                        </td>
+                                        
                                     </tr>
                                     @endforeach
                                 </tbody>
