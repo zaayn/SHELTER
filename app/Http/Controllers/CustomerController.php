@@ -244,5 +244,10 @@ class CustomerController extends Controller
       $data['no'] = 1;
       return view('admin/customer/profile2', $data);
     }
+    public function listputus(){
+      $data['customers'] = Customer::all();
+
+      return view('admin/customer/listputus',$data);
+    }
 
 }
