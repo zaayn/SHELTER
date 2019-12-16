@@ -60,7 +60,6 @@
 {{-- ----------  -------------- button download ------------------------ --}}
                     <div style="float:right; margin-bottom:10px;">
                         <a href="{{asset('/admin/insert_customer')}}" class="btn btn-primary btn-sm">Insert Customer</a>
-                        <a href="{{asset('/admin/customer/non-aktif')}}" class="btn btn-primary btn-sm">Customer Non-Aktif</a>
                         <a href="{{asset('/admin/customer/exportExcel')}}" class="btn btn-default btn-sm" target="_blank">Download Excel</a>
                         <a href="{{asset('/admin/customer/exportPDF')}}" class="btn btn-default btn-sm" target="_blank">Download PDF</a>
                     </div>
