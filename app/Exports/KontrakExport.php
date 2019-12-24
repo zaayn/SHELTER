@@ -21,7 +21,7 @@ class KontrakExport implements FromCollection, WithHeadings, ShouldAutoSize, Wit
                 ->join('customer','kontrak.kode_customer','=','customer.kode_customer')
                 ->select('kontrak.id_kontrak','customer.nama_perusahaan','kontrak.periode_kontrak',
                 'kontrak.akhir_periode','kontrak.srt_pemberitahuan','kontrak.tgl_srt_pemberitahuan',
-                'kontrak.srt_pemberitahuan','kontrak.tgl_srt_pemberitahuan','kontrak.dealing','kontrak.tgl_dealing',
+                'kontrak.srt_penawaran','kontrak.tgl_srt_penawaran','kontrak.dealing','kontrak.tgl_dealing',
                 'kontrak.posisi_pks','kontrak.closing')
                 ->get();
         return $kontrak;
