@@ -34,9 +34,7 @@ class CallExport implements FromCollection, WithHeadings, ShouldAutoSize, WithEv
             'Jam Call',
             'Pembicaraan',
             'PIC Call',
-            'Hal Menonjol',
-            'Created_at',
-            'Update_at'
+            'Hal Menonjol'
         ];
     }
     public function registerEvents(): array

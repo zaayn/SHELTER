@@ -40,9 +40,7 @@ class KeluhanExport implements FromCollection, WithHeadings, ShouldAutoSize, Wit
             'Case',
             'Actual Case',
             'Uraian Penyelesaian',
-            'Status',
-            'Created_at',
-            'Update_at'
+            'Status'
         ];
     }
     public function registerEvents(): array

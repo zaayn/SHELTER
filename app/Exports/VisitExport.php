@@ -34,9 +34,7 @@ class VisitExport implements FromCollection, WithHeadings, ShouldAutoSize, WithE
             'Waktu In',
             'Waktu Out',
             'PIC Meeted',
-            'Kegiatan',
-            'Created_at',
-            'Update_at'
+            'Kegiatan'
         ];
     }
     public function registerEvents(): array
