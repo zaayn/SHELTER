@@ -33,7 +33,7 @@
 			@foreach($visit as $visit)
 			<tr>
 			    <td>{{ $i++ }}</td>
-                <td>{{ $visit->customer->nama_customer }}</td>
+                <td>{{ $visit->customer->nama_perusahaan }}</td>
                 <td>{{ $visit->spv_pic }}</td>
                 <td>{{ $visit->tanggal_visit }}</td>
                 <td>{{ $visit->waktu_in }}</td>

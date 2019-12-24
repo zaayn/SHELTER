@@ -37,7 +37,7 @@
 			@foreach($keluhan as $keluhan)
 			<tr>
             <td>{{ $i++ }}</td>
-                                    <td>{{ $keluhan->customer->nama_customer }}</td>
+                                    <td>{{ $keluhan->customer->nama_perusahaan }}</td>
                                     <td>{{ $keluhan->departemen }}</td>
                                     <td>{{ $keluhan->tanggal_keluhan }}</td>
                                     <td>{{ $keluhan->topik_masalah }}</td>
