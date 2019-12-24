@@ -31,7 +31,7 @@
 			@php $i=1 @endphp
 			@foreach($call as $call)
 			<tr>
-            <td>{{ $call->nama_customer }}</td>
+            <td>{{ $call->customer->nama_customer }}</td>
             <td>{{ $call->spv_pic }}</td>
             <td>{{ $call->tanggal_call }}</td>
             <td>{{ $call->jam_call }}</td>
