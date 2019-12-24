@@ -16,7 +16,14 @@ class KeluhanExport implements FromCollection, WithHeadings, ShouldAutoSize, Wit
     */
     public function collection()
     {
-        return Keluhan::all();
+        $keluhan = DB::table('keluhan')
+                ->join('customer','keluhan.kode_customer','=','customer.kode_customer')
+                ->select('keluhan.id_keluhan','customer.nama_perusahaan','keluhan.departemen',
+                'keluhan.tanggal_keluhan','keluhan.topik_masalah','keluhan.saran_penyelesaian',
+                'keluhan.time_target','keluhan.confirm_pic','keluhan.case','keluhan.actual_case',
+                'keluhan.uraian_penyelesaian','keluhan.status')
+                ->get();
+        return $keluhan;
     }
     public function headings(): array
     {
