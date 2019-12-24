@@ -18,8 +18,7 @@
 	<table class='table table-bordered'>
 		<thead>
 			<tr>
-            <th>ID Call</th>
-             <th>Nama Customer</th>
+            <th>Nama Customer</th>
             <th>SPV_PIC</th>
             <th>Tanggal</th>
             <th>Waktu Call</th>
@@ -32,7 +31,6 @@
 			@php $i=1 @endphp
 			@foreach($call as $call)
 			<tr>
-			<td>{{ $call->call_id  }}</td>
             <td>{{ $call->nama_customer }}</td>
             <td>{{ $call->spv_pic }}</td>
             <td>{{ $call->tanggal_call }}</td>
