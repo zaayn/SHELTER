@@ -9,8 +9,7 @@ class keluhan extends Model
     protected $table = 'keluhan';
     protected $primaryKey = 'id_keluhan';
     protected $fillable = [
-        'nama_customer'
-       ,'departemen'
+        'departemen'
        ,'tanggal_keluhan'
        ,'topik_masalah'
        ,'saran_penyelesaian'

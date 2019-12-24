@@ -16,12 +16,18 @@ class VisitExport implements FromCollection, WithHeadings, ShouldAutoSize, WithE
     */
     public function collection()
     {
-        return Visit::all();
+        $visit = DB::table('visit')
+                ->join('customer','visit.kode_customer','=','customer.kode_customer')
+                ->select('visit.id_visit','customer.nama_perusahaan','visit.spv_pic',
+                'visit.tanggal_visit','visit.waktu_in','visit.waktu_out','visit.pic_meeted','visit.kegiatan')
+                ->get();
+        return visit;
+        //return Visit::all();
     }
     public function headings(): array
     {
         return [
-            'ID Visit',
+            'No',
             'Nama Perusahaan',
             'SPV_PIC',
             'Tanggal Visit',

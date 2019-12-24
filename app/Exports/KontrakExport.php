@@ -21,7 +21,7 @@ class KontrakExport implements FromCollection, WithHeadings, ShouldAutoSize, Wit
     public function headings(): array
     {
         return [
-            'ID Kontrak',
+            'No',
             'Kode Customer',
             'Periode Kontrak',
             'Akhir Periode',

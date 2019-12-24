@@ -21,7 +21,7 @@ class KeluhanExport implements FromCollection, WithHeadings, ShouldAutoSize, Wit
     public function headings(): array
     {
         return [
-            'ID Keluhan',
+            'No',
             'Nama Perusahaan',
             'Departemen Tertuju',
             'Tanggal Keluhan',

@@ -22,7 +22,7 @@ class CallExport implements FromCollection, WithHeadings, ShouldAutoSize, WithEv
     public function headings(): array
     {
         return [
-            'ID Call',
+            'No',
             'Nama Perusahaan',
             'SPV_PIC',
             'Tanggal Call',
