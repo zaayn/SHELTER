@@ -20,115 +20,34 @@ use App\Area;
 
 class KontrakadminController extends Controller
 {
-    public function filter(Request $request)
-    {
-        if($request->bu_id && $request->area_id)
-        {
-            $data['no'] = 1;
-            $data['areas'] = Area::all();
-            $data['bisnis_units'] = Bisnis_unit::all();
-            $data['customers'] = Customer::all();
-            $data['kontraks'] = DB::table('kontrak')
-            ->join('customer', 'customer.kode_customer', '=', 'kontrak.kode_customer')
-            ->join('area','area.area_id','=','customer.area_id')
-            ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
-            ->where('bisnis_unit.bu_id', '=', $request->bu_id)
-            ->where('area.area_id', '=', $request->area_id)
-            ->get();
-            foreach($data['kontraks'] as $key => $kontraa){
-                $awok = DB::table('kontrak')
-                ->join('customer', 'customer.kode_customer', '=', 'kontrak.kode_customer')
-                ->join('area','area.area_id','=','customer.area_id')
-                ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
-                ->where('bisnis_unit.bu_id', '=', $request->bu_id)
-                ->where('area.area_id', '=', $request->area_id)
-                ->where('kontrak.id_kontrak', '=', $kontraa->id_kontrak)
-                ->orderBy('kontrak.id_kontrak','asc')
-                ->get();
-                
-                $data['kontraks'][$key]->datamou_flag = count($awok);
-            }
-            return view('admin/kontrak/kontrak', $data);
-        }
-    
-        elseif($request->bu_id)
-        {
-            $data['no'] = 1;
-            $data['areas'] = Area::all();
-            $data['bisnis_units'] = Bisnis_unit::all();
-            $data['customers'] = Customer::all();
-            // $data['kontraks'] = Kontrak::all();
-            $data['kontraks'] = DB::table('kontrak')
-            ->join('customer', 'customer.kode_customer', '=', 'kontrak.kode_customer')
-            ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
-            ->where('bisnis_unit.bu_id', '=', $request->bu_id)
-            ->get();
-            foreach($data['kontraks'] as $key => $kontraa){
-                $awok = DB::table('kontrak')
-                ->join('customer', 'customer.kode_customer', '=', 'kontrak.kode_customer')
-                ->join('area','area.area_id','=','customer.area_id')
-                ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
-                ->where('bisnis_unit.bu_id', '=', $request->bu_id)
-                ->where('kontrak.id_kontrak', '=', $kontraa->id_kontrak)
-                ->orderBy('kontrak.id_kontrak','asc')
-                ->get();
-                
-                $data['kontraks'][$key]->datamou_flag = count($awok);
-            }
-            return view('admin/kontrak/kontrak', $data);
-        }
-        elseif($request->area_id)
-        {
-            $data['no'] = 1;
-            $data['areas'] = Area::all();
-            $data['bisnis_units'] = Bisnis_unit::all();
-            $data['customers'] = Customer::all();
-            $data['kontraks'] = DB::table('kontrak')
-            ->join('customer', 'customer.kode_customer', '=', 'kontrak.kode_customer')
-            ->join('area','area.area_id','=','customer.area_id')
-            ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
-            ->select('area.area_id','bisnis_unit.nama_bisnis_unit','bisnis_unit.bu_id','kontrak.id_kontrak','kontrak.nomor_kontrak','customer.kode_customer','customer.nama_perusahaan','kontrak.periode_kontrak','kontrak.akhir_periode','kontrak.srt_pemberitahuan','kontrak.tgl_srt_pemberitahuan','kontrak.srt_penawaran','kontrak.tgl_srt_penawaran','kontrak.dealing','kontrak.tgl_dealing','kontrak.posisi_pks','kontrak.closing')
-            ->where('area.area_id', '=', $request->area_id)
-            ->get();
-            foreach($data['kontraks'] as $key => $kontraa){
-                $awok = DB::table('kontrak')
-                ->join('customer', 'customer.kode_customer', '=', 'kontrak.kode_customer')
-                ->join('area','area.area_id','=','customer.area_id')
-                ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
-                ->where('area.area_id', '=', $request->area_id)
-                ->where('kontrak.id_kontrak', '=', $kontraa->id_kontrak)
-                ->orderBy('kontrak.id_kontrak','asc')
-                ->get();
-                
-                $data['kontraks'][$key]->datamou_flag = count($awok);
-            }
-            return view('admin/kontrak/kontrak', $data);
-        }
-        
-    }
     public function index()
     {
         $data['no'] = 1;
         $data['areas'] = Area::all();
         $data['bisnis_units'] = Bisnis_unit::all();
         $data['customers'] = Customer::all();  
-        $data['kontraks'] = DB::table('kontrak')
-            ->join('customer', 'customer.kode_customer', '=', 'kontrak.kode_customer')
-            ->get();
-            foreach($data['kontraks'] as $key => $kontraa){
-                $awok = DB::table('kontrak')
-                ->join('datamou', 'datamou.id_kontrak', '=', 'kontrak.id_kontrak')
-                ->where('kontrak.id_kontrak', '=', $kontraa->id_kontrak)
-                ->get();
-                
-                $data['kontraks'][$key]->datamou_flag = count($awok);
-
-
-            }
-         
+        $data['kontraks'] = Kontrak::all();
 
         return view('admin/kontrak/kontrak', $data);
+    }
+    public function filter(Request $request)
+    {
+      $data['no'] = 1;
+      $data['areas'] = Area::all();
+      $data['bisnis_units'] = Bisnis_unit::all();
+      $data['customers'] = Customer::all();
+      
+      if($request->bu_id || $request->area_id){
+        $kontraks = Kontrak::whereHas('customer', function($query) use($request){
+          if($request->bu_id)
+            $query->where('bu_id',$request->bu_id);
 
+          if($request->area_id)
+            $query->where('area_id',$request->area_id);
+        });
+      }
+      $data['kontraks'] = $kontraks->get();
+      return view('admin/kontrak/kontrak', $data);
     }
 
     public function insert()
@@ -232,7 +151,6 @@ class KontrakadminController extends Controller
         $kontrak->tgl_dealing = $request->tgl_dealing;
         $kontrak->posisi_pks = $request->posisi_pks;
         $kontrak->closing = "Aktif";
-        // $kontrak->putus_kontrak = $request->putus_kontrak;
         
         if ($kontrak->save())
           return redirect()->route('index.kontrak')->with(['success'=>'edit sukses']);
@@ -254,25 +172,22 @@ class KontrakadminController extends Controller
     }
     public function reminder() //filter kontrak h-30 hari 
     {
-            $data['customers'] = Customer::all();
-            $data['kontraks'] = DB::table('kontrak')
-            ->join('customer', 'customer.kode_customer', '=', 'kontrak.kode_customer')
-            ->whereRaw('akhir_periode - INTERVAL 60 DAY <= NOW()')
-            ->whereRaw('NOW() < akhir_periode')
-            ->get();
+        $data['customers'] = Customer::all();
+        $data['kontraks'] = DB::table('kontrak')
+        ->join('customer', 'customer.kode_customer', '=', 'kontrak.kode_customer')
+        ->whereRaw('akhir_periode - INTERVAL 60 DAY <= NOW()')
+        ->whereRaw('NOW() < akhir_periode')
+        ->get();
 
-            $now = Carbon\Carbon::now();
-            $data['sisa'] = array();
-            foreach ($data['kontraks'] as $key => $value) {
-                $sisa = $now->diffInDays($value->akhir_periode);
-                array_push($data['sisa'],$sisa);
-                // dd($value->akhir_periode);
-                // dd($sisa);
-            }
-            // dd($now);
-            // dd($data['kontraks']);
-            // $tenggat = $akhir_periode - $now;
-            return view('admin/kontrak/reminder', $data);
+        $now = Carbon\Carbon::now();
+        $data['sisa'] = array();
+        foreach ($data['kontraks'] as $key => $value) 
+        {
+            $sisa = $now->diffInDays($value->akhir_periode);
+            array_push($data['sisa'],$sisa);
+        }
+
+        return view('admin/kontrak/reminder', $data);
     }
 
     public function insertmou($id_kontrak){

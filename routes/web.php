@@ -117,6 +117,7 @@ Route::group(['prefix' => 'admin',  'middleware' => 'is_admin'], function(){
     Route::get('/profile', 'CustomerController@profile')->name('cust.profile');
     Route::post('/filter/profile', 'CustomerController@filter_profile')->name('filter.profile');
     Route::post('/update/putus{kode_customer}','CustomerController@update_putus')->name('update.putus');
+    Route::get('/customer/non-aktif','CustomerController@listputus')->name('listputus.customer');
 
     //------- laporan call
     Route::get('/insertcall', 'CalladminController@insert')->name('insert.call'); //show form insert

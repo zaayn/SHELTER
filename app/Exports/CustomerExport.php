@@ -16,6 +16,7 @@ class CustomerExport implements FromCollection, WithHeadings, ShouldAutoSize, Wi
     */
     public function collection()
     {
+        //$customer = DB::table('')
         return Customer::all();
     }
     public function headings(): array

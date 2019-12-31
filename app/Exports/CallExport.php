@@ -8,7 +8,7 @@ use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 use Maatwebsite\Excel\Concerns\WithEvents;
 use Maatwebsite\Excel\Events\AfterSheet;
-//use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use DB;
 
 class CallExport implements FromCollection, WithHeadings, ShouldAutoSize, WithEvents
 {
@@ -17,21 +17,24 @@ class CallExport implements FromCollection, WithHeadings, ShouldAutoSize, WithEv
     */
     public function collection()
     {
-        return Call::all();
+        $call = DB::table('call')
+                ->join('customer','call.kode_customer','=','customer.kode_customer')
+                ->select('call.call_id','customer.nama_perusahaan','call.spv_pic',
+                'call.jam_call','call.pembicaraan','call.pic_called','call.hal_menonjol')
+                ->get();
+        return $call;
     }
     public function headings(): array
     {
         return [
-            'ID Call',
+            'No',
             'Nama Perusahaan',
             'SPV_PIC',
             'Tanggal Call',
             'Jam Call',
             'Pembicaraan',
             'PIC Call',
-            'Hal Menonjol',
-            'Created_at',
-            'Update_at'
+            'Hal Menonjol'
         ];
     }
     public function registerEvents(): array
