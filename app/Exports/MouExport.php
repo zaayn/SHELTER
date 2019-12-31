@@ -8,6 +8,7 @@ use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 use Maatwebsite\Excel\Concerns\WithEvents;
 use Maatwebsite\Excel\Events\AfterSheet;
+use DB;
 
 class MouExport implements FromCollection, WithHeadings, ShouldAutoSize, WithEvents
 {
@@ -16,13 +17,23 @@ class MouExport implements FromCollection, WithHeadings, ShouldAutoSize, WithEve
     */
     public function collection()
     {
-        return datamou::all();
+        $datamou = DB::table('datamou')
+                ->join('customer','datamou.kode_customer','=','customer.kode_customer')
+                ->select('datamou.no_mou','datamou.nomor_kontrak','customer.nama_perusahaan','datamou.hc',
+                'datamou.invoice','datamou.mf','datamou.mf_persen','bpjs_tk_persen','bpjs_tenagakerja',
+                'datamou.bpjs_kes_persen','datamou.bpjs_kesehatan','datamou.jiwasraya','datamou.ramamusa',
+                'datamou.ditagihkan','datamou.diprovisasikan','datamou.overheadcost','datamou.training',
+                'datamou.tanggal_invoice','datamou.time_of_payment','datamou.cut_of_date','datamou.kaporlap',
+                'datamou.devices','datamou.chemical','datamou_pendaftaran_mou')
+                ->get();
+        return $datamou;
     }
     public function headings(): array
     {
         return [
             'No. MoU',
-            'ID Kontrak',
+            'Nomor Kontrak',
+            'Nama Perusahaan',
             'HC',
             'Invoice',
             'MF',
@@ -41,9 +52,7 @@ class MouExport implements FromCollection, WithHeadings, ShouldAutoSize, WithEve
             'Kaporlap',
             'Devices',
             'Chemical',
-            'Pendaftaran MoU',
-            'Created_at',
-            'Update_at'
+            'Pendaftaran MoU'
         ];
     }
     public function registerEvents(): array
