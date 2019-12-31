@@ -110,7 +110,7 @@
                             <input list="browsers" class="form-control" name="nama_depan">
                             <datalist id="browsers">
                             @foreach($users as $users)
-                                <option value="{{ $users->nama_depan }}">{{ $users->nama_depan }} - {{ $users->nama_area }}</option>
+                                <option value="{{ $users->nama_depan }}">{{ $users->nama_depan }} - {{ $users->area->nama_area }}</option>
                             @endforeach
                             </datalist>
                             {{-- </select> --}}
