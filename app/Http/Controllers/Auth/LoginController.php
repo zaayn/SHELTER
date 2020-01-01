@@ -23,33 +23,34 @@ class LoginController extends Controller
     public function authenticated()
     {
         $user = \Auth::user();
-        if ( $user->isAdmin() ) 
-        {
-            return redirect('/admin/home');
+        if(\Auth::check()){
+            if ( $user->isAdmin() ) 
+            {
+                return redirect('/admin/home');
+            }
+            else if ( $user->issuperadmin() ) 
+            {
+                return redirect('/superadmin/home');
+            }
+            else if ( $user->isofficercrm() ) 
+            {
+                return redirect('/officer_crm/home');
+            }
+            else if ( $user->ismanagercrm() ) 
+            {
+                return redirect('/manager_crm/home');
+            }
+            else if ( $user->isdirektur() ) 
+            {
+                return redirect('/direktur/home');
+            }
+            else if ( $user->ismanagernoncrm() ) 
+            {
+                return redirect('/manager_non_crm/home');
+            }
         }
-        else if ( $user->issuperadmin() ) 
-        {
-            return redirect('/superadmin/home');
-        }
-        else if ( $user->isofficercrm() ) 
-        {
-            return redirect('/officer_crm/home');
-        }
-        else if ( $user->ismanagercrm() ) 
-        {
-            return redirect('/manager_crm/home');
-        }
-        else if ( $user->isdirektur() ) 
-        {
-            return redirect('/direktur/home');
-        }
-        else if ( $user->ismanagernoncrm() ) 
-        {
-            return redirect('/manager_non_crm/home');
-        }
-        else if(\Auth::check()){
+        else    
             return redirect()->route('login');
-        }
     }
     
 
