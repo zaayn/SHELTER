@@ -1,9 +1,7 @@
 <?php
 
 Route::get('/', 'Auth\LoginController@authenticated');
-Route::get('/', function () {
-    return view('auth.login');
-});
+
 Auth::routes();
 
 Route::group(['prefix' => 'officer_crm',  'middleware' => 'is_officer_crm'], function(){
