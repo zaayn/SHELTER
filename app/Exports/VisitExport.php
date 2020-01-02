@@ -8,6 +8,7 @@ use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 use Maatwebsite\Excel\Concerns\WithEvents;
 use Maatwebsite\Excel\Events\AfterSheet;
+use DB;
 
 class VisitExport implements FromCollection, WithHeadings, ShouldAutoSize, WithEvents
 {
@@ -16,21 +17,24 @@ class VisitExport implements FromCollection, WithHeadings, ShouldAutoSize, WithE
     */
     public function collection()
     {
-        return Visit::all();
+        $visit = DB::table('visit')
+                ->join('customer','visit.kode_customer','=','customer.kode_customer')
+                ->select('visit.visit_id','customer.nama_perusahaan','visit.spv_pic',
+                'visit.tanggal_visit','visit.waktu_in','visit.waktu_out','visit.pic_meeted','visit.kegiatan')
+                ->get();
+        return $visit;
     }
     public function headings(): array
     {
         return [
-            'ID Visit',
+            'No',
             'Nama Perusahaan',
             'SPV_PIC',
             'Tanggal Visit',
             'Waktu In',
             'Waktu Out',
             'PIC Meeted',
-            'Kegiatan',
-            'Created_at',
-            'Update_at'
+            'Kegiatan'
         ];
     }
     public function registerEvents(): array

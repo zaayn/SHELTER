@@ -43,7 +43,7 @@
                         <div class="form-group col-md-12">
                             <label>Nama Customer :</label>
                             <div>
-                                <input list="browsers" class="form-control" name="kode_customer">
+                                <input list="browsers" class="form-control" name="kode_customer" placeholder="klik disini">
                                 <datalist id="browsers">
                                 @foreach($customers as $customer)
                                     <option value="{{ $customer->kode_customer }}">{{ $customer->kode_customer }} - {{ $customer->nama_perusahaan }} - {{ $customer->bisnis_unit->nama_bisnis_unit }} - {{$customer->area->nama_area}}</option>
@@ -54,7 +54,7 @@
                         <div class="form-group col-md-12">
                             <label>SPV PIC :</label>
                             <div>
-                                <input list="mybrowsers" class="form-control" name="spv_pic">
+                                <input list="mybrowsers" class="form-control" name="spv_pic" placeholder="klik disini">
                                 <datalist id="mybrowsers">
                                 @foreach($users as $users)
                                     <option value="{{ $users->nama_depan }}">{{ $users->nama_depan }} - {{ $users->area->nama_area }}</option>
@@ -68,11 +68,11 @@
                         </div>
                         <div class="form-group col-md-12">
                 	        <label class="font-weight-bold">Waktu In</label>
-                	        <input type="time" class="form-control" name="waktu_in" required>
+                	        <input type="text" id="time" class="time form-control" name="waktu_in" placeholder="klik disini" required>
                         </div>
                         <div class="form-group col-md-12">
                 	        <label class="font-weight-bold">Waktu Out</label>
-                	        <input type="time" class="form-control" name="waktu_out" required>
+                	        <input type="text"  class="time form-control" name="waktu_out" placeholder="klik disini" required>
                         </div>
                         <div class="form-group col-md-12">
                 	        <label class="font-weight-bold">PIC Visit</label>
@@ -93,4 +93,19 @@
             </div>
           </div>
         </div>
+@endsection
+
+@section('js')
+<script>
+var timepicker = new TimePicker('time', {
+  lang: 'en',
+  theme: 'dark'
+});
+timepicker.on('change', function(evt) {
+  
+  var value = (evt.hour || '00') + ':' + (evt.minute || '00');
+  evt.element.value = value;
+
+});
+</script>
 @endsection

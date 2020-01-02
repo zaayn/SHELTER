@@ -19,7 +19,6 @@
 		<thead>
 			<tr>
                 <th>No</th>
-                <th>ID Visit</th>
                 <th>Nama Customer</th>
                 <th>SPV_PIC</th>
                 <th>Tanggal</th>
@@ -34,8 +33,7 @@
 			@foreach($visit as $visit)
 			<tr>
 			    <td>{{ $i++ }}</td>
-                <td>{{ $visit->visit_id  }}</td>
-                <td>{{ $visit->nama_customer }}</td>
+                <td>{{ $visit->customer->nama_perusahaan }}</td>
                 <td>{{ $visit->spv_pic }}</td>
                 <td>{{ $visit->tanggal_visit }}</td>
                 <td>{{ $visit->waktu_in }}</td>

@@ -8,6 +8,7 @@ use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 use Maatwebsite\Excel\Concerns\WithEvents;
 use Maatwebsite\Excel\Events\AfterSheet;
+use DB;
 
 class KontrakExport implements FromCollection, WithHeadings, ShouldAutoSize, WithEvents
 {
@@ -16,13 +17,20 @@ class KontrakExport implements FromCollection, WithHeadings, ShouldAutoSize, Wit
     */
     public function collection()
     {
-        return Kontrak::all();
+        $kontrak = DB::table('kontrak')
+                ->join('customer','kontrak.kode_customer','=','customer.kode_customer')
+                ->select('kontrak.id_kontrak','customer.nama_perusahaan','kontrak.periode_kontrak',
+                'kontrak.akhir_periode','kontrak.srt_pemberitahuan','kontrak.tgl_srt_pemberitahuan',
+                'kontrak.srt_penawaran','kontrak.tgl_srt_penawaran','kontrak.dealing','kontrak.tgl_dealing',
+                'kontrak.posisi_pks','kontrak.closing')
+                ->get();
+        return $kontrak;
     }
     public function headings(): array
     {
         return [
-            'ID Kontrak',
-            'Kode Customer',
+            'No',
+            'Nama Customer',
             'Periode Kontrak',
             'Akhir Periode',
             'Surat Pemberitahuan',
@@ -32,9 +40,7 @@ class KontrakExport implements FromCollection, WithHeadings, ShouldAutoSize, Wit
             'Dealing',
             'Tanggal Dealing',
             'Posisi Pks',
-            'Closing',
-            'Created_at',
-            'Update_at'
+            'Closing'
         ];
     }
     public function registerEvents(): array

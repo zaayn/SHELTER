@@ -19,7 +19,6 @@
 		<thead>
 			<tr>
             <th>No</th>
-            <th style="width:10%">ID Keluhan</th>
                                     <th>Nama Customer</th>
                                     <th>Departemen Tertuju</th>
                                     <th>Tanggal</th>
@@ -38,8 +37,7 @@
 			@foreach($keluhan as $keluhan)
 			<tr>
             <td>{{ $i++ }}</td>
-			<td>{{ $keluhan->id_keluhan  }}</td>
-                                    <td>{{ $keluhan->nama_customer }}</td>
+                                    <td>{{ $keluhan->customer->nama_perusahaan }}</td>
                                     <td>{{ $keluhan->departemen }}</td>
                                     <td>{{ $keluhan->tanggal_keluhan }}</td>
                                     <td>{{ $keluhan->topik_masalah }}</td>

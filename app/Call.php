@@ -10,8 +10,7 @@ class call extends Model
     protected $primaryKey = 'call_id';
     public $incrementing = true;
     protected $fillable = [
-        'nama_customer'
-       ,'spv_pic'
+        'spv_pic'
        ,'tanggal_call'
        ,'jam_call'
        ,'pembicaraan'
