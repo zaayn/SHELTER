@@ -68,11 +68,11 @@
                         </div>
                         <div class="form-group col-md-12">
                 	        <label class="font-weight-bold">Waktu In</label>
-                	        <input type="text" id="time" class="time form-control timepicker" name="waktu_in" placeholder="klik disini" required>
+                	        <input type="time" class="time form-control timepicker" name="waktu_in" placeholder="klik disini" required>
                         </div>
                         <div class="form-group col-md-12">
                 	        <label class="font-weight-bold">Waktu Out</label>
-                	        <input type="text" class="time form-control timepicker" name="waktu_out" placeholder="klik disini" required>
+                	        <input type="time" class="form-control timepicker" name="waktu_out" placeholder="klik disini" required>
                         </div>
                         <div class="form-group col-md-12">
                 	        <label class="font-weight-bold">PIC Visit</label>
@@ -93,15 +93,4 @@
             </div>
           </div>
         </div>
-@endsection
-
-@section('js')
-<script>
-    $(".timepicker").flatpickr({
-        enableTime: true,
-        noCalendar: true,
-        dateFormat: "H:i",
-        time_24hr: true
-    });
-</script>
 @endsection

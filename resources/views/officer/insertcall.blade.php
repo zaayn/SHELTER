@@ -68,7 +68,7 @@
                         </div>
                         <div class="form-group col-md-12">
                 	        <label class="font-weight-bold">Waktu Call</label>
-                	        <input type="time" class="form-control" name="jam_call" required>
+                	        <input type="time" class="form-control timepicker" name="jam_call" placeholder="klik disini" required>
                         </div>
                         <div class="form-group col-md-12">
                 	        <label class="font-weight-bold">Pembicaraan</label>

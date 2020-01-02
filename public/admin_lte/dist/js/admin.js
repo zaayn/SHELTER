@@ -6,6 +6,14 @@ $(document).ready(function(){
         // dom: 'Bfrtip',
         buttons: ['copy', 'csv', 'excel', 'pdf', 'print']
       });
+      
+    //   time picker
+      $(".timepicker").flatpickr({
+        enableTime: true,
+        noCalendar: true,
+        dateFormat: "H:i",
+        time_24hr: true
+    });
 })
 $(document).ready(function() {
   // Setup - add a text input to each footer cell

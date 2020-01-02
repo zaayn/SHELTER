@@ -66,11 +66,11 @@
                         </div>
                         <div class="form-group col-md-12">
                 	        <label class="font-weight-bold">Waktu In</label>
-                	        <input type="time" class="form-control" name="waktu_in" value="{{ $visit->waktu_in }}" required>
+                	        <input type="time" class="form-control timepicker" name="waktu_in" value="{{ $visit->waktu_in }}" placeholder="klik disini" required>
                         </div>
                         <div class="form-group col-md-12">
                 	        <label class="font-weight-bold">Waktu Out</label>
-                	        <input type="time" class="form-control" name="waktu_out" value="{{ $visit->waktu_out }}" required>
+                	        <input type="time" class="form-control timepicker" name="waktu_out" value="{{ $visit->waktu_out }}" placeholder="klik disini" required>
                         </div>
                         <div class="form-group col-md-12">
                 	        <label class="font-weight-bold">PIC Visit</label>
