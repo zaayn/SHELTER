@@ -90,3 +90,16 @@
           </div>
         </div>
 @endsection
+@section('js')
+    <script>  
+    //   time picker
+    $(document).ready(function() {
+        $(".timepicker").flatpickr({
+            enableTime: true,
+            noCalendar: true,
+            dateFormat: "H:i",
+            time_24hr: true
+        });
+    });
+    </script>
+@endsection
