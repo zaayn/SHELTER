@@ -6,14 +6,6 @@ $(document).ready(function() {
         // dom: 'Bfrtip',
         buttons: ['copy', 'csv', 'excel', 'pdf', 'print']
       });
-      
-    //   time picker
-      $(".timepicker").flatpickr({
-        enableTime: true,
-        noCalendar: true,
-        dateFormat: "H:i",
-        time_24hr: true
-    });
 
   // Setup - add a text input to each footer cell
   $('#mydatatables thead tr').clone(true).appendTo( '#mydatatables thead' );
