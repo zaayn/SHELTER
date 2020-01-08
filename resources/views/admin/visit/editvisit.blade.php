@@ -50,13 +50,11 @@
                         </div>
                         <div class="form-group col-md-12">
                             <label>SPV PIC :</label>
-                            <div>
-                                <select class="form-control" name="spv_pic">
-                                @foreach($users as $users)
-                                    <option value="{{ $users->nama_depan }}">{{ $users->nama_depan }} - {{ $users->area->nama_area }}</option>
-                                @endforeach
-                                </select>
-                            </div>
+                            <select class="form-control" name="spv_pic">
+                            @foreach($users as $users)
+                                <option value="{{ $users->nama_depan }}">{{ $users->nama_depan }} - {{ $users->area->nama_area }}</option>
+                            @endforeach
+                            </select>
                         </div>
                         <div class="form-group col-md-12">
                 	        <label class="font-weight-bold">Tanggal</label>
