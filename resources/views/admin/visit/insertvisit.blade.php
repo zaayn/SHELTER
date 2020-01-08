@@ -41,16 +41,13 @@
 
                     <div class="form-group">
                         <div class="form-group col-md-12">
-                            <label>Nama Customer :</label>
-                            <div>
-                                <input list="browsers" class="form-control" name="kode_customer" placeholder="klik disini">
-                                <datalist id="browsers">
-                                @foreach($customers as $customer)
-                                    <option value="{{ $customer->kode_customer }}">{{ $customer->kode_customer }} - {{ $customer->nama_perusahaan }} - {{ $customer->bisnis_unit->nama_bisnis_unit }} - {{$customer->area->nama_area}}</option>
-                                @endforeach
-                                </datalist>
-                            </div>
-                        </div>
+                            <label>Nama Perusahaan</label>
+                            <select class="form-control" name="kode_customer">
+                              @foreach($customers as $customer)
+                                <option value="{{ $customer->kode_customer }}">{{ $customer->kode_customer }} - {{ $customer->nama_perusahaan }} - {{$customer->bisnis_unit->nama_bisnis_unit}} - {{$customer->area->nama_area}}</option>
+                              @endforeach
+                            </select>
+                          </div>
                         <div class="form-group col-md-12">
                             <label>SPV PIC :</label>
                             <div>
@@ -72,7 +69,7 @@
                         </div>
                         <div class="form-group col-md-12">
                 	        <label class="font-weight-bold">Waktu Out</label>
-                	        <input type="text"  class="time form-control" name="waktu_out" placeholder="klik disini" required>
+                	        <input type="text" id="time" class="time form-control" name="waktu_out" placeholder="klik disini" required>
                         </div>
                         <div class="form-group col-md-12">
                 	        <label class="font-weight-bold">PIC Visit</label>
@@ -103,7 +100,7 @@ var timepicker = new TimePicker('time', {
 });
 timepicker.on('change', function(evt) {
   
-  var value = (evt.hour || '00') + ':' + (evt.minute || '00');
+  var value = (evt.hour || '00') + ':' + (evt.minute || '00')+ ':' + (evt.second || '00');
   evt.element.value = value;
 
 });

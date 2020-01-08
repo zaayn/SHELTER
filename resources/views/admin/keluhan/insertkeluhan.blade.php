@@ -39,15 +39,12 @@
                     {{ csrf_field() }}
                     <div class="form-group">
                         <div class="form-group col-md-12">
-                            <label>Nama Customer</label>
-                            <div>
-                                <input list="browsers" class="form-control" name="kode_customer">
-                                <datalist id="browsers">
-                                @foreach($customers as $customer)
-                                    <option value="{{ $customer->kode_customer }}">{{ $customer->kode_customer }} - {{ $customer->nama_perusahaan }} - {{ $customer->bisnis_unit->nama_bisnis_unit }} - {{ $customer->area->nama_area }}</option>
-                                @endforeach
-                                </datalist>
-                            </div>
+                          <label>Nama Perusahaan</label>
+                          <select class="form-control" name="kode_customer">
+                            @foreach($customers as $customer)
+                              <option value="{{ $customer->kode_customer }}">{{ $customer->kode_customer }} - {{ $customer->nama_perusahaan }} - {{$customer->bisnis_unit->nama_bisnis_unit}} - {{$customer->area->nama_area}}</option>
+                            @endforeach
+                          </select>
                         </div>
                         <div class="form-group col-md-12">
                             <label>Departemen Tertuju</label>
