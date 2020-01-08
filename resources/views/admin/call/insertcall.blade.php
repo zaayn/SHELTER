@@ -65,7 +65,7 @@
                         </div>
                         <div class="form-group col-md-12">
                 	        <label class="font-weight-bold">Waktu Call</label>
-                	        <input type="text" id="time" class="form-control" name="jam_call" required>
+                	        <input type="text" class="form-control timepicker" name="jam_call" placeholder="klik disini" required>
                         </div>
                         <div class="form-group col-md-12">
                 	        <label class="font-weight-bold">Pembicaraan</label>
@@ -91,19 +91,16 @@
           </div>
         </div>
 @endsection
-
 @section('js')
-<script>
-var timepicker = new TimePicker('time', {
-  lang: 'en',
-  theme: 'dark'
-});
-timepicker.on('change', function(evt) {
-  
-  var value = (evt.hour || '00') + ':' + (evt.minute || '00');
-  evt.element.value = value;
-
-});
-</script>
+    <script>  
+    //   time picker
+    $(document).ready(function() {
+        $(".timepicker").flatpickr({
+            enableTime: true,
+            noCalendar: true,
+            dateFormat: "H:i",
+            time_24hr: true
+        });
+    });
+    </script>
 @endsection
-

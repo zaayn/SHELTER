@@ -21,10 +21,10 @@
   <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
   <link rel="stylesheet" href="{{asset('admin_lte/dist/css/skins/_all-skins.min.css')}}">
-    {{-- jquery --}}
+  {{-- time pickr --}}
+  <link rel="stylesheet" href="{{asset('https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css')}}">
   
   {{-- data table --}}
-  
   <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
 
 	
@@ -243,8 +243,8 @@
 
 <script src="{{asset('https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js')}}"></script>
 
-<script src="http://cdn.jsdelivr.net/timepicker.js/latest/timepicker.min.js"></script>
-<link href="http://cdn.jsdelivr.net/timepicker.js/latest/timepicker.min.css" rel="stylesheet"/>
+<script src="{{asset('http://cdn.jsdelivr.net/timepicker.js/latest/timepicker.min.js')}}"></script>
+<link href="{{asset('http://cdn.jsdelivr.net/timepicker.js/latest/timepicker.min.css')}}" rel="stylesheet"/>
 
 {{-- js ku --}}
 <script src="{{asset('admin_lte/dist/js/admin.js')}}"></script>
@@ -268,6 +268,9 @@
 <script src="{{asset('admin_lte/dist/js/pages/dashboard2.js')}}"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{{asset('admin_lte/dist/js/demo.js')}}"></script>
+{{-- time pickr  --}}
+<script src="{{asset('https://cdn.jsdelivr.net/npm/flatpickr')}}"></script>
+
 
 @yield('date_pick')
 @yield('js')

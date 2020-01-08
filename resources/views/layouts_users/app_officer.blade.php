@@ -21,19 +21,18 @@
   <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
   <link rel="stylesheet" href="{{asset('admin_lte/dist/css/skins/_all-skins.min.css')}}">
-  
-    {{-- jquery --}}
+  {{-- time pickr --}}
+  <link rel="stylesheet" href="{{asset('https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css')}}">
+
   
   {{-- data table --}}
-  
   <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
 
 	<link rel="stylesheet" type="text/css" href="{{asset('assets/css/bootstrap.css')}}">
 
   <link rel="stylesheet" type="text/css" href="{{asset('https://cdnjs.cloudflare.com/ajax/libs/bootstrap-sweetalert/1.0.1/sweetalert.css')}}">
   <!-- Google Font -->
-  <link rel="stylesheet"
-        href="{{asset('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic')}}">
+  <link rel="stylesheet" href="{{asset('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic')}}">
   
 @yield('css')
 </head>
@@ -210,6 +209,8 @@
 <!-- AdminLTE for demo purposes -->
 <script src="{{asset('admin_lte/dist/js/demo.js')}}"></script>
 <script src="{{asset('admin_lte/dist/js/admin.js')}}"></script>
+{{-- time pickr  --}}
+<script src="{{asset('https://cdn.jsdelivr.net/npm/flatpickr')}}"></script>
 
 @yield('date_pick')
 @yield('js')
