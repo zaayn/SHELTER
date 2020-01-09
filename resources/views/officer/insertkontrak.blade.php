@@ -46,7 +46,7 @@
                         <div class="form-group col-md-12">
                             <label>Nama Perusahaan :</label>
                             <div>
-                                <select class="form-control" name="kode_customer">
+                                <select class="form-control select2" name="kode_customer">
                                     <option>Pilih Perusahaan</option>
                                 @foreach($customers as $customer)
                                     <option value="{{ $customer->kode_customer }}">{{ $customer->kode_customer }} - {{ $customer->nama_perusahaan }}</option>
@@ -114,4 +114,14 @@
             </div>
           </div>
         </div>
+@endsection
+@section('js')
+<script>
+    $(document).ready(function() {
+    //select2
+    $(".select2").select2({
+        theme:"classic",
+  })
+});
+</script>
 @endsection

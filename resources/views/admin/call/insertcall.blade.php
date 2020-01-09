@@ -89,7 +89,7 @@
         </div>
 @endsection
 @section('js')
-    <script>  
+  <script>  
     //   time picker
     $(document).ready(function() {
         $(".timepicker").flatpickr({
@@ -102,5 +102,5 @@
         theme:"classic",
         })
     });
-    </script>
+  </script>
 @endsection

@@ -109,3 +109,13 @@
           </div>
         </div>
 @endsection
+@section('js')
+<script>
+    $(document).ready(function() {
+    //select2
+    $(".select2").select2({
+        theme:"classic",
+  })
+});
+</script>
+@endsection

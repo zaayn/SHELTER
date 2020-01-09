@@ -42,7 +42,7 @@
                     <div class="form-group">
                         <div class="form-group col-md-12">
                             <label>Nama Perusahaan</label>
-                            <select class="form-control" name="kode_customer">
+                            <select class="form-control select2" name="kode_customer">
                                 @foreach($customers as $customer)
                                     <option value="{{ $customer->kode_customer }}">{{ $customer->kode_customer }} - {{ $customer->nama_perusahaan }} - {{$customer->bisnis_unit->nama_bisnis_unit}} - {{$customer->area->nama_area}}</option>
                                 @endforeach
@@ -98,6 +98,9 @@
             dateFormat: "H:i",
             time_24hr: true
         });
+        $(".select2").select2({
+        theme:"classic",
+        })
     });
     </script>
 @endsection
