@@ -1,4 +1,5 @@
 $(document).ready(function() {
+    //standart datatable
     $('#mydatatables2').DataTable({
         "sScrollX": "100%",
         "sScrollXInner": "100%",    
@@ -7,10 +8,15 @@ $(document).ready(function() {
         buttons: ['copy', 'csv', 'excel', 'pdf', 'print']
       });
 
-  // Setup - add a text input to each footer cell
-  $('#mydatatables thead tr').clone(true).appendTo( '#mydatatables thead' );
-  $('#mydatatables thead tr:eq(1) th').each( function (i) {
-    
+    //select2
+    $(".select2").select2({
+        theme:"classic",
+      })
+
+    // advance datatable
+    $('#mydatatables thead tr').clone(true).appendTo( '#mydatatables thead' );
+    $('#mydatatables thead tr:eq(1) th').each( function (i) {
+        
       var title = $(this).text();
       $(this).html( '<input type="text" placeholder="Search '+title+'" />' );
 
@@ -22,7 +28,7 @@ $(document).ready(function() {
                   .draw();
           }
       } );
-  } );
+    });
 
   var table = $('#mydatatables').DataTable( {
       orderCellsTop: true,

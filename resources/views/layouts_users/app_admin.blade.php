@@ -23,7 +23,8 @@
   <link rel="stylesheet" href="{{asset('admin_lte/dist/css/skins/_all-skins.min.css')}}">
   {{-- time pickr --}}
   <link rel="stylesheet" href="{{asset('https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css')}}">
-  
+  <!-- Select2 -->
+  <link rel="stylesheet" href="{{asset('admin_lte/bower_components/select2/dist/css/select2.min.css')}}">
   {{-- data table --}}
   <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
 
@@ -270,6 +271,8 @@
 <script src="{{asset('admin_lte/dist/js/demo.js')}}"></script>
 {{-- time pickr  --}}
 <script src="{{asset('https://cdn.jsdelivr.net/npm/flatpickr')}}"></script>
+<!-- Select2 -->
+<script src="{{asset('admin_lte/bower_components/select2/dist/js/select2.full.min.js')}}"></script>
 
 
 @yield('date_pick')
