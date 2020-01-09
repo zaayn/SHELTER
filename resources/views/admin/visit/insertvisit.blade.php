@@ -92,12 +92,18 @@
 <script>  
 //   time picker
 $(document).ready(function() {
+    // time picker
     $(".timepicker").flatpickr({
         enableTime: true,
         noCalendar: true,
         dateFormat: "H:i",
         time_24hr: true
-    });
+       });
+    
+    //select2
+    $(".select2").select2({
+        theme:"classic",
+      })
 });
 
 timepicker.on('change', function(evt) {

@@ -8,11 +8,6 @@ $(document).ready(function() {
         buttons: ['copy', 'csv', 'excel', 'pdf', 'print']
       });
 
-    //select2
-    $(".select2").select2({
-        theme:"classic",
-      })
-
     // advance datatable
     $('#mydatatables thead tr').clone(true).appendTo( '#mydatatables thead' );
     $('#mydatatables thead tr:eq(1) th').each( function (i) {
