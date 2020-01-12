@@ -43,6 +43,7 @@
                         <div class="form-group col-md-12">
                           <label>Nama Perusahaan</label>
                           <select class="form-control select2" name="kode_customer">
+                            <option></option>
                             @foreach($customers as $customer)
                               <option value="{{ $customer->kode_customer }}">{{ $customer->kode_customer }} - {{ $customer->nama_perusahaan }} - {{$customer->bisnis_unit->nama_bisnis_unit}} - {{$customer->area->nama_area}}</option>
                             @endforeach
@@ -51,6 +52,7 @@
                         <div class="form-group col-md-12">
                             <label>SPV PIC :</label>
                             <select class="form-control" name="spv_pic">
+                            <option value="" disabled selected hidden>Pilih SPV PIC</option>
                             @foreach($users as $users)
                                 <option value="{{ $users->nama_depan }}">{{ $users->nama_depan }} - {{ $users->area->nama_area }}</option>
                             @endforeach
@@ -99,7 +101,8 @@
             time_24hr: true
         });
         $(".select2").select2({
-        theme:"classic",
+        placeholder:"Pilih Customer",
+        allowClear:true
         })
     });
   </script>
