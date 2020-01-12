@@ -47,7 +47,7 @@
                             <label>Nama Perusahaan :</label>
                             <div>
                                 <select class="form-control select2" name="kode_customer">
-                                    <option>Pilih Perusahaan</option>
+                                <option></option>
                                 @foreach($customers as $customer)
                                     <option value="{{ $customer->kode_customer }}">{{ $customer->kode_customer }} - {{ $customer->nama_perusahaan }}</option>
                                 @endforeach
@@ -120,7 +120,8 @@
     $(document).ready(function() {
     //select2
     $(".select2").select2({
-        theme:"classic",
+        placeholder:"Pilih Customer",
+        allowClear:true
   })
 });
 </script>
