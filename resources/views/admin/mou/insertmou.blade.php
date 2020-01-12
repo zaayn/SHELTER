@@ -50,7 +50,7 @@
                         </div>
                         <div class="form-group col-md-12">
                 	        <label class="font-weight-bold">Invoice</label>
-                	        <input type="text" class="form-control" name="invoice" required>
+                	        <input type="text" class="form-control uang" name="invoice" required>
                         </div>
                         <div class="form-group col-md-12">
                 	        <label class="font-weight-bold">MF</label>
@@ -152,4 +152,14 @@
             </div>
           </div>
         </div>
+@endsection
+@section('js')
+<script>
+$(document).ready(function(){
+    // Format mata uang.
+    $( '.uang' ).mask('000.000.000', {
+        reverse: true
+    });
+})
+</script>    
 @endsection

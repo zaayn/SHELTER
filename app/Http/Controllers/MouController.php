@@ -88,7 +88,7 @@ class MouController extends Controller
 
         $request->validate([
             'hc'                    => 'required|integer',
-            'invoice'               => 'required|integer',
+            'invoice'               => 'required',
             'mf'                    => 'required|integer',
             'mf_persen'             => 'required|integer',
             'overheadcost'          => 'required',
