@@ -42,7 +42,7 @@
                     <div class="form-group">
                         <div class="form-group col-md-12">
                 	        <label class="font-weight-bold">Nomor Kontrak</label>
-                	        <input type="text" class="form-control" disabled="disabled" name="nomor_kontrak" value="{{$kontrak->nomor_kontrak}}" required>
+                	        <input type="text" class="form-control" name="nomor_kontrak" value="{{$kontrak->nomor_kontrak}}" required>
                         </div>
                         <div class="form-group col-md-12">
                 	        <label class="font-weight-bold">Kode Customer</label>

@@ -58,7 +58,8 @@ class KontrakadminController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
+        try{
+            $request->validate([
             'nomor_kontrak' => 'required',
             'kode_customer' => 'required',
             'periode_kontrak' => 'required|date',
@@ -70,35 +71,42 @@ class KontrakadminController extends Controller
             'dealing' => 'required',
             'tgl_dealing' =>'required',
             'posisi_pks' => 'required',
-        ]);
+            ]);
 
-        $kontrak = new Kontrak;
-        $kontrak->id_kontrak = $request->id_kontrak;
-        $kontrak->nomor_kontrak = $request->nomor_kontrak;
-        $kontrak->kode_customer = $request->kode_customer;
-        $kontrak->periode_kontrak = $request->periode_kontrak;
-        $kontrak->akhir_periode = $request->akhir_periode;
-        $kontrak->srt_pemberitahuan = $request->srt_pemberitahuan;
-        $kontrak->tgl_srt_pemberitahuan = $request->tgl_srt_pemberitahuan;
-        $kontrak->srt_penawaran = $request->srt_penawaran;
-        $kontrak->tgl_srt_penawaran = $request->tgl_srt_penawaran;
-        $kontrak->dealing = $request->dealing;
-        $kontrak->tgl_dealing = $request->tgl_dealing;
-        $kontrak->posisi_pks = $request->posisi_pks;
-        $kontrak->closing = "Aktif";
+            $kontrak = new Kontrak;
+            $kontrak->id_kontrak = $request->id_kontrak;
+            $kontrak->nomor_kontrak = $request->nomor_kontrak;
+            $kontrak->kode_customer = $request->kode_customer;
+            $kontrak->periode_kontrak = $request->periode_kontrak;
+            $kontrak->akhir_periode = $request->akhir_periode;
+            $kontrak->srt_pemberitahuan = $request->srt_pemberitahuan;
+            $kontrak->tgl_srt_pemberitahuan = $request->tgl_srt_pemberitahuan;
+            $kontrak->srt_penawaran = $request->srt_penawaran;
+            $kontrak->tgl_srt_penawaran = $request->tgl_srt_penawaran;
+            $kontrak->dealing = $request->dealing;
+            $kontrak->tgl_dealing = $request->tgl_dealing;
+            $kontrak->posisi_pks = $request->posisi_pks;
+            $kontrak->closing = "Aktif";
 
-        $customer = Customer::findOrFail($request->kode_customer);
-        $to = \Carbon\Carbon::createFromFormat('Y-m-d',$kontrak->periode_kontrak);
-        $from = \Carbon\Carbon::createFromFormat('Y-m-d',$kontrak->akhir_periode);
-        $diff_in_month = $to->diffInMonths($from);
-        $customer->month_kontrak += $diff_in_month;
+            $customer = Customer::findOrFail($request->kode_customer);
+            $to = \Carbon\Carbon::createFromFormat('Y-m-d',$kontrak->periode_kontrak);
+            $from = \Carbon\Carbon::createFromFormat('Y-m-d',$kontrak->akhir_periode);
+            $diff_in_month = $to->diffInMonths($from);
+            $customer->month_kontrak += $diff_in_month;
         
-
-        if ($kontrak->save() && $customer->save()){
-            return redirect('/admin/insertkontrak')->with('success', 'item berhasil ditambahkan');
+       
+            if ($kontrak->save() && $customer->save()){
+                return redirect('/admin/insertkontrak')->with('success', 'item berhasil ditambahkan');
+            }
+            else{
+                return redirect('/admin/insertkontrak')->with('error', 'item gagal ditambahkan');
+            }
         }
-        else{
-            return redirect('/admin/insertkontrak')->with('error', 'item gagal ditambahkan');
+        catch(\Illuminate\Database\QueryException $e){
+            $errorCode = $e->errorInfo[1];
+            if($errorCode == '1062'){
+                return 'Nomor kontrak sudah ada!';
+            }
         }
     }
 
@@ -124,31 +132,50 @@ class KontrakadminController extends Controller
 
     public function update(Request $request, $id_kontrak)
     {
-        $kontrak = Kontrak::findorFail($id_kontrak);
-        $request->validate([
-            'akhir_periode' => 'required',
-            'srt_pemberitahuan' => 'required',
-            'tgl_srt_pemberitahuan' => 'required',
-            'srt_penawaran' =>'required',
-            'tgl_srt_penawaran' => 'required',
-            'dealing' => 'required',
-            'tgl_dealing' =>'required',
-            'posisi_pks' => 'required',
-        ]);
-
-        $kontrak->akhir_periode = $request->akhir_periode;
-        $kontrak->srt_pemberitahuan = $request->srt_pemberitahuan;
-        $kontrak->tgl_srt_pemberitahuan = $request->tgl_srt_pemberitahuan;
-        $kontrak->srt_penawaran = $request->srt_penawaran;
-        $kontrak->tgl_srt_penawaran = $request->tgl_srt_penawaran;
-        $kontrak->dealing = $request->dealing;
-        $kontrak->tgl_dealing = $request->tgl_dealing;
-        $kontrak->posisi_pks = $request->posisi_pks;
-        $kontrak->closing = "Aktif";
-        
-        if ($kontrak->save())
-          return redirect()->route('index.kontrak')->with(['success'=>'edit sukses']);
-    }
+        try {
+            $kontrak = Kontrak::findorFail($id_kontrak);
+            $request->validate([
+                'nomor_kontrak' => 'required',
+                'akhir_periode' => 'required',
+                'srt_pemberitahuan' => 'required',
+                'tgl_srt_pemberitahuan' => 'required',
+                'srt_penawaran' =>'required',
+                'tgl_srt_penawaran' => 'required',
+                'dealing' => 'required',
+                'tgl_dealing' =>'required',
+                'posisi_pks' => 'required',
+            ]);
+    
+            $kontrak->nomor_kontrak = $request->nomor_kontrak;
+            $kontrak->akhir_periode = $request->akhir_periode;
+            $kontrak->srt_pemberitahuan = $request->srt_pemberitahuan;
+            $kontrak->tgl_srt_pemberitahuan = $request->tgl_srt_pemberitahuan;
+            $kontrak->srt_penawaran = $request->srt_penawaran;
+            $kontrak->tgl_srt_penawaran = $request->tgl_srt_penawaran;
+            $kontrak->dealing = $request->dealing;
+            $kontrak->tgl_dealing = $request->tgl_dealing;
+            $kontrak->posisi_pks = $request->posisi_pks;
+            $kontrak->closing = "Aktif";
+            
+            if ($kontrak->save())
+              return redirect()->route('index.kontrak')->with(['success'=>'edit sukses']);
+    
+            // $no_kontrak = DB::table('kontrak')->select('nomor_kontrak')->get();
+            // foreach($no_kontrak as $no){
+            //     $findno = Kontrak::find($no->nomor_kontrak);
+            //     if($kontrak->nomor_kontrak == $findno)
+            //     return redirect('/admin/insertkontrak')->with('error', 'nomor kontrak sudah ada');
+            }
+            catch(\Illuminate\Database\QueryException $e){
+                $errorCode = $e->errorInfo[1];
+                if($errorCode == '1062'){
+                    return 'Nomor kontrak sudah ada!';
+                }
+            }
+        } 
+    
+          
+    
 
     public function destroy($id_kontrak)
     {
