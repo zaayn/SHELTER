@@ -105,7 +105,7 @@ class KontrakadminController extends Controller
         catch(\Illuminate\Database\QueryException $e){
             $errorCode = $e->errorInfo[1];
             if($errorCode == '1062'){
-                return 'Nomor kontrak sudah ada!';
+                return redirect('/admin/insertkontrak')->with('error', 'Nomor kontrak sudah ada!');
             }
         }
     }
