@@ -126,9 +126,6 @@ class KontrakadminController extends Controller
     {
         $kontrak = Kontrak::findorFail($id_kontrak);
         $request->validate([
-            'nomor_kontrak' => 'required',
-            'kode_customer' => 'required',
-            'periode_kontrak' => 'required|date',
             'akhir_periode' => 'required',
             'srt_pemberitahuan' => 'required',
             'tgl_srt_pemberitahuan' => 'required',
@@ -139,9 +136,6 @@ class KontrakadminController extends Controller
             'posisi_pks' => 'required',
         ]);
 
-        $kontrak->nomor_kontrak = $request->nomor_kontrak;
-        $kontrak->kode_customer = $request->kode_customer;
-        $kontrak->periode_kontrak = $request->periode_kontrak;
         $kontrak->akhir_periode = $request->akhir_periode;
         $kontrak->srt_pemberitahuan = $request->srt_pemberitahuan;
         $kontrak->tgl_srt_pemberitahuan = $request->tgl_srt_pemberitahuan;

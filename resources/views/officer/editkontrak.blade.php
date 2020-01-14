@@ -42,16 +42,16 @@
                     <div class="form-group">
                         <div class="form-group col-md-12">
                 	        <label class="font-weight-bold">Nomor Kontrak</label>
-                	        <input type="text" class="form-control" name="nomor_kontrak" value="{{$kontrak->nomor_kontrak}}" required>
+                	        <input type="text" class="form-control"  name="nomor_kontrak" value="{{$kontrak->nomor_kontrak}}" required>
                         </div>
                         <div class="form-group col-md-12">
                 	        <label class="font-weight-bold">Kode Customer</label>
-                	        <input type="text" class="form-control" name="kode_customer" value="{{ $kontrak->kode_customer }}" required>
+                	        <input type="text" class="form-control" disabled="disabled" name="kode_customer" value="{{ $kontrak->kode_customer }}" required>
                         </div>
 
                         <div class="form-group col-md-12">
                 	        <label class="font-weight-bold">Periode Kontrak</label>
-                	        <input type="date" class="form-control" name="periode_kontrak" value="{{ $kontrak->periode_kontrak }}" required>
+                	        <input type="date" class="form-control" disabled="disabled" name="periode_kontrak" value="{{ $kontrak->periode_kontrak }}" required>
                         </div>
                         <div class="form-group col-md-12">
                 	        <label class="font-weight-bold">Akhir Periode</label>

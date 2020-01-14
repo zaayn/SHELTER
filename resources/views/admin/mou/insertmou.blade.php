@@ -54,7 +54,7 @@
                         </div>
                         <div class="form-group col-md-12">
                 	        <label class="font-weight-bold">MF</label>
-                	        <input type="text" class="form-control" name="mf" required>
+                	        <input type="text" class="form-control uang" name="mf" required>
                         </div>
                         <div class="form-group col-md-12">
                 	        <label class="font-weight-bold">MF (%)</label>
@@ -65,22 +65,22 @@
                 	        <input type="text" class="form-control" name="bpjs_tk_persen" placeholder="Ket %">
                         </div>
                         <div class="form-group col-md-12">
-                	        <input type="text" class="form-control" name="bpjs_tenagakerja" placeholder="Nominal">
+                	        <input type="text" class="form-control uang" name="bpjs_tenagakerja" placeholder="Nominal">
                         </div>
                         <div class="form-group col-md-12">
                 	        <label class="font-weight-bold">BPJS Kesehatan</label>
                 	        <input type="text" class="form-control" name="bpjs_kes_persen" placeholder="Ket %">
                         </div>
                         <div class="form-group col-md-12">
-                	        <input type="text" class="form-control" name="bpjs_kesehatan" placeholder="Nominal">
+                	        <input type="text" class="form-control uang" name="bpjs_kesehatan" placeholder="Nominal">
                         </div>
                         <div class="form-group col-md-12">
                 	        <label class="font-weight-bold">Jiwasraya</label>
-                	        <input type="text" class="form-control" name="jiwasraya" placeholder="Opsional">
+                	        <input type="text" class="form-control uang" name="jiwasraya" placeholder="Opsional">
                         </div>
                         <div class="form-group col-md-12">
                 	        <label class="font-weight-bold">Ramamusa</label>
-                	        <input type="text" class="form-control" name="ramamusa" placeholder="Opsional">
+                	        <input type="text" class="form-control uang" name="ramamusa" placeholder="Opsional">
                         </div>
                         <div class="form-group col-md-12">
                 	        <label class="font-weight-bold">THR</label>
@@ -157,7 +157,7 @@
 <script>
 $(document).ready(function(){
     // Format mata uang.
-    $( '.uang' ).mask('000.000.000', {
+    $( '.uang' ).mask('000,000,000,000,000,000,000', {
         reverse: true
     });
 })
