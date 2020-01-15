@@ -7,6 +7,14 @@ $(document).ready(function() {
         // dom: 'Bfrtip',
         buttons: ['copy', 'csv', 'excel', 'pdf', 'print']
       });
+      //standart datatable 2
+    $('#mydatatables3').DataTable({
+      "sScrollX": "100%",
+      "sScrollXInner": "100%",    
+      show: true,
+      // dom: 'Bfrtip',
+      buttons: ['copy', 'csv', 'excel', 'pdf', 'print']
+    });
 
     // advance datatable
     $('#mydatatables thead tr').clone(true).appendTo( '#mydatatables thead' );
