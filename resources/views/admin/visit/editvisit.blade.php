@@ -41,24 +41,22 @@
 
                     <div class="form-group">
                         <div class="form-group col-md-12">
-                            <label>Nama Customer :</label>
-                            <div>
-                                <select class="form-control" name="kode_customer">
-                                @foreach($customers as $customer)
-                                    <option value="{{ $customer->kode_customer }}">{{ $customer->kode_customer }} - {{ $customer->nama_perusahaan }} - {{ $customer->bisnis_unit->nama_bisnis_unit }} - {{ $customer->area->nama_area }}</option>
-                                @endforeach
-                                </select>
-                            </div>
+                          <label>Nama Perusahaan</label>
+                          <select class="form-control select2" name="kode_customer">
+                            <option></option>
+                            @foreach($customers as $customer)
+                              <option value="{{ $customer->kode_customer }}">{{ $customer->kode_customer }} - {{ $customer->nama_perusahaan }} - {{$customer->bisnis_unit->nama_bisnis_unit}} - {{$customer->area->nama_area}}</option>
+                            @endforeach
+                          </select>
                         </div>
                         <div class="form-group col-md-12">
                             <label>SPV PIC :</label>
-                            <div>
-                                <select class="form-control" name="spv_pic">
-                                @foreach($users as $users)
-                                    <option value="{{ $users->nama_depan }}">{{ $users->nama_depan }} - {{ $users->area->nama_area }}</option>
-                                @endforeach
-                                </select>
-                            </div>
+                            <select class="form-control" name="spv_pic">
+                            <option value="" disabled selected hidden>Pilih SPV PIC</option>
+                            @foreach($users as $users)
+                                <option value="{{ $users->nama_depan }}">{{ $users->nama_depan }} - {{ $users->area->nama_area }}</option>
+                            @endforeach
+                            </select>
                         </div>
                         <div class="form-group col-md-12">
                 	        <label class="font-weight-bold">Tanggal</label>
@@ -93,15 +91,20 @@
         </div>
 @endsection
 @section('js')
-    <script>  
-    //   time picker
-    $(document).ready(function() {
-        $(".timepicker").flatpickr({
-            enableTime: true,
-            noCalendar: true,
-            dateFormat: "H:i",
-            time_24hr: true
-        });
+<script>  
+  $(document).ready(function() {
+    //time pickr
+    $(".timepicker").flatpickr({
+      enableTime: true,
+      noCalendar: true,
+      dateFormat: "H:i",
+      time_24hr: true
     });
-    </script>
+    //select2
+    $('.select2').select2({
+      placeholder: "Pilih Customer",
+      allowClear: true
+      });
+  });
+</script>
 @endsection

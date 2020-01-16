@@ -101,8 +101,8 @@
                                     <td>{{ $no++ }}</td>
                                     <td>{{ $datamou->nomor_kontrak }}</td>
                                     <td>{{ $datamou->hc }}</td>
-                                    <td>{{ 'Rp'.number_format($datamou->invoice, 2, ',','.') }}</td>
-                                    <td>{{ 'Rp'.number_format($datamou->mf, 2, ',','.') }}</td>
+                                    <td>{{ 'Rp '.number_format($datamou->invoice, 2, ',','.') }}</td>
+                                    <td>{{ 'Rp '.number_format($datamou->mf, 2, ',','.') }}</td>
                                     <td>{{ $datamou->mf_persen ?$datamou->mf_persen.'%':'' }} </td>
                                     <td>{{ $datamou->bpjs_tk_persen ?$datamou->bpjs_tk_persen.'%':''}}</td>
                                     <td>{{ $datamou->bpjs_tenagakerja ?'Rp'.number_format($datamou->bpjs_tenagakerja, 2, ',','.'):'' }}</td>

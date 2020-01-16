@@ -39,14 +39,13 @@
                     {{ csrf_field() }}
                     <div class="form-group">
                         <div class="form-group col-md-12">
-                            <label>Nama Customer :</label>
-                            <div>
-                                <select class="form-control" name="kode_customer">
+                            <label>Nama Perusahaan</label>
+                            <select class="form-control select2" name="kode_customer">
+                                <option></option>
                                 @foreach($customers as $customer)
-                                    <option value="{{ $customer->kode_customer }}">{{ $customer->kode_customer }} - {{ $customer->nama_perusahaan }} - {{ $customer->bisnis_unit->nama_bisnis_unit }} = {{$customer->area->nama_area }}</option>
+                                <option value="{{ $customer->kode_customer }}">{{ $customer->kode_customer }} - {{ $customer->nama_perusahaan }} - {{$customer->bisnis_unit->nama_bisnis_unit}} - {{$customer->area->nama_area}}</option>
                                 @endforeach
-                                </select>
-                            </div>
+                            </select>
                         </div>
                         <div class="form-group col-md-12">
                             <label>Departemen</label>
@@ -111,4 +110,15 @@
             </div>
           </div>
         </div>
+@endsection
+@section('js')
+<script>
+    $(document).ready(function() {
+    //select2
+    $(".select2").select2({
+        placeholder:"Pilih Customer",
+        allowClear:true
+  })
+});
+</script>
 @endsection

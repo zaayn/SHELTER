@@ -40,24 +40,18 @@
                     
 
                     <div class="form-group">
+                      <div class="form-group col-md-12">
+                          <label>Nama Perusahaan</label>
+                          <select class="form-control select2" name="kode_customer">
+                            <option></option>
+                            @foreach($customers as $customer)
+                              <option value="{{ $customer->kode_customer }}">{{ $customer->kode_customer }} - {{ $customer->nama_perusahaan }} - {{$customer->bisnis_unit->nama_bisnis_unit}} - {{$customer->area->nama_area}}</option>
+                            @endforeach
+                          </select>
+                        </div>
                         <div class="form-group col-md-12">
                 	        <label class="font-weight-bold">Nomor Kontrak</label>
                 	        <input type="text" class="form-control" name="nomor_kontrak" required>
-                        </div>
-                        <div class="form-group col-md-12">
-                            <label>Nama Perusahaan</label>
-                            <div>
-                                <!-- <select class="form-control" name="kode_customer"> -->
-                                <input list="browsers" class="form-control" name="kode_customer">
-                                <datalist id="browsers">
-                                @foreach($customers as $customer)
-                                    <option value="{{ $customer->kode_customer }}">{{ $customer->kode_customer }} - {{ $customer->nama_perusahaan }} - {{$customer->bisnis_unit->nama_bisnis_unit}} - {{$customer->area->nama_area}}</option>
-                                @endforeach
-                            </datalist>
-                                <!-- </select> -->
-                            </div>
-                            
-                            
                         </div>
                         <div class="form-group col-md-12">
                 	        <label class="font-weight-bold">Periode Kontrak</label>
@@ -118,4 +112,15 @@
             </div>
           </div>
         </div>
+@endsection
+@section('js')
+<script>  
+  $(document).ready(function() {
+    //select2
+    $(".select2").select2({
+        placeholder:"Pilih Customer",
+        allowClear:true
+    })
+  });
+</script>
 @endsection

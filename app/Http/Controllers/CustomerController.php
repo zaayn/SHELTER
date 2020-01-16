@@ -10,6 +10,7 @@ use App\Customer;
 use App\Bisnis_unit;
 use App\Area;
 use App\User;
+use App\Kontrak;
 use PDF;
 use Excel;
 use App\datamou;
@@ -217,29 +218,29 @@ class CustomerController extends Controller
       return view('/admin/cust_type', $data);
       
     }
-    public function profile()
-    {  
-      $data['customers'] = Customer::all();
-        $data['no'] = 1;
-        return view('admin/customer/profile', $data);
-    }
     public function filter_profile(Request $request)
     {  
-      $data['datamous'] = DB::table('datamou')
-      ->join('kontrak', 'datamou.id_kontrak', '=', 'kontrak.id_kontrak')
-      ->join('customer', 'customer.kode_customer', '=', 'kontrak.kode_customer')
-      ->where('customer.kode_customer', '=', $request->kode_customer)
-      ->get();
-      $data['customers'] = DB::table('customer')
-      ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
-      ->select('customer.kode_customer','customer.nama_perusahaan','customer.jenis_usaha','nama_bisnis_unit','customer.alamat','customer.provinsi','customer.kabupaten','customer.telpon','customer.cp','customer.nama_area','area.nama_area','customer.nama_depan','status','jenis_perusahaan','negara')
-      ->where('customer.kode_customer', '=', $request->kode_customer)->get();  
-      $data['kontraks'] = DB::table('kontrak')
-      ->join('customer', 'customer.kode_customer', '=', 'kontrak.kode_customer')
-      ->select('kontrak.id_kontrak','customer.kode_customer','customer.nama_perusahaan','kontrak.periode_kontrak','kontrak.akhir_periode','kontrak.srt_pemberitahuan','kontrak.tgl_srt_pemberitahuan','kontrak.srt_penawaran','kontrak.tgl_srt_penawaran','kontrak.dealing','kontrak.tgl_dealing','kontrak.posisi_pks','kontrak.closing')
-      ->where('customer.kode_customer', '=', $request->kode_customer)->get();
+      $data['datamous'] = Datamou::all();
+      $data['customers_all'] = Customer::all();
+
+      if($request->kode_customer){
+        $data['customers_all'] = Customer::all();
+        $data['kontraks'] = Kontrak::where('kode_customer',$request->kode_customer)->get();
+        $data['customers'] = Customer::where('kode_customer',$request->kode_customer)->get();
+        $data['datamous'] = Datamou::whereHas('kontrak', function($query) use($request){
+          $query->where('kode_customer',$request->kode_customer);
+        })->get();
+      }
+      else {
+        $data['customers'] = Customer::all();
+        $data['kontraks'] = Kontrak::all();
+        $data['datamous'] = Datamou::all();
+      }
+
       $data['no'] = 1;
-      return view('admin/customer/profile2', $data);
+      $data['id'] = 1;
+      $data['urut'] = 1;
+      return view('admin/customer/profile', $data);
     }
     public function listputus(){
       $data['no'] = 1;
