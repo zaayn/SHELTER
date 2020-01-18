@@ -106,22 +106,20 @@
                     <div class="form-group col-md-12">
                         <label>Area Supervisor :</label>
                         <div>
-                            {{-- <select class="form-control" name="nama_depan" id="usernya"> --}}
-                            <input list="browsers" class="form-control" name="nama_depan">
-                            <datalist id="browsers">
+                            <select class="form-control select2" name="nama_depan">
+                              <option value="" disabled selected hidden>Pilih Supervisor</option>
                             @foreach($users as $users)
                                 <option value="{{ $users->nama_depan }}">{{ $users->nama_depan }} - {{ $users->area->nama_area }}</option>
                             @endforeach
-                            </datalist>
-                            {{-- </select> --}}
+                            </select>
                         </div>
                     </div>
                     <div class="form-group col-md-12">
                         <label>Status :</label>
                         <div>
                             <select class="form-control" name="status">
-                                <option value="Aktif">Aktif</option>
-                                <option value="Non_aktif" selected="selected">Non Aktif</option>
+                                <option value="Aktif" selected="selected">Aktif</option>
+                                <option value="Non_aktif">Non Aktif</option>
                             </select>
                         </div>
                     </div>
