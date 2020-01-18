@@ -103,13 +103,13 @@
                                     <td>{{ $datamou->hc }}</td>
                                     <td>Rp {{ $datamou->invoice }}</td>
                                     <td>Rp {{ $datamou->mf }}</td>
-                                    <td>{{ $datamou->mf_persen }} % </td>
-                                    <td>{{ $datamou->bpjs_tk_persen}} %</td>
-                                    <td>Rp {{ $datamou->bpjs_tenagakerja}}</td>
-                                    <td>{{ $datamou->bpjs_kes_persen}} %</td>
-                                    <td>Rp {{ $datamou->bpjs_kesehatan}}</td>
-                                    <td>Rp {{ $datamou->jiwasraya}}</td>
-                                    <td>Rp {{ $datamou->ramamusa}}</td>
+                                    <td>{{ $datamou->mf_persen ?$datamou->mf_persen.'%':'' }} </td>
+                                    <td>{{ $datamou->bpjs_tk_persen ?$datamou->bpjs_tk_persen.'%':''}}</td>
+                                    <td>{{ $datamou->bpjs_tenagakerja ?'Rp'.$datamou->bpjs_tenagakerja:'' }}</td>
+                                    <td>{{ $datamou->bpjs_kes_persen ?$datamou->bpjs_kes_persen.'%':'' }}</td>
+                                    <td>{{ $datamou->bpjs_kesehatan ?'Rp'.$datamou->bpjs_kesehatan:'' }}</td>
+                                    <td>{{ $datamou->jiwasraya ?'Rp'.$datamou->jiwasraya:'' }}</td>
+                                    <td>{{ $datamou->ramamusa ?'Rp'.$datamou->ramamusa:'' }}</td>
                                     <td>{{ $datamou->ditagihkan }}</td>
                                     <td>{{ $datamou->diprovisasikan }}</td>
                                     <td>{{ $datamou->overheadcost }}</td>
