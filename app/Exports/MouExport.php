@@ -25,7 +25,7 @@ class MouExport implements FromCollection, WithHeadings, ShouldAutoSize, WithEve
                 'datamou.bpjs_kes_persen','datamou.bpjs_kesehatan','datamou.jiwasraya','datamou.ramamusa',
                 'datamou.ditagihkan','datamou.diprovisasikan','datamou.overheadcost','datamou.training',
                 'datamou.tanggal_invoice','datamou.time_of_payment','datamou.cut_of_date','datamou.kaporlap',
-                'datamou.devices','datamou.chemical','datamou_pendaftaran_mou')
+                'datamou.devices','datamou.chemical','datamou.pendaftaran_mou')
                 ->get();
         return $datamou;
     }
