@@ -18,7 +18,6 @@ class MouExport implements FromCollection, WithHeadings, ShouldAutoSize, WithEve
     public function collection()
     {
         $datamou = DB::table('datamou')
-                ->join('customer','datamou.kode_customer','=','customer.kode_customer')
                 ->join('kontrak','kontrak.nomor_kontrak','=','datamou.nomor_kontrak')
                 ->select('datamou.no_mou','kontrak.nomor_kontrak','customer.nama_perusahaan','datamou.hc',
                 'datamou.invoice','datamou.mf','datamou.mf_persen','bpjs_tk_persen','bpjs_tenagakerja',
