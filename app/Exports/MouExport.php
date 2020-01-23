@@ -33,7 +33,6 @@ class MouExport implements FromCollection, WithHeadings, ShouldAutoSize, WithEve
         return [
             'No. MoU',
             'Nomor Kontrak',
-            'Nama Perusahaan',
             'HC',
             'Invoice',
             'MF',
