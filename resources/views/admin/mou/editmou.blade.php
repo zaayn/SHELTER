@@ -50,11 +50,11 @@
                         </div>
                         <div class="form-group col-md-12">
                 	        <label class="font-weight-bold">Invoice</label>
-                	        <input type="text" class="form-control" name="invoice" value="{{$datamou->invoice}}" required>
+                	        <input type="text" class="form-control uang" name="invoice" value="{{$datamou->invoice}}" required>
                         </div>
                         <div class="form-group col-md-12">
                 	        <label class="font-weight-bold">MF</label>
-                	        <input type="text" class="form-control" name="mf" value="{{$datamou->mf}}" required>
+                	        <input type="text" class="form-control uang" name="mf" value="{{$datamou->mf}}" required>
                         </div>
                         <div class="form-group col-md-12">
                 	        <label class="font-weight-bold">MF (%)</label>
@@ -66,7 +66,7 @@
                         </div>
                         <div class="form-group col-md-12">
                 	        <label class="font-weight-bold">Nominal BPJS Ketenagakerjaan</label>
-                	        <input type="text" class="form-control" name="bpjs_tenagakerja" value="{{$datamou->bpjs_tenagakerja}}" placeholder="Opsional">
+                	        <input type="text" class="form-control uang" name="bpjs_tenagakerja" value="{{$datamou->bpjs_tenagakerja}}" placeholder="Opsional">
                         </div>
                         <div class="form-group col-md-12">
                 	        <label class="font-weight-bold">Ket % BPJS Kesehatan</label>
@@ -74,15 +74,15 @@
                         </div>
                         <div class="form-group col-md-12">
                 	        <label class="font-weight-bold">Nominal BPJS Kesehatan</label>
-                	        <input type="text" class="form-control" name="bpjs_kesehatan" value="{{$datamou->bpjs_kesehatan}}" placeholder="Opsional">
+                	        <input type="text" class="form-control uang" name="bpjs_kesehatan" value="{{$datamou->bpjs_kesehatan}}" placeholder="Opsional">
                         </div>
                         <div class="form-group col-md-12">
                 	        <label class="font-weight-bold">Jiwasraya</label>
-                	        <input type="text" class="form-control" name="jiwasraya" value="{{$datamou->jiwasraya}}" placeholder="Opsional">
+                	        <input type="text" class="form-control uang" name="jiwasraya" value="{{$datamou->jiwasraya}}" placeholder="Opsional">
                         </div>
                         <div class="form-group col-md-12">
                 	        <label class="font-weight-bold">Ramamusa</label>
-                	        <input type="text" class="form-control" name="ramamusa" value="{{$datamou->ramamusa}}" placeholder="Opsional">
+                	        <input type="text" class="form-control uang" name="ramamusa" value="{{$datamou->ramamusa}}" placeholder="Opsional">
                         </div>
                         <div class="form-group col-md-12">
                 	        <label class="font-weight-bold">THR Ditagihkan</label>
@@ -151,4 +151,14 @@
             </div>
           </div>
         </div>
+@endsection
+@section('js')
+<script>
+$(document).ready(function(){
+    // Format mata uang.
+    $( '.uang' ).mask('000.000.000.000', {
+        reverse: true
+    });
+})
+</script>
 @endsection

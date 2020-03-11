@@ -17,12 +17,12 @@ class CreateDatamousTable extends Migration
             $table->increments('no_mou')->unique();
             $table->integer('id_kontrak')->unsigned();
             $table->integer('hc');
-            $table->integer('invoice');
-            $table->integer('mf');
+            $table->string('invoice');
+            $table->string('mf');
             $table->integer('mf_persen');
-            $table->string('bpjs_tk_persen')->nullable();
+            $table->integer('bpjs_tk_persen')->nullable();
             $table->string('bpjs_tenagakerja')->nullable();
-            $table->string('bpjs_kes_persen')->nullable();
+            $table->integer('bpjs_kes_persen')->nullable();
             $table->string('bpjs_kesehatan')->nullable();
             $table->string('jiwasraya')->nullable();
             $table->string('ramamusa')->nullable();
