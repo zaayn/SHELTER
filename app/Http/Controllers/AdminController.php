@@ -22,7 +22,7 @@ class AdminController extends Controller
         $data['no'] = 1;
         $data['customer'] = DB::table('customer')->count();
         $data['kontrak'] = DB::table('kontrak')->count();   
-        $data['datamou'] = DB::table('datamou')->count();   
+        $data['datamou'] = Datamou::count();   
         $data['keluhans'] = Keluhan::where('status','Belum ditangani')->count();
         $data['customers'] = Customer::all();
         $data['kontraks'] = DB::table('kontrak')
