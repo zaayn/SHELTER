@@ -20,8 +20,8 @@ class AdminController extends Controller
     public function index()
     {
         $data['no'] = 1;
-        $data['customer'] = DB::table('customer')->count();
-        $data['kontrak'] = DB::table('kontrak')->count();   
+        $data['customer'] = Customer::count();
+        $data['kontrak'] = Kontrak::count();   
         $data['datamou'] = Datamou::count();   
         $data['keluhans'] = Keluhan::where('status','Belum ditangani')->count();
         $data['customers'] = Customer::all();
