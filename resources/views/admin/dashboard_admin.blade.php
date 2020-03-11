@@ -41,7 +41,7 @@
             </div>
         </div>
     </a>
-    <a href="{{asset('/admin/mou')}}">
+    {{--<a href="{{asset('/admin/mou')}}">
         <div class="col-md-3 col-sm-6 col-xs-12">
             <div class="info-box">
             <span class="info-box-icon bg-red"><i class="fa fa-book"></i></span>
@@ -51,7 +51,7 @@
             </div>
             </div>
         </div>
-    </a>
+    </a>--}}
     <a href="{{route('keluhan.belum.ditangani')}}">
         <div class="col-md-3 col-sm-6 col-xs-12">
             <div class="info-box">
@@ -85,10 +85,7 @@
             <div class="panel-heading"><h3>User Terakhir Login :</h3></div>
             <div class="panel-body">
                 <table>
-                    
-                    
                     @foreach($lastUser as $last)
-                    
                     <h5><strong>{{$last->username}}</strong> - {{\Carbon\Carbon::parse($last->current_login_at)->diffForHumans()}}</h5>
                     
                     @endforeach
