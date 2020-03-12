@@ -99,7 +99,7 @@
                                 <tr>
                                 
                                     <td>{{ $no++ }}</td>
-                                    <td>{{ $kontrak->nomor_kontrak }}</td>
+                                    <td>{{ $datamou->nomor_kontrak }}</td>
                                     <td>{{ $datamou->hc }}</td>
                                     <td>Rp {{ $datamou->invoice }}</td>
                                     <td>Rp {{ $datamou->mf }}</td>
