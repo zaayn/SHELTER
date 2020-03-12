@@ -97,7 +97,7 @@
                         <div class="form-group col-md-12">
                             <label>Area :</label>
                             <div>
-                                <select class="form-control" name="area_id" value="{{ $customer->area->area_id }}">
+                                <select class="form-control" name="area_id" value="{{ $customer->area_id }}">
                                 {{-- <option value="" disabled selected hidden>Pilih Area</option> --}}
                                 @foreach($areas as $area)
                                     <option value="{{ $area->area_id }}">{{ $area->nama_area }}</option>
