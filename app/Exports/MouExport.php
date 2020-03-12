@@ -18,13 +18,13 @@ class MouExport implements FromCollection, WithHeadings, ShouldAutoSize, WithEve
     public function collection()
     {
         $datamou = DB::table('datamou')
-                ->join('customer','datamou.kode_customer','=','customer.kode_customer')
-                ->select('datamou.no_mou','datamou.nomor_kontrak','customer.nama_perusahaan','datamou.hc',
+                ->join('kontrak','kontrak.id_kontrak','=','datamou.id_kontrak')
+                ->select('datamou.no_mou','kontrak.nomor_kontrak','datamou.hc',
                 'datamou.invoice','datamou.mf','datamou.mf_persen','bpjs_tk_persen','bpjs_tenagakerja',
                 'datamou.bpjs_kes_persen','datamou.bpjs_kesehatan','datamou.jiwasraya','datamou.ramamusa',
                 'datamou.ditagihkan','datamou.diprovisasikan','datamou.overheadcost','datamou.training',
                 'datamou.tanggal_invoice','datamou.time_of_payment','datamou.cut_of_date','datamou.kaporlap',
-                'datamou.devices','datamou.chemical','datamou_pendaftaran_mou')
+                'datamou.devices','datamou.chemical','datamou.pendaftaran_mou')
                 ->get();
         return $datamou;
     }
@@ -33,7 +33,6 @@ class MouExport implements FromCollection, WithHeadings, ShouldAutoSize, WithEve
         return [
             'No. MoU',
             'Nomor Kontrak',
-            'Nama Perusahaan',
             'HC',
             'Invoice',
             'MF',
