@@ -94,12 +94,11 @@
                                 </thead>
                                 <tbody>
                                 @foreach ($datamous as $datamou)
-                               <?php
-                               ?>
+                            
                                 <tr>
                                 
                                     <td>{{ $no++ }}</td>
-                                    <td>{{ $datamou->kontrak->nomor_kontrak }}</td>
+                                    <td>{{ $datamou->nomor_kontrak }}</td>
                                     <td>{{ $datamou->hc }}</td>
                                     <td>Rp {{ $datamou->invoice }}</td>
                                     <td>Rp {{ $datamou->mf }}</td>
