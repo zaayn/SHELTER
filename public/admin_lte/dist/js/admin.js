@@ -8,7 +8,7 @@ $(document).ready(function() {
         buttons: ['copy', 'csv', 'excel', 'pdf', 'print']
       });
       //standart datatable 2
-    $('#mydatatables3').DataTable({
+    $('#mydatatables').DataTable({
       "sScrollX": "100%",
       "sScrollXInner": "100%",    
       show: true,
@@ -17,8 +17,8 @@ $(document).ready(function() {
     });
 
     // advance datatable
-    $('#mydatatables thead tr').clone(true).appendTo( '#mydatatables thead' );
-    $('#mydatatables thead tr:eq(1) th').each( function (i) {
+    $('#mydatatables3 thead tr').clone(true).appendTo( '#mydatatables3 thead' );
+    $('#mydatatables3 thead tr:eq(1) th').each( function (i) {
         
       var title = $(this).text();
       $(this).html( '<input type="text" placeholder="Search '+title+'" />' );
@@ -33,7 +33,7 @@ $(document).ready(function() {
       } );
     });
 
-  var table = $('#mydatatables').DataTable( {
+  var table = $('#mydatatables3').DataTable( {
       orderCellsTop: true,
       fixedHeader: true,
       paging: true,
