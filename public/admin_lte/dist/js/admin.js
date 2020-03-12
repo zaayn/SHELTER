@@ -1,14 +1,15 @@
 $(document).ready(function() {
     //standart datatable
-    $('#mydatatables2').DataTable({
+    $('#mydatatables').DataTable({
         "sScrollX": "100%",
         "sScrollXInner": "100%",    
         show: true,
         // dom: 'Bfrtip',
         buttons: ['copy', 'csv', 'excel', 'pdf', 'print']
       });
+
       //standart datatable 2
-    $('#mydatatables').DataTable({
+    $('#mydatatables2').DataTable({
       "sScrollX": "100%",
       "sScrollXInner": "100%",    
       show: true,
