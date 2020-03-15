@@ -8,25 +8,34 @@ $(document).ready(function() {
         buttons: ['copy', 'csv', 'excel', 'pdf', 'print']
       });
 
+      //standart datatable 2
+    $('#mydatatables2').DataTable({
+      "sScrollX": "100%",
+      "sScrollXInner": "100%",    
+      show: true,
+      // dom: 'Bfrtip',
+      buttons: ['copy', 'csv', 'excel', 'pdf', 'print']
+    });
+
 
     // advance datatable
     $('#mydatatables2 thead tr').clone(true).appendTo( '#mydatatables2 thead' );
     $('#mydatatables2 thead tr:eq(1) th').each( function (i) {
         
-      var title = $(this).text();
-      $(this).html( '<input type="text" placeholder="Search '+title+'" />' );
+    //   var title = $(this).text();
+    //   $(this).html( '<input type="text" placeholder="Search '+title+'" />' );
 
-      $( 'input', this ).on( 'keyup change', function () {
-          if ( table.column(i).search() !== this.value ) {
-              table
-                  .column(i)
-                  .search( this.value )
-                  .draw();
-          }
-      } );
-    });
+    //   $( 'input', this ).on( 'keyup change', function () {
+    //       if ( table.column(i).search() !== this.value ) {
+    //           table
+    //               .column(i)
+    //               .search( this.value )
+    //               .draw();
+    //       }
+    //   } );
+    // });
 
-  var table = $('#mydatatables2').DataTable( {
+  var table = $('#mydatatables').DataTable( {
       orderCellsTop: true,
       fixedHeader: true,
       paging: true,

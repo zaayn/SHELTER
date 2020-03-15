@@ -94,8 +94,7 @@
                                 </thead>
                                 <tbody>
                                 @foreach ($datamous as $datamou)
-                               <?php
-                               ?>
+                            
                                 <tr>
                                 
                                     <td>{{ $no++ }}</td>

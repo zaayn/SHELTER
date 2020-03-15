@@ -21,10 +21,10 @@ class MouController extends Controller
         $data['areas'] = Area::all();
         $data['bisnis_units'] = Bisnis_unit::all();
         $data['no'] = 1;
-        // $data['datamous'] = DB::table('datamou')
-        // ->join('kontrak', 'datamou.id_kontrak', '=', 'kontrak.id_kontrak')
-        // ->get();
-        $data['datamous'] = Datamou::all();
+        $data['datamous'] = DB::table('datamou')
+        ->join('kontrak', 'datamou.id_kontrak', '=', 'kontrak.id_kontrak')
+        ->get();
+        // $data['datamous'] = Datamou::all();
         return view('admin/mou/mou', $data);
     }
     public function filter_mou(Request $request)
