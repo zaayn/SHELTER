@@ -64,7 +64,7 @@
                     </div> 
                             <hr style="border: solid #ddd; border-width: 1px 0 0; clear: both; margin: 22px 0 21px; height: 0;">
                             <div style="overflow-x:auto;">
-                                <table id="mydatatables" class="table table-collapse table-hover table-light table-striped cell-border table-responsive">
+                                <table class="mydatatables table table-collapse table-hover table-light table-striped cell-border table-responsive">
                                 <thead>
                                     <th>No.</th>
                                     <th>Nama Customer</th>
@@ -95,4 +95,38 @@
                     </div>
                 </div>
             </div>
+@endsection
+@section('js')
+<script>  
+    $(document).ready(function() {
+
+    $('.mydatatables thead tr').clone(true).appendTo( '.mydatatables thead' );
+    $('.mydatatables thead tr:eq(1) th').each( function (i) {
+        
+      var title = $(this).text();
+      $(this).html( '<input type="text" placeholder="Search '+title+'" />' );
+
+      $( 'input', this ).on( 'keyup change', function () {
+          if ( table.column(i).search() !== this.value ) {
+              table
+                  .column(i)
+                  .search( this.value )
+                  .draw();
+          }
+      } );
+    });
+
+  var table = $('.mydatatables').DataTable( {
+      orderCellsTop: true,
+      fixedHeader: true,
+      paging: true,
+      searching: true,
+      "sScrollX": "100%",
+      "sScrollXInner": "100%",    
+      show: true,
+      // dom: 'Bfrtip',
+      buttons: ['copy', 'csv', 'excel', 'pdf', 'print']
+    });
+});
+    </script>
 @endsection
