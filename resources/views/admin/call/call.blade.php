@@ -17,6 +17,7 @@
 @endsection
 
 @section('content')
+
 <div class="row">
         <div class="col-md-12">
             <div class="panel block">
@@ -104,7 +105,19 @@
 @endsection
 @section('js')
 <script>  
-    $(document).ready(function() {
+$(document).ready(function() {
+
+    $('.mydatatables2').DataTable({
+        orderCellsTop: true,
+        fixedHeader: true,
+        paging: true,
+        searching: true,
+        "sScrollX": "100%",
+        "sScrollXInner": "100%",    
+        show: true,
+        // dom: 'Bfrtip',
+        buttons: ['copy', 'csv', 'excel', 'pdf', 'print'],
+      });
 
     $('.mydatatables thead tr').clone(true).appendTo( '.mydatatables thead' );
     $('.mydatatables thead tr:eq(1) th').each( function (i) {
@@ -114,25 +127,37 @@
 
       $( 'input', this ).on( 'keyup change', function () {
           if ( table.column(i).search() !== this.value ) {
-              table
-                  .column(i)
-                  .search( this.value )
-                  .draw();
+              table.column(i).search( this.value ).draw();
           }
       } );
     });
 
-  var table = $('.mydatatables').DataTable( {
-      orderCellsTop: true,
-      fixedHeader: true,
-      paging: true,
-      searching: true,
-      "sScrollX": "100%",
-      "sScrollXInner": "100%",    
-      show: true,
-      // dom: 'Bfrtip',
-      buttons: ['copy', 'csv', 'excel', 'pdf', 'print']
+  var table = $('.mydatatables').DataTable( 
+    {
+        "columns": 
+        [
+            { "width": "10%" },
+            { "width": "10%" },
+            { "width": "10%" },
+            { "width": "10%" },
+            { "width": "10%" },
+            { "width": "10%" },
+            { "width": "10%" },
+            { "width": "10%" },
+            { "width": "20%" },
+        ],
+        orderCellsTop: true,
+        fixedHeader: true,
+        paging: true,
+        searching: true,
+        "sScrollX": "100%",
+        "sScrollXInner": "100%",    
+        show: true,
+        // dom: 'Bfrtip',
+        buttons: ['copy', 'csv', 'excel', 'pdf', 'print'],
+
     });
+
 });
-    </script>
+</script>
 @endsection
