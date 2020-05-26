@@ -136,7 +136,7 @@ $(document).ready(function() {
     {
         "columns": 
         [
-            { "width": "10%" },
+            { "width": "1%" },
             { "width": "10%" },
             { "width": "10%" },
             { "width": "10%" },
