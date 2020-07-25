@@ -22,7 +22,7 @@
             <div class="panel block">
                 <div class="panel-body">
                     {{-- ----------  -------------- filter ------------------------ --}}
-                    <form class="form-horizontal" id="form-filter" method="POST" action="{{route('kontrak.filter')}}">
+                    {{-- <form class="form-horizontal" id="form-filter" method="POST" action="{{route('kontrak.filter')}}">
                             @csrf
                             <div class="form-group">
                                 <label class="control-label col-md-2">Bisnis Unit</label>
@@ -56,7 +56,7 @@
                                         <button type="submit" class="btn btn-primary btn-sm" id="btn-filter"><i class="fa fa-filter"></i> Filter</button>
                                     </div>
                                 </div>
-                            </form>
+                            </form> --}}
                             {{-- ---- end filter ------ --}} 
                     <div style="float:right; margin-bottom:10px;">
                         <a href="/officer_crm/insertkontrak" class="btn btn-primary btn-sm">Insert Kontrak</a>

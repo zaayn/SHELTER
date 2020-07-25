@@ -18,9 +18,12 @@ class KeluhanController extends Controller
     public function index()
     {
         $data['no'] = 1;
-        $data['areas'] = Area::all();
-        $data['bisnis_units'] = Bisnis_unit::all();
-        $data['keluhans'] = Keluhan::all();
+        // $data['areas'] = Area::all();
+        // $data['bisnis_units'] = Bisnis_unit::all();
+        $keluhan = Keluhan::whereHas('customer', function($query){
+          $query->where('nama_depan', Auth::user()->nama_depan);
+        });
+        $data['keluhans'] = $keluhan->get();
         
         return view('officer/keluhan', $data);
     }

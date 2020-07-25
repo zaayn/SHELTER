@@ -21,7 +21,7 @@
         <div class="col-md-12">
             <div class="panel block">
                 <div class="panel-body">
-                {{-- ----------  -------------- filter ------------------------ --}}
+                {{-- ----------  -------------- filter ------------------------
                     <form class="form-horizontal" id="form-filter" method="POST" action="{{route('call.filter')}}">
                             @csrf
                             <div class="form-group">
@@ -57,7 +57,7 @@
                                 </div>
                             </div>
                         </form>
-{{-- ---- end filter ------ --}}   
+{{-- ---- end filter ------ --}}    
                     <div style="float:right; margin-bottom:10px;">
                         <a href="{{asset('/officer_crm/insertcall')}}" class="btn btn-primary btn-sm">Insert Call</a>
                         <a href="{{asset('/officer_crm/call/exportExcel')}}" class="btn btn-default btn-sm" target="_blank">Download Excel</a>

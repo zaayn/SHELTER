@@ -41,7 +41,15 @@ class OfficerController extends Controller
         $data['no'] = 1;
         $data['datamous'] = DB::table('datamou')
         ->join('kontrak', 'datamou.id_kontrak', '=', 'kontrak.id_kontrak')
+        ->join('customer', 'customer.kode_customer', '=', 'kontrak.kode_customer')
+        ->where('customer.nama_depan','=',Auth::user()->nama_depan)
         ->get();
+        // $mou = Datamou::whereHas('kontrak', function($query){
+        //     $query->where('id_kontrak', $datamou->id_kontrak);
+        // })->whereHas('customer', function($query){
+        //     $query->where('nama_depan',Auth::user()->nama_depan);
+        // });
+        // $data['mous'] = $mou->get();
         return view('officer/mou', $data);
     }
     public function filter_mou(Request $request)

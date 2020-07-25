@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -18,9 +19,12 @@ class VisitController extends Controller
     public function index()
     {
         $data['no'] = 1;
-        $data['areas'] = Area::all();
-        $data['bisnis_units'] = Bisnis_unit::all();
-        $data['visits'] = Visit::all();
+        // $data['areas'] = Area::all();
+        // $data['bisnis_units'] = Bisnis_unit::all();
+        $visit = Visit::whereHas('customer', function($query){
+          $query->where('nama_depan', Auth::user()->nama_depan);
+        });
+        $data['visits'] = $visit->get();
 
         return view('officer/visit', $data);
     }

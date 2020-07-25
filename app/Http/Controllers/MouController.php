@@ -24,6 +24,10 @@ class MouController extends Controller
         $data['datamous'] = DB::table('datamou')
         ->join('kontrak', 'datamou.id_kontrak', '=', 'kontrak.id_kontrak')
         ->get();
+        // $mou = Datamou::whereHas('customer', function($query){
+        //     $query->where('nama_depan',Auth::user()->nama_depan);
+        // });
+        // $data['mous'] = $mou->get();
         // $data['datamous'] = Datamou::all();
         return view('admin/mou/mou', $data);
     }

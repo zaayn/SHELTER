@@ -21,7 +21,10 @@ class KontrakController extends Controller
         $data['areas'] = Area::all();
         $data['bisnis_units'] = Bisnis_unit::all();
         $data['customers'] = Customer::all();        
-        $data['kontraks'] = Kontrak::all();
+        $kontrak = Kontrak::whereHas('customer', function($query){
+            $query->where('nama_depan', Auth::user()->nama_depan);
+        });
+        $data['kontraks'] = $kontrak->get();
 
         return view('officer/kontrak', $data);
     }
