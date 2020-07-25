@@ -11,11 +11,6 @@ class User extends Authenticatable
     use Notifiable;
     protected $table = 'users';
     protected $primaryKey = 'email';
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
     protected $fillable = [
          'username'
         ,'nama_depan' 
@@ -60,9 +55,6 @@ class User extends Authenticatable
     const MANAGER_CRM_TYPE = 'manager_crm';
     const DIREKTUR_TYPE = 'direktur';
     const MANAGER_NON_CRM_TYPE = 'manager_non_crm';
-
-
-
 
     public function isAdmin()    {        
         return $this->rule === self::ADMIN_TYPE;    
