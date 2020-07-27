@@ -59,11 +59,11 @@
                         </div>
                         <div class="form-group col-md-12">
                 	        <label class="font-weight-bold">Topik Permasalahan</label>
-                	        <input type="text" class="form-control" name="topik_masalah" required>
+                	        <textarea class="form-control" name="topik_masalah" required></textarea>
                         </div>
                         <div class="form-group col-md-12">
                 	        <label class="font-weight-bold">Saran Penyelesaian</label>
-                	        <input type="text" class="form-control" name="saran_penyelesaian" required>
+                	        <textarea class="form-control" name="saran_penyelesaian" required></textarea>
                         </div>
                         <div class="form-group col-md-12">
                 	        <label class="font-weight-bold">Time Target</label>
@@ -75,7 +75,7 @@
                         </div>
                         <div class="form-group col-md-12">
                 	        <label class="font-weight-bold">Case</label>
-                	        <input type="text" class="form-control" name="case" required>
+                	        <textarea class="form-control" name="case" required></textarea>
                         </div>
                         <div class="form-group col-md-12">
                 	        <label class="font-weight-bold">Actual Closed</label>
@@ -83,7 +83,7 @@
                         </div>
                         <div class="form-group col-md-12">
                 	        <label class="font-weight-bold">Uraian Penyelesaian</label>
-                            <input type="text" class="form-control" name="uraian_penyelesaian" required>
+                            <textarea class="form-control" name="uraian_penyelesaian" required></textarea>
                         </div>
                         <div class="form-group col-md-12">
                 	        <label class="font-weight-bold">Status</label>

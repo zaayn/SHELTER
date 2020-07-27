@@ -68,7 +68,7 @@
                         </div>
                         <div class="form-group col-md-12">
                 	        <label class="font-weight-bold">Pembicaraan</label>
-                	        <input type="text" class="form-control" name="pembicaraan" required>
+                	        <textarea class="form-control" name="pembicaraan" required></textarea>
                         </div>
                         <div class="form-group col-md-12">
                 	        <label class="font-weight-bold">PIC Call</label>
@@ -76,7 +76,7 @@
                         </div>
                         <div class="form-group col-md-12">
                 	        <label class="font-weight-bold">Hal Menonjol</label>
-                	        <input type="text" class="form-control" name="hal_menonjol" required>
+                	        <textarea class="form-control" name="hal_menonjol" required></textarea>
                         </div>
                         <div class="col-md-12">
                             <button type="submit" class="btn btn-lg btn-info btn-block ">
