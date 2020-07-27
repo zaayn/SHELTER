@@ -59,11 +59,11 @@
                         </div>
                         <div class="form-group col-md-12">
                 	        <label class="font-weight-bold">Topik Permasalahan</label>
-                	        <input type="text" class="form-control" name="topik_masalah" value="{{ $keluhan->topik_masalah }}" required>
+                	        <textarea class="form-control" name="topik_masalah" value="{{ $keluhan->topik_masalah }}" required>{{ $keluhan->topik_masalah }}</textarea>
                         </div>
                         <div class="form-group col-md-12">
                 	        <label class="font-weight-bold">Saran Penyelesaian</label>
-                	        <input type="text" class="form-control" name="saran_penyelesaian" value="{{ $keluhan->saran_penyelesaian }}" required>
+                	        <textarea class="form-control" name="saran_penyelesaian" value="{{ $keluhan->saran_penyelesaian }}" required>{{ $keluhan->saran_penyelesaian }}</textarea>
                         </div>
                         <div class="form-group col-md-12">
                 	        <label class="font-weight-bold">Time Target</label>
@@ -75,7 +75,7 @@
                         </div>
                         <div class="form-group col-md-12">
                 	        <label class="font-weight-bold">Case</label>
-                	        <input type="text" class="form-control" name="case" value="{{ $keluhan->case }}" required>
+                	        <textarea class="form-control" name="case" value="{{ $keluhan->case }}" required>{{ $keluhan->case }}</textarea>
                         </div>
                         <div class="form-group col-md-12">
                 	        <label class="font-weight-bold">Actual Case</label>
@@ -83,14 +83,7 @@
                         </div>
                         <div class="form-group col-md-12">
                 	        <label class="font-weight-bold">Uraian Penyelesaian</label>
-                	    {{--<select class ="form-control" name="via" value="{{ $keluhan->via }}" required>
-                            <option value="Telepon">Telepon</option>
-                            <option value="BBM">BBM</option>
-                            <option value="Email">Email</option>
-                            <option value="Meeting">Meeting</option>
-                            <option value="Other">Other</option>
-                          </select>--}}
-                          <input type="text" class="form-control" name="uraian_penyelesaian" value="{{ $keluhan->uraian_penyelesaian }}" required>
+                          <textarea class="form-control" name="uraian_penyelesaian" value="{{ $keluhan->uraian_penyelesaian }}" required>{{ $keluhan->uraian_penyelesaian }}</textarea>
                         </div>
                         <div class="form-group col-md-12">
                 	        <label class="font-weight-bold">Status</label>
