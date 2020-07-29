@@ -76,7 +76,7 @@
                         </div>
                         <div class="form-group col-md-12">
                 	        <label class="font-weight-bold">Kegiatan</label>
-                	        <input type="text" class="form-control" name="kegiatan" value="{{ $visit->kegiatan }}" required>
+                	        <textarea class="form-control" name="kegiatan" value="{{ $visit->kegiatan }}" required>{{ $visit->kegiatan }}</textarea>
                         </div>
                         <div class="col-md-12">
                             <button type="submit" class="btn btn-lg btn-info btn-block ">

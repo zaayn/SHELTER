@@ -117,10 +117,13 @@
           if ( table.column(i).search() !== this.value ) {
               table
                   .column(i)
+                  .adjust()
                   .search( this.value )
                   .draw();
           }
       } );
+      //title.columns.adjust();
+      
     });
 
   var table = $('.mydatatables').DataTable( {
@@ -134,6 +137,7 @@
       // dom: 'Bfrtip',
       buttons: ['copy', 'csv', 'excel', 'pdf', 'print']
     });
+    //table.columns.adjust().draw();
 });
     </script>
 @endsection

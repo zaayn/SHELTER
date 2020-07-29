@@ -18,13 +18,13 @@ class CreateKeluhansTable extends Migration
             $table->string('kode_customer');
             $table->string('departemen');
             $table->date('tanggal_keluhan');
-            $table->string('topik_masalah');
-            $table->string('saran_penyelesaian');
+            $table->longText('topik_masalah');
+            $table->longText('saran_penyelesaian');
             $table->date('time_target');
             $table->date('confirm_pic');
-            $table->string('case');
+            $table->longText('case');
             $table->date('actual_case');
-            $table->string('uraian_penyelesaian');
+            $table->longText('uraian_penyelesaian');
             $table->string('status');
             $table->timestamps();
         });

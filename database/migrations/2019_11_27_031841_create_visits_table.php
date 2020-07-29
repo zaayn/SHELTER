@@ -21,7 +21,7 @@ class CreateVisitsTable extends Migration
             $table->time('waktu_in');
             $table->time('waktu_out');
             $table->string('pic_meeted');
-            $table->string('kegiatan');
+            $table->longText('kegiatan');
             $table->timestamps();
         });
         Schema::table('visit', function($table)

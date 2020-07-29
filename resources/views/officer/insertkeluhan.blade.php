@@ -64,38 +64,31 @@
                         </div>
                         <div class="form-group col-md-12">
                 	        <label class="font-weight-bold">Topik Permasalahan</label>
-                	        <input type="text" class="form-control" name="topik_masalah" required>
+                	        <textarea class="form-control" name="topik_masalah" required></textarea>
                         </div>
                         <div class="form-group col-md-12">
                 	        <label class="font-weight-bold">Saran Penyelesaian</label>
-                	        <input type="text" class="form-control" name="saran_penyelesaian" required>
+                	        <textarea class="form-control" name="saran_penyelesaian" required></textarea>
                         </div>
                         <div class="form-group col-md-12">
                 	        <label class="font-weight-bold">Time Target</label>
                 	        <input type="date" class="form-control" name="time_target" required>
                         </div>
                         <div class="form-group col-md-12">
-                	        <label class="font-weight-bold">Confirm Closed PIC</label>
-                	        <input type="date" class="form-control" name="confirm_pic" required>
+                	        <label class="font-weight-bold" novalidate>Confirm Closed PIC</label>
+                	        <input type="date" class="form-control" name="confirm_pic">
                         </div>
                         <div class="form-group col-md-12">
                 	        <label class="font-weight-bold">Case</label>
-                	        <input type="text" class="form-control" name="case" required>
+                	        <textarea class="form-control" name="case" required></textarea>
                         </div>
                         <div class="form-group col-md-12">
                 	        <label class="font-weight-bold">Actual Closed</label>
-                	        <input type="date" class="form-control" name="actual_case" required>
+                	        <input type="date" class="form-control" name="actual_case">
                         </div>
                         <div class="form-group col-md-12">
                 	        <label class="font-weight-bold">Uraian Penyelesaian</label>
-                	        {{--<select class ="form-control" name="uraian_penyelesaian" required>
-                            <option value="Telepon">Telepon</option>
-                            <option value="BBM">BBM</option>
-                            <option value="Email">Email</option>
-                            <option value="Meeting">Meeting</option>
-                            <option value="Other">Other</option>
-                          </select>--}}
-                          <input type="text" class="form-control" name="uraian_penyelesaian" required>
+                            <textarea class="form-control" name="uraian_penyelesaian" required></textarea>
                         </div>
                         <div class="form-group col-md-12">
                 	        <label class="font-weight-bold">Status</label>
