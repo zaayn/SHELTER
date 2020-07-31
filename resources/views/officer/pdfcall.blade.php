@@ -18,7 +18,6 @@
 	<table class='table table-bordered'>
 		<thead>
 			<tr>
-            <th>ID Call</th>
              <th>Nama Customer</th>
             <th>SPV_PIC</th>
             <th>Tanggal</th>
@@ -32,8 +31,8 @@
 			@php $i=1 @endphp
 			@foreach($call as $call)
 			<tr>
-			<td>{{ $call->call_id  }}</td>
-            <td>{{ $call->nama_customer }}</td>
+			<td>{{ $i++  }}</td>
+            <td>{{ $call->customer->nama_perusahaan }}</td>
             <td>{{ $call->spv_pic }}</td>
             <td>{{ $call->tanggal_call }}</td>
             <td>{{ $call->jam_call }}</td>

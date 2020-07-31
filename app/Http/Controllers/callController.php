@@ -128,7 +128,9 @@ class callController extends Controller
     }
     public function exportPDF()
 	{
-		$call = Call::all();
+        $call = Call::whereHas('customer', function($query){
+          $query->where('nama_depan', Auth::user()->nama_depan);
+      })->get();
         $pdf = PDF::loadview('officer/pdfcall',['call'=>$call]);
         $pdf->setPaper('A4','landscape');
     	return $pdf->download('Laporan-Call-CRM.pdf');

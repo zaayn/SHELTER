@@ -125,7 +125,9 @@ class VisitController extends Controller
         return redirect()->route('index.visit.officer')->with('success', 'delete sukses');
     }
     public function exportPDF(){
-		$visit = Visit::all();
+        $visit = Visit::whereHas('customer', function($query){
+          $query->where('nama_depan', Auth::user()->nama_depan);
+        })->get();
         $pdf = PDF::loadview('officer/pdfvisit',['visit'=>$visit]);
         $pdf->setPaper('A4','landscape');
     	return $pdf->download('Laporan-Visit-CRM.pdf');
