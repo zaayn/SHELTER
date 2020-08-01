@@ -15,7 +15,7 @@ class isDirektur
      */
     public function handle($request, Closure $next)
     {
-        if( auth()->user()->isdirektur()) {
+        if(\Auth::check() && $request->user()->isdirektur()){
             return $next($request);
         }
        
