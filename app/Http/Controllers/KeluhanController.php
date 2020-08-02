@@ -147,7 +147,9 @@ class KeluhanController extends Controller
         return redirect()->route('index.keluhan.officer')->with('success', 'delete sukses');
     }
     public function exportPDF(){
-    $keluhan = Keluhan::all();
+      $keluhan = Keluhan::whereHas('customer', function($query){
+        $query->where('nama_depan', Auth::user()->nama_depan);
+      })->get();
       $pdf = PDF::loadview('officer/pdfkeluhan',['keluhan'=>$keluhan]);
       $pdf->setPaper('A4','landscape');
       return $pdf->download('Laporan-Keluhan-CRM.pdf');

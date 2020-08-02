@@ -144,7 +144,9 @@ class KontrakController extends Controller
         return redirect()->route('index.kontrak.officer')->with('success', 'delete sukses');
     }
     public function exportPDF(){
-		$kontrak = Kontrak::all();
+		$kontrak = Kontrak::whereHas('customer', function($query){
+            $query->where('nama_depan', Auth::user()->nama_depan);
+        })->get();
         $pdf = PDF::loadview('officer/pdfkontrak',['kontrak'=>$kontrak]);
         $pdf->setPaper('A4','landscape');
     	return $pdf->download('Laporan-Kontrak-CRM.pdf');

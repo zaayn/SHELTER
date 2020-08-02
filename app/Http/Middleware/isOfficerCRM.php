@@ -1,5 +1,6 @@
 <?php
 
+namespace App\Http\Controllers\Auth;
 namespace App\Http\Middleware;
 
 use Closure;
@@ -15,7 +16,7 @@ class isOfficerCRM
      */
     public function handle($request, Closure $next)
     {
-        if( auth()->user()->isofficercrm()) {
+        if(\Auth::check() && $request->user()->isofficercrm()){
             return $next($request);
         }
         return redirect('/login');

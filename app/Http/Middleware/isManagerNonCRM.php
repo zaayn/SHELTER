@@ -15,7 +15,7 @@ class isManagerNonCRM
      */
     public function handle($request, Closure $next)
     {
-        if( auth()->user()->ismanagernoncrm()) {
+        if(\Auth::check() && $request->user()->ismanagernoncrm()){
             return $next($request);
         }
         return redirect('/login');

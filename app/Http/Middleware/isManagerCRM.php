@@ -15,7 +15,7 @@ class isManagerCRM
      */
     public function handle($request, Closure $next)
     {
-        if( auth()->user()->ismanagercrm()) {
+        if(\Auth::check() && $request->user()->ismanagercrm()){
             return $next($request);
         }
         return redirect('/login');
