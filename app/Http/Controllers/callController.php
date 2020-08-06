@@ -150,6 +150,6 @@ class callController extends Controller
 
     public function exportExcel()
 	{
-		return Excel::download(new CallExport, 'Laporan-Call-CRM.xlsx');
+		return Excel::download(new CallOfficerExport, 'Laporan-Call-CRM-Officer.xlsx');
     }
 }
