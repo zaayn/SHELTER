@@ -24,11 +24,11 @@ class callController extends Controller
         $data['no'] = 1;
         $data['areas'] = Area::all();
         $data['bisnis_units'] = Bisnis_unit::all();
-        // $data['calls'] = Call::all();
         $call = Call::whereHas('customer', function($query){
             $query->where('nama_depan', Auth::user()->nama_depan);
         });
         $data['calls'] = $call->get();
+        
         return view('officer/call', $data);  
     }
     public function filter(Request $request)
@@ -150,6 +150,6 @@ class callController extends Controller
 
     public function exportExcel()
 	{
-		return Excel::download(new CallExport, 'Laporan-Call-CRM.xlsx');
+		return Excel::download(new CallOfficerExport, 'Laporan-Call-CRM-Officer.xlsx');
     }
 }
