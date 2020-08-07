@@ -68,7 +68,6 @@
                             <table class="mydatatables table table-collapse table-hover table-light table-striped cell-border table-responsive">                                <thead>
                                     <th>No.</th>
                                     <th>Nama Customer</th>
-                                    <th>SPV_PIC</th>
                                     <th>Tanggal</th>
                                     <th>Waktu Call</th>
                                     <th>Pembicaraan</th>
@@ -81,7 +80,6 @@
                                 <tr>
                                     <td>{{ $no++  }}</td>
                                     <td>{{ $call->customer->nama_perusahaan }}</td>
-                                    <td>{{ $call->spv_pic }}</td>
                                     <td>{{ $call->tanggal_call }}</td>
                                     <td>{{ $call->jam_call }}</td>
                                     <td>{{ $call->pembicaraan }}</td>

@@ -9,8 +9,8 @@ class visit extends Model
     protected $table = 'visit';
     protected $primaryKey = 'visit_id';
     protected $fillable = [
-        'spv_pic'
-       ,'tanggal_visit'
+        // 'spv_pic'
+       'tanggal_visit'
        ,'waktu_in'
        ,'waktu_out'
        ,'pic_meeted'
