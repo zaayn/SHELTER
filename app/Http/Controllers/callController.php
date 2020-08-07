@@ -72,7 +72,6 @@ class callController extends Controller
         $call = new call;
         $call->call_id          = $request->call_id;
         $call->kode_customer    = $request->kode_customer;
-        $call->spv_pic          = $request->spv_pic;
         $call->tanggal_call     = $request->tanggal_call;
         $call->jam_call         = $request->jam_call;
         $call->pembicaraan      = $request->pembicaraan;
@@ -101,7 +100,6 @@ class callController extends Controller
     {
         $call   =   Call::findorFail($id);
         $this->validate($request,[
-            'spv_pic'=>['required', 'string'],
             'tanggal_call'=>['required', 'date'],
             'jam_call'=>['required'],
             'pembicaraan'=>['required', 'string'],
@@ -110,7 +108,6 @@ class callController extends Controller
           ]);
         
         $call->kode_customer    = $request->kode_customer;
-        $call->spv_pic          = $request->spv_pic;
         $call->tanggal_call     = $request->tanggal_call;
         $call->jam_call         = $request->jam_call;
         $call->pembicaraan      = $request->pembicaraan;

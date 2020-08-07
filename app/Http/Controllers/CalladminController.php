@@ -59,7 +59,7 @@ class CalladminController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'spv_pic' => 'required',
+            // 'spv_pic' => 'required',
             'tanggal_call' => 'required|date',
             'jam_call' => 'required',
             'pembicaraan' => 'required',
@@ -70,7 +70,7 @@ class CalladminController extends Controller
         $call = new call;
         $call->call_id          = $request->call_id;
         $call->kode_customer    = $request->kode_customer;
-        $call->spv_pic          = $request->spv_pic;
+        // $call->spv_pic          = $request->spv_pic;
         $call->tanggal_call     = $request->tanggal_call;
         $call->jam_call         = $request->jam_call;
         $call->pembicaraan      = $request->pembicaraan;
@@ -99,7 +99,7 @@ class CalladminController extends Controller
     {
         $call   =   Call::findorFail($id);
         $this->validate($request,[
-            'spv_pic'=>['required', 'string'],
+            // 'spv_pic'=>['required', 'string'],
             'tanggal_call'=>['required', 'date'],
             'jam_call'=>['required'],
             'pembicaraan'=>['required', 'string'],
@@ -108,7 +108,7 @@ class CalladminController extends Controller
           ]);
         
         $call->kode_customer    = $request->kode_customer;
-        $call->spv_pic          = $request->spv_pic;
+        // $call->spv_pic          = $request->spv_pic;
         $call->tanggal_call     = $request->tanggal_call;
         $call->jam_call         = $request->jam_call;
         $call->pembicaraan      = $request->pembicaraan;

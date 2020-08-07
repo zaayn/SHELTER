@@ -50,15 +50,6 @@
                             </select>
                           </div>
                         <div class="form-group col-md-12">
-                            <label>SPV PIC :</label>
-                            <select class="form-control" name="spv_pic">
-                            <option value="" disabled selected hidden>Pilih SPV PIC</option>
-                            @foreach($users as $users)
-                                <option value="{{ $users->nama_depan }}">{{ $users->nama_depan }} - {{ $users->area->nama_area }}</option>
-                            @endforeach
-                            </select>
-                        </div>
-                        <div class="form-group col-md-12">
                 	        <label class="font-weight-bold">Tanggal</label>
                 	        <input type="date" class="form-control" name="tanggal_call" required>
                         </div>

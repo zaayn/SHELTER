@@ -16,7 +16,6 @@ class CreateVisitsTable extends Migration
         Schema::create('visit', function (Blueprint $table) {
             $table->increments('visit_id')->unique();
             $table->string('kode_customer');
-            $table->string('spv_pic');
             $table->date('tanggal_visit');
             $table->time('waktu_in');
             $table->time('waktu_out');
