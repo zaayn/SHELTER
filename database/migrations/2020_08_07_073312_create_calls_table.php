@@ -16,8 +16,7 @@ class CreateCallsTable extends Migration
         Schema::create('call', function (Blueprint $table) {
             $table->increments('call_id')->unique();
             $table->string('kode_customer');
-            $table->string('spv_pic');
-            $table->datetime('tanggal_call');
+            $table->date('tanggal_call');
             $table->time('jam_call');
             $table->longText('pembicaraan');
             $table->string('pic_called');
