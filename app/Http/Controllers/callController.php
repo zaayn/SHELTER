@@ -25,10 +25,15 @@ class callController extends Controller
         $data['areas'] = Area::all();
         $data['bisnis_units'] = Bisnis_unit::all();
         // $data['calls'] = Call::all();
+        $officer = Auth::user()->nama_depan;
+        $callof = DB::select('call officer_export(?)',[$officer]);
+        dd($callof);
+
         $call = Call::whereHas('customer', function($query){
             $query->where('nama_depan', Auth::user()->nama_depan);
         });
         $data['calls'] = $call->get();
+        
         return view('officer/call', $data);  
     }
     public function filter(Request $request)
