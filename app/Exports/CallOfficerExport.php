@@ -25,9 +25,11 @@ class CallExport implements FromCollection, WithHeadings, ShouldAutoSize, WithEv
         //         'call.tanggal_call','call.jam_call','call.pembicaraan','call.pic_called','call.hal_menonjol')
         //         ->where('users.nama_depan','=','Auth::user()->nama_depan')
         //         ->get();
-        $officer = Auth::user()->nama_depan;
-        $callof = DB::select('call officer_export(?)',[$officer]);
-        return $callof;
+
+        $call = Call::all();
+        // $officer = Auth::user()->nama_depan;
+        // $callof = DB::select('call officer_export(?)',[$officer]);
+        // return $callof;
     }
     public function headings(): array
     {
