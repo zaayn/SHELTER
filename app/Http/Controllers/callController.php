@@ -61,7 +61,7 @@ class callController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'spv_pic' => 'required',
+            // 'spv_pic' => 'required',
             'tanggal_call' => 'required|date',
             'jam_call' => 'required',
             'pembicaraan' => 'required',
