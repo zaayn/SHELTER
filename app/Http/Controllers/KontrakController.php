@@ -50,7 +50,8 @@ class KontrakController extends Controller
 
     public function insert()
     {
-        $data['customers'] = Customer::where('status','Aktif')->get();
+        // $data['customers'] = Customer::where('status','Aktif')->get();
+        $data['customers'] = Customer::where('nama_depan', Auth::user()->nama_depan)->get();
         return view('officer/insertkontrak',$data);
     }
 

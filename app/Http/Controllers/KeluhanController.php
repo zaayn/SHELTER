@@ -56,7 +56,8 @@ class KeluhanController extends Controller
     public function insert()
     {
         $data['bisnis_units'] = Bisnis_unit::all();
-        $data['customers'] = Customer::where('status','Aktif')->get();
+        // $data['customers'] = Customer::where('status','Aktif')->get();
+        $data['customers'] = Customer::where('nama_depan', Auth::user()->nama_depan)->get();
         $data['users'] = User::where('rule', 'officer_crm')->get();
         
         return view('officer/insertkeluhan',$data);
