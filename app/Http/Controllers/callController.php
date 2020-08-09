@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\DB;
 use App\Call;
 use PDF;
 use Validator;
-use App\Exports\CallExport;
+use App\Exports\CallOfficerExport;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Customer;
 use App\Bisnis_unit;
