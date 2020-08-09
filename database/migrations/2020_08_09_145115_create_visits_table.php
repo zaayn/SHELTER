@@ -16,19 +16,16 @@ class CreateVisitsTable extends Migration
         Schema::create('visit', function (Blueprint $table) {
             $table->increments('visit_id')->unique();
             $table->string('kode_customer');
+            $table->foreign('kode_customer')
+                ->references('kode_customer')
+                ->on('customer')
+                ->onDelete('cascade');
             $table->date('tanggal_visit');
             $table->time('waktu_in');
             $table->time('waktu_out');
             $table->string('pic_meeted');
             $table->longText('kegiatan');
             $table->timestamps();
-        });
-        Schema::table('visit', function($table)
-        {
-            $table->foreign('kode_customer')
-                ->references('kode_customer')
-                ->on('customer')
-                ->onDelete('cascade');
         });
     }
 

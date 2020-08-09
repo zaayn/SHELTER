@@ -16,19 +16,16 @@ class CreateCallsTable extends Migration
         Schema::create('call', function (Blueprint $table) {
             $table->increments('call_id')->unique();
             $table->string('kode_customer');
+            $table->foreign('kode_customer')
+                ->references('kode_customer')
+                ->on('customer')
+                ->onDelete('cascade');
             $table->date('tanggal_call');
             $table->time('jam_call');
             $table->longText('pembicaraan');
             $table->string('pic_called');
             $table->longText('hal_menonjol');
             $table->timestamps();
-        });
-        Schema::table('call', function($table)
-        {
-            $table->foreign('kode_customer')
-                ->references('kode_customer')
-                ->on('customer')
-                ->onDelete('cascade');
         });
     }
 

@@ -16,6 +16,10 @@ class CreateKeluhansTable extends Migration
         Schema::create('keluhan', function (Blueprint $table) {
             $table->increments('id_keluhan')->unique();
             $table->string('kode_customer');
+            $table->foreign('kode_customer')
+                ->references('kode_customer')
+                ->on('customer')
+                ->onDelete('cascade');
             $table->string('departemen');
             $table->date('tanggal_keluhan');
             $table->longText('topik_masalah');
@@ -27,13 +31,6 @@ class CreateKeluhansTable extends Migration
             $table->longText('uraian_penyelesaian');
             $table->string('status');
             $table->timestamps();
-        });
-        Schema::table('keluhan', function($table)
-        {
-            $table->foreign('kode_customer')
-                ->references('kode_customer')
-                ->on('customer')
-                ->onDelete('cascade');
         });
     }
 

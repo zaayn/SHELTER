@@ -18,6 +18,10 @@ class CreateCustomerTable extends Migration
             $table->string('nama_perusahaan');
             $table->string('jenis_usaha');
             $table->integer('bu_id')->unsigned();
+            $table->foreign('bu_id')
+                ->references('bu_id')
+                ->on('bisnis_unit')
+                ->onDelete('cascade');
             $table->string('alamat');
             $table->string('provinsi');
             $table->string('kabupaten');
@@ -25,6 +29,10 @@ class CreateCustomerTable extends Migration
             $table->string('fax');
             $table->string('cp');
             $table->integer('area_id')->unsigned();
+            $table->foreign('area_id')
+                ->references('area_id')
+                ->on('area')
+                ->onDelete('cascade');
             $table->string('nama_depan');
             $table->string('status');
             $table->integer('month_kontrak')->default(0);
@@ -32,20 +40,6 @@ class CreateCustomerTable extends Migration
             $table->string('negara');
             $table->string('putus_kontrak')->nullable();
             $table->timestamps();
-        });
-        Schema::table('customer', function($table)
-        {
-            $table->foreign('area_id')
-                ->references('area_id')
-                ->on('area')
-                ->onDelete('cascade');
-        });
-        Schema::table('customer', function($table)
-        {
-            $table->foreign('bu_id')
-                ->references('bu_id')
-                ->on('bisnis_unit')
-                ->onDelete('cascade');
         });
     }
 
