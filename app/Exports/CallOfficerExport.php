@@ -11,7 +11,7 @@ use Maatwebsite\Excel\Events\AfterSheet;
 use Illuminate\Support\Facades\Auth;
 use DB;
 
-class CallExport implements FromCollection, WithHeadings, ShouldAutoSize, WithEvents
+class CallOfficerExport implements FromCollection, WithHeadings, ShouldAutoSize, WithEvents
 {
     /**
     * @return \Illuminate\Support\Collection
