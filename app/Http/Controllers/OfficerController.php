@@ -10,15 +10,27 @@ use PDF;
 use Auth;
 use App\Bisnis_unit;
 use App\Area;
+use App\Call;
+use App\Visit;
+use App\Kontrak;
+use App\Keluhan;
 
 class OfficerController extends Controller
 {
     public function index()
     {
-        $data['calls'] = DB::table('call')->count();
-        $data['kontraks'] = DB::table('kontrak')->count();   
-        $data['visits'] = DB::table('visit')->count();   
-        $data['keluhans'] = DB::table('keluhan')->count();
+        $data['calls'] = Call::whereHas('customer', function($query){
+            $query->where('nama_depan', Auth::user()->nama_depan);
+        })->count();
+        $data['kontraks'] = Kontrak::whereHas('customer', function($query){
+            $query->where('nama_depan', Auth::user()->nama_depan);
+        })->count();
+        $data['visits'] = Visit::whereHas('customer', function($query){
+            $query->where('nama_depan', Auth::user()->nama_depan);
+        })->count();
+        $data['keluhans'] = Keluhan::whereHas('customer', function($query){
+            $query->where('nama_depan', Auth::user()->nama_depan);
+        })->count();
         
 
 
