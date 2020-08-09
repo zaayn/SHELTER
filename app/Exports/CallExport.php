@@ -19,7 +19,7 @@ class CallExport implements FromCollection, WithHeadings, ShouldAutoSize, WithEv
     {
         $call = DB::table('call')
                 ->join('customer','call.kode_customer','=','customer.kode_customer')
-                ->select('call.call_id','customer.nama_perusahaan','call.spv_pic',
+                ->select('call.call_id','customer.nama_perusahaan',
                 'call.tanggal_call','call.jam_call','call.pembicaraan','call.pic_called','call.hal_menonjol')
                 ->get();
         return $call;
@@ -29,7 +29,6 @@ class CallExport implements FromCollection, WithHeadings, ShouldAutoSize, WithEv
         return [
             'No',
             'Nama Perusahaan',
-            'SPV_PIC',
             'Tanggal Call',
             'Jam Call',
             'Pembicaraan',

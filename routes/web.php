@@ -16,7 +16,7 @@ Route::group(['prefix' => 'officer_crm',  'middleware' => 'is_officer_crm'], fun
     Route::get('/edit/editcall{call_id}','callController@edit')->name('edit.call.officer');
     Route::post('/update/call{call_id}','callController@update')->name('update.call.officer');
     Route::get('/call/exportPDF', 'callController@exportPDF');
-    Route::get('/call/exportExcel', 'CalladminController@exportExcel');
+    Route::get('/call/exportExcel', 'callController@exportExcel');
     Route::post('/filter/call', 'callController@filter')->name('call.filter');
 
     //------- laporan visit
