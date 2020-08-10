@@ -33,7 +33,7 @@ class ManagerController extends Controller
         $data['areas'] = Area::all();
         $data['bisnis_units'] = Bisnis_unit::all();
         $data['calls'] = DB::select('call call_officer_manager()');
-        $data['calls'] = DB::table('call');
+        // $data['calls'] = DB::table('call');
         // ->join('customer', 'call.kode_customer', '=', 'customer.kode_customer')
         // ->join('users','users.nama_depan','=','customer','=','nama_depan')
         // ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
