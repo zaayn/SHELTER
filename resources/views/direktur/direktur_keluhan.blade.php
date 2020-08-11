@@ -83,7 +83,7 @@
                                 @foreach($keluhan as $ke)
                                 <tr>
                                     <td>{{ $no++  }}</td>
-                                    <td>{{ $ke->nama_perusahaan }}</td>
+                                    <td>{{ $ke->customer->nama_perusahaan }}</td>
                                     <td>{{ $ke->departemen }}</td>
                                     <td>{{ $ke->tanggal_keluhan }}</td>
                                     <td>{{ $ke->topik_masalah }}</td>
