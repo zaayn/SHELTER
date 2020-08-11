@@ -21,8 +21,8 @@ class CustomerController extends Controller
 {
     public function index()
     {  
-      $data['areas'] = Area::all();
-      $data['customers'] = Customer::all();
+        $data['areas'] = Area::all();
+        $data['customers'] = Customer::all();
         $data['no'] = 1;
         return view('admin/customer/customer', $data);
     }
