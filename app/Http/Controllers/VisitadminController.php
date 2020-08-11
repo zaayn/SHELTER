@@ -67,7 +67,6 @@ class VisitadminController extends Controller
         $visit = new visit;
         $visit->visit_id = $request->visit_id;
         $visit->kode_customer = $request->kode_customer;
-        // $visit->spv_pic = $request->spv_pic;
         $visit->tanggal_visit = $request->tanggal_visit;
         $visit->waktu_in = $request->waktu_in;
         $visit->waktu_out = $request->waktu_out;

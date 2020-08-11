@@ -67,8 +67,8 @@
                                 <table class="mydatatables table table-collapse table-hover table-light table-striped cell-border table-responsive">
                                 <thead>
                                     <th>No.</th>
+                                    <th>Penginput</th>
                                     <th>Nama Customer</th>
-                                    <th>SPV_PIC</th>
                                     <th>Tanggal</th>
                                     <th>Waktu Call</th>
                                     <th>Pembicaraan</th>
@@ -79,8 +79,8 @@
                                 @foreach($calls as $call)
                                 <tr>
                                     <td>{{ $no++  }}</td>
+                                    <td>{{ $call->nama_depan }}</td>
                                     <td>{{ $call->nama_perusahaan }}</td>
-                                    <td>{{ $call->spv_pic }}</td>
                                     <td>{{ $call->tanggal_call }}</td>
                                     <td>{{ $call->jam_call }}</td>
                                     <td>{{ $call->pembicaraan }}</td>
