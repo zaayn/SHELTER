@@ -61,7 +61,6 @@
                         {{-- ---- end filter ------ --}} 
 
                             <div style="float:right; margin-bottom:10px;">
-                                <a href="{{asset('/admin/insertkontrak')}}" class="btn btn-primary btn-sm">Insert Kontrak</a> 
                                 <a href="{{asset('/admin/kontrak/exportExcel')}}" class="btn btn-default btn-sm" target="_blank">Download Excel</a>
                                 <a href="{{asset('/admin/kontrak/exportPDF')}}" class="btn btn-default btn-sm" target="_blank">Download PDF</a>
                             </div> 
@@ -85,7 +84,6 @@
                                     <th>Tgl_Dealing</th>
                                     <th>Posisi Pks</th>
                                     <th>Status</th>
-                                    <th>Aksi</th>
                                 </thead>
                                 <tbody>
                                 @foreach($kontraks as $kontrak)
@@ -115,11 +113,7 @@
                                     <td>{{ $kontrak->tgl_dealing }}</td>
                                     <td>{{ $kontrak->posisi_pks }}</td>
                                     <td>{{ $kontrak->closing }}</td>
-                                    <td>
-                                        <a href="{{route('edit.kontrak',$kontrak->id_kontrak)}}" class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="right" title="Edit"><span class="fa fa-pencil"></span></a>
-                                        <a onclick="return confirm('Apakah anda yakin akan menghapus data ini ?')" href="{{route('destroy.kontrak',$kontrak->id_kontrak)}}" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="right" title="Delete"><span class="fa fa-trash"></span></a>
-                                        
-                                    </td>
+                                    
                                 </tr>
                                 @endforeach  
                                 </tbody>

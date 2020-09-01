@@ -44,83 +44,83 @@ class VisitadminController extends Controller
       $data['visits'] = $visits->get();
       return view('admin/visit/visit', $data);
     }
-    public function insert()
-    {
-        $data['bisnis_units'] = Bisnis_unit::all();
-        $data['customers'] = Customer::where('status','Aktif')->get();
-        $data['users'] = User::where('rule','officer_crm')->get();
+    // public function insert()
+    // {
+    //     $data['bisnis_units'] = Bisnis_unit::all();
+    //     $data['customers'] = Customer::where('status','Aktif')->get();
+    //     $data['users'] = User::where('rule','officer_crm')->get();
 
-      return view('admin/visit/insertvisit',$data);
-    }
+    //   return view('admin/visit/insertvisit',$data);
+    // }
 
-    public function store(Request $request)
-    {
-        $request->validate([
-            // 'spv_pic' => 'required',
-            'tanggal_visit' => 'required|date',
-            'waktu_in' => 'required',
-            'waktu_out' => 'required',
-            'pic_meeted' => 'required',
-            'kegiatan' =>'required',
-        ]);
+    // public function store(Request $request)
+    // {
+    //     $request->validate([
+    //         // 'spv_pic' => 'required',
+    //         'tanggal_visit' => 'required|date',
+    //         'waktu_in' => 'required',
+    //         'waktu_out' => 'required',
+    //         'pic_meeted' => 'required',
+    //         'kegiatan' =>'required',
+    //     ]);
 
-        $visit = new visit;
-        $visit->visit_id = $request->visit_id;
-        $visit->kode_customer = $request->kode_customer;
-        $visit->tanggal_visit = $request->tanggal_visit;
-        $visit->waktu_in = $request->waktu_in;
-        $visit->waktu_out = $request->waktu_out;
-        $visit->pic_meeted = $request->pic_meeted;
-        $visit->kegiatan = $request->kegiatan;
+    //     $visit = new visit;
+    //     $visit->visit_id = $request->visit_id;
+    //     $visit->kode_customer = $request->kode_customer;
+    //     $visit->tanggal_visit = $request->tanggal_visit;
+    //     $visit->waktu_in = $request->waktu_in;
+    //     $visit->waktu_out = $request->waktu_out;
+    //     $visit->pic_meeted = $request->pic_meeted;
+    //     $visit->kegiatan = $request->kegiatan;
 
-        if ($visit->save()){
-            return redirect('/admin/insertvisit')->with('success', 'item berhasil ditambahkan');
-        }
-        else{
-            return redirect('/admin/insertvisit')->with('error', 'item gagal ditambahkan');
-        }
-    }
+    //     if ($visit->save()){
+    //         return redirect('/admin/insertvisit')->with('success', 'item berhasil ditambahkan');
+    //     }
+    //     else{
+    //         return redirect('/admin/insertvisit')->with('error', 'item gagal ditambahkan');
+    //     }
+    // }
 
-    public function edit($visit_id)
-    {
-        $data['bisnis_units'] = Bisnis_unit::all();
-        $data['customers'] = Customer::all();
-        $data['users'] = User::where('rule', 'officer_crm')->get();
-        $where = array('visit_id' => $visit_id);
-        $visit  = Visit::where($where)->first();
+    // public function edit($visit_id)
+    // {
+    //     $data['bisnis_units'] = Bisnis_unit::all();
+    //     $data['customers'] = Customer::all();
+    //     $data['users'] = User::where('rule', 'officer_crm')->get();
+    //     $where = array('visit_id' => $visit_id);
+    //     $visit  = Visit::where($where)->first();
  
-        return view('admin/visit/editvisit',$data)->with('visit', $visit);
-    }
+    //     return view('admin/visit/editvisit',$data)->with('visit', $visit);
+    // }
 
-    public function update(Request $request, $visit_id)
-    {
-        $visit = Visit::findorFail($visit_id);
-        $request->validate([
-            // 'spv_pic' => 'required',
-            'tanggal_visit' => 'required|date',
-            'waktu_in' => 'required',
-            'waktu_out' => 'required',
-            'pic_meeted' => 'required',
-            'kegiatan' =>'required',
-        ]);
+    // public function update(Request $request, $visit_id)
+    // {
+    //     $visit = Visit::findorFail($visit_id);
+    //     $request->validate([
+    //         // 'spv_pic' => 'required',
+    //         'tanggal_visit' => 'required|date',
+    //         'waktu_in' => 'required',
+    //         'waktu_out' => 'required',
+    //         'pic_meeted' => 'required',
+    //         'kegiatan' =>'required',
+    //     ]);
 
-        $visit->kode_customer = $request->kode_customer;
-        // $visit->spv_pic = $request->spv_pic;
-        $visit->tanggal_visit = $request->tanggal_visit;
-        $visit->waktu_in = $request->waktu_in;
-        $visit->waktu_out = $request->waktu_out;
-        $visit->pic_meeted = $request->pic_meeted;
-        $visit->kegiatan = $request->kegiatan;
+    //     $visit->kode_customer = $request->kode_customer;
+    //     // $visit->spv_pic = $request->spv_pic;
+    //     $visit->tanggal_visit = $request->tanggal_visit;
+    //     $visit->waktu_in = $request->waktu_in;
+    //     $visit->waktu_out = $request->waktu_out;
+    //     $visit->pic_meeted = $request->pic_meeted;
+    //     $visit->kegiatan = $request->kegiatan;
         
-        if ($visit->save())
-          return redirect()->route('index.visit')->with(['success'=>'edit sukses']);
-    }
+    //     if ($visit->save())
+    //       return redirect()->route('index.visit')->with(['success'=>'edit sukses']);
+    // }
 
-    public function destroy($visit_id)
-    {
-        $visit = Visit::where('visit_id',$visit_id)->delete();
-        return redirect()->route('index.visit')->with('success', 'delete sukses');
-    }
+    // public function destroy($visit_id)
+    // {
+    //     $visit = Visit::where('visit_id',$visit_id)->delete();
+    //     return redirect()->route('index.visit')->with('success', 'delete sukses');
+    // }
     public function exportPDF(){
 		$visit = Visit::all();
         $pdf = PDF::loadview('admin/visit/pdfvisit',['visit'=>$visit]);

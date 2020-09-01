@@ -69,7 +69,6 @@
                         </form>
 {{-- ---- end filter ------ --}}
                     <div style="float:right; margin-bottom:10px;">
-                        <a href="{{asset('/admin/insertkeluhan')}}" class="btn btn-primary btn-sm">Insert Keluhan</a>
                         <a href="{{asset('/admin/keluhan/exportExcel')}}" class="btn btn-default btn-sm" target="_blank">Download Excel</a>
                         <a href="{{asset('/admin/keluhan/exportPDF')}}" class="btn btn-default btn-sm" target="_blank">Download PDF</a>
                     </div>    
@@ -106,9 +105,7 @@
                                     <td>{{ $keluhan->actual_case }}</td>
                                     <td>{{ $keluhan->uraian_penyelesaian }}</td>
                                     <td>{{ $keluhan->status }}</td>
-                                    <td><a href="{{route('edit.keluhan',$keluhan->id_keluhan)}}" class="btn btn-info btn-sm"><span class="fa fa-pencil"></span></a>
-                                    <a onclick="return confirm('Apakah anda yakin akan menghapus data ini?')" href="{{route('destroy.keluhan',$keluhan->id_keluhan)}}" class="btn btn-danger btn-sm"><span class="fa fa-trash"></span></a>
-                                    @if($keluhan->status == 'Belum ditangani')
+                                    <td>@if($keluhan->status == 'Belum ditangani')
                                     <a onclick="return confirm('Apakah anda yakin keluhan ini sudah ditangani?')" href="{{route('reset.keluhan',$keluhan->id_keluhan)}}" class="btn btn-warning btn-sm">Tangani</a>
                                     @endif
                                     </td>

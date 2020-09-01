@@ -170,7 +170,7 @@
               <li class="active"><a href="{{asset('/admin/insert_customer')}}"><i class="fa fa-circle-o"></i> Insert Customer</a></li>
             </ul>
         </li>
-        <li class="treeview">
+       {{-- <li class="treeview">
           <a href="">
             <i class="fa fa-plus"></i> <span>Insert Laporan</span>
             <span class="pull-right-container">
@@ -183,7 +183,7 @@
               <li class="active"><a href="{{asset('/admin/insertcall')}}"><i class="fa fa-circle-o"></i>Insert Laporan Call</a></li>
               <li class="active"><a href="{{asset('/admin/insertkeluhan')}}"><i class="fa fa-circle-o"></i>Insert Laporan Keluhan</a></li>
             </ul>
-        </li>
+        </li>--}}
 
         <li class="treeview">
           <a href="">
