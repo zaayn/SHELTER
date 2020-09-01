@@ -47,86 +47,85 @@ class CalladminController extends Controller
       return view('admin/call/call', $data);
     }
 
-    public function insert()
-    {
-        $data['bisnis_units'] = Bisnis_unit::all();
-        $data['customers'] = Customer::where('status', 'Aktif')->get();
-        $data['users'] = User::where('rule','officer_crm')->get();
+    // public function insert()
+    // {
+    //     $data['bisnis_units'] = Bisnis_unit::all();
+    //     $data['customers'] = Customer::where('status', 'Aktif')->get();
+    //     $data['users'] = User::where('rule','officer_crm')->get();
         
-      return view('admin/call/insertcall',$data);
-    }
+    //   return view('admin/call/insertcall',$data);
+    // }
 
-    public function store(Request $request)
-    {
-        $request->validate([
-            // 'spv_pic' => 'required',
-            'tanggal_call' => 'required|date',
-            'jam_call' => 'required',
-            'pembicaraan' => 'required',
-            'pic_called' => 'required',
-            'hal_menonjol' =>'required',
-        ]);
+    // public function store(Request $request)
+    // {
+    //     $request->validate([
+    //         // 'spv_pic' => 'required',
+    //         'tanggal_call' => 'required|date',
+    //         'jam_call' => 'required',
+    //         'pembicaraan' => 'required',
+    //         'pic_called' => 'required',
+    //         'hal_menonjol' =>'required',
+    //     ]);
 
-        $call = new call;
-        $call->call_id          = $request->call_id;
-        $call->kode_customer    = $request->kode_customer;
-        // $call->spv_pic          = $request->spv_pic;
-        $call->tanggal_call     = $request->tanggal_call;
-        $call->jam_call         = $request->jam_call;
-        $call->pembicaraan      = $request->pembicaraan;
-        $call->pic_called       = $request->pic_called;
-        $call->hal_menonjol     = $request->hal_menonjol;
+    //     $call = new call;
+    //     $call->call_id          = $request->call_id;
+    //     $call->kode_customer    = $request->kode_customer;
+    //     // $call->spv_pic          = $request->spv_pic;
+    //     $call->tanggal_call     = $request->tanggal_call;
+    //     $call->jam_call         = $request->jam_call;
+    //     $call->pembicaraan      = $request->pembicaraan;
+    //     $call->pic_called       = $request->pic_called;
+    //     $call->hal_menonjol     = $request->hal_menonjol;
 
-        if ($call->save()){
-            return redirect('/admin/insertcall')->with('success', 'item berhasil ditambahkan');
-        }
-        else{
-            return redirect('/admin/insertcall')->with('error', 'item gagal ditambahkan');
-        }
-    }
+    //     if ($call->save()){
+    //         return redirect('/admin/insertcall')->with('success', 'item berhasil ditambahkan');
+    //     }
+    //     else{
+    //         return redirect('/admin/insertcall')->with('error', 'item gagal ditambahkan');
+    //     }
+    // }
 
-    public function edit($call_id)
-    {
-        $data['bisnis_units'] = Bisnis_unit::all();
-        $data['customers'] = Customer::all();
-        $data['users'] = User::where('rule', 'officer_crm')->get();
-        $call = Call::findOrFail($call_id);
+    // public function edit($call_id)
+    // {
+    //     $data['bisnis_units'] = Bisnis_unit::all();
+    //     $data['customers'] = Customer::all();
+    //     $data['users'] = User::where('rule', 'officer_crm')->get();
+    //     $call = Call::findOrFail($call_id);
  
-        return view('admin/call/editcall',$data)->with('call', $call);
-    }
+    //     return view('admin/call/editcall',$data)->with('call', $call);
+    // }
 
-    public function update(Request $request, $id)
-    {
-        $call   =   Call::findorFail($id);
-        $this->validate($request,[
-            // 'spv_pic'=>['required', 'string'],
-            'tanggal_call'=>['required', 'date'],
-            'jam_call'=>['required'],
-            'pembicaraan'=>['required', 'string'],
-            'pic_called'=>['required', 'string'],
-            'hal_menonjol'=>['required', 'string']
-          ]);
+    // public function update(Request $request, $id)
+    // {
+    //     $call   =   Call::findorFail($id);
+    //     $this->validate($request,[
+    //         // 'spv_pic'=>['required', 'string'],
+    //         'tanggal_call'=>['required', 'date'],
+    //         'jam_call'=>['required'],
+    //         'pembicaraan'=>['required', 'string'],
+    //         'pic_called'=>['required', 'string'],
+    //         'hal_menonjol'=>['required', 'string']
+    //       ]);
         
-        $call->kode_customer    = $request->kode_customer;
-        // $call->spv_pic          = $request->spv_pic;
-        $call->tanggal_call     = $request->tanggal_call;
-        $call->jam_call         = $request->jam_call;
-        $call->pembicaraan      = $request->pembicaraan;
-        $call->pic_called       = $request->pic_called;
-        $call->hal_menonjol     = $request->hal_menonjol;
+    //     $call->kode_customer    = $request->kode_customer;
+    //     // $call->spv_pic          = $request->spv_pic;
+    //     $call->tanggal_call     = $request->tanggal_call;
+    //     $call->jam_call         = $request->jam_call;
+    //     $call->pembicaraan      = $request->pembicaraan;
+    //     $call->pic_called       = $request->pic_called;
+    //     $call->hal_menonjol     = $request->hal_menonjol;
   
-        if ($call->save())
-          return redirect()->route('index.call')->with(['success'=>'edit sukses']);
-    }
+    //     if ($call->save())
+    //       return redirect()->route('index.call')->with(['success'=>'edit sukses']);
+    // }
 
-    public function destroy($call_id)
-    {
-        $call = Call::where('call_id',$call_id)->delete();
-        return redirect()->route('index.call')->with('success', 'delete sukses');
-    }
-    public function exportPDF()
-	{
-		$call = Call::all();
+    // public function destroy($call_id)
+    // {
+    //     $call = Call::where('call_id',$call_id)->delete();
+    //     return redirect()->route('index.call')->with('success', 'delete sukses');
+    // }
+    public function exportPDF(){
+		  $call = Call::all();
         $pdf = PDF::loadview('admin/call/pdfcall',['call'=>$call]);
         $pdf->setPaper('A4','landscape');
     	return $pdf->download('Laporan-Call-CRM.pdf');

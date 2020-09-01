@@ -60,7 +60,6 @@
                         </form>
 {{-- ---- end filter ------ --}}   
                     <div style="float:right; margin-bottom:10px;">
-                        <a href="{{asset('/admin/insertcall')}}" class="btn btn-primary btn-sm">Insert Call</a>
                         <a href="{{asset('/admin/call/exportExcel')}}" class="btn btn-default btn-sm" target="_blank">Download Excel</a>
                         <a href="{{asset('/admin/call/exportPDF')}}" class="btn btn-default btn-sm" target="_blank">Download PDF</a>
                     </div>
@@ -76,7 +75,6 @@
                                     <th>Pembicaraan</th>
                                     <th>PIC Call</th>
                                     <th>Hal Menonjol</th>
-                                    <th>Aksi</th>
                                 </thead>
                                 <tbody>
                                 @foreach($calls as $call)
@@ -88,10 +86,7 @@
                                     <td>{{ $call->pembicaraan }}</td>
                                     <td>{{ $call->pic_called }}</td>
                                     <td>{{ $call->hal_menonjol }}</td>
-                                    <td>
-                                        <a href="{{route('edit.call',$call->call_id)}}" class="btn btn-info btn-sm"><span class="fa fa-pencil"></span></a>
-                                        <a onclick="return confirm('Apakah anda yakin akan menghapus data ini ?')" href="{{route('destroy.call',$call->call_id)}}" class="btn btn-danger btn-sm"><span class="fa fa-trash"></span></a>
-                                    </td>
+                                    
                                 </tr>
                                 @endforeach    
                                 </tbody>

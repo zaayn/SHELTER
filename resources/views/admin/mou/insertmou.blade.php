@@ -58,7 +58,7 @@
                         </div>
                         <div class="form-group col-md-12">
                 	        <label class="font-weight-bold">MF (%)</label>
-                	        <input type="text" class="form-control" name="mf_persen" required>
+                	        <input type="text" class="form-control" name="mf_persen" placeholder="Ket %" required>
                         </div>
                         <div class="form-group col-md-12">
                 	        <label class="font-weight-bold">BPJS Ketenagakerjaan</label>

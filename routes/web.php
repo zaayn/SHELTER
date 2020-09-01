@@ -112,34 +112,34 @@ Route::group(['prefix' => 'admin',  'middleware' => 'is_admin'], function(){
     Route::get('/customer/non-aktif','CustomerController@listputus')->name('listputus.customer');
 
     //------- laporan call
-    Route::get('/insertcall', 'CalladminController@insert')->name('insert.call'); //show form insert
+   // Route::get('/insertcall', 'CalladminController@insert')->name('insert.call'); //show form insert
     Route::get('/call', 'CalladminController@index')->name('index.call');
-    Route::post('/store/call', 'CalladminController@store')->name('store.call');
-    Route::get('/delete/call{call_id}','CalladminController@destroy')->name('destroy.call');
-    Route::get('/edit/editcall{call_id}','CalladminController@edit')->name('edit.call');
-    Route::post('/update/call{call_id}','CalladminController@update')->name('update.call');
+   // Route::post('/store/call', 'CalladminController@store')->name('store.call');
+    // Route::get('/delete/call{call_id}','CalladminController@destroy')->name('destroy.call');
+    // Route::get('/edit/editcall{call_id}','CalladminController@edit')->name('edit.call');
+    // Route::post('/update/call{call_id}','CalladminController@update')->name('update.call');
     Route::get('/call/exportPDF', 'CalladminController@exportPDF');
     Route::get('/call/exportExcel', 'CalladminController@exportExcel');
     Route::post('/filter/call', 'CalladminController@filter')->name('filter.call');
 
         //------- laporan visit
-        Route::get('/insertvisit', 'VisitadminController@insert')->name('insert.visit'); //show form insert
+        // Route::get('/insertvisit', 'VisitadminController@insert')->name('insert.visit'); //show form insert
         Route::get('/visit', 'VisitadminController@index')->name('index.visit');
-        Route::post('/store/visit', 'VisitadminController@store')->name('store.visit');
-        Route::get('/delete/visit{visit_id}','VisitadminController@destroy')->name('destroy.visit');
-        Route::get('/edit/editvisit{visit_id}','VisitadminController@edit')->name('edit.visit');
-        Route::post('/update/visit{visit_id}','VisitadminController@update')->name('update.visit');
+        // Route::post('/store/visit', 'VisitadminController@store')->name('store.visit');
+        // Route::get('/delete/visit{visit_id}','VisitadminController@destroy')->name('destroy.visit');
+        // Route::get('/edit/editvisit{visit_id}','VisitadminController@edit')->name('edit.visit');
+        // Route::post('/update/visit{visit_id}','VisitadminController@update')->name('update.visit');
         Route::get('/visit/exportPDF', 'VisitadminController@exportPDF');
         Route::get('/visit/exportExcel', 'VisitadminController@exportExcel');
         Route::post('/filter/visit', 'VisitadminController@filter')->name('filter.visit');
     
         //------- laporan keluhan
-        Route::get('/insertkeluhan', 'KeluhanadminController@insert')->name('insert.keluhan'); //show form insert
+        // Route::get('/insertkeluhan', 'KeluhanadminController@insert')->name('insert.keluhan'); //show form insert
         Route::get('/keluhan', 'KeluhanadminController@index')->name('index.keluhan');
-        Route::post('/store/keluhan', 'KeluhanadminController@store')->name('store.keluhan');
-        Route::get('/delete/keluhan{id_keluhan}','KeluhanadminController@destroy')->name('destroy.keluhan');
-        Route::get('/edit/editkeluhan{id_keluhan}','KeluhanadminController@edit')->name('edit.keluhan');
-        Route::post('/update/keluhan{id_keluhan}','KeluhanadminController@update')->name('update.keluhan');
+        // Route::post('/store/keluhan', 'KeluhanadminController@store')->name('store.keluhan');
+        // Route::get('/delete/keluhan{id_keluhan}','KeluhanadminController@destroy')->name('destroy.keluhan');
+        // Route::get('/edit/editkeluhan{id_keluhan}','KeluhanadminController@edit')->name('edit.keluhan');
+        // Route::post('/update/keluhan{id_keluhan}','KeluhanadminController@update')->name('update.keluhan');
         Route::get('/keluhan/exportPDF', 'KeluhanadminController@exportPDF');
         Route::get('/keluhan/exportExcel', 'KeluhanadminController@exportExcel');
         Route::get('/reset/keluhan{id}', 'KeluhanadminController@aktivasi')->name('reset.keluhan');

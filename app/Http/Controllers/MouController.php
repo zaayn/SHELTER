@@ -92,10 +92,10 @@ class MouController extends Controller
         if($check) return redirect('/admin/kontrak')->with('error', 'Kontrak sudah memiliki MoU');
 
         $request->validate([
-            'hc'                    => 'required|integer',
+            'hc'                    => 'required',
             'invoice'               => 'required',
             'mf'                    => 'required',
-            'mf_persen'             => 'required|integer',
+            'mf_persen'             => 'required',
             'overheadcost'          => 'required',
             'training'              => 'required',
             'tanggal_invoice'       =>'required',
