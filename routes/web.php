@@ -147,12 +147,12 @@ Route::group(['prefix' => 'admin',  'middleware' => 'is_admin'], function(){
         Route::get('/keluhan_belum_ditangani', 'KeluhanadminController@keluhan_belum_ditangani')->name('keluhan.belum.ditangani');
     
         //------- laporan kontrak
-        // Route::get('/insertkontrak', 'KontrakadminController@insert')->name('insert.kontrak'); //show form insert
+        Route::get('/insertkontrak', 'KontrakadminController@insert')->name('insert.kontrak'); //show form insert
         Route::get('/kontrak', 'KontrakadminController@index')->name('index.kontrak');
-        // Route::post('/store/kontrak', 'KontrakadminController@store')->name('store.kontrak');
-        // Route::get('/delete/kontrak{id_kontrak}','KontrakadminController@destroy')->name('destroy.kontrak');
-        // Route::get('/edit/editkontrak{id_kontrak}','KontrakadminController@edit')->name('edit.kontrak');
-        // Route::post('/update/kontrak{id_kontrak}','KontrakadminController@update')->name('update.kontrak');
+        Route::post('/store/kontrak', 'KontrakadminController@store')->name('store.kontrak');
+        Route::get('/delete/kontrak{id_kontrak}','KontrakadminController@destroy')->name('destroy.kontrak');
+        Route::get('/edit/editkontrak{id_kontrak}','KontrakadminController@edit')->name('edit.kontrak');
+        Route::post('/update/kontrak{id_kontrak}','KontrakadminController@update')->name('update.kontrak');
         Route::post('/filter/kontrak', 'KontrakadminController@filter')->name('filter.kontrak');
         Route::get('/kontrak/exportPDF', 'KontrakadminController@exportPDF');
         Route::get('/kontrak/exportExcel', 'KontrakadminController@exportExcel');
