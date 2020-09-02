@@ -159,6 +159,6 @@ class KeluhanController extends Controller
     }
     public function exportExcel()
 	  {
-		return Excel::download(new KeluhanOfficerExport, 'Laporan-Keluhan-CRM-Officer-{{Auth::user()->nama_depan}}.xlsx');
+		return Excel::download(new KeluhanOfficerExport, 'Laporan-Keluhan-CRM-Officer.xlsx');
     }
 }

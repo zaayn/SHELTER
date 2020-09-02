@@ -9,9 +9,9 @@ use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 use Maatwebsite\Excel\Concerns\WithEvents;
 use Maatwebsite\Excel\Events\AfterSheet;
 use Illuminate\Support\Facades\Auth;
-use DB;
 
-class VisitOfficerExport implements FromCollection
+
+class VisitOfficerExport implements FromCollection, WithHeadings, ShouldAutoSize, WithEvents
 {
     /**
     * @return \Illuminate\Support\Collection
@@ -32,7 +32,9 @@ class VisitOfficerExport implements FromCollection
             'Waktu In',
             'Waktu Out',
             'PIC Meeted',
-            'Kegiatan'
+            'Kegiatan',
+            'Date Created',
+            'Date Updated'
         ];
     }
     public function registerEvents(): array

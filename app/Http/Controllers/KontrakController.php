@@ -156,6 +156,6 @@ class KontrakController extends Controller
     }
     public function exportExcel()
 	{
-		return Excel::download(new KontrakOfficerExport, 'Laporan-Kontrak-CRM-Officer-{{Auth::user()->nama_depan}}.xlsx');
+		return Excel::download(new KontrakOfficerExport, 'Laporan-Kontrak-CRM-Officer.xlsx');
     }
 }

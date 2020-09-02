@@ -8,9 +8,8 @@ use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 use Maatwebsite\Excel\Concerns\WithEvents;
 use Maatwebsite\Excel\Events\AfterSheet;
 use Illuminate\Support\Facades\Auth;
-use DB;
 
-class KontrakOfficerExport implements FromCollection
+class KontrakOfficerExport implements FromCollection, WithHeadings, ShouldAutoSize, WithEvents
 {
     /**
     * @return \Illuminate\Support\Collection
@@ -35,7 +34,9 @@ class KontrakOfficerExport implements FromCollection
             'Dealing',
             'Tanggal Dealing',
             'Posisi Pks',
-            'Closing'
+            'Closing',
+            'Date Created',
+            'Date Updated'
         ];
     }
     public function registerEvents(): array

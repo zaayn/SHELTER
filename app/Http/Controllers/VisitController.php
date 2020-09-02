@@ -133,6 +133,6 @@ class VisitController extends Controller
     }
     public function exportExcel()
 	  {
-		return Excel::download(new VisitOfficerExport, 'Laporan-Visit-CRM-Officer-{{Auth::user()->nama_depan}}.xlsx');
+		return Excel::download(new VisitOfficerExport, 'Laporan-Visit-CRM-Officer.xlsx');
     }
 }

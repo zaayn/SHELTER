@@ -9,9 +9,8 @@ use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 use Maatwebsite\Excel\Concerns\WithEvents;
 use Maatwebsite\Excel\Events\AfterSheet;
 use Illuminate\Support\Facades\Auth;
-use DB;
 
-class KeluhanOfficerExport implements FromCollection
+class KeluhanOfficerExport implements FromCollection, WithHeadings, ShouldAutoSize, WithEvents
 {
     /**
     * @return \Illuminate\Support\Collection
@@ -37,7 +36,9 @@ class KeluhanOfficerExport implements FromCollection
             'Case',
             'Actual Case',
             'Uraian Penyelesaian',
-            'Status'
+            'Status',
+            'Date Created',
+            'Date Updated'
         ];
     }
     public function registerEvents(): array
