@@ -152,4 +152,8 @@ class KontrakController extends Controller
         $pdf->setPaper('A4','landscape');
     	return $pdf->download('Laporan-Kontrak-CRM.pdf');
     }
+    public function exportExcel()
+	{
+		return Excel::download(new KontrakOfficerExport, 'Laporan-Kontrak-CRM-Officer-{{Auth::user()->nama_depan}}.xlsx');
+    }
 }

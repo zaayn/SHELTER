@@ -155,4 +155,8 @@ class KeluhanController extends Controller
       $pdf->setPaper('A4','landscape');
       return $pdf->download('Laporan-Keluhan-CRM.pdf');
     }
+    public function exportExcel()
+	  {
+		return Excel::download(new KeluhanOfficerExport, 'Laporan-Keluhan-CRM-Officer-{{Auth::user()->nama_depan}}.xlsx');
+    }
 }

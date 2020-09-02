@@ -2,37 +2,36 @@
 
 namespace App\Exports;
 
-use App\Call;
+use App\Visit;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 use Maatwebsite\Excel\Concerns\WithEvents;
 use Maatwebsite\Excel\Events\AfterSheet;
-use Illuminate\Support\Facades\Auth;
 use DB;
 
-class CallOfficerExport implements FromCollection, WithHeadings, ShouldAutoSize, WithEvents
+class VisitOfficerExport implements FromCollection
 {
     /**
     * @return \Illuminate\Support\Collection
     */
     public function collection()
     {
-        $call = Call::whereHas('customer', function($query){
+        $visit = Visit::whereHas('customer', function($query){
             $query->where('nama_depan', Auth::user()->nama_depan);
-        })->get();
-        return $call;
+          })->get();
+        return $visit;
     }
     public function headings(): array
     {
         return [
             'No',
             'Nama Perusahaan',
-            'Tanggal Call',
-            'Jam Call',
-            'Pembicaraan',
-            'PIC Call',
-            'Hal Menonjol'
+            'Tanggal Visit',
+            'Waktu In',
+            'Waktu Out',
+            'PIC Meeted',
+            'Kegiatan'
         ];
     }
     public function registerEvents(): array

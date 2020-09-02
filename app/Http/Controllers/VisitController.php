@@ -129,4 +129,8 @@ class VisitController extends Controller
         $pdf->setPaper('A4','landscape');
     	return $pdf->download('Laporan-Visit-CRM.pdf');
     }
+    public function exportExcel()
+	  {
+		return Excel::download(new VisitOfficerExport, 'Laporan-Visit-CRM-Officer-{{Auth::user()->nama_depan}}.xlsx');
+    }
 }
