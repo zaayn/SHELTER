@@ -115,6 +115,6 @@ class OfficerController extends Controller
 		$mou = Datamou::all();
         $pdf = PDF::loadview('officer/pdfmou',['datamou'=>$mou]);
         $pdf->setPaper('A4','landscape');
-    	return $pdf->download('Laporan-MoU-CRM.pdf');
+    	return $pdf->download('Laporan-MoU-Officer-CRM.pdf');
     }
 }
