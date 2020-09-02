@@ -9,6 +9,7 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\DB;
 use App\Exports\KontrakOfficerExport;
+use Maatwebsite\Excel\Facades\Excel;
 use App\Kontrak;
 use App\Customer;
 use App\Bisnis_unit;

@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Support\Facades\DB;
 use App\Exports\KeluhanOfficerExport;
+use Maatwebsite\Excel\Facades\Excel;
 use App\Keluhan;
 use App\User;
 use PDF;
