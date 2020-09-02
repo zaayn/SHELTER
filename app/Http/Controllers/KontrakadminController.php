@@ -37,13 +37,16 @@ class KontrakadminController extends Controller
       $data['bisnis_units'] = Bisnis_unit::all();
       $data['customers'] = Customer::all();
       
-      if($request->bu_id || $request->area_id){
+      if($request->bu_id || $request->area_id || $request->from || $request->to){
         $kontraks = Kontrak::whereHas('customer', function($query) use($request){
-          if($request->bu_id)
-            $query->where('bu_id',$request->bu_id);
+            if($request->bu_id)
+                $query->where('bu_id',$request->bu_id);
 
-          if($request->area_id)
-            $query->where('area_id',$request->area_id);
+            if($request->area_id)
+                $query->where('area_id',$request->area_id);
+
+            if($request->from || $request->to)
+                $query->whereBetween('akhir_periode',[$request->from, $request->to]);
         });
       }
       $data['kontraks'] = $kontraks->get();
