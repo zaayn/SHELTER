@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Support\Facades\DB;
 use App\Exports\VisitOfficerExport;
+use Maatwebsite\Excel\Facades\Excel;
 use App\Visit;
 use Validator;
 use PDF;
