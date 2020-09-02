@@ -17,9 +17,17 @@ class KeluhanOfficerExport implements FromCollection, WithHeadings, ShouldAutoSi
     */
     public function collection()
     {
-        $keluhan = Keluhan::whereHas('customer', function($query){
-            $query->where('nama_depan', Auth::user()->nama_depan);
-          })->get();
+        $no = 0;
+        $user = Auth::user()->nama_depan;
+        $keluhan = DB::table('keluhan')
+            ->join('customer','keluhan.kode_customer','=','customer.kode_customer')
+            ->join('users','users.nama_depan','=','customer.nama_depan')
+            ->select($no++,'customer.nama_perusahaan','keluhan.departemen',
+            'keluhan.tanggal_keluhan','keluhan.topik_masalah','keluhan.saran_penyelesaian',
+            'keluhan.time_target','keluhan.confirm_pic','keluhan.case','keluhan.actual_case',
+            'keluhan.uraian_penyelesaian','keluhan.status')
+            ->where('users.nama_depan','=', $user)
+            ->get();
         return $keluhan;
     }
     public function headings(): array
@@ -36,9 +44,7 @@ class KeluhanOfficerExport implements FromCollection, WithHeadings, ShouldAutoSi
             'Case',
             'Actual Case',
             'Uraian Penyelesaian',
-            'Status',
-            'Date Created',
-            'Date Updated'
+            'Status'
         ];
     }
     public function registerEvents(): array
