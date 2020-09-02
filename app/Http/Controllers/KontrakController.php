@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\DB;
+use App\Exports\KontrakOfficerExport;
 use App\Kontrak;
 use App\Customer;
 use App\Bisnis_unit;

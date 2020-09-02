@@ -6,6 +6,7 @@ use Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Support\Facades\DB;
+use App\Exports\KeluhanOfficerExport;
 use App\Keluhan;
 use App\User;
 use PDF;
