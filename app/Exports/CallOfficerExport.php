@@ -18,13 +18,16 @@ class CallOfficerExport implements FromCollection, WithHeadings, ShouldAutoSize,
     */
     public function collection()
     {
-        $call = DB::table('call')
-                ->join('customer','call.kode_customer','=','customer.kode_customer')
-                ->join('users','users.nama_depan','=','customer.nama_depan')
-                ->select('call.call_id','customer.nama_perusahaan',
-                'call.tanggal_call','call.jam_call','call.pembicaraan','call.pic_called','call.hal_menonjol')
-                ->where('users.nama_depan','=','Azkia')
-                ->get();
+        // $call = DB::table('call')
+        //         ->join('customer','call.kode_customer','=','customer.kode_customer')
+        //         ->join('users','users.nama_depan','=','customer.nama_depan')
+        //         ->select('call.call_id','customer.nama_perusahaan',
+        //         'call.tanggal_call','call.jam_call','call.pembicaraan','call.pic_called','call.hal_menonjol')
+        //         ->where('users.nama_depan','=','Azkia')
+        //         ->get();
+        $call = Call::whereHas('customer', function($query){
+            $query->where('nama_depan', Auth::user()->nama_depan);
+        })->get();
         return $call;
         // $officer = Auth::user()->nama_depan;
         // $callof = DB::select('call officer_export(?)',[$officer]);
