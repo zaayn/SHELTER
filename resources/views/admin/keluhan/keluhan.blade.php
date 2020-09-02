@@ -86,6 +86,7 @@
                             <table class="mydatatables table table-collapse table-hover table-light table-striped cell-border table-responsive">
                                 <thead>
                                     <th>No</th>
+                                    <th>Penginput</th>
                                     <th>Nama Customer</th>
                                     <th>Departemen Tertuju</th>
                                     <th>Tanggal</th>
@@ -103,6 +104,7 @@
                                 @foreach($keluhans as $keluhan)
                                 <tr>
                                     <td>{{ $no++  }}</td>
+                                    <td>{{ $keluhan->customer->nama_depan }}</td>
                                     <td>{{ $keluhan->customer->nama_perusahaan }}</td>
                                     <td>{{ $keluhan->departemen }}</td>
                                     <td>{{ $keluhan->tanggal_keluhan }}</td>

@@ -82,6 +82,7 @@
                                     <th>Nomor </th>
                                     <th>Closing/MoU</th>
                                     <th>Nomor Kontrak</th>
+                                    <th>Penginput</th>
                                     <th>Kode Customer</th>
                                     <th>Nama Perusahaan</th>
                                     <th>Periode Kontrak</th>
@@ -112,6 +113,7 @@
                                             <i class="btn btn-success"data-toggle="tooltip" data-placement="right" title="MoU telah ditambahkan">MoU Sukses</i>
                                         @endif</td>
                                     <td>{{ $kontrak->nomor_kontrak }}</td>
+                                    <td>{{ $kontrak->customer->nama_depan }}</td>
                                     <td>{{ $kontrak->kode_customer }}</td>
                                     <td>{{ $kontrak->customer->nama_perusahaan }}</td>
                                     <td>{{ $kontrak->periode_kontrak }}</td>
