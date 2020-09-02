@@ -40,9 +40,7 @@ class CallOfficerExport implements FromCollection, WithHeadings, ShouldAutoSize,
             'Jam Call',
             'Pembicaraan',
             'PIC Call',
-            'Hal Menonjol',
-            'Date Created',
-            'Date Updated'
+            'Hal Menonjol'
         ];
     }
     public function registerEvents(): array
