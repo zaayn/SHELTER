@@ -129,7 +129,7 @@ class VisitController extends Controller
         })->get();
         $pdf = PDF::loadview('officer/pdfvisit',['visit'=>$visit]);
         $pdf->setPaper('A4','landscape');
-    	return $pdf->download('Laporan-Visit-CRM.pdf');
+    	return $pdf->download('Laporan-Visit-Officer-CRM.pdf');
     }
     public function exportExcel()
 	  {

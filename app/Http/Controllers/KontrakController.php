@@ -152,7 +152,7 @@ class KontrakController extends Controller
         })->get();
         $pdf = PDF::loadview('officer/pdfkontrak',['kontrak'=>$kontrak]);
         $pdf->setPaper('A4','landscape');
-    	return $pdf->download('Laporan-Kontrak-CRM.pdf');
+    	return $pdf->download('Laporan-Kontrak-Officer-CRM.pdf');
     }
     public function exportExcel()
 	{
