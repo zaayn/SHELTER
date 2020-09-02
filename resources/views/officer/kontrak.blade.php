@@ -22,30 +22,17 @@
             <div class="panel block">
                 <div class="panel-body">
                     {{-- ----------  -------------- filter ------------------------ --}}
-                    {{-- <form class="form-horizontal" id="form-filter" method="POST" action="{{route('kontrak.filter')}}">
+                    <form class="form-horizontal" id="form-filter" method="POST" action="{{route('kontrak.filter')}}">
                             @csrf
                             <div class="form-group">
-                                <label class="control-label col-md-2">Bisnis Unit</label>
-                                <div class="col-md-6">
-                                    <select class="form-control" name="bu_id">
-                                        <option value="">--- SELECT BISNIS UNIT ---</option>
-                                    @foreach($bisnis_units as $bisnis_unit)
-                                        <option value="{{ $bisnis_unit->bu_id }}">{{ $bisnis_unit->nama_bisnis_unit }}</option>
-                                    @endforeach
-                                    </select>
+                                <label class="control-label col-md-2">Tanggal</label>
+                                <div class="col-md-3">
+                                    <input type="date" class="form-control" name="from">
+                                </div>
+                                <div class="col-md-3">
+                                    <input type="date" class="form-control" name="to">
                                 </div>
                             </div>
-                                <div class="form-group">
-                                        <label class="control-label col-md-2">Area</label>
-                                        <div class="col-md-6">
-                                            <select class="form-control" name="area_id">
-                                                <option value="">--- SELECT AREA ---</option>
-                                            @foreach($areas as $area)
-                                                <option value="{{ $area->area_id }}">{{ $area->nama_area }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                </div>
                                 <div class="form-group">
                                     <div class="col-md-1 col-md-offset-2">
                                         <a href="{{asset('/officer_crm/kontrak')}}">
@@ -56,7 +43,7 @@
                                         <button type="submit" class="btn btn-primary btn-sm" id="btn-filter"><i class="fa fa-filter"></i> Filter</button>
                                     </div>
                                 </div>
-                            </form> --}}
+                            </form>
                             {{-- ---- end filter ------ --}} 
                     <div style="float:right; margin-bottom:10px;">
                         <a href="/officer_crm/insertkontrak" class="btn btn-primary btn-sm">Insert Kontrak</a>
@@ -70,6 +57,7 @@
                                 <table class="mydatatables table table-collapse table-hover table-light table-striped cell-border table-responsive">                                <thead>
                                     <th>No.</th>
                                     <th>Nomor Kontrak</th>
+                                    <th>Penginput</th>
                                     <th>Kode Customer</th>
                                     <th>Nama Perusahaan</th>
                                     <th>Periode Kontrak</th>
@@ -92,6 +80,7 @@
                                 <tr>
                                     <td>{{ $no++ }}</td>
                                     <td>{{ $kontrak->nomor_kontrak }}</td>
+                                    <td>{{ $kontrak->customer->nama_depan }}</td>
                                     <td>{{ $kontrak->kode_customer }}</td>
                                     <td>{{ $kontrak->customer->nama_perusahaan }}</td>
                                     <td>{{ $kontrak->periode_kontrak }}</td>

@@ -21,31 +21,18 @@
         <div class="col-md-12">
             <div class="panel block">
                 <div class="panel-body">
-                {{-- ----------  -------------- filter ------------------------
+ {{-- ----------  -------------- filter ------------------------ --}}
                     <form class="form-horizontal" id="form-filter" method="POST" action="{{route('call.filter')}}">
                             @csrf
                             <div class="form-group">
-                                <label class="control-label col-md-2">Bisnis Unit</label>
-                                <div class="col-md-6">
-                                    <select class="form-control" name="bu_id">
-                                        <option value="">--- SELECT Bisnis Unit ---</option>
-                                    @foreach($bisnis_units as $bisnis_unit)
-                                        <option value="{{ $bisnis_unit->bu_id }}">{{ $bisnis_unit->nama_bisnis_unit }}</option>
-                                    @endforeach
-                                    </select>
+                                <label class="control-label col-md-2">Tanggal</label>
+                                <div class="col-md-3">
+                                    <input type="date" class="form-control" name="from" required>
+                                </div>
+                                <div class="col-md-3">
+                                    <input type="date" class="form-control" name="to" required>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                    <label class="control-label col-md-2">Area</label>
-                                    <div class="col-md-6">
-                                        <select class="form-control" name="area_id">
-                                            <option value="">--- SELECT AREA ---</option>
-                                        @foreach($areas as $area)
-                                            <option value="{{ $area->area_id }}">{{ $area->nama_area }}</option>
-                                        @endforeach
-                                        </select>
-                                    </div>
-                                </div>
                             <div class="form-group">
                                 <div class="col-md-1 col-md-offset-2">
                                     <a href="/officer_crm/bisnis_unit">
@@ -57,7 +44,7 @@
                                 </div>
                             </div>
                         </form>
-{{-- ---- end filter ------ --}}    
+                    {{-- end filter --}}
                     <div style="float:right; margin-bottom:10px;">
                         <a href="{{asset('/officer_crm/insertcall')}}" class="btn btn-primary btn-sm">Insert Call</a>
                         <a href="{{asset('/officer_crm/call/exportExcel')}}" class="btn btn-default btn-sm" target="_blank">Download Excel</a>
@@ -67,6 +54,7 @@
                             @include('admin.shared.components.alert')
                             <table class="mydatatables table table-collapse table-hover table-light table-striped cell-border table-responsive">                                <thead>
                                     <th>No.</th>
+                                    <th>Penginput</th>
                                     <th>Nama Customer</th>
                                     <th>Tanggal</th>
                                     <th>Waktu Call</th>
@@ -79,6 +67,7 @@
                                 @foreach($calls as $call)
                                 <tr>
                                     <td>{{ $no++  }}</td>
+                                    <td>{{ $call->customer->nama_depan }}</td>
                                     <td>{{ $call->customer->nama_perusahaan }}</td>
                                     <td>{{ $call->tanggal_call }}</td>
                                     <td>{{ $call->jam_call }}</td>
