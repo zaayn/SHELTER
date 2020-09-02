@@ -1,38 +1,39 @@
 <?php
 
 namespace App\Exports;
-
 use App\Kontrak;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 use Maatwebsite\Excel\Concerns\WithEvents;
 use Maatwebsite\Excel\Events\AfterSheet;
+use Illuminate\Support\Facades\Auth;
 use DB;
 
-class KontrakExport implements FromCollection, WithHeadings, ShouldAutoSize, WithEvents
+class KontrakOfficerExport implements FromCollection, WithHeadings, ShouldAutoSize, WithEvents
 {
     /**
     * @return \Illuminate\Support\Collection
     */
     public function collection()
     {
+        $user = Auth::user()->nama_depan;
         $kontrak = DB::table('kontrak')
                 ->join('customer','kontrak.kode_customer','=','customer.kode_customer')
-                ->select('kontrak.id_kontrak','customer.nama_perusahaan','kontrak.periode_kontrak',
+                ->join('users','users.nama_depan','=','customer.nama_depan')
+                ->select('kontrak.id_kontrak','kontrak.nomor_kontrak','customer.nama_perusahaan','kontrak.periode_kontrak',
                 'kontrak.akhir_periode','kontrak.srt_pemberitahuan','kontrak.tgl_srt_pemberitahuan',
                 'kontrak.srt_penawaran','kontrak.tgl_srt_penawaran','kontrak.dealing','kontrak.tgl_dealing',
                 'kontrak.posisi_pks','kontrak.closing')
+                ->where('users.nama_depan','=', $user)
                 ->get();
         return $kontrak;
     }
-    public function headings(): array
-    {
+    public function headings(): array{
         return [
             'No',
             'Nomor Kontrak',
             'Kode Customer',
-            'Nama Customer',
             'Periode Kontrak',
             'Akhir Periode',
             'Surat Pemberitahuan',

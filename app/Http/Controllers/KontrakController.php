@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\DB;
+use App\Exports\KontrakOfficerExport;
+use Maatwebsite\Excel\Facades\Excel;
 use App\Kontrak;
 use App\Customer;
 use App\Bisnis_unit;
@@ -150,6 +152,10 @@ class KontrakController extends Controller
         })->get();
         $pdf = PDF::loadview('officer/pdfkontrak',['kontrak'=>$kontrak]);
         $pdf->setPaper('A4','landscape');
-    	return $pdf->download('Laporan-Kontrak-CRM.pdf');
+    	return $pdf->download('Laporan-Kontrak-Officer-CRM.pdf');
+    }
+    public function exportExcel()
+	{
+		return Excel::download(new KontrakOfficerExport, 'Laporan-Kontrak-CRM-Officer.xlsx');
     }
 }

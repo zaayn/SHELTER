@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Support\Facades\DB;
+use App\Exports\VisitOfficerExport;
+use Maatwebsite\Excel\Facades\Excel;
 use App\Visit;
 use Validator;
 use PDF;
@@ -127,6 +129,10 @@ class VisitController extends Controller
         })->get();
         $pdf = PDF::loadview('officer/pdfvisit',['visit'=>$visit]);
         $pdf->setPaper('A4','landscape');
-    	return $pdf->download('Laporan-Visit-CRM.pdf');
+    	return $pdf->download('Laporan-Visit-Officer-CRM.pdf');
+    }
+    public function exportExcel()
+	  {
+		return Excel::download(new VisitOfficerExport, 'Laporan-Visit-CRM-Officer.xlsx');
     }
 }

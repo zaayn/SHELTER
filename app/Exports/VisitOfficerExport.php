@@ -2,7 +2,7 @@
 
 namespace App\Exports;
 
-use App\Call;
+use App\Visit;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
@@ -11,7 +11,8 @@ use Maatwebsite\Excel\Events\AfterSheet;
 use Illuminate\Support\Facades\Auth;
 use DB;
 
-class CallOfficerExport implements FromCollection, WithHeadings, ShouldAutoSize, WithEvents
+
+class VisitOfficerExport implements FromCollection, WithHeadings, ShouldAutoSize, WithEvents
 {
     /**
     * @return \Illuminate\Support\Collection
@@ -19,28 +20,25 @@ class CallOfficerExport implements FromCollection, WithHeadings, ShouldAutoSize,
     public function collection()
     {
         $user = Auth::user()->nama_depan;
-        $call = DB::table('call')
-                ->join('customer','call.kode_customer','=','customer.kode_customer')
-                ->join('users','users.nama_depan','=','customer.nama_depan')
-                ->select('call.call_id','customer.nama_perusahaan',
-                'call.tanggal_call','call.jam_call','call.pembicaraan','call.pic_called','call.hal_menonjol')
-                ->where('users.nama_depan','=', $user)
-                ->get();
-        // $call = Call::whereHas('customer', function($query){
-        //     $query->where('nama_depan', Auth::user()->nama_depan);
-        // })->get();
-        return $call;
+        $visit = DB::table('visit')
+        ->join('customer','visit.kode_customer','=','customer.kode_customer')
+        ->join('users','users.nama_depan','=','customer.nama_depan')
+        ->select('visit.visit_id','customer.nama_perusahaan',
+        'visit.tanggal_visit','visit.waktu_in','visit.waktu_out','visit.pic_meeted','visit.kegiatan')
+        ->where('users.nama_depan','=', $user)
+        ->get();
+        return $visit;
     }
     public function headings(): array
     {
         return [
             'No',
             'Nama Perusahaan',
-            'Tanggal Call',
-            'Jam Call',
-            'Pembicaraan',
-            'PIC Call',
-            'Hal Menonjol'
+            'Tanggal Visit',
+            'Waktu In',
+            'Waktu Out',
+            'PIC Meeted',
+            'Kegiatan'
         ];
     }
     public function registerEvents(): array

@@ -6,6 +6,8 @@ use Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Support\Facades\DB;
+use App\Exports\KeluhanOfficerExport;
+use Maatwebsite\Excel\Facades\Excel;
 use App\Keluhan;
 use App\User;
 use PDF;
@@ -153,6 +155,10 @@ class KeluhanController extends Controller
       })->get();
       $pdf = PDF::loadview('officer/pdfkeluhan',['keluhan'=>$keluhan]);
       $pdf->setPaper('A4','landscape');
-      return $pdf->download('Laporan-Keluhan-CRM.pdf');
+      return $pdf->download('Laporan-Keluhan-Officer-CRM.pdf');
+    }
+    public function exportExcel()
+	  {
+		return Excel::download(new KeluhanOfficerExport, 'Laporan-Keluhan-CRM-Officer.xlsx');
     }
 }

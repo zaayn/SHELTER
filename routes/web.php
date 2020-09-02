@@ -27,7 +27,7 @@ Route::group(['prefix' => 'officer_crm',  'middleware' => 'is_officer_crm'], fun
     Route::get('/edit/editvisit{visit_id}','VisitController@edit')->name('edit.visit.officer');
     Route::post('/update/visit{visit_id}','VisitController@update')->name('update.visit.officer');
     Route::get('/visit/exportPDF', 'VisitController@exportPDF');
-    Route::get('/visit/exportExcel', 'VisitadminController@exportExcel');
+    Route::get('/visit/exportExcel', 'VisitController@exportExcel');
     Route::post('/filter/visit', 'VisitController@filter')->name('visit.filter');
 
     //------- laporan keluhan
@@ -38,7 +38,7 @@ Route::group(['prefix' => 'officer_crm',  'middleware' => 'is_officer_crm'], fun
     Route::get('/edit/editkeluhan{id_keluhan}','KeluhanController@edit')->name('edit.keluhan.officer');
     Route::post('/update/keluhan{id_keluhan}','KeluhanController@update')->name('update.keluhan.officer');
     Route::get('/keluhan/exportPDF', 'KeluhanController@exportPDF');
-    Route::get('/keluhan/exportExcel', 'KeluhanadminController@exportExcel');
+    Route::get('/keluhan/exportExcel', 'KeluhanController@exportExcel');
     Route::post('/filter/keluhan', 'KeluhanController@filter')->name('keluhan.filter');
 
     //------- laporan kontrak
@@ -51,7 +51,7 @@ Route::group(['prefix' => 'officer_crm',  'middleware' => 'is_officer_crm'], fun
     Route::get('/mou', 'OfficerController@mou')->name('mou.officer');
     Route::post('/filter/mou', 'OfficerController@filter_mou')->name('filter.mou.officer');
     Route::get('/kontrak/exportPDF', 'KontrakController@exportPDF');
-    Route::get('/kontrak/exportExcel', 'KontrakadminController@exportExcel');
+    Route::get('/kontrak/exportExcel', 'KontrakController@exportExcel');
     Route::post('/filter/kontrak', 'KontrakController@filter')->name('kontrak.filter');
 
     Route::get('/mou/exportPDF', 'OfficerController@exportPDF');

@@ -131,7 +131,7 @@ class callController extends Controller
       })->get();
         $pdf = PDF::loadview('officer/pdfcall',['call'=>$call]);
         $pdf->setPaper('A4','landscape');
-    	return $pdf->download('Laporan-Call-CRM.pdf');
+    	return $pdf->download('Laporan-Call-Officer-CRM.pdf');
     }
     public function monthFilter(Request $request){
         $month = $request->get('month');
