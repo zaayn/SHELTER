@@ -37,12 +37,15 @@ class VisitController extends Controller
       $data['bisnis_units'] = Bisnis_unit::all();
       
       if($request->from || $request->to){
-        $visits = Visit::whereHas('customer', function($query) use($request){
+        $data['visits'] = Visit::whereHas('customer', function($query) use($request){
           if($request->from || $request->to)
             $query->whereBetween('tanggal_visit',[$request->from, $request->to]);
-        });
+        })->get();
       }
-      $data['visits'] = $visits->get();
+      else{
+        $data['visits'] = Visit::all();
+      }
+      
       return view('officer/visit', $data);
     }
     public function insert()

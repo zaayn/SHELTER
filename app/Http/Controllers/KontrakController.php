@@ -38,12 +38,15 @@ class KontrakController extends Controller
       $data['customers'] = Customer::all();
       
       if($request->from || $request->to){
-        $kontraks = Kontrak::whereHas('customer', function($query) use($request){
+        $data['kontraks'] = Kontrak::whereHas('customer', function($query) use($request){
             if($request->from || $request->to)
                 $query->whereBetween('akhir_periode',[$request->from, $request->to]);
-        });
+        })->get();
       }
-      $data['kontraks'] = $kontraks->get();
+      else{
+        $data['kontraks'] = Kontrak::all();
+      }
+      
       return view('officer/kontrak', $data);
     }
 

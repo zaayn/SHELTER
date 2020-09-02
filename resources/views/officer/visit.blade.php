@@ -27,10 +27,10 @@
                             <div class="form-group">
                                 <label class="control-label col-md-2">Tanggal</label>
                                 <div class="col-md-3">
-                                    <input type="date" class="form-control" name="from" required>
+                                    <input type="date" class="form-control" name="from">
                                 </div>
                                 <div class="col-md-3">
-                                    <input type="date" class="form-control" name="to" required>
+                                    <input type="date" class="form-control" name="to">
                                 </div>
                             </div>
                             <div class="form-group">
