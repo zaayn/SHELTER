@@ -23,12 +23,12 @@ class CallOfficerExport implements FromCollection, WithHeadings, ShouldAutoSize,
                 ->join('users','users.nama_depan','=','customer.nama_depan')
                 ->select('call.call_id','customer.nama_perusahaan',
                 'call.tanggal_call','call.jam_call','call.pembicaraan','call.pic_called','call.hal_menonjol')
-                ->where('users.nama_depan','=','Auth::user()->nama_depan')
+                ->where('users.nama_depan','=','Azkia')
                 ->get();
-
+        return $call;
         // $officer = Auth::user()->nama_depan;
         // $callof = DB::select('call officer_export(?)',[$officer]);
-        return $call;
+        // return $callof[0]->nama_depan;
     }
     public function headings(): array
     {
