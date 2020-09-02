@@ -24,7 +24,8 @@ class KontrakOfficerExport implements FromCollection, WithHeadings, ShouldAutoSi
     public function headings(): array{
         return [
             'No',
-            'Nama Customer',
+            'Nomor Kontrak',
+            'Kode Customer',
             'Periode Kontrak',
             'Akhir Periode',
             'Surat Pemberitahuan',
