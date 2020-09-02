@@ -32,13 +32,16 @@ class VisitadminController extends Controller
       $data['areas'] = Area::all();
       $data['bisnis_units'] = Bisnis_unit::all();
       
-      if($request->bu_id || $request->area_id){
+      if($request->bu_id || $request->area_id || $request->from || $request->to){
         $visits = Visit::whereHas('customer', function($query) use($request){
           if($request->bu_id)
             $query->where('bu_id',$request->bu_id);
 
           if($request->area_id)
             $query->where('area_id',$request->area_id);
+
+          if($request->from || $request->to)
+            $query->whereBetween('tanggal_visit',[$request->from, $request->to]);
         });
       }
       $data['visits'] = $visits->get();
