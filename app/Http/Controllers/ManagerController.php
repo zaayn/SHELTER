@@ -32,186 +32,104 @@ class ManagerController extends Controller
     {  
         $data['areas'] = Area::all();
         $data['bisnis_units'] = Bisnis_unit::all();
-        $data['calls'] = DB::select('call call_officer_manager()');
-        // $data['calls'] = DB::table('call');
-        // ->join('customer', 'call.kode_customer', '=', 'customer.kode_customer')
-        // ->join('users','users.nama_depan','=','customer','=','nama_depan')
-        // ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
-        // ->get();
+        $data['calls'] = Call::all();
+        
         $data['no'] = 1;
         return view('manager_crm/manager_call', $data);
     }
     public function filter_call(Request $request)
     {
-        if($request->bu_id && $request->area_id)
-        {
-        $data['no'] = 1;
-        $data['areas'] = Area::all();
-        $data['bisnis_units'] = Bisnis_unit::all();
-        $data['calls'] = Call::all();
-        $data['calls'] = DB::table('call')
-        ->join('customer', 'call.kode_customer', '=', 'customer.kode_customer')
-        ->join('area','area.area_id','=','customer.area_id')
-        ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
-        ->where('bisnis_unit.bu_id', '=', $request->bu_id)
-        ->where('area.area_id', '=', $request->area_id)
-        ->get();
+      $data['no'] = 1;
+      $data['areas'] = Area::all();
+      $data['bisnis_units'] = Bisnis_unit::all();
 
-        return view('manager_crm/manager_call', $data);
-      }
-      elseif ($request->bu_id) {
-        $data['no'] = 1;
-        $data['areas'] = Area::all();
-        $data['bisnis_units'] = Bisnis_unit::all();
-        $data['calls'] = Call::all();
-        $data['calls'] = DB::table('call')
-        ->join('customer', 'call.kode_customer', '=', 'customer.kode_customer')
-        ->join('area','area.area_id','=','customer.area_id')
-        ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
-        ->where('bisnis_unit.bu_id', '=', $request->bu_id)
-        ->get();
-        return view('manager_crm/manager_call', $data);
+      if($request->bu_id || $request->area_id || $request->from || $request->to){
+        $data['calls'] = Call::whereHas('customer', function($query) use($request){
+          if($request->bu_id)
+            $query->where('bu_id',$request->bu_id);
 
-      } 
-      elseif ($request->area_id) {
-        $data['no'] = 1;
-        $data['areas'] = Area::all();
-        $data['bisnis_units'] = Bisnis_unit::all();
-        $data['calls'] = Call::all();
-        $data['calls'] = DB::table('call')
-        ->join('customer', 'call.kode_customer', '=', 'customer.kode_customer')
-        ->join('area','area.area_id','=','customer.area_id')
-        ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
-        ->where('area.area_id', '=', $request->area_id)
-        ->get();
-        return view('manager_crm/manager_call', $data);
+          if($request->area_id)
+            $query->where('area_id',$request->area_id);
+          
+          if($request->from || $request->to)
+            $query->whereBetween('tanggal_call',[$request->from, $request->to]);
+
+        })->get();
       }
+      else{
+        $data['calls'] = Call::all();
+      }
+         return view('manager_crm/manager_call', $data);
     }
+
     public function keluhan()
     {  
         $data['areas'] = Area::all();
         $data['bisnis_units'] = Bisnis_unit::all();
-        $data['keluhans'] = DB::select('call keluhan_officer_manager()');
-        // $data['keluhans'] = DB::table('keluhan')
-        // ->join('customer', 'keluhan.kode_customer', '=', 'customer.kode_customer')
-        // ->join('users','users.nama_depan','=','customer','=','nama_depan')
-        // ->get();
+        $data['keluhans'] = Keluhan::all();
         $data['no'] = 1;
         return view('manager_crm/manager_keluhan', $data);
     }
     public function filter_keluhan(Request $request)
     {
-      if($request->bu_id && $request->area_id)
-      {
-        $data['no'] = 1;
-        $data['areas'] = Area::all();
-        $data['bisnis_units'] = Bisnis_unit::all();
-        $data['keluhans'] = DB::table('keluhan')
-        ->join('customer', 'keluhan.kode_customer', '=', 'customer.kode_customer')
-        ->join('area','area.area_id','=','customer.area_id')
-        ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
-        ->where('bisnis_unit.bu_id', '=', $request->bu_id)
-        ->where('area.area_id', '=', $request->area_id)
-        ->get();
+      $data['no'] = 1;
+      $data['areas'] = Area::all();
+      $data['bisnis_units'] = Bisnis_unit::all();
+      
+      if($request->bu_id || $request->area_id || $request->from || $request->to){
+        $data['keluhans'] = Keluhan::whereHas('customer', function($query) use($request){
+          if($request->bu_id)
+            $query->where('bu_id',$request->bu_id);
 
-        return view('manager_crm/manager_keluhan', $data);
-        
+          if($request->area_id)
+            $query->where('area_id',$request->area_id);
+          
+          if($request->from || $request->to)
+            $query->whereBetween('tanggal_keluhan',[$request->from, $request->to]);
+        })->get();
       }
-      elseif($request->bu_id)
-      {
-        $data['no'] = 1;
-        $data['areas'] = Area::all();
-        $data['bisnis_units'] = Bisnis_unit::all();
-        $data['keluhans'] = DB::table('keluhan')
-        ->join('customer', 'keluhan.kode_customer', '=', 'customer.kode_customer')
-        ->join('area','area.area_id','=','customer.area_id')
-        ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
-        ->where('bisnis_unit.bu_id', '=', $request->bu_id)
-        ->get();
 
-        return view('manager_crm/manager_keluhan', $data);
-        
-      }
-      elseif($request->area_id)
-      {
-        $data['no'] = 1;
-        $data['areas'] = Area::all();
-        $data['bisnis_units'] = Bisnis_unit::all();
-        $data['keluhans'] = DB::table('keluhan')
-        ->join('customer', 'keluhan.kode_customer', '=', 'customer.kode_customer')
-        ->join('area','area.area_id','=','customer.area_id')
-        ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
-        ->where('area.area_id', '=', $request->area_id)
-        ->get();
+      elseif($request->status)
+        if(@$keluhans)
+          $data['keluhans'] = $keluhans->where('status', $request->status)->get();
+        else
+          $data['keluhans'] = Keluhan::where('status', $request->status)->get();
 
-        return view('manager_crm/manager_keluhan', $data);
-        
+      else{
+        $data['keluhans'] = Keluhan::all();
       }
+
+      return view('manager_crm/manager_keluhan', $data);  
     }
     public function visit()
     {  
         $data['no'] = 1;
         $data['areas'] = Area::all();
         $data['bisnis_units'] = Bisnis_unit::all();
-        $data['visits'] = DB::select('call visit_officer_manager()');
-        // $data['visits'] = DB::table('visit')
-        // ->join('customer', 'visit.kode_customer', '=', 'customer.kode_customer')
-        // ->get();
+        $data['visits'] = Visit::all();
         $data['no'] = 1;
         return view('manager_crm/manager_visit', $data);
     }
     public function filter_visit(Request $request)
     {
-      if($request->bu_id && $request->area_id)
-      {
-        $data['no'] = 1;
-        $data['areas'] = Area::all();
-        $data['bisnis_units'] = Bisnis_unit::all();
-        $data['visits'] = DB::table('visit')
-        ->join('customer', 'visit.kode_customer', '=', 'customer.kode_customer')
-        ->join('area','area.area_id','=','customer.area_id')
-        ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
-        ->where('bisnis_unit.bu_id', '=', $request->bu_id)
-        ->where('area.area_id', '=', $request->area_id)
-        ->get();
-
-        return view('manager_crm/manager_visit', $data);
+      $data['no'] = 1;
+      $data['areas'] = Area::all();
+      $data['bisnis_units'] = Bisnis_unit::all();
+      
+      if($request->from || $request->to){
+        $data['visits'] = Visit::whereHas('customer', function($query) use($request){
+          if($request->from || $request->to)
+            $query->whereBetween('tanggal_visit',[$request->from, $request->to]);
+        })->get();
       }
-      elseif($request->bu_id)
-      {
-        $data['no'] = 1;
-        $data['areas'] = Area::all();
-        $data['bisnis_units'] = Bisnis_unit::all();
-        $data['visits'] = DB::table('visit')
-        ->join('customer', 'visit.kode_customer', '=', 'customer.kode_customer')
-        ->join('area','area.area_id','=','customer.area_id')
-        ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
-        ->where('bisnis_unit.bu_id', '=', $request->bu_id)
-        ->get();
-
-        return view('manager_crm/manager_visit', $data);
+      else{
+        $data['visits'] = Visit::all();
       }
-      elseif($request->area_id)
-      {
-        $data['no'] = 1;
-        $data['areas'] = Area::all();
-        $data['bisnis_units'] = Bisnis_unit::all();
-        $data['visits'] = DB::table('visit')
-        ->join('customer', 'visit.kode_customer', '=', 'customer.kode_customer')
-        ->join('area','area.area_id','=','customer.area_id')
-        ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
-        ->where('area.area_id', '=', $request->area_id)
-        ->get();
-
-        return view('manager_crm/manager_visit', $data);
-      }
+      return view('manager_crm/manager_visit', $data);
     }
     public function kontrak()
     {  
-        // $data['kontrak'] = DB::table('kontrak')
-        // ->join('customer', 'customer.kode_customer', '=', 'kontrak.kode_customer')
-        // ->get();
-        $data['kontrak'] = DB::select('call kontrak_officer_manager()');
+        $data['kontraks'] = Kontrak::all();
         $data['areas'] = Area::all();
         $data['bisnis_units'] = Bisnis_unit::all();
         $data['no'] = 1;
@@ -219,53 +137,28 @@ class ManagerController extends Controller
     }
     public function filter_kontrak(Request $request)
     {
-        if($request->bu_id && $request->area_id)
-        {
-            $data['no'] = 1;
-            $data['areas'] = Area::all();
-            $data['bisnis_units'] = Bisnis_unit::all();
-            $data['customers'] = Customer::all();
-            
-            $data['kontrak'] = DB::table('kontrak')
-            ->join('customer', 'customer.kode_customer', '=', 'kontrak.kode_customer')
-            ->join('area','area.area_id','=','customer.area_id')
-            ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
-            ->where('bisnis_unit.bu_id', '=', $request->bu_id)
-            ->where('area.area_id', '=', $request->area_id)
-            ->orderBy('kontrak.id_kontrak','asc')
-            ->get();
-            return view('manager_crm/manager_kontrak', $data);
-        }
-        if($request->bu_id)
-        {
-            $data['no'] = 1;
-            $data['areas'] = Area::all();
-            $data['bisnis_units'] = Bisnis_unit::all();
-            $data['customers'] = Customer::all();
-            // $data['kontraks'] = Kontrak::all();
-            $data['kontrak'] = DB::table('kontrak')
-            ->join('customer', 'customer.kode_customer', '=', 'kontrak.kode_customer')
-            ->join('area','area.area_id','=','customer.area_id')
-            ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
-            ->where('bisnis_unit.bu_id', '=', $request->bu_id)
-            ->get();
-            return view('manager_crm/manager_kontrak', $data);
-        }
-        if($request->area_id)
-        {
-            $data['no'] = 1;
-            $data['areas'] = Area::all();
-            $data['bisnis_units'] = Bisnis_unit::all();
-            $data['customers'] = Customer::all();
-            // $data['kontraks'] = Kontrak::all();
-            $data['kontrak'] = DB::table('kontrak')
-            ->join('customer', 'customer.kode_customer', '=', 'kontrak.kode_customer')
-            ->join('area','area.area_id','=','customer.area_id')
-            ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
-            ->where('area.area_id', '=', $request->area_id)
-            ->get();
-            return view('manager_crm/manager_kontrak', $data);
-        }
+      $data['no'] = 1;
+      $data['areas'] = Area::all();
+      $data['bisnis_units'] = Bisnis_unit::all();
+      $data['customers'] = Customer::all();
+      
+      if($request->bu_id || $request->area_id || $request->from || $request->to){
+        $data['kontraks'] = Kontrak::whereHas('customer', function($query) use($request){
+            if($request->bu_id)
+                $query->where('bu_id',$request->bu_id);
+
+            if($request->area_id)
+                $query->where('area_id',$request->area_id);
+
+            if($request->from || $request->to)
+                $query->whereBetween('akhir_periode',[$request->from, $request->to]);
+        })->get();
+      }
+      else{
+          $data['kontraks'] = Kontrak::all();
+      }
+      return view('manager_crm/manager_kontrak', $data);
+
     }
     public function mou()
     {  
@@ -325,52 +218,21 @@ class ManagerController extends Controller
     {  
         $data['areas'] = Area::all();
         $data['bisnis_units'] = Bisnis_unit::all();
-        $data['customers'] = DB::table('customer')
-        ->join('area', 'customer.area_id', '=', 'area.area_id')
-        ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
-        ->get();
+        $data['customers'] = Customer::all();
         $data['no'] = 1;
         return view('manager_crm/manager_customer', $data);
     }
     public function filter_customer(Request $request)
     {
-      if($request->bu_id && $request->area_id)
-      {
-        $data['bisnis_units'] = bisnis_unit :: all();
-        $data['areas'] = Area::all();
-        $data['customers'] = DB::table('customer')
-        ->join('area', 'customer.area_id', '=', 'area.area_id')
-        ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
-        ->where('bisnis_unit.bu_id', '=', $request->bu_id)
-        ->where('area.area_id', '=', $request->area_id)->get();  
-        $data['no'] = 1;
-
-        return view('manager_crm/manager_customer', $data);
-      }
+      $data['areas'] = Area::all();
+      $data['bisnis_units'] = Bisnis_unit::all();
+      $customers = Customer::all();
+      if($request->status)
+          $customers = $customers->where('status', $request->status);
       if($request->area_id)
-      {
-        $data['bisnis_units'] = bisnis_unit :: all();
-        $data['areas'] = Area::all();
-        $data['customers'] = DB::table('customer')
-        ->join('area', 'customer.area_id', '=', 'area.area_id')
-        ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
-        ->where('area.area_id', '=', $request->area_id)->get();  
-        $data['no'] = 1;
-
-        return view('manager_crm/manager_customer', $data);
-      }
-      if($request->bu_id)
-      {
-        $data['bisnis_units'] = bisnis_unit :: all();
-        $data['areas'] = Area::all();
-        $data['customers'] = DB::table('customer')
-        ->join('area', 'customer.area_id', '=', 'area.area_id')
-        ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
-        ->where('bisnis_unit.bu_id', '=', $request->bu_id)
-        ->get();
-        $data['no'] = 1;
-
-        return view('manager_crm/manager_customer', $data);
-      }
+          $customers = $customers->where('area_id', $request->area_id);
+      $data['customers'] = $customers;
+      $data['no'] = 1;
+      return view('manager_crm/manager_customer', $data);
     }
 }

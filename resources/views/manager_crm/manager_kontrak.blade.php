@@ -47,6 +47,15 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
+                                    <label class="control-label col-md-2">Tanggal</label>
+                                    <div class="col-md-3">
+                                        <input type="date" class="form-control" name="from">
+                                    </div>
+                                    <div class="col-md-3">
+                                        <input type="date" class="form-control" name="to">
+                                    </div>
+                                </div>
+                                <div class="form-group">
                                     <div class="col-md-1 col-md-offset-2">
                                         <a href="{{asset('/manager_crm/kontrak')}}">
                                             <button type="button" class="btn btn-primary btn-sm"><i class="fa fa-refresh"></i> Reset</button>
@@ -82,12 +91,12 @@
                                     <th>Closing</th>
                                 </thead>
                                 <tbody>
-                                @foreach($kontrak as $ko)
+                                @foreach($kontraks as $ko)
                                 <tr>
                                     <td>{{ $no++ }}</td>
-                                    <td>{{ $ko->nama_depan }}</td>
-                                    <td>{{ $ko->kode_customer }}</td>
-                                    <td>{{ $ko->nama_perusahaan }}</td>
+                                    <td>{{ $ko->customer->nama_depan }}</td>
+                                    <td>{{ $ko->customer->kode_customer }}</td>
+                                    <td>{{ $ko->customer->nama_perusahaan }}</td>
                                     <td>{{ $ko->periode_kontrak }}</td>
                                     <td>{{ $ko->akhir_periode }}</td>
                                     <td>{{ $ko->srt_pemberitahuan }}</td>
