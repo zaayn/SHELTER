@@ -32,7 +32,7 @@ class KeluhanadminController extends Controller
       $data['bisnis_units'] = Bisnis_unit::all();
       
       if($request->bu_id || $request->area_id || $request->from || $request->to){
-        $keluhans = Keluhan::whereHas('customer', function($query) use($request){
+        $data['keluhans'] = Keluhan::whereHas('customer', function($query) use($request){
           if($request->bu_id)
             $query->where('bu_id',$request->bu_id);
 
@@ -41,16 +41,18 @@ class KeluhanadminController extends Controller
           
           if($request->from || $request->to)
             $query->whereBetween('tanggal_keluhan',[$request->from, $request->to]);
-        });
+        })->get();
       }
 
-      if($request->status)
+      elseif($request->status)
         if(@$keluhans)
-          $keluhans = $keluhans->where('status', $request->status);
+          $data['keluhans'] = $keluhans->where('status', $request->status)->get();
         else
-          $keluhans = Keluhan::where('status', $request->status);
+          $data['keluhans'] = Keluhan::where('status', $request->status)->get();
 
-      $data['keluhans'] = $keluhans->get();
+      else{
+        $data['keluhans'] = Keluhan::all();
+      }
        
       return view('admin/keluhan/keluhan', $data);
     }

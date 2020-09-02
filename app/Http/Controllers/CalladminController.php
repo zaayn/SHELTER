@@ -35,7 +35,7 @@ class CalladminController extends Controller
       $data['bisnis_units'] = Bisnis_unit::all();
 
       if($request->bu_id || $request->area_id || $request->from || $request->to){
-        $calls = Call::whereHas('customer', function($query) use($request){
+        $data['calls'] = Call::whereHas('customer', function($query) use($request){
           if($request->bu_id)
             $query->where('bu_id',$request->bu_id);
 
@@ -45,9 +45,12 @@ class CalladminController extends Controller
           if($request->from || $request->to)
             $query->whereBetween('tanggal_call',[$request->from, $request->to]);
 
-        });
+        })->get();
       }
-      $data['calls'] = $calls->get();
+      else{
+        $data['calls'] = Call::all();
+      }
+      
       return view('admin/call/call', $data);
     }
 
