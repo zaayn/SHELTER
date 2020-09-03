@@ -70,6 +70,7 @@
                             <table class="mydatatables table table-collapse table-hover table-light table-striped cell-border table-responsive">                                <thead>
                                     <th>No. </th>
                                     <th>Nomor Kontrak</th>
+                                    <th>Nama Perusahaan</th>
                                     <th>HC</th>
                                     <th>Invoice</th>
                                     <th>MF</th>
@@ -97,6 +98,7 @@
                                 <tr>
                                     <td>{{ $no++ }}</td>
                                     <td>{{ $datamou->nomor_kontrak }}</td>
+                                    <td>{{ $datamou->nama_perusahaan }}</td>
                                     <td>{{ $datamou->hc }}</td>
                                     <td>{{ 'Rp'.number_format($datamou->invoice, 2, ',','.') }}</td>
                                     <td>{{ 'Rp'.number_format($datamou->mf, 2, ',','.') }}</td>

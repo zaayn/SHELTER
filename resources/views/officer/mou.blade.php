@@ -59,6 +59,7 @@
                             </form> --}}
                             {{-- ---- end filter ------ --}}
                     <div style="float:right; margin-bottom:10px;">
+                        <a href="/officer_crm/mou/exportExcel" class="btn btn-default btn-sm" target="_blank">Download Excel</a>
                         <a href="/officer_crm/mou/exportPDF" class="btn btn-default btn-sm" target="_blank">Download PDF</a>
                     </div>
                             <hr style="border: solid #ddd; border-width: 1px 0 0; clear: both; margin: 22px 0 21px; height: 0;">
@@ -68,6 +69,7 @@
                                 <table class="mydatatables table table-collapse table-hover table-light table-striped cell-border table-responsive">                                <thead>
                                     <th>No.</th>
                                     <th>Nomor Kontrak</th>
+                                    <th>Nama Perusahaan</th>
                                     <th>HC</th>
                                     <th>Invoice</th>
                                     <th>MF</th>
@@ -95,6 +97,7 @@
                                 <tr>
                                     <td>{{ $no++ }}</td>
                                     <td>{{ $datamou->nomor_kontrak }}</td>
+                                    <td>{{ $datamou->nama_perusahaan }}</td>
                                     <td>{{ $datamou->hc }}</td>
                                     <td>Rp {{ $datamou->invoice }}</td>
                                     <td>Rp {{ $datamou->mf }}</td>

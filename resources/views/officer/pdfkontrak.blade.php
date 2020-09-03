@@ -19,6 +19,7 @@
 		<thead>
 			<tr>
             <th>No</th>
+            <th>Penginput</th>
             <th>Nomor Kontrak</th>
                                     <th>Kode Customer</th>
                                     <th>Nama Perusahaan</th>
@@ -39,6 +40,7 @@
 			@foreach($kontrak as $kontrak)
 			<tr>
 			<td>{{ $i++ }}</td>
+            <td>{{ $kontrak->customer->nama_depan }}</td>
                 <td>{{ $kontrak->nomor_kontrak }}</td>
                 <td>{{ $kontrak->kode_customer }}</td>
                 <td>{{ $kontrak->customer->nama_perusahaan }}</td>

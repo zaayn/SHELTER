@@ -22,7 +22,7 @@ class KeluhanOfficerExport implements FromCollection, WithHeadings, ShouldAutoSi
         $keluhan = DB::table('keluhan')
             ->join('customer','keluhan.kode_customer','=','customer.kode_customer')
             ->join('users','users.nama_depan','=','customer.nama_depan')
-            ->select('keluhan.id_keluhan','customer.nama_perusahaan','keluhan.departemen',
+            ->select('keluhan.id_keluhan','customer.nama_depan','customer.nama_perusahaan','keluhan.departemen',
             'keluhan.tanggal_keluhan','keluhan.topik_masalah','keluhan.saran_penyelesaian',
             'keluhan.time_target','keluhan.confirm_pic','keluhan.case','keluhan.actual_case',
             'keluhan.uraian_penyelesaian','keluhan.status')
@@ -34,6 +34,7 @@ class KeluhanOfficerExport implements FromCollection, WithHeadings, ShouldAutoSi
     {
         return [
             'No',
+            'Penginput',
             'Nama Perusahaan',
             'Departemen Tertuju',
             'Tanggal Keluhan',

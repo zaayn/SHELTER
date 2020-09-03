@@ -23,7 +23,7 @@ class VisitOfficerExport implements FromCollection, WithHeadings, ShouldAutoSize
         $visit = DB::table('visit')
         ->join('customer','visit.kode_customer','=','customer.kode_customer')
         ->join('users','users.nama_depan','=','customer.nama_depan')
-        ->select('visit.visit_id','customer.nama_perusahaan',
+        ->select('visit.visit_id','customer.nama_depan','customer.nama_perusahaan',
         'visit.tanggal_visit','visit.waktu_in','visit.waktu_out','visit.pic_meeted','visit.kegiatan')
         ->where('users.nama_depan','=', $user)
         ->get();
@@ -33,6 +33,7 @@ class VisitOfficerExport implements FromCollection, WithHeadings, ShouldAutoSize
     {
         return [
             'No',
+            'Penginput',
             'Nama Perusahaan',
             'Tanggal Visit',
             'Waktu In',

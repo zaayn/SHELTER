@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\DB;
+use App\Exports\MouOfficerExport;
+use Maatwebsite\Excel\Facades\Excel;
 use App\Datamou;
 use PDF;
 use Auth;
@@ -116,5 +118,8 @@ class OfficerController extends Controller
         $pdf = PDF::loadview('officer/pdfmou',['datamou'=>$mou]);
         $pdf->setPaper('A4','landscape');
     	return $pdf->download('Laporan-MoU-Officer-CRM.pdf');
+    }
+    public function exportExcel(){
+        return Excel::download(new MouOfficerExport, 'Laporan-Mou-Officer-CRM.xlsx');
     }
 }

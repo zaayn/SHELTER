@@ -21,7 +21,7 @@ class KontrakOfficerExport implements FromCollection, WithHeadings, ShouldAutoSi
         $kontrak = DB::table('kontrak')
                 ->join('customer','kontrak.kode_customer','=','customer.kode_customer')
                 ->join('users','users.nama_depan','=','customer.nama_depan')
-                ->select('kontrak.id_kontrak','kontrak.nomor_kontrak','customer.nama_perusahaan','kontrak.periode_kontrak',
+                ->select('kontrak.id_kontrak','customer.nama_depan','kontrak.nomor_kontrak','customer.nama_perusahaan','kontrak.periode_kontrak',
                 'kontrak.akhir_periode','kontrak.srt_pemberitahuan','kontrak.tgl_srt_pemberitahuan',
                 'kontrak.srt_penawaran','kontrak.tgl_srt_penawaran','kontrak.dealing','kontrak.tgl_dealing',
                 'kontrak.posisi_pks','kontrak.closing')
@@ -32,6 +32,7 @@ class KontrakOfficerExport implements FromCollection, WithHeadings, ShouldAutoSi
     public function headings(): array{
         return [
             'No',
+            'Penginput',
             'Nomor Kontrak',
             'Kode Customer',
             'Periode Kontrak',

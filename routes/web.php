@@ -55,6 +55,7 @@ Route::group(['prefix' => 'officer_crm',  'middleware' => 'is_officer_crm'], fun
     Route::post('/filter/kontrak', 'KontrakController@filter')->name('kontrak.filter');
 
     Route::get('/mou/exportPDF', 'OfficerController@exportPDF');
+    Route::get('/mou/exportExcel', 'OfficerController@exportExcel');
 
 });
 
@@ -157,6 +158,7 @@ Route::group(['prefix' => 'admin',  'middleware' => 'is_admin'], function(){
         Route::get('/kontrak/exportPDF', 'KontrakadminController@exportPDF');
         Route::get('/kontrak/exportExcel', 'KontrakadminController@exportExcel');
         Route::get('/reminder', 'KontrakadminController@reminder')->name('index.reminder.kontrak');
+        Route::get('/kontrak/habis', 'KontrakadminController@endKontrak')->name('index.endKontrak.kontrak');
         // Route::get('/closed/kontrak{id_kontrak}', 'KontrakadminController@closed')->name('closed.kontrak');
         Route::get('/insert/mou{id_kontrak}','KontrakadminController@insertmou')->name('insertmou.kontrak');
          Route::get('/edit/putus_kontrak{id_kontrak}','KontrakadminController@putus_kontrak')->name('putus.kontrak');

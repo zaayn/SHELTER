@@ -22,7 +22,7 @@ class CallOfficerExport implements FromCollection, WithHeadings, ShouldAutoSize,
         $call = DB::table('call')
                 ->join('customer','call.kode_customer','=','customer.kode_customer')
                 ->join('users','users.nama_depan','=','customer.nama_depan')
-                ->select('call.call_id','customer.nama_perusahaan',
+                ->select('call.call_id','customer.nama_depan','customer.nama_perusahaan',
                 'call.tanggal_call','call.jam_call','call.pembicaraan','call.pic_called','call.hal_menonjol')
                 ->where('users.nama_depan','=', $user)
                 ->get();
@@ -35,6 +35,7 @@ class CallOfficerExport implements FromCollection, WithHeadings, ShouldAutoSize,
     {
         return [
             'No',
+            'Penginput',
             'Nama Perusahaan',
             'Tanggal Call',
             'Jam Call',
