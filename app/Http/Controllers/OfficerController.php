@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\DB;
-use App\Exports\CallOfficerExport;
+use App\Exports\MouOfficerExport;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Datamou;
 use PDF;
