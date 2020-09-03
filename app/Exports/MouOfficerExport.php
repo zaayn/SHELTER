@@ -11,7 +11,7 @@ use Maatwebsite\Excel\Events\AfterSheet;
 use Illuminate\Support\Facades\Auth;
 use DB;
 
-class MouOfficerExport implements FromCollection
+class MouOfficerExport implements FromCollection, WithHeadings, ShouldAutoSize, WithEvents
 {
     /**
     * @return \Illuminate\Support\Collection
@@ -22,7 +22,6 @@ class MouOfficerExport implements FromCollection
         $datamou = DB::table('datamou')
                 ->join('kontrak','kontrak.id_kontrak','=','datamou.id_kontrak')
                 ->join('customer','kontrak.kode_customer','=','customer.kode_customer')
-                ->join('users','users.nama_depan','=','customer.nama_depan')
                 ->select('datamou.no_mou','kontrak.nomor_kontrak','customer.nama_perusahaan','datamou.hc',
                 'datamou.invoice','datamou.mf','datamou.mf_persen','bpjs_tk_persen','bpjs_tenagakerja',
                 'datamou.bpjs_kes_persen','datamou.bpjs_kesehatan','datamou.jiwasraya','datamou.ramamusa',
