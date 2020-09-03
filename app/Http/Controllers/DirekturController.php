@@ -63,7 +63,7 @@ class DirekturController extends Controller
     {  
         $data['areas'] = Area::all();
         $data['bisnis_units'] = Bisnis_unit::all();
-        $data['kontrak'] = Kontrak::all();
+        $data['kontraks'] = Kontrak::all();
         $data['no'] = 1;
         return view('direktur/direktur_kontrak', $data);
     }
@@ -215,7 +215,7 @@ class DirekturController extends Controller
           })->get();
         }
         else{
-          $data['kontrak'] = Kontrak::all();
+          $data['kontraks'] = Kontrak::all();
         }
         
         return view('direktur/direktur_kontrak', $data);

@@ -92,7 +92,7 @@
                                     <th>Status</th>
                                 </thead>
                                 <tbody>
-                                @foreach($kontrak as $ko)
+                                @foreach($kontraks as $ko)
                                 <tr>
                                     <td>{{ $no++ }}</td>
                                     <td>{{ $ko->nomor_kontrak }}</td>
