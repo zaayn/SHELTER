@@ -164,7 +164,10 @@ class ManagerController extends Controller
     {  
       $data['areas'] = Area::all();
       $data['bisnis_units'] = Bisnis_unit::all();
-      $data['datamous'] = Datamou::all();
+      $data['datamous'] = DB::table('datamou')
+      ->join('kontrak', 'datamou.id_kontrak', '=', 'kontrak.id_kontrak')
+      ->join('customer','customer.kode_customer','=','kontrak.kode_customer')
+      ->get();
       $data['no'] = 1;
       return view('manager_crm/manager_mou', $data);
     }
