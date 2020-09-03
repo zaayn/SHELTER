@@ -19,6 +19,7 @@
 		<thead>
 			<tr>
                 <th>No</th>
+				<th>Penginput</th>
                 <th>Nama Customer</th>
                 <th>Tanggal</th>
                 <th>Waktu In</th>
@@ -32,6 +33,7 @@
 			@foreach($visit as $visit)
 			<tr>
 			    <td>{{ $i++ }}</td>
+				<td>{{ $visit->customer->nama_depan }}</td>
                 <td>{{ $visit->customer->nama_perusahaan }}</td>
                 <td>{{ $visit->tanggal_visit }}</td>
                 <td>{{ $visit->waktu_in }}</td>
