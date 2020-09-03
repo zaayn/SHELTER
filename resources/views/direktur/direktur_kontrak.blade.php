@@ -47,6 +47,15 @@
                                 </div>
                             </div>
                             <div class="form-group">
+                                <label class="control-label col-md-2">Tanggal</label>
+                                <div class="col-md-3">
+                                    <input type="date" class="form-control" name="from">
+                                </div>
+                                <div class="col-md-3">
+                                    <input type="date" class="form-control" name="to">
+                                </div>
+                            </div>
+                            <div class="form-group">
                                 <div class="col-md-1 col-md-offset-2">
                                     <a href="{{asset('/direktur/kontrak')}}">
                                         <button type="button" class="btn btn-primary"><i class="fa fa-refresh"></i> Reset</button>
