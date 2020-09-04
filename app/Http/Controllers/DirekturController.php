@@ -13,6 +13,7 @@ use App\datamou;
 use App\Customer;
 use App\Area;
 use App\Bisnis_unit;
+use Carbon;
 
 class DirekturController extends Controller
 {
@@ -212,5 +213,35 @@ class DirekturController extends Controller
         $data['no'] = 1;
 
         return view('direktur/direktur_customer', $data);
+    }
+    public function reminder() //filter kontrak h-60 hari 
+    {
+        $data['customers'] = Customer::all();
+        $data['kontraks'] = DB::table('kontrak')
+        ->join('customer', 'customer.kode_customer', '=', 'kontrak.kode_customer')
+        ->whereRaw('akhir_periode - INTERVAL 60 DAY <= NOW()')
+        ->whereRaw('NOW() < akhir_periode')
+        ->get();
+
+        $now = Carbon\Carbon::now();
+        $data['sisa'] = array();
+        foreach ($data['kontraks'] as $key => $value) 
+        {
+            $sisa = $now->diffInDays($value->akhir_periode);
+            array_push($data['sisa'],$sisa);
+        }
+
+        return view('direktur/kontrak/reminder', $data);
+    }
+    public function endKontrak() //filter kontrak habis 
+    {
+        $data['customers'] = Customer::all();
+        $data['kontraks'] = DB::table('kontrak')
+        ->join('customer', 'customer.kode_customer', '=', 'kontrak.kode_customer')
+        // ->whereRaw('akhir_periode - INTERVAL 60 DAY <= NOW()')
+        ->whereRaw('NOW() > akhir_periode')
+        ->get();
+
+        return view('direktur/kontrak/endkontrak', $data);
     }
 }
