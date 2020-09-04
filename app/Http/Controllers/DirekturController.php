@@ -64,7 +64,7 @@ class DirekturController extends Controller
     {  
         $data['areas'] = Area::all();
         $data['bisnis_units'] = Bisnis_unit::all();
-        $data['kontrak'] = Kontrak::all();
+        $data['kontraks'] = Kontrak::all();
         $data['no'] = 1;
         return view('direktur/direktur_kontrak', $data);
     }
@@ -131,17 +131,22 @@ class DirekturController extends Controller
         $data['areas'] = Area::all();
         $data['bisnis_units'] = Bisnis_unit::all();
         
-        if($request->bu_id || $request->area_id){
-          $calls = Call::whereHas('customer', function($query) use($request){
+        if($request->bu_id || $request->area_id || $request->from || $request->to){
+          $data['calls'] = Call::whereHas('customer', function($query) use($request){
             if($request->bu_id)
               $query->where('bu_id',$request->bu_id);
 
             if($request->area_id)
               $query->where('area_id',$request->area_id);
-          });
-        }
-        $data['calls'] = $calls->get();
 
+            if($request->from || $request->to)
+            $query->whereBetween('tanggal_call',[$request->from, $request->to]);
+          })->get();
+        }
+        else{
+          $data['calls'] = Call::all();
+        }
+        
         return view('direktur/direktur_call', $data);
     }
     public function filter_keluhan(Request $request)
@@ -150,14 +155,20 @@ class DirekturController extends Controller
         $data['areas'] = Area::all();
         $data['bisnis_units'] = Bisnis_unit::all();
         
-        if($request->bu_id || $request->area_id){
-          $keluhans = Keluhan::whereHas('customer', function($query) use($request){
+        if($request->bu_id || $request->area_id || $request->from || $request->to){
+          $data['keluhans'] = Keluhan::whereHas('customer', function($query) use($request){
             if($request->bu_id)
               $query->where('bu_id',$request->bu_id);
 
             if($request->area_id)
               $query->where('area_id',$request->area_id);
-          });
+            
+              if($request->from || $request->to)
+            $query->whereBetween('tanggal_keluhan',[$request->from, $request->to]);
+          })->get();
+        }
+        else{
+          $data['keluhans'] = Keluhan::all();
         }
         return view('direktur/direktur_keluhan', $data);
     }
@@ -167,17 +178,22 @@ class DirekturController extends Controller
         $data['areas'] = Area::all();
         $data['bisnis_units'] = Bisnis_unit::all();
         
-        if($request->bu_id || $request->area_id){
-          $visits = Visit::whereHas('customer', function($query) use($request){
+        if($request->bu_id || $request->area_id || $request->from || $request->to){
+          $data['visits'] = Visit::whereHas('customer', function($query) use($request){
             if($request->bu_id)
               $query->where('bu_id',$request->bu_id);
 
             if($request->area_id)
               $query->where('area_id',$request->area_id);
-          });
+            
+            if($request->from || $request->to)
+              $query->whereBetween('tanggal_visit',[$request->from, $request->to]);
+          })->get();
         }
-        $data['visits'] = $visits->get();
-
+        else{
+          $data['visits'] = Visit::all();
+        }
+        
         return view('direktur/direktur_visit', $data);
     }
     public function filter_kontrak(Request $request)
@@ -187,16 +203,22 @@ class DirekturController extends Controller
         $data['bisnis_units'] = Bisnis_unit::all();
         $data['customers'] = Customer::all();
         
-        if($request->bu_id || $request->area_id){
-          $kontraks = Kontrak::whereHas('customer', function($query) use($request){
+        if($request->bu_id || $request->area_id || $request->from || $request->to){
+          $data['kontraks'] = Kontrak::whereHas('customer', function($query) use($request){
             if($request->bu_id)
               $query->where('bu_id',$request->bu_id);
 
             if($request->area_id)
               $query->where('area_id',$request->area_id);
-          });
+
+            if($request->from || $request->to)
+              $query->whereBetween('akhir_periode',[$request->from, $request->to]);
+          })->get();
         }
-        $data['kontrak'] = $kontraks->get();
+        else{
+          $data['kontraks'] = Kontrak::all();
+        }
+        
         return view('direktur/direktur_kontrak', $data);
         
     }
