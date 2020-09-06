@@ -27,16 +27,23 @@ class AdminController extends Controller
         $data['customers'] = Customer::all();
         $data['kontraks'] = DB::table('kontrak')
         ->join('customer', 'customer.kode_customer', '=', 'kontrak.kode_customer')
-        ->whereRaw('akhir_periode < NOW() + INTERVAL 60 DAY') 
-        ->get();    
-            foreach($data['kontraks'] as $key => $kontraa){
-                $awok = DB::table('kontrak')
-                ->join('datamou', 'datamou.id_kontrak', '=', 'kontrak.id_kontrak')
-                ->where('kontrak.id_kontrak', '=', $kontraa->id_kontrak)
-                ->get();
+        ->whereRaw('akhir_periode - INTERVAL 60 DAY <= NOW()')
+        ->whereRaw('NOW() < akhir_periode')
+        ->count();
+
+        // $data['kontraks'] = DB::table('kontrak')
+        // ->join('customer', 'customer.kode_customer', '=', 'kontrak.kode_customer')
+        // ->whereRaw('akhir_periode < NOW() + INTERVAL 60 DAY') 
+        // ->get();    
+        //     foreach($data['kontraks'] as $key => $kontraa){
+        //         $awok = DB::table('kontrak')
+        //         ->join('datamou', 'datamou.id_kontrak', '=', 'kontrak.id_kontrak')
+        //         ->where('kontrak.id_kontrak', '=', $kontraa->id_kontrak)
+        //         ->get();
                 
-                $data['kontraks'][$key]->datamou_flag = count($awok);
-            }
+        //         $data['kontraks'][$key]->datamou_flag = count($awok);
+        //     }
+
         $lastUser = User::whereNotNull('current_login_at')
                     ->orderBy('current_login_at','desc')
                     ->get();

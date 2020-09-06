@@ -36,7 +36,7 @@
             <span class="info-box-icon bg-green"><i class="fa fa-bookmark"></i></span>
             <div class="info-box-content">
                 <span class="info-box-text">Kontrak H-60</span>
-                <span class="info-box-number">{{$kontrak}}</span>
+                <span class="info-box-number">{{$kontraks}}</span>
             </div>
             </div>
         </div>

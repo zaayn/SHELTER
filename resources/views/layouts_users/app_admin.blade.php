@@ -73,7 +73,7 @@
           <li class="dropdown notifications-menu">
             <a href="" class="dropdown-toggle" data-toggle="dropdown">
               <i class="fa fa-bell-o"></i>
-              <span class="label label-warning">1</span>
+              <span class="label label-warning">{{$kontraks}}</span>
             </a>
             <ul class="dropdown-menu">
               <li class="header">You have 1 notifications</li>
