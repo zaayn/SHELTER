@@ -14,6 +14,7 @@ use App\Kontrak;
 use App\Customer;
 use App\Bisnis_unit;
 use App\Area;
+use Carbon;
 use PDF;
 
 class KontrakController extends Controller
@@ -157,5 +158,35 @@ class KontrakController extends Controller
     public function exportExcel()
 	{
 		return Excel::download(new KontrakOfficerExport, 'Laporan-Kontrak-CRM-Officer.xlsx');
+    }
+    public function reminder() //filter kontrak h-60 hari 
+    {
+        $data['customers'] = Customer::all();
+        $data['kontraks'] = DB::table('kontrak')
+        ->join('customer', 'customer.kode_customer', '=', 'kontrak.kode_customer')
+        ->whereRaw('akhir_periode - INTERVAL 60 DAY <= NOW()')
+        ->whereRaw('NOW() < akhir_periode')
+        ->get();
+
+        $now = Carbon\Carbon::now();
+        $data['sisa'] = array();
+        foreach ($data['kontraks'] as $key => $value) 
+        {
+            $sisa = $now->diffInDays($value->akhir_periode);
+            array_push($data['sisa'],$sisa);
+        }
+
+        return view('officer/kontrak/reminder', $data);
+    }
+    public function endKontrak() //filter kontrak habis 
+    {
+        $data['customers'] = Customer::all();
+        $data['kontraks'] = DB::table('kontrak')
+        ->join('customer', 'customer.kode_customer', '=', 'kontrak.kode_customer')
+        // ->whereRaw('akhir_periode - INTERVAL 60 DAY <= NOW()')
+        ->whereRaw('NOW() > akhir_periode')
+        ->get();
+
+        return view('officer/kontrak/endkontrak', $data);
     }
 }

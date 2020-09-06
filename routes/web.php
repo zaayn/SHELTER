@@ -53,7 +53,9 @@ Route::group(['prefix' => 'officer_crm',  'middleware' => 'is_officer_crm'], fun
     Route::get('/kontrak/exportPDF', 'KontrakController@exportPDF');
     Route::get('/kontrak/exportExcel', 'KontrakController@exportExcel');
     Route::post('/filter/kontrak', 'KontrakController@filter')->name('kontrak.filter');
-
+    Route::get('/reminder', 'KontrakController@reminder')->name('index.reminder.kontrak');
+    Route::get('/kontrak/habis', 'KontrakController@endKontrak')->name('index.endKontrak.kontrak');
+    
     Route::get('/mou/exportPDF', 'OfficerController@exportPDF');
     Route::get('/mou/exportExcel', 'OfficerController@exportExcel');
 
@@ -205,7 +207,9 @@ Route::group(['prefix' => 'manager_crm',  'middleware' => 'is_manager_crm'], fun
     Route::get('/mou/exportExcel', 'MouController@exportExcel');
     Route::get('/customer/exportPDF', 'CustomerController@exportPDF');
     Route::get('/customer/exportExcel', 'CustomerController@exportExcel');
-
+    Route::get('/kontrak/reminder', 'ManagerController@reminder')->name('index.reminder.kontrak');
+    Route::get('/kontrak/habis', 'ManagerController@endKontrak')->name('index.endKontrak.kontrak');
+    
 });
 
 Route::group(['prefix' => 'direktur',  'middleware' => 'is_direktur'], function(){
@@ -236,6 +240,9 @@ Route::group(['prefix' => 'direktur',  'middleware' => 'is_direktur'], function(
     Route::get('/mou/exportExcel', 'MouController@exportExcel');
     Route::get('/customer/exportPDF', 'CustomerController@exportPDF');
     Route::get('/customer/exportExcel', 'CustomerController@exportExcel');
+    Route::get('/kontrak/reminder', 'DirekturController@reminder')->name('index.reminder.kontrak');
+    Route::get('/kontrak/habis', 'DirekturController@endKontrak')->name('index.endKontrak.kontrak');
+    
 });
 
 Route::group(['prefix' => 'manager_non_crm',  'middleware' => 'is_manager_non_crm'], function(){
@@ -254,5 +261,7 @@ Route::group(['prefix' => 'manager_non_crm',  'middleware' => 'is_manager_non_cr
     Route::get('/customer/exportExcel', 'CustomerController@exportExcel');
     Route::get('/kontrak/exportPDF', 'KontrakController@exportPDF');
     Route::get('/kontrak/exportExcel', 'KontrakadminController@exportExcel');
-
+    Route::get('/kontrak/reminder', 'ManagerNonCrmController@reminder')->name('index.reminder.kontrak');
+    Route::get('/kontrak/habis', 'ManagerNonCrmController@endKontrak')->name('index.endKontrak.kontrak');
+    
 });

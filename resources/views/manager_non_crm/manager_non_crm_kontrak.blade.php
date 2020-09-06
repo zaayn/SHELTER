@@ -68,6 +68,8 @@
                             </form>
                         {{-- ---- end filter ------ --}} 
                     <div style="float:right; margin-bottom:10px;">
+                        <a href="{{asset('/manager_non_crm/kontrak/reminder')}}" class="btn btn-danger btn-sm">Kontrak H-60</a> 
+                        <a href="{{asset('/manager_non_crm/kontrak/habis')}}" class="btn btn-warning btn-sm">Kontrak Habis</a>      
                         <a href="{{asset('/manager_non_crm/kontrak/exportExcel')}}" class="btn btn-default btn-sm" target="_blank">Download Excel</a>
                         <a href="{{asset('/manager_non_crm/kontrak/exportPDF')}}" class="btn btn-default btn-sm" target="_blank">Download PDF</a>
                     </div>
