@@ -163,8 +163,9 @@ Route::group(['prefix' => 'admin',  'middleware' => 'is_admin'], function(){
         Route::get('/kontrak/habis', 'KontrakadminController@endKontrak')->name('index.endKontrak.kontrak');
         // Route::get('/closed/kontrak{id_kontrak}', 'KontrakadminController@closed')->name('closed.kontrak');
         Route::get('/insert/mou{id_kontrak}','KontrakadminController@insertmou')->name('insertmou.kontrak');
-         Route::get('/edit/putus_kontrak{id_kontrak}','KontrakadminController@putus_kontrak')->name('putus.kontrak');
+        Route::get('/edit/putus_kontrak{id_kontrak}','KontrakadminController@putus_kontrak')->name('putus.kontrak');
         Route::get('/update/closing{id_kontrak}','KontrakadminController@closing')->name('update.closing');
+        Route::get('/update/rekontrak{id_kontrak}','KontrakadminController@rekontrak')->name('update.rekontrak');
 
 
         //------- laporan mou

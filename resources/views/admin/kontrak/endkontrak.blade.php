@@ -33,6 +33,7 @@
                                 <thead>
                                     <th>No.</th>
                                     <th>Nomor Kontrak</th>
+                                    <th>Status Rekontrak</th>
                                     <th>Nama Perusahaan</th>
                                     <th>Periode Kontrak</th>
                                     <th>Akhir Periode</th>
@@ -43,7 +44,6 @@
                                     <th>Dealing</th>
                                     <th>Tgl_Dealing</th>
                                     <th>Posisi Pks</th>
-                                    <th>Closing</th>
                                     <th>Aksi</th>
                                 </thead>
                                 <tbody>
@@ -57,6 +57,11 @@
                                     <td>{{ $a++ }}</td>
                                     
                                     <td>{{ $kontrak->nomor_kontrak}}</td>
+                                    @if($kontrak->closing == "Closed")
+                                    <td>Tidak direkontrak</td>
+                                    @else
+                                    <td>Sudah direkontrak</td>
+                                    @endif
                                     <td>{{ $kontrak->nama_perusahaan }}</td>
                                     <td>{{ $kontrak->periode_kontrak }}</td>
                                     <td>{{ $kontrak->akhir_periode }}</td>
@@ -67,7 +72,6 @@
                                     <td>{{ $kontrak->dealing }}</td>
                                     <td>{{ $kontrak->tgl_dealing }}</td>
                                     <td>{{ $kontrak->posisi_pks }}</td>
-                                    <td>{{ $kontrak->closing }}</td>
                                     <td>
                                         <a href="{{route('edit.kontrak',$kontrak->id_kontrak)}}" class="btn btn-info btn-sm"><span class="fa fa-pencil"></span></a>
                                         <a onclick="return confirm('Apakah anda yakin akan menghapus data ini ?')" href="{{route('destroy.kontrak',$kontrak->id_kontrak)}}" class="btn btn-danger btn-sm"><span class="fa fa-trash"></span></a>

@@ -207,10 +207,12 @@ class KontrakadminController extends Controller
 
         $now = Carbon\Carbon::now();
         $data['sisa'] = array();
+
         foreach ($data['kontraks'] as $key => $value) 
         {
             $sisa = $now->diffInDays($value->akhir_periode);
             array_push($data['sisa'],$sisa);
+
         }
 
         return view('admin/kontrak/reminder', $data);
@@ -240,5 +242,13 @@ class KontrakadminController extends Controller
         $kontrak = Kontrak::findOrFail($id_kontrak);
  
         return view('admin/mou/insertmou')->with('kontrak',$kontrak);
+    }
+
+    public function rekontrak($id_kontrak){
+        $kontrak = Kontrak::findOrFail($id_kontrak);
+        $kontrak->closing = "Closed Rekontrak";
+        if ($kontrak->save())
+            return redirect()->route('insert.kontrak');
+        // return view('admin/mou/insertmou', $data)->with('kontrak',$kontrak);
     }
 }
