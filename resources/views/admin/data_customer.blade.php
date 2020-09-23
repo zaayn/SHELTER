@@ -35,15 +35,9 @@
                                     <th>Bisnis Unit</th>
                                     <th>Area</th>
                                     <th>Alamat Perusahaan</th>
-                                    {{--    
-                                        <th>PIC</th>
-                                        <th>CP</th>
-                                        <th>Email</th> 
-                                    --}}
                                     <th>Jenis Usaha</th>
                                     <th>Periode Kontrak</th>
                                     <th>Akhir Periode Kontrak</th>
-                                    {{-- <th>Customer Type</th> --}}
                                     <th>Nomor Kontrak</th> 
                                     <th>HC</th>
                                     <th>Invoice</th>

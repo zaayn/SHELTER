@@ -218,28 +218,12 @@ class CustomerController extends Controller
       return view('/admin/cust_type', $data);
       
     }
-    public function filter_profile(Request $request)
+    public function profile($kode_customer)
     {  
-      $data['datamous'] = Datamou::all();
-      $data['customers_all'] = Customer::all();
-
-      if($request->kode_customer){
-        $data['customers_all'] = Customer::all();
-        $data['kontraks'] = Kontrak::where('kode_customer',$request->kode_customer)->get();
-        $data['customers'] = Customer::where('kode_customer',$request->kode_customer)->get();
-        $data['datamous'] = Datamou::whereHas('kontrak', function($query) use($request){
-          $query->where('kode_customer',$request->kode_customer);
-        })->get();
-      }
-      else {
-        $data['customers'] = Customer::all();
-        $data['kontraks'] = Kontrak::all();
-        $data['datamous'] = Datamou::all();
-      }
-
       $data['no'] = 1;
-      $data['id'] = 1;
-      $data['urut'] = 1;
+      $data['customers'] = Customer::where('kode_customer',$kode_customer)->get();
+      $data['kontraks'] = Kontrak::where('kode_customer',$kode_customer)->get();
+     
       return view('admin/customer/profile', $data);
     }
     public function listputus(){

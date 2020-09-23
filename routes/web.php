@@ -109,8 +109,10 @@ Route::group(['prefix' => 'admin',  'middleware' => 'is_admin'], function(){
     Route::post('/filter/customer', 'CustomerController@filter')->name('filter.customer');
     Route::get('/reset/customer{id}', 'CustomerController@aktivasi')->name('reset.customer');
     Route::get('/cust_type', 'CustomerController@cust_type')->name('cust.type');
-    Route::get('/profile', 'CustomerController@filter_profile')->name('cust.profile');
+
+    Route::get('/profile/customer{id}', 'CustomerController@profile')->name('profile.customer');
     Route::post('/filter/profile', 'CustomerController@filter_profile')->name('filter.profile');
+    
     Route::post('/update/putus{kode_customer}','CustomerController@update_putus')->name('update.putus');
     Route::get('/customer/non-aktif','CustomerController@listputus')->name('listputus.customer');
 
