@@ -45,6 +45,10 @@
                             <input type="text" class="form-control" name="nomor_kontrak" value="{{ $kontrak->nomor_kontrak }}" disabled required>
                         </div>
                         <div class="form-group col-md-12">
+                	        <label class="font-weight-bold">No. Adendum</label>
+                	        <input type="text" class="form-control" name="no_adendum" required>
+                        </div>
+                        <div class="form-group col-md-12">
                 	        <label class="font-weight-bold">HC</label>
                 	        <input type="text" class="form-control" name="hc" required>
                         </div>

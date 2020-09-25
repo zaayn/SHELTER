@@ -24,6 +24,8 @@ class MouController extends Controller
         $data['datamous'] = DB::table('datamou')
         ->join('kontrak', 'datamou.id_kontrak', '=', 'kontrak.id_kontrak')
         ->join('customer','customer.kode_customer','=','kontrak.kode_customer')
+        // ->whereBetween('kontrak.akhir_periode',array('2020-09-01','2020-09-10'))
+        // ->where('kontrak.akhir_periode','=','2020-09-10')
         ->get();
         // $mou = Datamou::whereHas('customer', function($query){
         //     $query->where('nama_depan',Auth::user()->nama_depan);
@@ -34,7 +36,7 @@ class MouController extends Controller
     }
     public function filter_mou(Request $request)
     {
-        if($request->bu_id && $request->area_id)
+        if($request->bu_id || $request->area_id || $request->from || $request->to)
         {
             $data['no'] = 1;
             $data['areas'] = Area::all();
@@ -46,37 +48,39 @@ class MouController extends Controller
             ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
             ->where('bisnis_unit.bu_id', '=', $request->bu_id)
             ->where('area.area_id', '=', $request->area_id)
+            ->whereBetween('kontrak.akhir_periode',array($request->from,$request->to))
+        
             ->get();
             return view('admin/mou/mou', $data);
         }
-        if($request->bu_id)
-        {
-            $data['no'] = 1;
-            $data['areas'] = Area::all();
-            $data['bisnis_units'] = Bisnis_unit::all();
-            $data['datamous'] = DB::table('datamou')
-            ->join('kontrak', 'datamou.id_kontrak', '=', 'kontrak.id_kontrak')
-            ->join('customer', 'customer.kode_customer', '=', 'kontrak.kode_customer')
-            ->join('area','area.area_id','=','customer.area_id')
-            ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
-            ->where('bisnis_unit.bu_id', '=', $request->bu_id)
-            ->get();
-            return view('admin/mou/mou', $data);
-        }
-        if($request->area_id)
-        {
-            $data['no'] = 1;
-            $data['areas'] = Area::all();
-            $data['bisnis_units'] = Bisnis_unit::all();
-            $data['datamous'] = DB::table('datamou')
-            ->join('kontrak', 'datamou.id_kontrak', '=', 'kontrak.id_kontrak')
-            ->join('customer', 'customer.kode_customer', '=', 'kontrak.kode_customer')
-            ->join('area','area.area_id','=','customer.area_id')
-            ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
-            ->where('area.area_id', '=', $request->area_id)
-            ->get();
-            return view('admin/mou/mou', $data);
-        }
+        // if($request->bu_id)
+        // {
+        //     $data['no'] = 1;
+        //     $data['areas'] = Area::all();
+        //     $data['bisnis_units'] = Bisnis_unit::all();
+        //     $data['datamous'] = DB::table('datamou')
+        //     ->join('kontrak', 'datamou.id_kontrak', '=', 'kontrak.id_kontrak')
+        //     ->join('customer', 'customer.kode_customer', '=', 'kontrak.kode_customer')
+        //     ->join('area','area.area_id','=','customer.area_id')
+        //     ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
+        //     ->where('bisnis_unit.bu_id', '=', $request->bu_id)
+        //     ->get();
+        //     return view('admin/mou/mou', $data);
+        // }
+        // if($request->area_id)
+        // {
+        //     $data['no'] = 1;
+        //     $data['areas'] = Area::all();
+        //     $data['bisnis_units'] = Bisnis_unit::all();
+        //     $data['datamous'] = DB::table('datamou')
+        //     ->join('kontrak', 'datamou.id_kontrak', '=', 'kontrak.id_kontrak')
+        //     ->join('customer', 'customer.kode_customer', '=', 'kontrak.kode_customer')
+        //     ->join('area','area.area_id','=','customer.area_id')
+        //     ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
+        //     ->where('area.area_id', '=', $request->area_id)
+        //     ->get();
+        //     return view('admin/mou/mou', $data);
+        // }
     }
     
 
@@ -111,6 +115,7 @@ class MouController extends Controller
         $datamou = new Datamou;
         $datamou->no_mou = $request->no_mou;
         $datamou->id_kontrak = $request->id_kontrak;
+        $datamou->no_adendum = $request->no_adendum;
         $datamou->hc = $request->hc;
         $datamou->invoice = $request->invoice;
         $datamou->mf = $request->mf;
@@ -175,6 +180,7 @@ class MouController extends Controller
             'pendaftaran_mou' => 'required',
         ]);
 
+        $datamou->no_adendum = $request->no_adendum;
         $datamou->hc = $request->hc;
         $datamou->invoice = $request->invoice;
         $datamou->mf = $request->mf;

@@ -47,6 +47,15 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
+                                    <label class="control-label col-md-2">Tanggal</label>
+                                    <div class="col-md-3">
+                                        <input type="date" class="form-control" name="from">
+                                    </div>
+                                    <div class="col-md-3">
+                                        <input type="date" class="form-control" name="to">
+                                    </div>
+                                </div>
+                                <div class="form-group">
                                     <div class="col-md-1 col-md-offset-2">
                                         <a href="{{asset('/admin/mou')}}">
                                             <button type="button" class="btn btn-primary btn-sm"><i class="fa fa-refresh"></i> Reset</button>
@@ -70,6 +79,7 @@
                                     <th>No. MoU</th>
                                     <th>Nomor Kontrak</th>
                                     <th>Nama Perusahaan</th>
+                                    <th>No. Adendum</th>
                                     <th>HC</th>
                                     <th>Invoice</th>
                                     <th>MF</th>
@@ -101,6 +111,7 @@
                                     <td>{{ $no++ }}</td>
                                     <td>{{ $datamou->nomor_kontrak }}</td>
                                     <td>{{ $datamou->nama_perusahaan }}</td>
+                                    <td>{{ $datamou->no_adendum }}</td>
                                     <td>{{ $datamou->hc }}</td>
                                     <td>Rp {{ $datamou->invoice }}</td>
                                     <td>Rp {{ $datamou->mf }}</td>
