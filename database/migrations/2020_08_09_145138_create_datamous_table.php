@@ -20,6 +20,7 @@ class CreateDatamousTable extends Migration
                 ->references('id_kontrak')
                 ->on('kontrak')
                 ->onDelete('cascade');
+            $table->string('no_adendum')->nullable();
             $table->integer('hc');
             $table->string('invoice');
             $table->string('mf');

@@ -20,6 +20,7 @@
 			<tr>
             <th>No. MoU</th>
                                     <th>Nomor Kontrak</th>
+                                    <th>No. Adendum</th>
                                     <th>HC</th>
                                     <th>Invoice</th>
                                     <th>MF</th>
@@ -49,6 +50,7 @@
 			<tr>
 			<td>{{ $i++ }}</td>
                                     <td>{{ $datamou->kontrak->nomor_kontrak }}</td>
+                                    <td>{{ $datamou->no_adendum }}</td>
                                     <td>{{ $datamou->hc }}</td>
                                     <td>{{ 'Rp'.number_format($datamou->invoice, 2, ',','.') }}</td>
                                     <td>{{ 'Rp'.number_format($datamou->mf, 2, ',','.') }}</td>

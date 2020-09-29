@@ -21,6 +21,7 @@ class CreateKontrakTable extends Migration
                 ->references('kode_customer')
                 ->on('customer')
                 ->onDelete('cascade');
+            // $table->string('no_adendum')
             $table->date('periode_kontrak');
             $table->date('akhir_periode');
             $table->string('srt_pemberitahuan');
