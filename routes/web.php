@@ -59,6 +59,19 @@ Route::group(['prefix' => 'officer_crm',  'middleware' => 'is_officer_crm'], fun
     Route::get('/mou/exportPDF', 'OfficerController@exportPDF');
     Route::get('/mou/exportExcel', 'OfficerController@exportExcel');
 
+    //------- laporan mou
+    Route::get('/insert/mou{id_kontrak}','KontrakController@insertmou')->name('insertmou.officer.kontrak');
+    Route::get('/insertmou', 'MouOfficerController@insert')->name('insert.officer.datamou'); //show form insert
+    Route::get('/mou', 'MouOfficerController@index')->name('index.officer.datamou');
+    Route::post('/store/datamou/{id_kontrak}', 'MouOfficerController@store')->name('store.officer.datamou');
+    Route::get('/delete/datamou{no_mou}','MouOfficerController@destroy')->name('destroy.officer.datamou');
+    Route::get('/edit/datamou{no_mou}','MouOfficerController@edit')->name('edit.officer.datamou');
+    Route::post('/update/datamou{no_mou}','MouOfficerController@update')->name('update.officer.datamou');
+    Route::post('/filter/mou', 'MouOfficerController@filter_mou')->name('filter.officer.datamou');
+
+    // Route::get('/mou/exportPDF', 'MouOfficerController@exportPDF');
+    // Route::get('/mou/exportExcel', 'MouOfficerController@exportExcel');
+
 });
 
 Route::group(['prefix' => 'superadmin',  'middleware' => 'is_superadmin'], function(){

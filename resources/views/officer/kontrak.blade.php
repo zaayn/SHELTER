@@ -98,6 +98,11 @@
                                     <td>
                                         <a href="{{route('edit.kontrak.officer',$kontrak->id_kontrak)}}" class="btn btn-info btn-sm"><span class="fa fa-pencil"></span></a>
                                         <a onclick="return confirm('Apakah anda yakin akan menghapus data ini ?')" href="{{route('destroy.kontrak.officer',$kontrak->id_kontrak)}}" class="btn btn-danger btn-sm"><span class="fa fa-trash"></span></a>
+                                        @if(!$kontrak->datamou)
+                                            <a href="{{route('insertmou.officer.kontrak',$kontrak->id_kontrak)}}" class="btn btn-default btn-sm" data-toggle="tooltip" data-placement="right" title="Tambah MoU"><span class="fa fa-plus"></span></a>
+                                        @else
+                                            <i class="btn btn-success"data-toggle="tooltip" data-placement="right" title="MoU telah ditambahkan">MoU Sukses</i>
+                                        @endif
                                     </td>
                                 </tr>
                                 @endforeach  

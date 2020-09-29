@@ -189,4 +189,9 @@ class KontrakController extends Controller
 
         return view('officer/kontrak/endkontrak', $data);
     }
+    public function insertmou($id_kontrak){
+        $kontrak = Kontrak::findOrFail($id_kontrak);
+ 
+        return view('officer/mou/insertmou')->with('kontrak',$kontrak);
+    }
 }
