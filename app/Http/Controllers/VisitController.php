@@ -39,6 +39,7 @@ class VisitController extends Controller
       if($request->from || $request->to){
         $data['visits'] = Visit::whereHas('customer', function($query) use($request){
           if($request->from || $request->to)
+            $query->where('nama_depan', Auth::user()->nama_depan);
             $query->whereBetween('tanggal_visit',[$request->from, $request->to]);
         })->get();
       }

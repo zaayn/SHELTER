@@ -35,22 +35,36 @@ class KeluhanController extends Controller
       $data['areas'] = Area::all();
       $data['bisnis_units'] = Bisnis_unit::all();
       
-      if($request->from || $request->to){
+      if($request->from || $request->to || $request->status){
         $data['keluhans'] = Keluhan::whereHas('customer', function($query) use($request){
-          if($request->from || $request->to)
+          if($request->from || $request->to || $request->status){
+            $query->where('nama_depan', Auth::user()->nama_depan);
+            $query->where('status', $request->status);
             $query->whereBetween('tanggal_keluhan',[$request->from, $request->to]);
+          }
         })->get();
       }
-
-      elseif($request->status)
-        if(@$keluhans)
-          $data['keluhans'] = $keluhans->where('status', $request->status)->get();
-        else
-          $data['keluhans'] = Keluhan::where('status', $request->status)->get();
+      // elseif($request->status){
+      //   $data['keluhans'] = Keluhan::whereHas('customer', function($query) use($request){
+      //     if($request->status){
+      //       $query->where('nama_depan', Auth::user()->nama_depan);
+      //       $query->where('status', $request->status);
+      //     }
+      //   })->get();
+      // }
+      // elseif($request->status)
+      //   if(@$keluhans)
+      //     $data['keluhans'] = $keluhans->where('status', $request->status)->get();
+      //   else
+      //     $data['keluhans'] = Keluhan::where('status', $request->status)
+      //                         ->where('nama_depan', Auth::user()->nama_depan)->get();
 
       else{
-        $data['keluhans'] = Keluhan::all();
+        $data['keluhans'] = Keluhan::whereHas('customer', function($query){
+          $query->where('nama_depan', Auth::user()->nama_depan);
+        })->get();
       }
+     
        
       return view('officer/keluhan', $data);
     }
