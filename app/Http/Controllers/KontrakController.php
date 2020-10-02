@@ -41,6 +41,7 @@ class KontrakController extends Controller
       if($request->from || $request->to){
         $data['kontraks'] = Kontrak::whereHas('customer', function($query) use($request){
             if($request->from || $request->to)
+                $query->where('nama_depan', Auth::user()->nama_depan);
                 $query->whereBetween('akhir_periode',[$request->from, $request->to]);
         })->get();
       }
