@@ -34,40 +34,32 @@ class KeluhanController extends Controller
       $data['no'] = 1;
       $data['areas'] = Area::all();
       $data['bisnis_units'] = Bisnis_unit::all();
-      
+
+      $keluhan = Keluhan::whereHas('customer', function($query){
+        $query->where('nama_depan', Auth::user()->nama_depan);
+      });
+
       if($request->from || $request->to || $request->status){
-        $data['keluhans'] = Keluhan::whereHas('customer', function($query) use($request){
-          if($request->from || $request->to || $request->status){
-            $query->where('nama_depan', Auth::user()->nama_depan);
-            $query->where('status', $request->status);
+        $data['keluhans'] = $keluhan->where(function($query) use($request){
+          
+          if($request->from || $request->to)
             $query->whereBetween('tanggal_keluhan',[$request->from, $request->to]);
-          }
+
+          if($request->status)
+            $query->where('status', $request->status);
+
         })->get();
       }
-      // elseif($request->status){
-      //   $data['keluhans'] = Keluhan::whereHas('customer', function($query) use($request){
-      //     if($request->status){
-      //       $query->where('nama_depan', Auth::user()->nama_depan);
-      //       $query->where('status', $request->status);
-      //     }
-      //   })->get();
-      // }
-      // elseif($request->status)
-      //   if(@$keluhans)
-      //     $data['keluhans'] = $keluhans->where('status', $request->status)->get();
-      //   else
-      //     $data['keluhans'] = Keluhan::where('status', $request->status)
-      //                         ->where('nama_depan', Auth::user()->nama_depan)->get();
-
+      
       else{
         $data['keluhans'] = Keluhan::whereHas('customer', function($query){
           $query->where('nama_depan', Auth::user()->nama_depan);
         })->get();
       }
-     
        
       return view('officer/keluhan', $data);
     }
+
     public function insert()
     {
         $data['bisnis_units'] = Bisnis_unit::all();

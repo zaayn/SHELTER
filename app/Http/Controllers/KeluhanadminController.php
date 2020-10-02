@@ -43,7 +43,7 @@ class KeluhanadminController extends Controller
             $query->whereBetween('tanggal_keluhan',[$request->from, $request->to]);
         })->get();
       }
-
+      
       elseif($request->status)
         if(@$keluhans)
           $data['keluhans'] = $keluhans->where('status', $request->status)->get();
