@@ -29,6 +29,7 @@
                                     <th>Nama Perusahaan</th>
                                     <th>jumlah bulan</th>
                                     <th>Customer Type</th>
+                                    <th>Aksi</th>
                                 </thead>
                                 <tbody>
                                 @foreach ($customers as $customer)
@@ -37,6 +38,11 @@
                                     <td>{{ $customer->nama_perusahaan }}</td>
                                     <td>{{ $customer->month_kontrak }}</td>
                                     <td>{{ $customer->customer_type }}</td>
+                                    <td>
+                                        <a href="{{route('profile.customer',$customer->kode_customer)}}" class="btn btn-info btn-sm">
+                                            Profile Customer
+                                        </a>
+                                    </td>
                                 </tr> 
                                 @endforeach
                                 </tbody>

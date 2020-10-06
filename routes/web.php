@@ -16,7 +16,7 @@ Route::group(['prefix' => 'officer_crm',  'middleware' => 'is_officer_crm'], fun
     Route::get('/edit/editcall{call_id}','callController@edit')->name('edit.call.officer');
     Route::post('/update/call{call_id}','callController@update')->name('update.call.officer');
     Route::get('/call/exportPDF', 'callController@exportPDF');
-    Route::get('/call/exportExcel', 'CalladminController@exportExcel');
+    Route::get('/call/exportExcel', 'callController@exportExcel');
     Route::post('/filter/call', 'callController@filter')->name('call.filter');
 
     //------- laporan visit
@@ -27,7 +27,7 @@ Route::group(['prefix' => 'officer_crm',  'middleware' => 'is_officer_crm'], fun
     Route::get('/edit/editvisit{visit_id}','VisitController@edit')->name('edit.visit.officer');
     Route::post('/update/visit{visit_id}','VisitController@update')->name('update.visit.officer');
     Route::get('/visit/exportPDF', 'VisitController@exportPDF');
-    Route::get('/visit/exportExcel', 'VisitadminController@exportExcel');
+    Route::get('/visit/exportExcel', 'VisitController@exportExcel');
     Route::post('/filter/visit', 'VisitController@filter')->name('visit.filter');
 
     //------- laporan keluhan
@@ -38,7 +38,7 @@ Route::group(['prefix' => 'officer_crm',  'middleware' => 'is_officer_crm'], fun
     Route::get('/edit/editkeluhan{id_keluhan}','KeluhanController@edit')->name('edit.keluhan.officer');
     Route::post('/update/keluhan{id_keluhan}','KeluhanController@update')->name('update.keluhan.officer');
     Route::get('/keluhan/exportPDF', 'KeluhanController@exportPDF');
-    Route::get('/keluhan/exportExcel', 'KeluhanadminController@exportExcel');
+    Route::get('/keluhan/exportExcel', 'KeluhanController@exportExcel');
     Route::post('/filter/keluhan', 'KeluhanController@filter')->name('keluhan.filter');
 
     //------- laporan kontrak
@@ -51,10 +51,26 @@ Route::group(['prefix' => 'officer_crm',  'middleware' => 'is_officer_crm'], fun
     Route::get('/mou', 'OfficerController@mou')->name('mou.officer');
     Route::post('/filter/mou', 'OfficerController@filter_mou')->name('filter.mou.officer');
     Route::get('/kontrak/exportPDF', 'KontrakController@exportPDF');
-    Route::get('/kontrak/exportExcel', 'KontrakadminController@exportExcel');
+    Route::get('/kontrak/exportExcel', 'KontrakController@exportExcel');
     Route::post('/filter/kontrak', 'KontrakController@filter')->name('kontrak.filter');
-
+    Route::get('/reminder', 'KontrakController@reminder')->name('index.reminder.kontrak');
+    Route::get('/kontrak/habis', 'KontrakController@endKontrak')->name('index.endKontrak.kontrak');
+    
     Route::get('/mou/exportPDF', 'OfficerController@exportPDF');
+    Route::get('/mou/exportExcel', 'OfficerController@exportExcel');
+
+    //------- laporan mou
+    Route::get('/insert/mou{id_kontrak}','KontrakController@insertmou')->name('insertmou.officer.kontrak');
+    Route::get('/insertmou', 'MouOfficerController@insert')->name('insert.officer.datamou'); //show form insert
+    Route::get('/mou', 'MouOfficerController@index')->name('index.officer.datamou');
+    Route::post('/store/datamou/{id_kontrak}', 'MouOfficerController@store')->name('store.officer.datamou');
+    Route::get('/delete/datamou{no_mou}','MouOfficerController@destroy')->name('destroy.officer.datamou');
+    Route::get('/edit/datamou{no_mou}','MouOfficerController@edit')->name('edit.officer.datamou');
+    Route::post('/update/datamou{no_mou}','MouOfficerController@update')->name('update.officer.datamou');
+    Route::post('/filter/mou', 'MouOfficerController@filter_mou')->name('filter.officer.datamou');
+
+    // Route::get('/mou/exportPDF', 'MouOfficerController@exportPDF');
+    // Route::get('/mou/exportExcel', 'MouOfficerController@exportExcel');
 
 });
 
@@ -106,40 +122,42 @@ Route::group(['prefix' => 'admin',  'middleware' => 'is_admin'], function(){
     Route::post('/filter/customer', 'CustomerController@filter')->name('filter.customer');
     Route::get('/reset/customer{id}', 'CustomerController@aktivasi')->name('reset.customer');
     Route::get('/cust_type', 'CustomerController@cust_type')->name('cust.type');
-    Route::get('/profile', 'CustomerController@filter_profile')->name('cust.profile');
+
+    Route::get('/profile/customer{id}', 'CustomerController@profile')->name('profile.customer');
     Route::post('/filter/profile', 'CustomerController@filter_profile')->name('filter.profile');
+    
     Route::post('/update/putus{kode_customer}','CustomerController@update_putus')->name('update.putus');
     Route::get('/customer/non-aktif','CustomerController@listputus')->name('listputus.customer');
 
     //------- laporan call
-    Route::get('/insertcall', 'CalladminController@insert')->name('insert.call'); //show form insert
+   // Route::get('/insertcall', 'CalladminController@insert')->name('insert.call'); //show form insert
     Route::get('/call', 'CalladminController@index')->name('index.call');
-    Route::post('/store/call', 'CalladminController@store')->name('store.call');
-    Route::get('/delete/call{call_id}','CalladminController@destroy')->name('destroy.call');
-    Route::get('/edit/editcall{call_id}','CalladminController@edit')->name('edit.call');
-    Route::post('/update/call{call_id}','CalladminController@update')->name('update.call');
+   // Route::post('/store/call', 'CalladminController@store')->name('store.call');
+    // Route::get('/delete/call{call_id}','CalladminController@destroy')->name('destroy.call');
+    // Route::get('/edit/editcall{call_id}','CalladminController@edit')->name('edit.call');
+    // Route::post('/update/call{call_id}','CalladminController@update')->name('update.call');
     Route::get('/call/exportPDF', 'CalladminController@exportPDF');
     Route::get('/call/exportExcel', 'CalladminController@exportExcel');
     Route::post('/filter/call', 'CalladminController@filter')->name('filter.call');
 
         //------- laporan visit
-        Route::get('/insertvisit', 'VisitadminController@insert')->name('insert.visit'); //show form insert
+        // Route::get('/insertvisit', 'VisitadminController@insert')->name('insert.visit'); //show form insert
         Route::get('/visit', 'VisitadminController@index')->name('index.visit');
-        Route::post('/store/visit', 'VisitadminController@store')->name('store.visit');
-        Route::get('/delete/visit{visit_id}','VisitadminController@destroy')->name('destroy.visit');
-        Route::get('/edit/editvisit{visit_id}','VisitadminController@edit')->name('edit.visit');
-        Route::post('/update/visit{visit_id}','VisitadminController@update')->name('update.visit');
+        // Route::post('/store/visit', 'VisitadminController@store')->name('store.visit');
+        // Route::get('/delete/visit{visit_id}','VisitadminController@destroy')->name('destroy.visit');
+        // Route::get('/edit/editvisit{visit_id}','VisitadminController@edit')->name('edit.visit');
+        // Route::post('/update/visit{visit_id}','VisitadminController@update')->name('update.visit');
         Route::get('/visit/exportPDF', 'VisitadminController@exportPDF');
         Route::get('/visit/exportExcel', 'VisitadminController@exportExcel');
         Route::post('/filter/visit', 'VisitadminController@filter')->name('filter.visit');
     
         //------- laporan keluhan
-        Route::get('/insertkeluhan', 'KeluhanadminController@insert')->name('insert.keluhan'); //show form insert
+        // Route::get('/insertkeluhan', 'KeluhanadminController@insert')->name('insert.keluhan'); //show form insert
         Route::get('/keluhan', 'KeluhanadminController@index')->name('index.keluhan');
-        Route::post('/store/keluhan', 'KeluhanadminController@store')->name('store.keluhan');
-        Route::get('/delete/keluhan{id_keluhan}','KeluhanadminController@destroy')->name('destroy.keluhan');
-        Route::get('/edit/editkeluhan{id_keluhan}','KeluhanadminController@edit')->name('edit.keluhan');
-        Route::post('/update/keluhan{id_keluhan}','KeluhanadminController@update')->name('update.keluhan');
+        // Route::post('/store/keluhan', 'KeluhanadminController@store')->name('store.keluhan');
+        // Route::get('/delete/keluhan{id_keluhan}','KeluhanadminController@destroy')->name('destroy.keluhan');
+        // Route::get('/edit/editkeluhan{id_keluhan}','KeluhanadminController@edit')->name('edit.keluhan');
+        // Route::post('/update/keluhan{id_keluhan}','KeluhanadminController@update')->name('update.keluhan');
         Route::get('/keluhan/exportPDF', 'KeluhanadminController@exportPDF');
         Route::get('/keluhan/exportExcel', 'KeluhanadminController@exportExcel');
         Route::get('/reset/keluhan{id}', 'KeluhanadminController@aktivasi')->name('reset.keluhan');
@@ -157,10 +175,12 @@ Route::group(['prefix' => 'admin',  'middleware' => 'is_admin'], function(){
         Route::get('/kontrak/exportPDF', 'KontrakadminController@exportPDF');
         Route::get('/kontrak/exportExcel', 'KontrakadminController@exportExcel');
         Route::get('/reminder', 'KontrakadminController@reminder')->name('index.reminder.kontrak');
+        Route::get('/kontrak/habis', 'KontrakadminController@endKontrak')->name('index.endKontrak.kontrak');
         // Route::get('/closed/kontrak{id_kontrak}', 'KontrakadminController@closed')->name('closed.kontrak');
         Route::get('/insert/mou{id_kontrak}','KontrakadminController@insertmou')->name('insertmou.kontrak');
-         Route::get('/edit/putus_kontrak{id_kontrak}','KontrakadminController@putus_kontrak')->name('putus.kontrak');
+        Route::get('/edit/putus_kontrak{id_kontrak}','KontrakadminController@putus_kontrak')->name('putus.kontrak');
         Route::get('/update/closing{id_kontrak}','KontrakadminController@closing')->name('update.closing');
+        Route::get('/update/rekontrak{id_kontrak}','KontrakadminController@rekontrak')->name('update.rekontrak');
 
 
         //------- laporan mou
@@ -203,7 +223,9 @@ Route::group(['prefix' => 'manager_crm',  'middleware' => 'is_manager_crm'], fun
     Route::get('/mou/exportExcel', 'MouController@exportExcel');
     Route::get('/customer/exportPDF', 'CustomerController@exportPDF');
     Route::get('/customer/exportExcel', 'CustomerController@exportExcel');
-
+    Route::get('/kontrak/reminder', 'ManagerController@reminder')->name('index.reminder.kontrak');
+    Route::get('/kontrak/habis', 'ManagerController@endKontrak')->name('index.endKontrak.kontrak');
+    
 });
 
 Route::group(['prefix' => 'direktur',  'middleware' => 'is_direktur'], function(){
@@ -234,6 +256,9 @@ Route::group(['prefix' => 'direktur',  'middleware' => 'is_direktur'], function(
     Route::get('/mou/exportExcel', 'MouController@exportExcel');
     Route::get('/customer/exportPDF', 'CustomerController@exportPDF');
     Route::get('/customer/exportExcel', 'CustomerController@exportExcel');
+    Route::get('/kontrak/reminder', 'DirekturController@reminder')->name('index.reminder.kontrak');
+    Route::get('/kontrak/habis', 'DirekturController@endKontrak')->name('index.endKontrak.kontrak');
+    
 });
 
 Route::group(['prefix' => 'manager_non_crm',  'middleware' => 'is_manager_non_crm'], function(){
@@ -252,5 +277,7 @@ Route::group(['prefix' => 'manager_non_crm',  'middleware' => 'is_manager_non_cr
     Route::get('/customer/exportExcel', 'CustomerController@exportExcel');
     Route::get('/kontrak/exportPDF', 'KontrakController@exportPDF');
     Route::get('/kontrak/exportExcel', 'KontrakadminController@exportExcel');
-
+    Route::get('/kontrak/reminder', 'ManagerNonCrmController@reminder')->name('index.reminder.kontrak');
+    Route::get('/kontrak/habis', 'ManagerNonCrmController@endKontrak')->name('index.endKontrak.kontrak');
+    
 });

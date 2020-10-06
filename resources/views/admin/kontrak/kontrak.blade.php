@@ -48,6 +48,15 @@
                                 </div>
                             </div>
                             <div class="form-group">
+                                <label class="control-label col-md-2">Tanggal</label>
+                                <div class="col-md-3">
+                                    <input type="date" class="form-control" name="from">
+                                </div>
+                                <div class="col-md-3">
+                                    <input type="date" class="form-control" name="to">
+                                </div>
+                            </div>
+                            <div class="form-group">
                                 <div class="col-md-1 col-md-offset-2">
                                     <a href="{{asset('/admin/kontrak')}}">
                                         <button type="button" class="btn btn-primary btn-sm"><i class="fa fa-refresh"></i> Reset</button>
@@ -61,6 +70,8 @@
                         {{-- ---- end filter ------ --}} 
 
                             <div style="float:right; margin-bottom:10px;">
+                                <a href="{{asset('/admin/reminder')}}" class="btn btn-danger btn-sm">Kontrak H-60</a> 
+                                <a href="{{asset('/admin/kontrak/habis')}}" class="btn btn-warning btn-sm">Kontrak Habis</a> 
                                 <a href="{{asset('/admin/insertkontrak')}}" class="btn btn-primary btn-sm">Insert Kontrak</a> 
                                 <a href="{{asset('/admin/kontrak/exportExcel')}}" class="btn btn-default btn-sm" target="_blank">Download Excel</a>
                                 <a href="{{asset('/admin/kontrak/exportPDF')}}" class="btn btn-default btn-sm" target="_blank">Download PDF</a>
@@ -73,6 +84,7 @@
                                     <th>Nomor </th>
                                     <th>Closing/MoU</th>
                                     <th>Nomor Kontrak</th>
+                                    <th>Penginput</th>
                                     <th>Kode Customer</th>
                                     <th>Nama Perusahaan</th>
                                     <th>Periode Kontrak</th>
@@ -103,6 +115,7 @@
                                             <i class="btn btn-success"data-toggle="tooltip" data-placement="right" title="MoU telah ditambahkan">MoU Sukses</i>
                                         @endif</td>
                                     <td>{{ $kontrak->nomor_kontrak }}</td>
+                                    <td>{{ $kontrak->customer->nama_depan }}</td>
                                     <td>{{ $kontrak->kode_customer }}</td>
                                     <td>{{ $kontrak->customer->nama_perusahaan }}</td>
                                     <td>{{ $kontrak->periode_kontrak }}</td>

@@ -47,6 +47,15 @@
                                 </div>
                             </div>
                             <div class="form-group">
+                                <label class="control-label col-md-2">Tanggal</label>
+                                <div class="col-md-3">
+                                    <input type="date" class="form-control" name="from">
+                                </div>
+                                <div class="col-md-3">
+                                    <input type="date" class="form-control" name="to">
+                                </div>
+                            </div>
+                            <div class="form-group">
                                 <div class="col-md-1 col-md-offset-2">
                                     <a href="{{asset('/admin/visit')}}">
                                         <button type="button" class="btn btn-primary"><i class="fa fa-refresh"></i> Reset</button>
@@ -59,7 +68,6 @@
                         </form>
                         {{-- ---- end filter ------ --}}
                     <div style="float:right; margin-bottom:10px;">
-                        <a href="{{asset('/admin/insertvisit')}}" class="btn btn-primary btn-sm">Insert Visit</a>
                         <a href="{{asset('/admin/visit/exportExcel')}}" class="btn btn-default btn-sm" target="_blank">Download Excel</a>
                         <a href="{{asset('/admin/visit/exportPDF')}}" class="btn btn-default btn-sm" target="_blank">Download PDF</a>
                     </div>
@@ -69,28 +77,26 @@
                                 <table class="mydatatables table table-collapse table-hover table-light table-striped cell-border table-responsive">
                                 <thead>
                                     <th>No.</th>
+                                    <th>Penginput</th>
                                     <th>Nama Customer</th>
                                     <th>Tanggal</th>
                                     <th>Waktu In</th>
                                     <th>Waktu Out</th>
                                     <th>PIC Visit</th>
                                     <th>Kegiatan</th>
-                                    <th>Aksi</th>
                                 </thead>
                                 <tbody>
                                 @foreach($visits as $visit)
                                 <tr>
                                     <td>{{ $no++  }}</td>
+                                    <td>{{ $visit->customer->nama_depan }}</td>
                                     <td>{{ $visit->customer->nama_perusahaan }}</td>
                                     <td>{{ $visit->tanggal_visit }}</td>
                                     <td>{{ $visit->waktu_in }}</td>
                                     <td>{{ $visit->waktu_out }}</td>
                                     <td>{{ $visit->pic_meeted }}</td>
                                     <td>{{ $visit->kegiatan }}</td>
-                                    <td>
-                                        <a href="{{route('edit.visit',$visit->visit_id)}}" class="btn btn-info btn-sm"><span class="fa fa-pencil"></a>
-                                        <a onclick="return confirm('Apakah anda yakin akan menghapus data ini ?')" href="{{route('destroy.visit',$visit->visit_id)}}" class="btn btn-danger btn-sm"><span class="fa fa-trash"></span></a>
-                                    </td>
+                                   
                                 </tr>
                                 @endforeach 
                                 </tbody>

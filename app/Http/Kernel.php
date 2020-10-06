@@ -20,11 +20,11 @@ class Kernel extends HttpKernel
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
         \App\Http\Middleware\TrustProxies::class,
         // 'Illuminate\Foundation\Http\Middleware\CheckForMaintenanceMode',
-         'Illuminate\Cookie\Middleware\EncryptCookies',
-         'Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse',
-         'Illuminate\Session\Middleware\StartSession',
-         'Illuminate\View\Middleware\ShareErrorsFromSession',
-         'App\Http\Middleware\VerifyCsrfToken',
+        //  'Illuminate\Cookie\Middleware\EncryptCookies',
+        //  'Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse',
+        //  'Illuminate\Session\Middleware\StartSession',
+        //  'Illuminate\View\Middleware\ShareErrorsFromSession',
+        //  'App\Http\Middleware\VerifyCsrfToken',
         // 'App\Http\Middleware\Authenticate',
     ];
 

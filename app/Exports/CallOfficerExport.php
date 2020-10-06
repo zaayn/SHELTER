@@ -11,32 +11,32 @@ use Maatwebsite\Excel\Events\AfterSheet;
 use Illuminate\Support\Facades\Auth;
 use DB;
 
-class CallExport implements FromCollection, WithHeadings, ShouldAutoSize, WithEvents
+class CallOfficerExport implements FromCollection, WithHeadings, ShouldAutoSize, WithEvents
 {
     /**
     * @return \Illuminate\Support\Collection
     */
     public function collection()
     {
-        // $call = DB::table('call')
-        //         ->join('customer','call.kode_customer','=','customer.kode_customer')
-        //         ->join('users','users.nama_depan','=','customer.nama_depan')
-        //         ->select('call.call_id','customer.nama_perusahaan','call.spv_pic',
-        //         'call.tanggal_call','call.jam_call','call.pembicaraan','call.pic_called','call.hal_menonjol')
-        //         ->where('users.nama_depan','=','Auth::user()->nama_depan')
-        //         ->get();
-
-        $call = Call::all();
-        // $officer = Auth::user()->nama_depan;
-        // $callof = DB::select('call officer_export(?)',[$officer]);
-        // return $callof;
+        $user = Auth::user()->nama_depan;
+        $call = DB::table('call')
+                ->join('customer','call.kode_customer','=','customer.kode_customer')
+                ->join('users','users.nama_depan','=','customer.nama_depan')
+                ->select('call.call_id','customer.nama_depan','customer.nama_perusahaan',
+                'call.tanggal_call','call.jam_call','call.pembicaraan','call.pic_called','call.hal_menonjol')
+                ->where('users.nama_depan','=', $user)
+                ->get();
+        // $call = Call::whereHas('customer', function($query){
+        //     $query->where('nama_depan', Auth::user()->nama_depan);
+        // })->get();
+        return $call;
     }
     public function headings(): array
     {
         return [
             'No',
+            'Penginput',
             'Nama Perusahaan',
-            'SPV_PIC',
             'Tanggal Call',
             'Jam Call',
             'Pembicaraan',

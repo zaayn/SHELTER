@@ -37,16 +37,21 @@ class KontrakadminController extends Controller
       $data['bisnis_units'] = Bisnis_unit::all();
       $data['customers'] = Customer::all();
       
-      if($request->bu_id || $request->area_id){
-        $kontraks = Kontrak::whereHas('customer', function($query) use($request){
-          if($request->bu_id)
-            $query->where('bu_id',$request->bu_id);
+      if($request->bu_id || $request->area_id || $request->from || $request->to){
+        $data['kontraks'] = Kontrak::whereHas('customer', function($query) use($request){
+            if($request->bu_id)
+                $query->where('bu_id',$request->bu_id);
 
-          if($request->area_id)
-            $query->where('area_id',$request->area_id);
-        });
+            if($request->area_id)
+                $query->where('area_id',$request->area_id);
+
+            if($request->from || $request->to)
+                $query->whereBetween('akhir_periode',[$request->from, $request->to]);
+        })->get();
       }
-      $data['kontraks'] = $kontraks->get();
+      else{
+          $data['kontraks'] = Kontrak::all();
+      }
       return view('admin/kontrak/kontrak', $data);
     }
 
@@ -202,18 +207,38 @@ class KontrakadminController extends Controller
 
         $now = Carbon\Carbon::now();
         $data['sisa'] = array();
+
         foreach ($data['kontraks'] as $key => $value) 
         {
             $sisa = $now->diffInDays($value->akhir_periode);
             array_push($data['sisa'],$sisa);
+
         }
 
         return view('admin/kontrak/reminder', $data);
+    }
+    public function endKontrak() //filter kontrak h-30 hari 
+    {
+        $data['customers'] = Customer::all();
+        $data['kontraks'] = DB::table('kontrak')
+        ->join('customer', 'customer.kode_customer', '=', 'kontrak.kode_customer')
+        ->whereRaw('NOW() > akhir_periode')
+        ->get();
+
+        return view('admin/kontrak/endkontrak', $data);
     }
 
     public function insertmou($id_kontrak){
         $kontrak = Kontrak::findOrFail($id_kontrak);
  
         return view('admin/mou/insertmou')->with('kontrak',$kontrak);
+    }
+
+    public function rekontrak($id_kontrak){
+        $kontrak = Kontrak::findOrFail($id_kontrak);
+        $kontrak->closing = "Closed Rekontrak";
+        if ($kontrak->save())
+            return redirect()->route('insert.kontrak');
+        // return view('admin/mou/insertmou', $data)->with('kontrak',$kontrak);
     }
 }

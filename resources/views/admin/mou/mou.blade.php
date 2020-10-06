@@ -47,6 +47,15 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
+                                    <label class="control-label col-md-2">Tanggal</label>
+                                    <div class="col-md-3">
+                                        <input type="date" class="form-control" name="from">
+                                    </div>
+                                    <div class="col-md-3">
+                                        <input type="date" class="form-control" name="to">
+                                    </div>
+                                </div>
+                                <div class="form-group">
                                     <div class="col-md-1 col-md-offset-2">
                                         <a href="{{asset('/admin/mou')}}">
                                             <button type="button" class="btn btn-primary btn-sm"><i class="fa fa-refresh"></i> Reset</button>
@@ -69,6 +78,8 @@
                                     <thead>
                                     <th>No. MoU</th>
                                     <th>Nomor Kontrak</th>
+                                    <th>Nama Perusahaan</th>
+                                    <th>No. Adendum</th>
                                     <th>HC</th>
                                     <th>Invoice</th>
                                     <th>MF</th>
@@ -99,6 +110,8 @@
                                 
                                     <td>{{ $no++ }}</td>
                                     <td>{{ $datamou->nomor_kontrak }}</td>
+                                    <td>{{ $datamou->nama_perusahaan }}</td>
+                                    <td>{{ $datamou->no_adendum }}</td>
                                     <td>{{ $datamou->hc }}</td>
                                     <td>Rp {{ $datamou->invoice }}</td>
                                     <td>Rp {{ $datamou->mf }}</td>
@@ -133,4 +146,38 @@
                 </div>
             </div>
         </div>
+@endsection
+@section('js')
+<script>  
+    $(document).ready(function() {
+
+    $('.mydatatables thead tr').clone(true).appendTo( '.mydatatables thead' );
+    $('.mydatatables thead tr:eq(1) th').each( function (i) {
+        
+      var title = $(this).text();
+      $(this).html( '<input type="text" placeholder="Search '+title+'" />' );
+
+      $( 'input', this ).on( 'keyup change', function () {
+          if ( table.column(i).search() !== this.value ) {
+              table
+                  .column(i)
+                  .search( this.value )
+                  .draw();
+          }
+      } );
+    });
+
+  var table = $('.mydatatables').DataTable( {
+      orderCellsTop: true,
+      fixedHeader: true,
+      paging: true,
+      searching: true,
+      "sScrollX": "100%",
+      "sScrollXInner": "100%",    
+      show: true,
+      // dom: 'Bfrtip',
+      buttons: ['copy', 'csv', 'excel', 'pdf', 'print']
+    });
+});
+    </script>
 @endsection

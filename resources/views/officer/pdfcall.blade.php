@@ -18,8 +18,9 @@
 	<table class='table table-bordered'>
 		<thead>
 			<tr>
-             <th>Nama Customer</th>
-            <th>SPV_PIC</th>
+			<th>No.</th>
+			<th>Penginput</th>
+            <th>Nama Customer</th>
             <th>Tanggal</th>
             <th>Waktu Call</th>
             <th>Pembicaraan</th>
@@ -32,8 +33,8 @@
 			@foreach($call as $call)
 			<tr>
 			<td>{{ $i++  }}</td>
+			<td>{{ $call->customer->nama_depan }}</td>
             <td>{{ $call->customer->nama_perusahaan }}</td>
-            <td>{{ $call->spv_pic }}</td>
             <td>{{ $call->tanggal_call }}</td>
             <td>{{ $call->jam_call }}</td>
             <td>{{ $call->pembicaraan }}</td>

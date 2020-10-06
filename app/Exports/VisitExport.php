@@ -19,7 +19,7 @@ class VisitExport implements FromCollection, WithHeadings, ShouldAutoSize, WithE
     {
         $visit = DB::table('visit')
                 ->join('customer','visit.kode_customer','=','customer.kode_customer')
-                ->select('visit.visit_id','customer.nama_perusahaan','visit.spv_pic',
+                ->select('visit.visit_id','customer.nama_perusahaan',
                 'visit.tanggal_visit','visit.waktu_in','visit.waktu_out','visit.pic_meeted','visit.kegiatan')
                 ->get();
         return $visit;
@@ -29,7 +29,6 @@ class VisitExport implements FromCollection, WithHeadings, ShouldAutoSize, WithE
         return [
             'No',
             'Nama Perusahaan',
-            'SPV_PIC',
             'Tanggal Visit',
             'Waktu In',
             'Waktu Out',

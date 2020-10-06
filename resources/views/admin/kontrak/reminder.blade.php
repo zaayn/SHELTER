@@ -29,11 +29,12 @@
                             <hr style="border: solid #ddd; border-width: 1px 0 0; clear: both; margin: 22px 0 21px; height: 0;">
                             @include('admin.shared.components.alert')
                             
-                            <table id="mydatatables" class="table table-responsive table-hover table-light table-striped">
+                            <table class="mydatatables table table-responsive table-hover table-light table-striped">
                                 <thead>
                                     <th>No.</th>
                                     <th>Nomor Kontrak</th>
                                     <th>Masa Tenggat</th>
+                                    <th>Status Rekontrak</th>
                                     <th>Nama Perusahaan</th>
                                     <th>Periode Kontrak</th>
                                     <th>Akhir Periode</th>
@@ -44,7 +45,6 @@
                                     <th>Dealing</th>
                                     <th>Tgl_Dealing</th>
                                     <th>Posisi Pks</th>
-                                    <th>Closing</th>
                                     <th>Aksi</th>
                                 </thead>
                                 <tbody>
@@ -58,11 +58,21 @@
                                     <td>{{ $a++ }}</td>
                                     
                                     <td>{{ $kontrak->nomor_kontrak}}</td>
-                                    @if($sisa[$i] <= 30)
+                                    @if($sisa[$i] <= 30 && $kontrak->closing == "Closed")
                                     <td>{{ $sisa[$i++] }} Hari <i class="fa fa-warning" style="font-size:20px;color:red"></i></td>
-                                    @elseif($sisa[$i] > 30)
+                                    <td>Belum Rekontrak</td>
+                                    @elseif($sisa[$i] > 30 && $kontrak->closing == "Closed")
                                     <td>{{ $sisa[$i++] }} Hari <i class="fa fa-warning" style="font-size:20px;color:yellow"></i></td>
+                                    <td>Belum Rekontrak</td>
+
+                                    @elseif($sisa[$i] <= 30 && $kontrak->closing == "Closed Rekontrak")
+                                    <td>{{ $sisa[$i++] }} Hari <i class="fa fa-warning" style="font-size:20px;color:red"></i></td>
+                                    <td>Sudah di Rekontrak</td>
+                                    @elseif($sisa[$i] >= 30 && $kontrak->closing == "Closed Rekontrak")
+                                    <td>{{ $sisa[$i++] }} Hari <i class="fa fa-warning" style="font-size:20px;color:yellow"></i></td>
+                                    <td>Sudah di Rekontrak</td>
                                     @endif
+
                                     <td>{{ $kontrak->nama_perusahaan }}</td>
                                     <td>{{ $kontrak->periode_kontrak }}</td>
                                     <td>{{ $kontrak->akhir_periode }}</td>
@@ -73,10 +83,10 @@
                                     <td>{{ $kontrak->dealing }}</td>
                                     <td>{{ $kontrak->tgl_dealing }}</td>
                                     <td>{{ $kontrak->posisi_pks }}</td>
-                                    <td>{{ $kontrak->closing }}</td>
                                     <td>
                                         <a href="{{route('edit.kontrak',$kontrak->id_kontrak)}}" class="btn btn-info btn-sm"><span class="fa fa-pencil"></span></a>
                                         <a onclick="return confirm('Apakah anda yakin akan menghapus data ini ?')" href="{{route('destroy.kontrak',$kontrak->id_kontrak)}}" class="btn btn-danger btn-sm"><span class="fa fa-trash"></span></a>
+                                        <a href="{{route('update.rekontrak',$kontrak->id_kontrak)}}" class="btn btn-warning btn-sm"><span> Rekontrak</span></a>
                                     </td>
                                 </tr>
                                 @endforeach  
@@ -87,3 +97,38 @@
                 </div>
             </div>
 @endsection
+@section('js')
+<script>  
+    $(document).ready(function() {
+
+    $('.mydatatables thead tr').clone(true).appendTo( '.mydatatables thead' );
+    $('.mydatatables thead tr:eq(1) th').each( function (i) {
+        
+      var title = $(this).text();
+      $(this).html( '<input type="text" placeholder="Search '+title+'" />' );
+
+      $( 'input', this ).on( 'keyup change', function () {
+          if ( table.column(i).search() !== this.value ) {
+              table
+                  .column(i)
+                  .search( this.value )
+                  .draw();
+          }
+      } );
+    });
+
+  var table = $('.mydatatables').DataTable( {
+      orderCellsTop: true,
+      fixedHeader: true,
+      paging: true,
+      searching: true,
+      "sScrollX": "100%",
+      "sScrollXInner": "100%",    
+      show: true,
+      // dom: 'Bfrtip',
+      buttons: ['copy', 'csv', 'excel', 'pdf', 'print']
+    });
+});
+    </script>
+@endsection
+

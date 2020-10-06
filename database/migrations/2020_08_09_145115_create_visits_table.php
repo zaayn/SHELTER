@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCallsTable extends Migration
+class CreateVisitsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,22 +13,19 @@ class CreateCallsTable extends Migration
      */
     public function up()
     {
-        Schema::create('call', function (Blueprint $table) {
-            $table->increments('call_id')->unique();
+        Schema::create('visit', function (Blueprint $table) {
+            $table->increments('visit_id')->unique();
             $table->string('kode_customer');
-            $table->date('tanggal_call');
-            $table->time('jam_call');
-            $table->longText('pembicaraan');
-            $table->string('pic_called');
-            $table->longText('hal_menonjol');
-            $table->timestamps();
-        });
-        Schema::table('call', function($table)
-        {
             $table->foreign('kode_customer')
                 ->references('kode_customer')
                 ->on('customer')
                 ->onDelete('cascade');
+            $table->date('tanggal_visit');
+            $table->time('waktu_in');
+            $table->time('waktu_out');
+            $table->string('pic_meeted');
+            $table->longText('kegiatan');
+            $table->timestamps();
         });
     }
 
@@ -39,6 +36,6 @@ class CreateCallsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('call');
+        Schema::dropIfExists('visit');
     }
 }

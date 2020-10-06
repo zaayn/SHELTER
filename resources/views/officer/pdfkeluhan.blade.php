@@ -19,6 +19,7 @@
 		<thead>
 			<tr>
             <th>No</th>
+            <th>Penginput</th>
                                     <th>Nama Customer</th>
                                     <th>Departemen Tertuju</th>
                                     <th>Tanggal</th>
@@ -37,6 +38,7 @@
 			@foreach($keluhan as $keluhan)
 			<tr>
             <td>{{ $i++ }}</td>
+            <td>{{ $keluhan->customer->nama_depan }}</td>
                                     <td>{{ $keluhan->customer->nama_perusahaan }}</td>
                                     <td>{{ $keluhan->departemen }}</td>
                                     <td>{{ $keluhan->tanggal_keluhan }}</td>

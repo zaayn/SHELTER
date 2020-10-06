@@ -8,10 +8,13 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\DB;
+use App\Exports\KontrakOfficerExport;
+use Maatwebsite\Excel\Facades\Excel;
 use App\Kontrak;
 use App\Customer;
 use App\Bisnis_unit;
 use App\Area;
+use Carbon;
 use PDF;
 
 class KontrakController extends Controller
@@ -35,22 +38,24 @@ class KontrakController extends Controller
       $data['bisnis_units'] = Bisnis_unit::all();
       $data['customers'] = Customer::all();
       
-      if($request->bu_id || $request->area_id){
-        $kontraks = Kontrak::whereHas('customer', function($query) use($request){
-          if($request->bu_id)
-            $query->where('bu_id',$request->bu_id);
-
-          if($request->area_id)
-            $query->where('area_id',$request->area_id);
-        });
+      if($request->from || $request->to){
+        $data['kontraks'] = Kontrak::whereHas('customer', function($query) use($request){
+            if($request->from || $request->to)
+                $query->where('nama_depan', Auth::user()->nama_depan);
+                $query->whereBetween('akhir_periode',[$request->from, $request->to]);
+        })->get();
       }
-      $data['kontraks'] = $kontraks->get();
+      else{
+        $data['kontraks'] = Kontrak::all();
+      }
+      
       return view('officer/kontrak', $data);
     }
 
     public function insert()
     {
-        $data['customers'] = Customer::where('status','Aktif')->get();
+        // $data['customers'] = Customer::where('status','Aktif')->get();
+        $data['customers'] = Customer::where('nama_depan', Auth::user()->nama_depan)->get();
         return view('officer/insertkontrak',$data);
     }
 
@@ -149,6 +154,45 @@ class KontrakController extends Controller
         })->get();
         $pdf = PDF::loadview('officer/pdfkontrak',['kontrak'=>$kontrak]);
         $pdf->setPaper('A4','landscape');
-    	return $pdf->download('Laporan-Kontrak-CRM.pdf');
+    	return $pdf->download('Laporan-Kontrak-Officer-CRM.pdf');
+    }
+    public function exportExcel()
+	{
+		return Excel::download(new KontrakOfficerExport, 'Laporan-Kontrak-CRM-Officer.xlsx');
+    }
+    public function reminder() //filter kontrak h-60 hari 
+    {
+        $data['customers'] = Customer::all();
+        $data['kontraks'] = DB::table('kontrak')
+        ->join('customer', 'customer.kode_customer', '=', 'kontrak.kode_customer')
+        ->whereRaw('akhir_periode - INTERVAL 60 DAY <= NOW()')
+        ->whereRaw('NOW() < akhir_periode')
+        ->get();
+
+        $now = Carbon\Carbon::now();
+        $data['sisa'] = array();
+        foreach ($data['kontraks'] as $key => $value) 
+        {
+            $sisa = $now->diffInDays($value->akhir_periode);
+            array_push($data['sisa'],$sisa);
+        }
+
+        return view('officer/kontrak/reminder', $data);
+    }
+    public function endKontrak() //filter kontrak habis 
+    {
+        $data['customers'] = Customer::all();
+        $data['kontraks'] = DB::table('kontrak')
+        ->join('customer', 'customer.kode_customer', '=', 'kontrak.kode_customer')
+        // ->whereRaw('akhir_periode - INTERVAL 60 DAY <= NOW()')
+        ->whereRaw('NOW() > akhir_periode')
+        ->get();
+
+        return view('officer/kontrak/endkontrak', $data);
+    }
+    public function insertmou($id_kontrak){
+        $kontrak = Kontrak::findOrFail($id_kontrak);
+ 
+        return view('officer/mou/insertmou')->with('kontrak',$kontrak);
     }
 }

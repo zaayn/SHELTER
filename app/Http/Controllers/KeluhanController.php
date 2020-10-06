@@ -6,6 +6,8 @@ use Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Support\Facades\DB;
+use App\Exports\KeluhanOfficerExport;
+use Maatwebsite\Excel\Facades\Excel;
 use App\Keluhan;
 use App\User;
 use PDF;
@@ -32,31 +34,37 @@ class KeluhanController extends Controller
       $data['no'] = 1;
       $data['areas'] = Area::all();
       $data['bisnis_units'] = Bisnis_unit::all();
-      
-      if($request->bu_id || $request->area_id){
-        $keluhans = Keluhan::whereHas('customer', function($query) use($request){
-          if($request->bu_id)
-            $query->where('bu_id',$request->bu_id);
 
-          if($request->area_id)
-            $query->where('area_id',$request->area_id);
-        });
+      $keluhan = Keluhan::whereHas('customer', function($query){
+        $query->where('nama_depan', Auth::user()->nama_depan);
+      });
+
+      if($request->from || $request->to || $request->status){
+        $data['keluhans'] = $keluhan->where(function($query) use($request){
+          
+          if($request->from || $request->to)
+            $query->whereBetween('tanggal_keluhan',[$request->from, $request->to]);
+
+          if($request->status)
+            $query->where('status', $request->status);
+
+        })->get();
       }
-
-      if($request->status)
-        if(@$keluhans)
-          $keluhans = $keluhans->where('status', $request->status);
-        else
-          $keluhans = Keluhan::where('status', $request->status);
-
-      $data['keluhans'] = $keluhans->get();
+      
+      else{
+        $data['keluhans'] = Keluhan::whereHas('customer', function($query){
+          $query->where('nama_depan', Auth::user()->nama_depan);
+        })->get();
+      }
        
       return view('officer/keluhan', $data);
     }
+
     public function insert()
     {
         $data['bisnis_units'] = Bisnis_unit::all();
-        $data['customers'] = Customer::where('status','Aktif')->get();
+        // $data['customers'] = Customer::where('status','Aktif')->get();
+        $data['customers'] = Customer::where('nama_depan', Auth::user()->nama_depan)->get();
         $data['users'] = User::where('rule', 'officer_crm')->get();
         
         return view('officer/insertkeluhan',$data);
@@ -152,6 +160,10 @@ class KeluhanController extends Controller
       })->get();
       $pdf = PDF::loadview('officer/pdfkeluhan',['keluhan'=>$keluhan]);
       $pdf->setPaper('A4','landscape');
-      return $pdf->download('Laporan-Keluhan-CRM.pdf');
+      return $pdf->download('Laporan-Keluhan-Officer-CRM.pdf');
+    }
+    public function exportExcel()
+	  {
+		return Excel::download(new KeluhanOfficerExport, 'Laporan-Keluhan-CRM-Officer.xlsx');
     }
 }

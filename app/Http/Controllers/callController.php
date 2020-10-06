@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\DB;
 use App\Call;
 use PDF;
 use Validator;
-use App\Exports\CallExport;
+use App\Exports\CallOfficerExport;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Customer;
 use App\Bisnis_unit;
@@ -37,22 +37,24 @@ class callController extends Controller
       $data['areas'] = Area::all();
       $data['bisnis_units'] = Bisnis_unit::all();
       
-      if($request->bu_id || $request->area_id){
-        $calls = Call::whereHas('customer', function($query) use($request){
-          if($request->bu_id)
-            $query->where('bu_id',$request->bu_id);
-
-          if($request->area_id)
-            $query->where('area_id',$request->area_id);
-        });
+      if($request->from || $request->to){
+        $data['calls'] = Call::whereHas('customer', function($query) use($request){
+          if($request->from || $request->to)
+            $query->where('nama_depan', Auth::user()->nama_depan);
+            $query->whereBetween('tanggal_call',[$request->from, $request->to]);
+        })->get();
       }
-      $data['calls'] = $calls->get();
+      else{
+        $data['calls'] = Call::all();
+      }
+      
       return view('officer/call', $data);
     }
     public function insert()
     {
         $data['bisnis_units'] = Bisnis_unit::all();
-        $data['customers'] = Customer::where('status', 'Aktif')->get();
+        // $data['customers'] = Customer::where('status', 'Aktif')->get();
+        $data['customers'] = Customer::where('nama_depan', Auth::user()->nama_depan)->get();
         $data['users'] = User::where('rule', 'officer_crm')->get();
 
       return view('officer/insertcall',$data);
@@ -61,7 +63,7 @@ class callController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'spv_pic' => 'required',
+            // 'spv_pic' => 'required',
             'tanggal_call' => 'required|date',
             'jam_call' => 'required',
             'pembicaraan' => 'required',
@@ -130,7 +132,7 @@ class callController extends Controller
       })->get();
         $pdf = PDF::loadview('officer/pdfcall',['call'=>$call]);
         $pdf->setPaper('A4','landscape');
-    	return $pdf->download('Laporan-Call-CRM.pdf');
+    	return $pdf->download('Laporan-Call-Officer-CRM.pdf');
     }
     public function monthFilter(Request $request){
         $month = $request->get('month');

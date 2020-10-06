@@ -19,6 +19,10 @@ class CreateUsersTable extends Migration
             $table->string('nama_belakang');
             $table->string('email')->unique();
             $table->integer('area_id')->unsigned();
+            $table->foreign('area_id')
+                ->references('area_id')
+                ->on('area')
+                ->onDelete('cascade');
             $table->string('no_hp');
             $table->string('password');
             $table->string('rule');
@@ -27,13 +31,7 @@ class CreateUsersTable extends Migration
             $table->rememberToken();
             $table->timestamps();
         });
-        Schema::table('users', function($table)
-        {
-            $table->foreign('area_id')
-                ->references('area_id')
-                ->on('area')
-                ->onDelete('cascade');
-        });
+        
     }
 
     /**

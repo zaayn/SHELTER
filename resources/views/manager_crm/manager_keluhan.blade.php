@@ -47,6 +47,15 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
+                                    <label class="control-label col-md-2">Tanggal</label>
+                                    <div class="col-md-3">
+                                        <input type="date" class="form-control" name="from">
+                                    </div>
+                                    <div class="col-md-3">
+                                        <input type="date" class="form-control" name="to">
+                                    </div>
+                                </div>
+                                <div class="form-group">
                                     <div class="col-md-1 col-md-offset-2">
                                         <a href="{{asset('/manager_crm/keluhan')}}">
                                             <button type="button" class="btn btn-primary btn-sm"><i class="fa fa-refresh"></i> Reset</button>
@@ -66,6 +75,7 @@
                             <div style="overflow-x:auto;">
                                 <table class="mydatatables table table-collapse table-hover table-light table-striped cell-border table-responsive">                                <thead>
                                     <th>No.</th>
+                                    <th>Penginput</th>
                                     <th>Nama Customer</th>
                                     <th>Departemen Tertuju</th>
                                     <th>Tanggal</th>
@@ -82,7 +92,8 @@
                                 @foreach($keluhans as $ke)
                                 <tr>
                                     <td>{{ $no++  }}</td>
-                                    <td>{{ $ke->nama_perusahaan }}</td>
+                                    <td>{{ $ke->customer->nama_depan }}</td>
+                                    <td>{{ $ke->customer->nama_perusahaan }}</td>
                                     <td>{{ $ke->departemen }}</td>
                                     <td>{{ $ke->tanggal_keluhan }}</td>
                                     <td>{{ $ke->topik_masalah }}</td>

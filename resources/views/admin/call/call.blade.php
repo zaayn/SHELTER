@@ -48,6 +48,15 @@
                                 </div>
                             </div>
                             <div class="form-group">
+                                <label class="control-label col-md-2">Tanggal</label>
+                                <div class="col-md-3">
+                                    <input type="date" class="form-control" name="from">
+                                </div>
+                                <div class="col-md-3">
+                                    <input type="date" class="form-control" name="to">
+                                </div>
+                            </div>
+                            <div class="form-group">
                                 <div class="col-md-1 col-md-offset-2">
                                     <a href="/admin/call">
                                         <button type="button" class="btn btn-primary"><i class="fa fa-refresh"></i> Reset</button>
@@ -60,7 +69,6 @@
                         </form>
 {{-- ---- end filter ------ --}}   
                     <div style="float:right; margin-bottom:10px;">
-                        <a href="{{asset('/admin/insertcall')}}" class="btn btn-primary btn-sm">Insert Call</a>
                         <a href="{{asset('/admin/call/exportExcel')}}" class="btn btn-default btn-sm" target="_blank">Download Excel</a>
                         <a href="{{asset('/admin/call/exportPDF')}}" class="btn btn-default btn-sm" target="_blank">Download PDF</a>
                     </div>
@@ -70,28 +78,26 @@
                             <table class=" mydatatables table table-collapse table-hover table-light table-striped cell-border table-responsive">
                                 <thead>
                                     <th>No.</th>
+                                    <th>Penginput</th>
                                     <th>Nama Customer</th>
                                     <th>Tanggal</th>
                                     <th>Waktu Call</th>
                                     <th>Pembicaraan</th>
                                     <th>PIC Call</th>
                                     <th>Hal Menonjol</th>
-                                    <th>Aksi</th>
                                 </thead>
                                 <tbody>
                                 @foreach($calls as $call)
                                 <tr>
                                     <td>{{ $no++  }}</td>
+                                    <td>{{ $call->customer->nama_depan }}</td>
                                     <td>{{ $call->customer->nama_perusahaan }}</td>
                                     <td>{{ $call->tanggal_call }}</td>
                                     <td>{{ $call->jam_call }}</td>
                                     <td>{{ $call->pembicaraan }}</td>
                                     <td>{{ $call->pic_called }}</td>
                                     <td>{{ $call->hal_menonjol }}</td>
-                                    <td>
-                                        <a href="{{route('edit.call',$call->call_id)}}" class="btn btn-info btn-sm"><span class="fa fa-pencil"></span></a>
-                                        <a onclick="return confirm('Apakah anda yakin akan menghapus data ini ?')" href="{{route('destroy.call',$call->call_id)}}" class="btn btn-danger btn-sm"><span class="fa fa-trash"></span></a>
-                                    </td>
+                                    
                                 </tr>
                                 @endforeach    
                                 </tbody>
@@ -132,17 +138,6 @@ $(document).ready(function() {
 
   var table = $('.mydatatables').DataTable( 
     {
-        // "columnDefs": [
-        //     { "width": "1px", "targets": 0 },
-        //     { "width": "10px", "targets": 1 },
-        //     { "width": "10px", "targets": 2 },
-        //     { "width": "10px", "targets": 3 },
-        //     { "width": "10px", "targets": 4 },
-        //     { "width": "10px", "targets": 5 },
-        //     { "width": "10px", "targets": 6 },
-        //     { "width": "10px", "targets": 7 },
-        //     { "width": "10px", "targets": 8 },
-        // ]
         orderCellsTop: true,
         fixedHeader: true,
         paging: true,

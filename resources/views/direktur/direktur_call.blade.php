@@ -47,6 +47,15 @@
                                 </div>
                             </div>
                             <div class="form-group">
+                                <label class="control-label col-md-2">Tanggal</label>
+                                <div class="col-md-3">
+                                    <input type="date" class="form-control" name="from">
+                                </div>
+                                <div class="col-md-3">
+                                    <input type="date" class="form-control" name="to">
+                                </div>
+                            </div>
+                            <div class="form-group">
                                 <div class="col-md-1 col-md-offset-2">
                                     <a href="{{asset('/direktur/call')}}">
                                         <button type="button" class="btn btn-primary"><i class="fa fa-refresh"></i> Reset</button>
@@ -68,7 +77,6 @@
                                     <thead>
                                     <th>No. </th>
                                     <th>Nama Customer</th>
-                                    <th>SPV_PIC</th>
                                     <th>Tanggal</th>
                                     <th>Waktu Call</th>
                                     <th>Pembicaraan</th>
@@ -79,8 +87,7 @@
                                 @foreach($calls as $call)
                                 <tr>
                                     <td>{{ $no++  }}</td>
-                                    <td>{{ $call->nama_perusahaan }}</td>
-                                    <td>{{ $call->spv_pic }}</td>
+                                    <td>{{ $call->customer->nama_perusahaan }}</td>
                                     <td>{{ $call->tanggal_call }}</td>
                                     <td>{{ $call->jam_call }}</td>
                                     <td>{{ $call->pembicaraan }}</td>

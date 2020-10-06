@@ -45,6 +45,10 @@
                 	        <input type="text" class="form-control" disabled="disabled" name="nomor_kontrak" value="{{$datamou->kontrak->nomor_kontrak}}" required>
                         </div>
                         <div class="form-group col-md-12">
+                	        <label class="font-weight-bold">No. Adendum</label>
+                	        <input type="text" class="form-control" name="no_adendum" value="{{$datamou->no_adendum}}" required>
+                        </div>
+                        <div class="form-group col-md-12">
                 	        <label class="font-weight-bold">HC</label>
                 	        <input type="text" class="form-control" name="hc" value="{{$datamou->hc}}" required>
                         </div>

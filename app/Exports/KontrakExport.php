@@ -30,6 +30,8 @@ class KontrakExport implements FromCollection, WithHeadings, ShouldAutoSize, Wit
     {
         return [
             'No',
+            'Nomor Kontrak',
+            'Kode Customer',
             'Nama Customer',
             'Periode Kontrak',
             'Akhir Periode',

@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Support\Facades\DB;
+use App\Exports\VisitOfficerExport;
+use Maatwebsite\Excel\Facades\Excel;
 use App\Visit;
 use Validator;
 use PDF;
@@ -34,22 +36,24 @@ class VisitController extends Controller
       $data['areas'] = Area::all();
       $data['bisnis_units'] = Bisnis_unit::all();
       
-      if($request->bu_id || $request->area_id){
-        $visits = Visit::whereHas('customer', function($query) use($request){
-          if($request->bu_id)
-            $query->where('bu_id',$request->bu_id);
-
-          if($request->area_id)
-            $query->where('area_id',$request->area_id);
-        });
+      if($request->from || $request->to){
+        $data['visits'] = Visit::whereHas('customer', function($query) use($request){
+          if($request->from || $request->to)
+            $query->where('nama_depan', Auth::user()->nama_depan);
+            $query->whereBetween('tanggal_visit',[$request->from, $request->to]);
+        })->get();
       }
-      $data['visits'] = $visits->get();
+      else{
+        $data['visits'] = Visit::all();
+      }
+      
       return view('officer/visit', $data);
     }
     public function insert()
     {
         $data['bisnis_units'] = Bisnis_unit::all();
-        $data['customers'] = Customer::where('status', 'Aktif')->get();
+        // $data['customers'] = Customer::where('status', 'Aktif')->get();
+        $data['customers'] = Customer::where('nama_depan', Auth::user()->nama_depan)->get();
         $data['users'] = User::where('rule', 'officer_crm')->get();
 
       return view('officer/insertvisit',$data);
@@ -58,7 +62,6 @@ class VisitController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'spv_pic' => 'required',
             'tanggal_visit' => 'required|date',
             'waktu_in' => 'required',
             'waktu_out' => 'required',
@@ -69,7 +72,6 @@ class VisitController extends Controller
         $visit = new Visit;
         $visit->visit_id = $request->visit_id;
         $visit->kode_customer = $request->kode_customer;
-        $visit->spv_pic = $request->spv_pic;
         $visit->tanggal_visit = $request->tanggal_visit;
         $visit->waktu_in = $request->waktu_in;
         $visit->waktu_out = $request->waktu_out;
@@ -99,7 +101,6 @@ class VisitController extends Controller
     {
         $visit = visit::findorFail($visit_id);
         $request->validate([
-            'spv_pic' => 'required',
             'tanggal_visit' => 'required|date',
             'waktu_in' => 'required',
             'waktu_out' => 'required',
@@ -108,7 +109,6 @@ class VisitController extends Controller
         ]);
 
         $visit->kode_customer = $request->kode_customer;
-        $visit->spv_pic = $request->spv_pic;
         $visit->tanggal_visit = $request->tanggal_visit;
         $visit->waktu_in = $request->waktu_in;
         $visit->waktu_out = $request->waktu_out;
@@ -130,6 +130,10 @@ class VisitController extends Controller
         })->get();
         $pdf = PDF::loadview('officer/pdfvisit',['visit'=>$visit]);
         $pdf->setPaper('A4','landscape');
-    	return $pdf->download('Laporan-Visit-CRM.pdf');
+    	return $pdf->download('Laporan-Visit-Officer-CRM.pdf');
+    }
+    public function exportExcel()
+	  {
+		return Excel::download(new VisitOfficerExport, 'Laporan-Visit-CRM-Officer.xlsx');
     }
 }

@@ -10,6 +10,7 @@ class datamou extends Model
     protected $primaryKey = 'no_mou';
     protected $fillable = [
        'id_kontrak'
+       ,'no_adendum'
        ,'hc'
        ,'invoice'
        ,'mf'

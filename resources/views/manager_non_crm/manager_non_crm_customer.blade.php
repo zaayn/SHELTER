@@ -84,13 +84,13 @@
                                         <td>{{ $customer->kode_customer }}</td>
                                         <td>{{ $customer->nama_perusahaan }}</td>
                                         <td>{{ $customer->jenis_usaha }}</td>
-                                        <td>{{ $customer->nama_bisnis_unit }}</td>
+                                        <td>{{ $customer->bisnis_unit->nama_bisnis_unit }}</td>
                                         <td>{{ $customer->alamat }}</td>
                                         <td>{{ $customer->provinsi }}</td>
                                         <td>{{ $customer->kabupaten }}</td>
                                         <td>{{ $customer->telpon }}</td>
                                         <td>{{ $customer->cp }}</td>
-                                        <td>{{ $customer->nama_area}}</td>
+                                        <td>{{ $customer->area->nama_area}}</td>
                                         <td>{{ $customer->nama_depan}}</td>
                                         
                                     </tr>

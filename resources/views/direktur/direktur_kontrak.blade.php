@@ -47,6 +47,15 @@
                                 </div>
                             </div>
                             <div class="form-group">
+                                <label class="control-label col-md-2">Tanggal</label>
+                                <div class="col-md-3">
+                                    <input type="date" class="form-control" name="from">
+                                </div>
+                                <div class="col-md-3">
+                                    <input type="date" class="form-control" name="to">
+                                </div>
+                            </div>
+                            <div class="form-group">
                                 <div class="col-md-1 col-md-offset-2">
                                     <a href="{{asset('/direktur/kontrak')}}">
                                         <button type="button" class="btn btn-primary"><i class="fa fa-refresh"></i> Reset</button>
@@ -59,6 +68,8 @@
                         </form>
                         {{-- ---- end filter ------ --}}
                     <div style="float:right; margin-bottom:10px;">
+                        <a href="{{asset('/direktur/kontrak/reminder')}}" class="btn btn-danger btn-sm">Kontrak H-60</a> 
+                        <a href="{{asset('/direktur/kontrak/habis')}}" class="btn btn-warning btn-sm">Kontrak Habis</a>      
                         <a href="{{asset('/direktur/kontrak/exportExcel')}}" class="btn btn-default btn-sm" target="_blank">Download Excel</a>
                         <a href="{{asset('/direktur/kontrak/exportPDF')}}" class="btn btn-default btn-sm" target="_blank">Download PDF</a>
                     </div>
@@ -83,12 +94,12 @@
                                     <th>Status</th>
                                 </thead>
                                 <tbody>
-                                @foreach($kontrak as $ko)
+                                @foreach($kontraks as $ko)
                                 <tr>
                                     <td>{{ $no++ }}</td>
                                     <td>{{ $ko->nomor_kontrak }}</td>
                                     <td>{{ $ko->kode_customer }}</td>
-                                    <td>{{ $ko->nama_perusahaan }}</td>
+                                    <td>{{ $ko->customer->nama_perusahaan }}</td>
                                     <td>{{ $ko->periode_kontrak }}</td>
                                     <td>{{ $ko->akhir_periode }}</td>
                                     <td>{{ $ko->srt_pemberitahuan }}</td>

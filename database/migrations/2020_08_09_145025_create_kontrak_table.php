@@ -17,6 +17,11 @@ class CreateKontrakTable extends Migration
             $table->increments('id_kontrak')->unique();
             $table->string('nomor_kontrak');
             $table->string('kode_customer');
+            $table->foreign('kode_customer')
+                ->references('kode_customer')
+                ->on('customer')
+                ->onDelete('cascade');
+            // $table->string('no_adendum')
             $table->date('periode_kontrak');
             $table->date('akhir_periode');
             $table->string('srt_pemberitahuan');
@@ -28,13 +33,6 @@ class CreateKontrakTable extends Migration
             $table->string('posisi_pks');
             $table->string('closing');
             $table->timestamps();
-        });
-        Schema::table('kontrak', function($table)
-        {
-            $table->foreign('kode_customer')
-                ->references('kode_customer')
-                ->on('customer')
-                ->onDelete('cascade');
         });
     }
 

@@ -69,27 +69,6 @@
       
         <ul class="nav navbar-nav">
           
-          <!-- Notifications: style can be found in dropdown.less -->
-          <li class="dropdown notifications-menu">
-            <a href="" class="dropdown-toggle" data-toggle="dropdown">
-              <i class="fa fa-bell-o"></i>
-              <span class="label label-warning">1</span>
-            </a>
-            <ul class="dropdown-menu">
-              <li class="header">You have 1 notifications</li>
-              <li>
-                <!-- inner menu: contains the actual data -->
-                <ul class="menu">
-                  <li>
-                    <a href="{{asset('/admin/reminder')}}">
-                      <i class="fa fa-user text-red"></i> kontrak member akan berakhir
-                    </a>
-                  </li>
-                </ul>
-              </li>
-              <li class="footer"><a href="">View all</a></li>
-            </ul>
-          </li>
           <!-- User Account: style can be found in dropdown.less -->
           <li class="dropdown user user-menu">
             <a href="" class="dropdown-toggle" data-toggle="dropdown">
@@ -170,7 +149,7 @@
               <li class="active"><a href="{{asset('/admin/insert_customer')}}"><i class="fa fa-circle-o"></i> Insert Customer</a></li>
             </ul>
         </li>
-        <li class="treeview">
+       {{-- <li class="treeview">
           <a href="">
             <i class="fa fa-plus"></i> <span>Insert Laporan</span>
             <span class="pull-right-container">
@@ -183,7 +162,7 @@
               <li class="active"><a href="{{asset('/admin/insertcall')}}"><i class="fa fa-circle-o"></i>Insert Laporan Call</a></li>
               <li class="active"><a href="{{asset('/admin/insertkeluhan')}}"><i class="fa fa-circle-o"></i>Insert Laporan Keluhan</a></li>
             </ul>
-        </li>
+        </li>--}}
 
         <li class="treeview">
           <a href="">
@@ -213,7 +192,6 @@
             {{-- <li><a href="{{asset('/admin/user')}}"><i class="fa fa-circle-o"></i> User CRM</a></li> --}}
             <li class="active"><a href="{{asset('/admin/customer')}}"><i class="fa fa-circle-o"></i> Customer</a></li>
             <li class="active"><a href="{{asset('/admin/cust_type')}}"><i class="fa fa-circle-o"></i> Tipe Customer</a></li>
-            <li class="active"><a href="{{asset('/admin/profile')}}"><i class="fa fa-circle-o"></i> Profile Customer</a></li>
           </ul>
         </li>
 
