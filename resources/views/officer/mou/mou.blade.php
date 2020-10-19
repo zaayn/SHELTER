@@ -22,7 +22,7 @@
             <div class="panel block">
                 <div class="panel-body">
                     {{-- ----------  -------------- filter ------------------------ --}}
-                    <form class="form-horizontal" id="form-filter" method="POST" action="{{route('filter.mou')}}">
+                    <form class="form-horizontal" id="form-filter" method="POST" action="{{route('filter.officer.datamou')}}">
                             @csrf
                             <div class="form-group">
                                 <label class="control-label col-md-2">Bisnis Unit</label>
@@ -57,7 +57,7 @@
                                 </div>
                                 <div class="form-group">
                                     <div class="col-md-1 col-md-offset-2">
-                                        <a href="{{asset('/admin/mou')}}">
+                                        <a href="{{asset('/officer_crm/mou')}}">
                                             <button type="button" class="btn btn-primary btn-sm"><i class="fa fa-refresh"></i> Reset</button>
                                         </a>    
                                     </div>
