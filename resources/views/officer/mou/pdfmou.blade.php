@@ -18,17 +18,17 @@
 	<table class='table table-bordered'>
 		<thead>
 			<tr>
-            <th>No. MoU</th>
-                                    <th>Nomor Kontrak</th>
-                                    <th>No. Adendum</th>
-                                    <th>HC</th>
-                                    <th>Invoice</th>
-                                    <th>MF</th>
-                                    <th>MF (%)</th>
-                                    <th>Ket. % BPJS Ketenagakerjaan</th>
-                                    <th>Nominal BPJS Ketenagakerjaan</th>
-                                    <th>Ket. % BPJS Kesehatan</th>
-                                    <th>Nominal BPJS Kesehatan</th>
+                <th>No. MoU</th>
+                <th>Nomor Kontrak</th>
+                <th>No. Adendum</th>
+                <th>HC</th>
+                <th>Invoice</th>
+                <th>MF</th>
+                <th>MF (%)</th>
+                <th>Ket. % BPJS Ketenagakerjaan</th>
+                <th>Nominal BPJS Ketenagakerjaan</th>
+                <th>Ket. % BPJS Kesehatan</th>
+                <th>Nominal BPJS Kesehatan</th>
                 <th>Jiwasraya</th>
                 <th>Ramamusa</th>
                 <th>Ditagihkan</th>
@@ -49,7 +49,7 @@
 			@foreach($datamou as $datamou)
 			<tr>
 			<td>{{ $i++ }}</td>
-                                    <td>{{ $datamou->kontrak->nomor_kontrak }}</td>
+                                    <td>{{ $datamou->nomor_kontrak }}</td>
                                     <td>{{ $datamou->no_adendum }}</td>
                                     <td>{{ $datamou->hc }}</td>
                                     <td>{{ 'Rp'.number_format($datamou->invoice, 2, ',','.') }}</td>

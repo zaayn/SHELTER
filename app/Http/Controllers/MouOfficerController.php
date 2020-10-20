@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Foundation\Validation\ValidatesRequests;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use PDF;
 use App\Datamou;
@@ -24,8 +25,7 @@ class MouOfficerController extends Controller
         $data['datamous'] = DB::table('datamou')
         ->join('kontrak', 'datamou.id_kontrak', '=', 'kontrak.id_kontrak')
         ->join('customer','customer.kode_customer','=','kontrak.kode_customer')
-        // ->whereBetween('kontrak.akhir_periode',array('2020-09-01','2020-09-10'))
-        // ->where('kontrak.akhir_periode','=','2020-09-10')
+        ->where('customer.nama_depan','=',Auth::user()->nama_depan)
         ->get();
         // $mou = Datamou::whereHas('customer', function($query){
         //     $query->where('nama_depan',Auth::user()->nama_depan);
@@ -36,96 +36,7 @@ class MouOfficerController extends Controller
     }
     public function filter_mou(Request $request)
     {
-        if($request->from && $request->to && $request->bu_id && $request->area_id)
-        {
-            $data['no'] = 1;
-            $data['areas'] = Area::all();
-            $data['bisnis_units'] = Bisnis_unit::all();
-            $data['datamous'] = DB::table('datamou')
-            ->join('kontrak', 'datamou.id_kontrak', '=', 'kontrak.id_kontrak')
-            ->join('customer', 'customer.kode_customer', '=', 'kontrak.kode_customer')
-            ->join('area','area.area_id','=','customer.area_id')
-            ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
-            ->where('bisnis_unit.bu_id', '=', $request->bu_id)
-            ->where('area.area_id', '=', $request->area_id)
-            ->whereBetween('kontrak.akhir_periode',array($request->from,$request->to))
-            ->get();
-            return view('officer/mou/mou', $data);
-        }
-        elseif($request->bu_id && $request->area_id)
-        {
-            $data['no'] = 1;
-            $data['areas'] = Area::all();
-            $data['bisnis_units'] = Bisnis_unit::all();
-            $data['datamous'] = DB::table('datamou')
-            ->join('kontrak', 'datamou.id_kontrak', '=', 'kontrak.id_kontrak')
-            ->join('customer', 'customer.kode_customer', '=', 'kontrak.kode_customer')
-            ->join('area','area.area_id','=','customer.area_id')
-            ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
-            ->where('bisnis_unit.bu_id', '=', $request->bu_id)
-            ->where('area.area_id', '=', $request->area_id)
-            ->get();
-            return view('officer/mou/mou', $data);
-        }
-        elseif($request->from && $request->to && $request->bu_id)
-        {
-            $data['no'] = 1;
-            $data['areas'] = Area::all();
-            $data['bisnis_units'] = Bisnis_unit::all();
-            $data['datamous'] = DB::table('datamou')
-            ->join('kontrak', 'datamou.id_kontrak', '=', 'kontrak.id_kontrak')
-            ->join('customer', 'customer.kode_customer', '=', 'kontrak.kode_customer')
-            ->join('area','area.area_id','=','customer.area_id')
-            ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
-            ->where('bisnis_unit.bu_id', '=', $request->bu_id)
-            ->whereBetween('kontrak.akhir_periode',array($request->from,$request->to))
-            ->get();
-            return view('officer/mou/mou', $data);
-        }
-        elseif($request->from && $request->to &&  $request->area_id)
-        {
-            $data['no'] = 1;
-            $data['areas'] = Area::all();
-            $data['bisnis_units'] = Bisnis_unit::all();
-            $data['datamous'] = DB::table('datamou')
-            ->join('kontrak', 'datamou.id_kontrak', '=', 'kontrak.id_kontrak')
-            ->join('customer', 'customer.kode_customer', '=', 'kontrak.kode_customer')
-            ->join('area','area.area_id','=','customer.area_id')
-            ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
-            ->where('area.area_id', '=', $request->area_id)
-            ->whereBetween('kontrak.akhir_periode',array($request->from,$request->to))
-            ->get();
-            return view('officer/mou/mou', $data);
-        }
-        elseif($request->bu_id)
-        {
-            $data['no'] = 1;
-            $data['areas'] = Area::all();
-            $data['bisnis_units'] = Bisnis_unit::all();
-            $data['datamous'] = DB::table('datamou')
-            ->join('kontrak', 'datamou.id_kontrak', '=', 'kontrak.id_kontrak')
-            ->join('customer', 'customer.kode_customer', '=', 'kontrak.kode_customer')
-            ->join('area','area.area_id','=','customer.area_id')
-            ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
-            ->where('bisnis_unit.bu_id', '=', $request->bu_id)
-            ->get();
-            return view('officer/mou/mou', $data);
-        }
-        elseif($request->area_id)
-        {
-            $data['no'] = 1;
-            $data['areas'] = Area::all();
-            $data['bisnis_units'] = Bisnis_unit::all();
-            $data['datamous'] = DB::table('datamou')
-            ->join('kontrak', 'datamou.id_kontrak', '=', 'kontrak.id_kontrak')
-            ->join('customer', 'customer.kode_customer', '=', 'kontrak.kode_customer')
-            ->join('area','area.area_id','=','customer.area_id')
-            ->join('bisnis_unit', 'customer.bu_id', '=', 'bisnis_unit.bu_id')
-            ->where('area.area_id', '=', $request->area_id)
-            ->get();
-            return view('officer/mou/mou', $data);
-        }
-        elseif($request->from && $request->to)
+        if($request->from && $request->to)
         {
             $data['no'] = 1;
             $data['areas'] = Area::all();
@@ -277,7 +188,12 @@ class MouOfficerController extends Controller
         return redirect()->route('index.officer.datamou')->with('success', 'delete sukses');
     }
     public function exportPDF(){
-        $mou = Datamou::all();
+        // $mou = Datamou::all();
+        $mou = DB::table('datamou')
+        ->join('kontrak', 'datamou.id_kontrak', '=', 'kontrak.id_kontrak')
+        ->join('customer','customer.kode_customer','=','kontrak.kode_customer')
+        ->where('customer.nama_depan','=',Auth::user()->nama_depan)
+        ->get();
         $pdf = PDF::loadview('officer/mou/pdfmou',['datamou'=>$mou]);
         $pdf->setPaper('A4','landscape');
         return $pdf->download('Laporan-Mou-Officer-CRM.pdf');
