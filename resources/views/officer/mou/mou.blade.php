@@ -24,7 +24,7 @@
                     {{-- ----------  -------------- filter ------------------------ --}}
                     <form class="form-horizontal" id="form-filter" method="POST" action="{{route('filter.officer.datamou')}}">
                             @csrf
-                            <div class="form-group">
+                           {{-- <div class="form-group">
                                 <label class="control-label col-md-2">Bisnis Unit</label>
                                 <div class="col-md-6">
                                     <select class="form-control" name="bu_id">
@@ -45,7 +45,7 @@
                                             @endforeach
                                         </select>
                                     </div>
-                                </div>
+                                </div>--}}
                                 <div class="form-group">
                                     <label class="control-label col-md-2">Tanggal</label>
                                     <div class="col-md-3">
