@@ -10,7 +10,7 @@ use App\Datamou;
 use App\Kontrak;
 use App\Customer;
 use Excel;
-use App\Exports\MouExport;
+use App\Exports\MouOfficerExport;
 use App\Bisnis_unit;
 use App\Area;
 
@@ -278,11 +278,11 @@ class MouOfficerController extends Controller
     }
     public function exportPDF(){
         $mou = Datamou::all();
-        $pdf = PDF::loadview('oficer/mou/pdfmou',['datamou'=>$mou]);
+        $pdf = PDF::loadview('officer/mou/pdfmou',['datamou'=>$mou]);
         $pdf->setPaper('A4','landscape');
-        return $pdf->download('Laporan-Mou-CRM.pdf');
+        return $pdf->download('Laporan-Mou-Officer-CRM.pdf');
     }
     public function exportExcel(){
-        return Excel::download(new MouExport, 'Laporan-Mou-CRM.xlsx');
+        return Excel::download(new MouOfficerExport, 'Laporan-Mou-CRM-Officer.xlsx');
     }
 }
