@@ -68,8 +68,8 @@
                             </form>
                             {{-- ---- end filter ------ --}}
                     <div style="float:right; margin-bottom:10px;">
-                        <a href="{{asset('/admin/mou/exportExcel')}}" class="btn btn-default btn-sm" target="_blank">Download Excel</a>
-                        <a href="{{asset('/admin/mou/exportPDF')}}" class="btn btn-default btn-sm" target="_blank">Download PDF</a>
+                        <a href="{{asset('/officer_crm/mou/exportExcel')}}" class="btn btn-default btn-sm" target="_blank">Download Excel</a>
+                        <a href="{{asset('/officer_crm/mou/exportPDF')}}" class="btn btn-default btn-sm" target="_blank">Download PDF</a>
                     </div>
                             <hr style="border: solid #ddd; border-width: 1px 0 0; clear: both; margin: 22px 0 21px; height: 0;">
                             @include('admin.shared.components.alert')

@@ -56,8 +56,8 @@ Route::group(['prefix' => 'officer_crm',  'middleware' => 'is_officer_crm'], fun
     Route::get('/reminder', 'KontrakController@reminder')->name('index.reminder.kontrak');
     Route::get('/kontrak/habis', 'KontrakController@endKontrak')->name('index.endKontrak.kontrak');
     
-    Route::get('/mou/exportPDF', 'OfficerController@exportPDF');
-    Route::get('/mou/exportExcel', 'OfficerController@exportExcel');
+    // Route::get('/mou/exportPDF', 'OfficerController@exportPDF');
+    // Route::get('/mou/exportExcel', 'OfficerController@exportExcel');
 
     //------- laporan mou
     Route::get('/insert/mou{id_kontrak}','KontrakController@insertmou')->name('insertmou.officer.kontrak');
@@ -69,8 +69,8 @@ Route::group(['prefix' => 'officer_crm',  'middleware' => 'is_officer_crm'], fun
     Route::post('/update/datamou{no_mou}','MouOfficerController@update')->name('update.officer.datamou');
     Route::post('/filter/mou', 'MouOfficerController@filter_mou')->name('filter.officer.datamou');
 
-    // Route::get('/mou/exportPDF', 'MouOfficerController@exportPDF');
-    // Route::get('/mou/exportExcel', 'MouOfficerController@exportExcel');
+    Route::get('/mou/exportPDF', 'MouOfficerController@exportPDF');
+    Route::get('/mou/exportExcel', 'MouOfficerController@exportExcel');
 
 });
 
